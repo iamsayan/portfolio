@@ -3,6 +3,7 @@ import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import { getProfile, getFAQs } from "@/lib/data";
+import { Icon } from "astro-icon/components";
 
 const profile = await getProfile();
 const faqs = await getFAQs();
@@ -29,9 +30,11 @@ const faqs = await getFAQs();
             </div>
 
             <!-- Context Info blocks -->
-            <div class="space-y-4 reveal r3">
+             <div class="space-y-4 reveal r3">
               <div class="glass p-5 bg-surface border-subtle flex items-start gap-4">
-                <span class="w-8 h-8 rounded bg-accent-glow text-accent flex items-center justify-center flex-shrink-0 font-mono text-sm" aria-hidden="true">✉</span>
+                <span class="w-8 h-8 rounded bg-accent-glow text-accent flex items-center justify-center flex-shrink-0" aria-hidden="true">
+                  <Icon name="ph:envelope" class="w-4 h-4" />
+                </span>
                 <div>
                   <p class="text-[10px] font-mono text-muted uppercase tracking-wider">Direct Channels</p>
                   <a href={`mailto:${profile.email}`} class="text-sm font-semibold text-accent hover:text-accent-bright transition-colors mt-1 block">{profile.email}</a>
@@ -39,7 +42,9 @@ const faqs = await getFAQs();
               </div>
 
               <div class="glass p-5 bg-surface border-subtle flex items-start gap-4">
-                <span class="w-8 h-8 rounded bg-accent-glow text-accent flex items-center justify-center flex-shrink-0 font-mono text-sm" aria-hidden="true">𖡡</span>
+                <span class="w-8 h-8 rounded bg-accent-glow text-accent flex items-center justify-center flex-shrink-0" aria-hidden="true">
+                  <Icon name="ph:map-pin" class="w-4 h-4" />
+                </span>
                 <div>
                   <p class="text-[10px] font-mono text-muted uppercase tracking-wider">Operational Location</p>
                   <p class="text-sm text-secondary mt-1 font-semibold">{profile.location} &middot; Remote operations globally</p>
@@ -47,7 +52,9 @@ const faqs = await getFAQs();
               </div>
 
               <div class="glass p-5 bg-surface border-subtle flex items-start gap-4">
-                <span class="w-8 h-8 rounded bg-success-glow text-success flex items-center justify-center flex-shrink-0 font-mono text-sm" aria-hidden="true">●</span>
+                <span class="w-8 h-8 rounded bg-success-glow text-success flex items-center justify-center flex-shrink-0 animate-pulse" aria-hidden="true">
+                  <Icon name="ph:circle-fill" class="w-2.5 h-2.5" />
+                </span>
                 <div>
                   <p class="text-[10px] font-mono text-muted uppercase tracking-wider">Work Availability</p>
                   <p class="text-sm text-secondary mt-1 font-semibold">Open for Freelance and Contract roles</p>
@@ -117,7 +124,9 @@ const faqs = await getFAQs();
 
               <!-- Success window overlay -->
               <div id="success-state" class="hidden py-8 text-center space-y-6" role="status">
-                <div class="w-12 h-12 rounded-full bg-success-glow text-success flex items-center justify-center mx-auto text-xl font-bold border border-[rgba(16,185,129,0.2)]">✓</div>
+                <div class="w-12 h-12 rounded-full bg-success-glow text-success flex items-center justify-center mx-auto border border-[rgba(16,185,129,0.2)]">
+                  <Icon name="ph:check" class="w-5 h-5" aria-hidden="true" />
+                </div>
                 <div>
                   <h3 class="text-md font-bold text-primary">Message Transmitted Successfully</h3>
                   <p class="text-xs text-secondary mt-2 max-w-sm mx-auto">Your request has been successfully processed and forwarded to Sayan Datta's primary inbox. You should receive a direct follow-up shortly.</p>
@@ -127,7 +136,9 @@ const faqs = await getFAQs();
 
               <!-- Error state & Fallback panel -->
               <div id="error-state" class="hidden py-8 text-center space-y-6" role="alert">
-                <div class="w-12 h-12 rounded-full bg-red-500/10 text-red-500 flex items-center justify-center mx-auto text-xl font-bold border border-red-500/20">!</div>
+                <div class="w-12 h-12 rounded-full bg-red-500/10 text-red-500 flex items-center justify-center mx-auto border border-red-500/20">
+                  <Icon name="ph:warning" class="w-5 h-5" aria-hidden="true" />
+                </div>
                 <div>
                   <h3 class="text-md font-bold text-primary">Transmission Interrupted</h3>
                   <p id="error-message" class="text-xs text-secondary mt-2 max-w-sm mx-auto">We encountered an issue routing your form details via Formspree API layers.</p>

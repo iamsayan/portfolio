@@ -3,6 +3,7 @@ import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import { getProfile, getExperience, getTestimonials } from "@/lib/data";
+import { Icon } from "astro-icon/components";
 
 const profile = await getProfile();
 const experience = await getExperience();
@@ -78,7 +79,7 @@ const testimonials = await getTestimonials();
           <!-- Hardware Card -->
           <div class="glass hover-glow-blue p-6 bg-surface">
             <h3 class="font-bold text-base text-primary mb-4 flex items-center gap-2">
-              <svg class="w-4 h-4 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+              <Icon name="ph:desktop" class="w-4 h-4 text-blue-500" aria-hidden="true" />
               Hardware
             </h3>
             <ul class="space-y-2 text-xs text-secondary font-sans">
@@ -91,7 +92,7 @@ const testimonials = await getTestimonials();
           <!-- Development Card -->
           <div class="glass hover-glow-emerald p-6 bg-surface">
             <h3 class="font-bold text-base text-primary mb-4 flex items-center gap-2">
-              <svg class="w-4 h-4 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+              <Icon name="ph:terminal-window" class="w-4 h-4 text-emerald-500" aria-hidden="true" />
               Development
             </h3>
             <ul class="space-y-2 text-xs text-secondary font-sans">
@@ -105,7 +106,7 @@ const testimonials = await getTestimonials();
           <!-- Design Card -->
           <div class="glass hover-glow-rose p-6 bg-surface">
             <h3 class="font-bold text-base text-primary mb-4 flex items-center gap-2">
-              <svg class="w-4 h-4 text-rose-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/></svg>
+              <Icon name="ph:palette" class="w-4 h-4 text-rose-500" aria-hidden="true" />
               UI / UX
             </h3>
             <ul class="space-y-2 text-xs text-secondary font-sans">
@@ -118,7 +119,7 @@ const testimonials = await getTestimonials();
           <!-- Infrastructure Card -->
           <div class="glass hover-glow-amber p-6 bg-surface">
             <h3 class="font-bold text-base text-primary mb-4 flex items-center gap-2">
-              <svg class="w-4 h-4 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+              <Icon name="ph:hard-drives" class="w-4 h-4 text-amber-500" aria-hidden="true" />
               Infrastructure
             </h3>
             <ul class="space-y-2 text-xs text-secondary font-sans">

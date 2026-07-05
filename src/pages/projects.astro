@@ -3,6 +3,7 @@ import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import { getProjects } from "@/lib/data";
+import { Icon } from "astro-icon/components";
 
 const allProjects = await getProjects();
 // First 4 are high impact featured plugins/products
@@ -101,7 +102,7 @@ const rest = allProjects.filter(p => !p.featured);
                     <div class="flex flex-wrap gap-4 mt-8 pt-6 border-t border-subtle">
                       <a href={p.url} target="_blank" rel="noopener noreferrer" class="b b-primary text-xs flex items-center gap-1.5 shadow-md">
                         View Directory / Live
-                        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                        <Icon name="ph:arrow-square-out" class="w-3.5 h-3.5" aria-hidden="true" />
                       </a>
                       {p.links && p.links.map(link => (
                         <a href={link.url} target="_blank" rel="noopener noreferrer" class="b b-ghost text-xs flex items-center gap-1">

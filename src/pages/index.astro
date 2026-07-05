@@ -3,6 +3,7 @@ import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import { getProfile, getStatistics, getProjects } from "@/lib/data";
+import { Icon } from "astro-icon/components";
 
 const profile = await getProfile();
 const statsData = await getStatistics();
@@ -96,14 +97,7 @@ const stats = [
                 class="b b-primary shadow-lg hover:scale-[1.02] active:scale-100 transition-transform"
               >
                 Explore Shipped Work
-                <svg
-                  class="w-4 h-4"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  aria-hidden="true"><path d="M9 5l7 7-7 7"></path></svg
-                >
+                <Icon name="ph:arrow-right" class="w-4 h-4" aria-hidden="true" />
               </a>
 
               <a
@@ -175,9 +169,8 @@ const stats = [
                   <span>gateway.ts</span>
                 </button>
                 <button
-                  class="ide-tab px-4 py-2 bg-surface text-muted flex items-center gap-2 cursor-pointer focus:outline-none hover:text-primary transition-colors"
+                  class="ide-tab px-4 py-2 bg-surface text-muted flex items-center gap-2 cursor-pointer focus:outline-none hover:text-primary transition-colors border-r border-strong"
                   data-tab="json"
-                  style="border-right: 1px solid var(--border-strong);"
                 >
                   <span class="text-[#f59e0b]">JSON</span>
                   <span>composer.json</span>
@@ -271,15 +264,7 @@ const stats = [
         <span class="t-mono text-[9px] tracking-widest text-muted"
           >Scroll Down</span
         >
-        <svg
-          class="w-4 h-4 animate-bounce text-accent"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          stroke-width="2"
-        >
-          <path d="M19 14l-7 7-7-7m14-6l-7 7-7-7"></path>
-        </svg>
+        <Icon name="ph:caret-double-down" class="w-4 h-4 animate-bounce text-accent" aria-hidden="true" />
       </div>
     </section>
 
@@ -593,16 +578,7 @@ const stats = [
               </div>
               <h3 class="text-xl font-bold group-hover:text-accent transition-colors duration-300 flex items-center gap-2">
                 {project.title}
-                <svg
-                  class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  aria-hidden="true"
-                >
-                  <path d="M10 6H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                </svg>
+                <Icon name="ph:arrow-square-out" class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden="true" />
               </h3>
               <p class="t-body mt-3 text-sm">
                 {project.overview || project.description}
