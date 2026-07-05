@@ -8,143 +8,261 @@ const profile = await getProfile();
 const statsData = await getStatistics();
 
 const stats = [
-  { value: statsData.experience + " Years", label: "Professional Experience" },
+  { value: statsData.experience, label: "Professional Experience" },
   { value: statsData.downloads, label: "Plugin Downloads" },
   { value: statsData.projects, label: "Projects Shipped" },
   { value: statsData.repositories, label: "GitHub Repos" },
 ];
 ---
 
-<Layout title={`${profile.name} | ${profile.title} & Open Source Engineer`} description={`${profile.title} specializing in high-performance WooCommerce systems, custom payment gateways, Laravel backends, and modern TypeScript (Astro, Next.js).`}>
+<Layout
+  title={`${profile.name} | ${profile.title} & Open Source Engineer`}
+  description={`${profile.title} specializing in high-performance WooCommerce systems, custom payment gateways, Laravel backends, and modern TypeScript (Astro, Next.js).`}
+>
   <Header />
   <main id="main-content">
     <!-- ── Hero — Split Screen Workbench ── -->
-    <section class="min-h-screen flex flex-col justify-center relative overflow-hidden pt-20">
+    <section
+      class="min-h-screen flex flex-col justify-center relative overflow-hidden pt-20"
+    >
       <!-- Colorful Ambient Glow Spotlights -->
-      <div class="absolute inset-0 opacity-[0.12] pointer-events-none" style="background:radial-gradient(circle at 75% 35%, var(--accent), transparent 50%)"></div>
-      <div class="absolute inset-0 opacity-[0.1] pointer-events-none" style="background:radial-gradient(circle at 20% 75%, #6366f1, transparent 50%)"></div>
+      <div
+        class="absolute inset-0 opacity-[0.12] pointer-events-none"
+        style="background:radial-gradient(circle at 75% 35%, var(--accent), transparent 50%)"
+      >
+      </div>
+      <div
+        class="absolute inset-0 opacity-[0.1] pointer-events-none"
+        style="background:radial-gradient(circle at 20% 75%, #6366f1, transparent 50%)"
+      >
+      </div>
 
-  <div class="mx relative z-10 py-16 lg:py-24">
+      <div class="mx relative z-10 py-16 lg:py-24">
         <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           <!-- Left: Pitch & Typography -->
           <div class="lg:col-span-7 space-y-6">
-            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-accent-glow border border-rose-500/10">
+            <div
+              class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-accent-glow border border-rose-500/10"
+            >
               <span class="relative flex h-2.5 w-2.5">
-                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                <span
+                  class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"
+                ></span>
+                <span
+                  class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"
+                ></span>
               </span>
-              <span class="text-[10px] font-mono tracking-wider text-accent-bright uppercase">Open to Freelance &amp; Contract Work</span>
+              <span
+                class="text-[10px] font-mono tracking-wider text-accent-bright uppercase"
+                >Open to Freelance &amp; Contract Work</span
+              >
             </div>
-            
-            <h1 class="t-display text-balance text-5xl md:text-7xl font-extrabold tracking-tight leading-none text-primary">
-              Product engineering for <span class="t-accent">WordPress &amp; WooCommerce.</span>
+
+            <h1
+              class="t-display text-balance text-5xl md:text-7xl font-extrabold tracking-tight leading-none text-primary"
+            >
+              Product engineering from <span class="t-accent"
+                >WordPress to Next.js &amp; Astro.</span
+              >
             </h1>
-            
+
             <p class="t-body max-w-xl text-lg leading-relaxed">
-              I am a <strong class="text-primary font-semibold">Senior Full Stack Developer</strong> with {statsData.experience} years of experience. I specialize in scaling e-commerce checkouts, custom payment integrations, robust Laravel backends, and high-performance modern JavaScript/TypeScript architectures.
+              I am a <strong class="text-primary font-semibold"
+                >Senior Full Stack Developer</strong
+              > with {statsData.experience} years of experience. I specialize in scaling
+              e-commerce checkouts, custom payment integrations, robust Laravel backends,
+              and high-performance modern JavaScript/TypeScript architectures.
             </p>
-            
+
             <div class="flex flex-wrap gap-4 pt-4">
-              <a href="/projects" class="b b-primary shadow-lg hover:scale-[1.02] active:scale-100 transition-transform">
+              <a
+                href="/projects"
+                class="b b-primary shadow-lg hover:scale-[1.02] active:scale-100 transition-transform"
+              >
                 Explore Shipped Work
-                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  aria-hidden="true"><path d="M9 5l7 7-7 7"></path></svg
+                >
               </a>
-              <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" class="b b-ghost hover:scale-[1.02] active:scale-100 transition-transform">View Resume</a>
-              <a href="/resume.pdf" download class="b b-ghost hover:scale-[1.02] active:scale-100 transition-transform">Download Resume</a>
-              <a href="/contact" class="b b-ghost hover:scale-[1.02] active:scale-100 transition-transform">Let's talk</a>
+
+              <a
+                href="/contact"
+                class="b b-ghost hover:scale-[1.02] active:scale-100 transition-transform"
+                >Let's talk</a
+              >
             </div>
 
             <!-- Stats Bar Below CTA -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 pt-10 border-t border-subtle">
-              {stats.map((s) => (
-                <div>
-                  <p class="text-3xl md:text-4xl font-black t-accent font-[var(--font-display)]">{s.value}</p>
-                  <p class="text-xs text-secondary mt-1">{s.label}</p>
-                </div>
-              ))}
+            <div
+              class="grid grid-cols-2 md:grid-cols-4 gap-4 pt-10 border-t border-subtle"
+            >
+              {
+                stats.map((s) => (
+                  <div>
+                    <p class="text-3xl md:text-4xl font-black t-accent font-[var(--font-display)]">
+                      {s.value}
+                    </p>
+                    <p class="text-xs text-secondary mt-1">{s.label}</p>
+                  </div>
+                ))
+              }
             </div>
           </div>
 
           <!-- Right: Interactive Developer IDE Mockup -->
           <div class="lg:col-span-5 relative">
-            <div class="absolute -inset-1.5 bg-gradient-to-r from-rose-500 to-purple-600 rounded-2xl blur-lg opacity-25" aria-hidden="true"></div>
-            
-            <div class="glass glass-glow rounded-xl overflow-hidden shadow-2xl relative z-10 border-strong">
+            <div
+              class="absolute -inset-1.5 bg-gradient-to-r from-rose-500 to-purple-600 rounded-2xl blur-lg opacity-25"
+              aria-hidden="true"
+            >
+            </div>
+
+            <div
+              class="glass glass-glow rounded-xl overflow-hidden shadow-2xl relative z-10 border-strong"
+            >
               <!-- IDE Header -->
-              <div class="bg-[rgba(255,255,255,0.015)] border-b border-subtle px-4 py-3 flex items-center justify-between">
+              <div
+                class="bg-[rgba(255,255,255,0.015)] border-b border-subtle px-4 py-3 flex items-center justify-between"
+              >
                 <div class="flex items-center gap-1.5" aria-hidden="true">
                   <span class="w-2.5 h-2.5 rounded-full bg-[#ff5f56]"></span>
                   <span class="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]"></span>
                   <span class="w-2.5 h-2.5 rounded-full bg-[#27c93f]"></span>
                 </div>
-                <div class="text-[10px] font-mono text-muted tracking-wider">meetsayan-workspace</div>
+                <div class="text-[10px] font-mono text-muted tracking-wider">
+                  meetsayan-workspace
+                </div>
                 <div class="w-10"></div>
               </div>
-              
+
               <!-- Tab Bar -->
-              <div class="bg-surface flex border-b border-subtle font-mono text-xs">
-                <div class="px-4 py-2 border-r border-subtle bg-deep text-accent border-t border-t-accent flex items-center gap-2">
+              <div
+                class="bg-surface flex border-b border-subtle font-mono text-xs"
+              >
+                <button
+                  class="ide-tab px-4 py-2 border-r border-subtle bg-deep text-accent border-t border-t-accent flex items-center gap-2 cursor-pointer focus:outline-none"
+                  data-tab="php"
+                >
                   <span class="text-[#21759b]">PHP</span>
-                  <span>Plugin.php</span>
-                </div>
-                <div class="px-4 py-2 border-r border-subtle text-muted flex items-center gap-2">
+                  <span>plugin.php</span>
+                </button>
+                <button
+                  class="ide-tab px-4 py-2 border-r border-subtle bg-surface text-muted flex items-center gap-2 cursor-pointer focus:outline-none hover:text-primary transition-colors"
+                  data-tab="ts"
+                >
                   <span class="text-[#38bdf8]">TS</span>
-                  <span>Stack.ts</span>
-                </div>
-                <div class="px-4 py-2 text-muted flex items-center gap-2">
+                  <span>gateway.ts</span>
+                </button>
+                <button
+                  class="ide-tab px-4 py-2 bg-surface text-muted flex items-center gap-2 cursor-pointer focus:outline-none hover:text-primary transition-colors"
+                  data-tab="json"
+                  style="border-right: 1px solid var(--border-strong);"
+                >
                   <span class="text-[#f59e0b]">JSON</span>
-                  <span>Composer.json</span>
-                </div>
+                  <span>composer.json</span>
+                </button>
               </div>
 
               <!-- Editor Workspace -->
-              <div class="p-6 font-mono text-xs text-secondary bg-deep overflow-x-auto min-h-[300px]" aria-label="PHP Code Example">
-                <div class="space-y-1">
+              <div
+                class="p-6 font-mono text-xs text-secondary bg-deep overflow-x-auto min-h-[340px]"
+                aria-label="Code Example Workspace"
+              >
+                <!-- PHP Panel -->
+                <div id="code-php" class="code-panel space-y-1">
                   <div><span class="text-[#9333ea]">&lt;?php</span></div>
-                  <div><span class="text-[#3b82f6]">namespace</span> <span class="text-[#e54b4b]">Sayan\Core</span>;</div>
+                  <div><span class="text-[#3b82f6]">namespace</span> <span class="text-[#e54b4b]">Sayan\WooUPI</span>;</div>
                   <div class="text-muted">/**</div>
-                  <div class="text-muted"> * WordPress Core & Product Engineering</div>
-                  <div class="text-muted"> * @contrib 8+ years of active development</div>
+                  <div class="text-muted"> * WooCommerce UPI payment gateway integration.</div>
                   <div class="text-muted"> */</div>
-                  <div><span class="text-[#9333ea]">class</span> <span class="text-[#10b981]">SayanDatta</span> <span class="text-[#9333ea]">implements</span> <span class="text-[#38bdf8]">ExpertDeveloper</span> &#123;</div>
-                  <div class="pl-4"><span class="text-[#3b82f6]">public</span> <span class="text-[#9333ea]">function</span> <span class="text-[#38bdf8]">getStats</span>(): array &#123;</div>
+                  <div><span class="text-[#9333ea]">class</span> <span class="text-[#10b981]">Gateway</span> <span class="text-[#9333ea]">extends</span> <span class="text-[#38bdf8]">\WC_Payment_Gateway</span> &#123;</div>
+                  <div class="pl-4"><span class="text-[#3b82f6]">public</span> <span class="text-[#9333ea]">function</span> <span class="text-[#38bdf8]">__construct</span>() &#123;</div>
+                  <div class="pl-8"><span class="text-[#38bdf8]">$this</span>-&gt;<span class="text-secondary">id</span> = <span class="text-[#10b981]">'upi_gateway'</span>;</div>
+                  <div class="pl-8"><span class="text-[#38bdf8]">$this</span>-&gt;<span class="text-secondary">method_title</span> = <span class="text-[#10b981]">'UPI Payments'</span>;</div>
+                  <div class="pl-8"><span class="text-[#38bdf8]">$this</span>-&gt;<span class="text-secondary">has_fields</span> = <span class="text-[#3b82f6]">false</span>;</div>
+                  <div class="pl-4">&#125;</div>
+                  <div class="pl-4 pt-2"><span class="text-[#3b82f6]">public</span> <span class="text-[#9333ea]">function</span> <span class="text-[#38bdf8]">process_payment</span>(<span class="text-[#f59e0b]">$order_id</span>) &#123;</div>
+                  <div class="pl-8"><span class="text-[#f59e0b]">$order</span> = <span class="text-[#38bdf8]">wc_get_order</span>(<span class="text-[#f59e0b]">$order_id</span>);</div>
                   <div class="pl-8"><span class="text-[#9333ea]">return</span> [</div>
-                  <div class="pl-12"><span class="text-[#10b981]">'plugins_downloaded'</span> =&gt; <span class="text-[#f59e0b]">1000000</span>,</div>
-                  <div class="pl-12"><span class="text-[#10b981]">'wordpress_core'</span> =&gt; <span class="text-[#10b981]">'contributor'</span>,</div>
-                  <div class="pl-12"><span class="text-[#10b981]">'availability'</span> =&gt; <span class="text-[#10b981]">'Open for Hire'</span>,</div>
-                  <div class="pl-12"><span class="text-[#10b981]">'primary_skills'</span> =&gt; [<span class="text-[#10b981]">'PHP'</span>, <span class="text-[#10b981]">'WooCommerce'</span>, <span class="text-[#10b981]">'Next.js'</span>, <span class="text-[#10b981]">'Astro'</span>]</div>
+                  <div class="pl-12"><span class="text-[#10b981]">'result'</span> =&gt; <span class="text-[#10b981]">'success'</span>,</div>
+                  <div class="pl-12"><span class="text-[#10b981]">'redirect'</span> =&gt; <span class="text-[#38bdf8]">$order</span>-&gt;<span class="text-[#38bdf8]">get_checkout_payment_url</span>(<span class="text-[#3b82f6]">true</span>)</div>
                   <div class="pl-8">];</div>
                   <div class="pl-4">&#125;</div>
                   <div>&#125;</div>
-                  <div class="pt-3"><span class="text-[#9333ea]">$sayan</span> = <span class="text-[#9333ea]">new</span> <span class="text-[#10b981]">SayanDatta</span>();</div>
-                  <div><span class="text-[#9333ea]">print_r</span>(<span class="text-[#9333ea]">$sayan</span>-&gt;<span class="text-[#38bdf8]">getStats</span>());</div>
-                  <div class="pt-4 text-muted">$ <span class="text-secondary">php Plugin.php</span></div>
-                  <div class="text-muted">Array</div>
-                  <div class="text-muted">(</div>
-                  <div class="text-success pl-4">[plugins_downloaded] =&gt; 1000000+</div>
-                  <div class="text-success pl-4">[wordpress_core] =&gt; contributor</div>
-                  <div class="text-success pl-4">[availability] =&gt; Open for Hire</div>
-                  <div class="text-success pl-4">[primary_skills] =&gt; Array</div>
-                  <div class="text-success pl-8">(</div>
-                  <div class="text-success pl-12">[0] =&gt; PHP</div>
-                  <div class="text-success pl-12">[1] =&gt; WooCommerce</div>
-                  <div class="text-success pl-12">[2] =&gt; Next.js</div>
-                  <div class="text-success pl-12">[3] =&gt; Astro</div>
-                  <div class="text-success pl-8">)</div>
-                  <div class="text-muted">)</div>
-                  <div class="pt-2 text-muted">Active state: <span class="text-success">Ready to deploy</span><span class="terminal-cursor"></span></div>
+                  <div class="pt-4 text-muted">
+                    $ <span class="text-secondary">php plugin.php</span>
+                  </div>
+                  <div class="text-success">&gt; Active state: Loaded WooCommerce payment gateway class.</div>
+                </div>
+
+                <!-- TS Panel -->
+                <div id="code-ts" class="code-panel space-y-1 hidden">
+                  <div><span class="text-[#3b82f6]">import</span> &#123; <span class="text-[#10b981]">useState</span> &#125; <span class="text-[#3b82f6]">from</span> <span class="text-[#10b981]">'react'</span>;</div>
+                  <div><span class="text-[#3b82f6]">import</span> <span class="text-[#9333ea]">type</span> &#123; <span class="text-[#10b981]">CheckoutResponse</span> &#125; <span class="text-[#3b82f6]">from</span> <span class="text-[#10b981]">'./types'</span>;</div>
+                  <div class="pt-2"><span class="text-[#9333ea]">export function</span> <span class="text-[#38bdf8]">useUPIGateway</span>(<span class="text-[#f59e0b]">orderId</span>: number) &#123;</div>
+                  <div class="pl-4"><span class="text-[#3b82f6]">const</span> [<span class="text-secondary">loading</span>, <span class="text-[#38bdf8]">setLoading</span>] = <span class="text-[#38bdf8]">useState</span>(<span class="text-[#3b82f6]">false</span>);</div>
+                  <div class="pt-2 pl-4"><span class="text-[#3b82f6]">const</span> <span class="text-[#38bdf8]">triggerPayment</span> = <span class="text-[#3b82f6]">async</span> () =&gt; &#123;</div>
+                  <div class="pl-8"><span class="text-[#38bdf8]">setLoading</span>(<span class="text-[#3b82f6]">true</span>);</div>
+                  <div class="pl-8"><span class="text-[#3b82f6]">const</span> <span class="text-secondary">res</span> = <span class="text-[#3b82f6]">await</span> <span class="text-[#38bdf8]">fetch</span>(<span class="text-[#10b981]">'/wp-json/woo-upi/v1/pay/'</span> + orderId, &#123;</div>
+                  <div class="pl-12">method: <span class="text-[#10b981]">'POST'</span></div>
+                  <div class="pl-8">&#125;);</div>
+                  <div class="pl-8"><span class="text-[#3b82f6]">const</span> <span class="text-secondary">data</span>: CheckoutResponse = <span class="text-[#3b82f6]">await</span> <span class="text-secondary">res</span>.<span class="text-[#38bdf8]">json</span>();</div>
+                  <div class="pl-8"><span class="text-[#9333ea]">if</span> (data.redirect_url) &#123;</div>
+                  <div class="pl-12"><span class="text-secondary">window</span>.<span class="text-secondary">location</span>.<span class="text-secondary">href</span> = data.redirect_url;</div>
+                  <div class="pl-8">&#125;</div>
+                  <div class="pl-8"><span class="text-[#38bdf8]">setLoading</span>(<span class="text-[#3b82f6]">false</span>);</div>
+                  <div class="pl-4">&#125;;</div>
+                  <div class="pl-4"><span class="text-[#9333ea]">return</span> &#123; triggerPayment, loading &#125;;</div>
+                  <div>&#125;</div>
+                  <div class="pt-4 text-muted">$ <span class="text-secondary">tsc gateway.ts --noEmit</span></div>
+                  <div class="text-success">&gt; Compilation successful. Zero types error.</div>
+                </div>
+
+                <!-- JSON Panel -->
+                <div id="code-json" class="code-panel space-y-1 hidden">
+                  <div>&#123;</div>
+                  <div class="pl-4">"name": <span class="text-[#10b981]">"iamsayan/woo-upi-gateway"</span>,</div>
+                  <div class="pl-4">"description": <span class="text-[#10b981]">"UPI payment gateway for WooCommerce checkout."</span>,</div>
+                  <div class="pl-4">"type": <span class="text-[#10b981]">"wordpress-plugin"</span>,</div>
+                  <div class="pl-4">"require": &#123;</div>
+                  <div class="pl-8">"php": <span class="text-[#10b981]">&quot;&gt;=7.4&quot;</span>,</div>
+                  <div class="pl-8">"composer/installers": <span class="text-[#10b981]">&quot;^2.0&quot;</span></div>
+                  <div class="pl-4">&#125;,</div>
+                  <div class="pl-4">"autoload": &#123;</div>
+                  <div class="pl-8">"psr-4": &#123;</div>
+                  <div class="pl-12">"Sayan\\WooUPI\\": <span class="text-[#10b981]">"src/"</span></div>
+                  <div class="pl-8">&#125;</div>
+                  <div class="pl-4">&#125;</div>
+                  <div>&#125;</div>
+                  <div class="pt-4 text-muted">$ <span class="text-secondary">composer validate</span></div>
+                  <div class="text-success">&gt; composer.json is valid.</div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      
+
       <!-- Scroll Indicator -->
-      <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50">
-        <span class="t-mono text-[9px] tracking-widest text-muted">Scroll Down</span>
-        <svg class="w-4 h-4 animate-bounce text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-          <path d="M19 14l-7 7-7-7m14-6l-7 7-7-7"/>
+      <div
+        class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50"
+      >
+        <span class="t-mono text-[9px] tracking-widest text-muted"
+          >Scroll Down</span
+        >
+        <svg
+          class="w-4 h-4 animate-bounce text-accent"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path d="M19 14l-7 7-7-7m14-6l-7 7-7-7"></path>
         </svg>
       </div>
     </section>
@@ -155,53 +273,102 @@ const stats = [
         <div class="max-w-2xl">
           <p class="t-mono text-accent uppercase">Services</p>
           <h2 class="t-heading mt-3">Full-stack competencies.</h2>
-          <p class="t-body mt-4">I deliver performance-first solutions tailored to modern infrastructure and developer experience guidelines.</p>
+          <p class="t-body mt-4">
+            I deliver performance-first solutions tailored to modern
+            infrastructure and developer experience guidelines.
+          </p>
         </div>
 
         <div class="space-y-24 mt-20">
           <!-- Frontend -->
           <div class="grid lg:grid-cols-12 gap-10 items-center reveal">
             <div class="lg:col-span-5 space-y-5">
-              <span class="text-xs font-mono px-3 py-1 rounded-md bg-[rgba(59,130,246,0.1)] text-blue-500 border border-blue-500/10">01 &mdash; FRONTEND</span>
+              <span
+                class="text-xs font-mono px-3 py-1 rounded-md bg-[rgba(59,130,246,0.1)] text-blue-500 border border-blue-500/10"
+                >01 &mdash; FRONTEND</span
+              >
               <h3 class="t-title text-2xl font-bold">Frontend Development</h3>
-              <p class="t-body">Pixel-perfect, accessible, and fast interfaces. Built using modern frameworks like Astro, Next.js, and React. Focus on responsive, device-independent layouts and animations.</p>
+              <p class="t-body">
+                Pixel-perfect, accessible, and fast interfaces. Built using
+                modern frameworks like Astro, Next.js, and React. Focus on
+                responsive, device-independent layouts and animations.
+              </p>
               <div class="flex flex-wrap gap-2 pt-2">
-                <span class="tag">Next.js</span><span class="tag">React</span><span class="tag">Astro</span><span class="tag">TypeScript</span><span class="tag">Tailwind CSS</span>
+                <span class="tag">Next.js</span><span class="tag">React</span
+                ><span class="tag">Astro</span><span class="tag"
+                  >TypeScript</span
+                ><span class="tag">Tailwind CSS</span>
               </div>
             </div>
-            
+
             <div class="lg:col-span-7">
-              <div class="glass hover-glow-blue p-6 relative overflow-hidden bg-surface">
+              <div
+                class="glass hover-glow-blue p-6 relative overflow-hidden bg-surface"
+              >
                 <!-- Mock Dashboard Component -->
-                <div class="flex items-center justify-between border-b border-subtle pb-4 mb-6">
-                  <span class="text-xs font-mono text-primary">lighthouse-performance-audit</span>
-                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-success-glow text-success">Score: 100%</span>
+                <div
+                  class="flex items-center justify-between border-b border-subtle pb-4 mb-6"
+                >
+                  <span class="text-xs font-mono text-primary"
+                    >lighthouse-performance-audit</span
+                  >
+                  <span
+                    class="text-[10px] font-mono px-2 py-0.5 rounded bg-success-glow text-success"
+                    >Score: 100%</span
+                  >
                 </div>
                 <div class="grid grid-cols-3 gap-4 mb-6">
                   <div class="p-4 rounded-lg bg-deep border border-subtle">
-                    <p class="text-[10px] font-mono text-muted uppercase">FCP</p>
+                    <p class="text-[10px] font-mono text-muted uppercase">
+                      FCP
+                    </p>
                     <p class="text-lg font-bold text-success mt-1">0.2s</p>
                   </div>
                   <div class="p-4 rounded-lg bg-deep border border-subtle">
-                    <p class="text-[10px] font-mono text-muted uppercase">LCP</p>
+                    <p class="text-[10px] font-mono text-muted uppercase">
+                      LCP
+                    </p>
                     <p class="text-lg font-bold text-success mt-1">0.5s</p>
                   </div>
                   <div class="p-4 rounded-lg bg-deep border border-subtle">
-                    <p class="text-[10px] font-mono text-muted uppercase">CLS</p>
+                    <p class="text-[10px] font-mono text-muted uppercase">
+                      CLS
+                    </p>
                     <p class="text-lg font-bold text-success mt-1">0.00</p>
                   </div>
                 </div>
                 <!-- glowing line chart -->
-                <div class="h-28 rounded-lg bg-deep border border-subtle p-4 flex flex-col justify-between">
-                  <div class="flex justify-between items-center text-[9px] font-mono text-muted">
+                <div
+                  class="h-28 rounded-lg bg-deep border border-subtle p-4 flex flex-col justify-between"
+                >
+                  <div
+                    class="flex justify-between items-center text-[9px] font-mono text-muted"
+                  >
                     <span>Astro Core Vitals load speed (ms)</span>
                     <span class="text-blue-500">Perfect Score</span>
                   </div>
-                  <svg class="w-full h-16 mt-2" viewBox="0 0 400 60" fill="none">
-                    <path d="M0 50 C 40 45, 80 15, 120 18 C 160 21, 200 48, 240 10 C 280 -8, 320 5, 360 8 L 400 4" stroke="#3b82f6" stroke-width="2" stroke-linecap="round"></path>
-                    <path d="M0 50 C 40 45, 80 15, 120 18 C 160 21, 200 48, 240 10 C 280 -8, 320 5, 360 8 L 400 4 L 400 60 L 0 60 Z" fill="url(#blueGrad)" opacity="0.1"></path>
+                  <svg
+                    class="w-full h-16 mt-2"
+                    viewBox="0 0 400 60"
+                    fill="none"
+                  >
+                    <path
+                      d="M0 50 C 40 45, 80 15, 120 18 C 160 21, 200 48, 240 10 C 280 -8, 320 5, 360 8 L 400 4"
+                      stroke="#3b82f6"
+                      stroke-width="2"
+                      stroke-linecap="round"></path>
+                    <path
+                      d="M0 50 C 40 45, 80 15, 120 18 C 160 21, 200 48, 240 10 C 280 -8, 320 5, 360 8 L 400 4 L 400 60 L 0 60 Z"
+                      fill="url(#blueGrad)"
+                      opacity="0.1"></path>
                     <defs>
-                      <linearGradient id="blueGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                      <linearGradient
+                        id="blueGrad"
+                        x1="0%"
+                        y1="0%"
+                        x2="0%"
+                        y2="100%"
+                      >
                         <stop offset="0%" stop-color="#3b82f6"></stop>
                         <stop offset="100%" stop-color="transparent"></stop>
                       </linearGradient>
@@ -215,29 +382,60 @@ const stats = [
           <!-- Backend -->
           <div class="grid lg:grid-cols-12 gap-10 items-center reveal">
             <div class="lg:col-span-5 lg:order-2 space-y-5">
-              <span class="text-xs font-mono px-3 py-1 rounded-md bg-[rgba(16,185,129,0.1)] text-emerald-500 border border-emerald-500/10">02 &mdash; BACKEND</span>
+              <span
+                class="text-xs font-mono px-3 py-1 rounded-md bg-[rgba(16,185,129,0.1)] text-emerald-500 border border-emerald-500/10"
+                >02 &mdash; BACKEND</span
+              >
               <h3 class="t-title text-2xl font-bold">Backend Architecture</h3>
-              <p class="t-body">Designing scalable REST/GraphQL APIs, database queries, and modular services. Building robust systems using Laravel, Node.js, and relational databases.</p>
+              <p class="t-body">
+                Designing scalable REST/GraphQL APIs, database queries, and
+                modular services. Building robust systems using Laravel,
+                Node.js, and relational databases.
+              </p>
               <div class="flex flex-wrap gap-2 pt-2">
-                <span class="tag">PHP</span><span class="tag">Laravel</span><span class="tag">Node.js</span><span class="tag">PostgreSQL</span><span class="tag">MySQL</span>
+                <span class="tag">PHP</span><span class="tag">Laravel</span
+                ><span class="tag">Node.js</span><span class="tag"
+                  >PostgreSQL</span
+                ><span class="tag">MySQL</span>
               </div>
             </div>
-            
+
             <div class="lg:col-span-7 lg:order-1">
-              <div class="glass hover-glow-emerald p-6 border-subtle bg-surface">
+              <div
+                class="glass hover-glow-emerald p-6 border-subtle bg-surface"
+              >
                 <!-- Mock API Client -->
-                <div class="flex items-center gap-2 border-b border-subtle pb-4 mb-4">
-                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-[rgba(16,185,129,0.1)] text-success">GET</span>
-                  <span class="text-xs font-mono text-secondary">https://api.sayandatta.co.in/v1/health</span>
+                <div
+                  class="flex items-center gap-2 border-b border-subtle pb-4 mb-4"
+                >
+                  <span
+                    class="text-[10px] font-mono px-2 py-0.5 rounded bg-[rgba(16,185,129,0.1)] text-success"
+                    >GET</span
+                  >
+                  <span class="text-xs font-mono text-secondary"
+                    >https://api.sayandatta.co.in/v1/health</span
+                  >
                 </div>
-                <div class="rounded-lg bg-deep p-4 font-mono text-xs text-secondary border border-subtle">
+                <div
+                  class="rounded-lg bg-deep p-4 font-mono text-xs text-secondary border border-subtle"
+                >
                   <div class="space-y-1">
                     <div>&#123;</div>
-                    <div class="pl-4">"status": <span class="text-success">"operational"</span>,</div>
-                    <div class="pl-4">"latency_ms": <span class="text-[#f59e0b]">9</span>,</div>
-                    <div class="pl-4">"database": <span class="text-success">"connected"</span>,</div>
-                    <div class="pl-4">"cache_driver": <span class="text-success">"redis"</span>,</div>
-                    <div class="pl-4">"jobs_queue": <span class="text-success">"active"</span></div>
+                    <div class="pl-4">
+                      "status": <span class="text-success">"operational"</span>,
+                    </div>
+                    <div class="pl-4">
+                      "latency_ms": <span class="text-[#f59e0b]">9</span>,
+                    </div>
+                    <div class="pl-4">
+                      "database": <span class="text-success">"connected"</span>,
+                    </div>
+                    <div class="pl-4">
+                      "cache_driver": <span class="text-success">"redis"</span>,
+                    </div>
+                    <div class="pl-4">
+                      "jobs_queue": <span class="text-success">"active"</span>
+                    </div>
                     <div>&#125;</div>
                   </div>
                 </div>
@@ -248,35 +446,66 @@ const stats = [
           <!-- WordPress -->
           <div class="grid lg:grid-cols-12 gap-10 items-center reveal">
             <div class="lg:col-span-5 space-y-5">
-              <span class="text-xs font-mono px-3 py-1 rounded-md bg-[rgba(245,158,11,0.1)] text-amber-500 border border-amber-500/10">03 &mdash; WORDPRESS</span>
+              <span
+                class="text-xs font-mono px-3 py-1 rounded-md bg-[rgba(245,158,11,0.1)] text-amber-500 border border-amber-500/10"
+                >03 &mdash; WORDPRESS</span
+              >
               <h3 class="t-title text-2xl font-bold">WordPress Engineering</h3>
-              <p class="t-body">Architecting custom plugins, Gutenberg blocks, headless CMS configurations, and WooCommerce extensions. Active contributor to WordPress core since 2018.</p>
+              <p class="t-body">
+                Architecting custom plugins, Gutenberg blocks, headless CMS
+                configurations, and WooCommerce extensions. Active contributor
+                to WordPress core since 2018.
+              </p>
               <div class="flex flex-wrap gap-2 pt-2">
-                <span class="tag">WordPress</span><span class="tag">Gutenberg Blocks</span><span class="tag">WooCommerce</span><span class="tag">WP-CLI</span><span class="tag">Composer</span>
+                <span class="tag">WordPress</span><span class="tag"
+                  >Gutenberg Blocks</span
+                ><span class="tag">WooCommerce</span><span class="tag"
+                  >WP-CLI</span
+                ><span class="tag">Composer</span>
               </div>
             </div>
-            
+
             <div class="lg:col-span-7">
-              <div class="glass hover-glow-amber p-6 relative overflow-hidden bg-surface">
+              <div
+                class="glass hover-glow-amber p-6 relative overflow-hidden bg-surface"
+              >
                 <!-- WordPress Plugin Card Mockup -->
-                <div class="flex justify-between items-start border-b border-subtle pb-4 mb-4">
+                <div
+                  class="flex justify-between items-start border-b border-subtle pb-4 mb-4"
+                >
                   <div class="flex items-center gap-3">
-                    <div class="w-9 h-9 rounded bg-[#21759b] text-white flex items-center justify-center font-bold text-lg">W</div>
+                    <div
+                      class="w-9 h-9 rounded bg-[#21759b] text-white flex items-center justify-center font-bold text-lg"
+                    >
+                      W
+                    </div>
                     <div>
-                      <h4 class="text-sm font-bold text-primary">WP Last Modified Info</h4>
-                      <p class="text-[10px] font-mono text-muted">Official Plugin Directory</p>
+                      <h4 class="text-sm font-bold text-primary">
+                        WP Last Modified Info
+                      </h4>
+                      <p class="text-[10px] font-mono text-muted">
+                        Official Plugin Directory
+                      </p>
                     </div>
                   </div>
-                  <span class="text-xs font-mono text-accent font-bold">★ ★ ★ ★ ★</span>
+                  <span class="text-xs font-mono text-accent font-bold"
+                    >★ ★ ★ ★ ★</span
+                  >
                 </div>
                 <div class="grid grid-cols-2 gap-4">
                   <div class="p-4 rounded-lg bg-deep border border-subtle">
-                    <p class="text-[10px] font-mono text-muted uppercase">Active Installs</p>
+                    <p class="text-[10px] font-mono text-muted uppercase">
+                      Active Installs
+                    </p>
                     <p class="text-xl font-bold text-primary mt-1">20,000+</p>
                   </div>
                   <div class="p-4 rounded-lg bg-deep border border-subtle">
-                    <p class="text-[10px] font-mono text-muted uppercase">Total Downloads</p>
-                    <p class="text-xl font-bold text-primary mt-1">1,000,000+</p>
+                    <p class="text-[10px] font-mono text-muted uppercase">
+                      Total Downloads
+                    </p>
+                    <p class="text-xl font-bold text-primary mt-1">
+                      1,000,000+
+                    </p>
                   </div>
                 </div>
               </div>
@@ -285,7 +514,9 @@ const stats = [
         </div>
 
         <div class="mt-16 text-center reveal">
-          <a href="/services" class="b b-ghost">View all services &amp; client workflows →</a>
+          <a href="/services" class="b b-ghost"
+            >View all services &amp; client workflows →</a
+          >
         </div>
       </div>
     </section>
@@ -293,62 +524,142 @@ const stats = [
     <!-- ── Featured projects ── -->
     <section class="py-24 relative">
       <div class="mx">
-        <div class="flex items-end justify-between flex-wrap gap-4 border-b border-subtle pb-6">
+        <div
+          class="flex items-end justify-between flex-wrap gap-4 border-b border-subtle pb-6"
+        >
           <div>
             <p class="t-mono text-accent uppercase">Open Source</p>
             <h2 class="t-heading mt-2">Plugin releases.</h2>
           </div>
-          <a href="/projects" class="b b-ghost text-xs py-2 px-4">All 12 projects &amp; plugins →</a>
+          <a href="/projects" class="b b-ghost text-xs py-2 px-4"
+            >All 12 projects &amp; plugins →</a
+          >
         </div>
 
         <div class="grid md:grid-cols-2 gap-8 mt-12">
-          <a href="https://wordpress.org/plugins/wp-last-modified-info/" target="_blank" rel="noopener noreferrer" class="glass p-8 group block reveal r1 hover-glow-rose hover:-translate-y-1">
+          <a
+            href="https://wordpress.org/plugins/wp-last-modified-info/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="glass p-8 group block reveal r1 hover-glow-rose hover:-translate-y-1"
+          >
             <div class="flex items-start justify-between mb-6">
               <div class="flex flex-wrap gap-1.5">
-                <span class="tag">PHP</span><span class="tag">WordPress</span><span class="tag">SEO</span>
+                <span class="tag">PHP</span><span class="tag">WordPress</span
+                ><span class="tag">SEO</span>
               </div>
-              <span class="text-xs font-mono text-muted bg-raised px-2.5 py-1 rounded border border-subtle">20,000+ active installs</span>
+              <span
+                class="text-xs font-mono text-muted bg-raised px-2.5 py-1 rounded border border-subtle"
+                >20,000+ active installs</span
+              >
             </div>
-            <h3 class="text-xl font-bold group-hover:text-accent transition-colors duration-300 flex items-center gap-2">
+            <h3
+              class="text-xl font-bold group-hover:text-accent transition-colors duration-300 flex items-center gap-2"
+            >
               WP Last Modified Info
-              <svg class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M10 6H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              <svg
+                class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+                ><path
+                  d="M10 6H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4M14 4h6m0 0v6m0-6L10 14"
+                ></path></svg
+              >
             </h3>
-            <p class="t-body mt-3 text-sm">WordPress plugin to display last modified dates of pages/posts with schema microdata hooks, search engine index configurations, and templates customization.</p>
-            <span class="text-xs text-accent mt-6 inline-block font-semibold group-hover:underline">View in WordPress Directory &rarr;</span>
+            <p class="t-body mt-3 text-sm">
+              WordPress plugin to display last modified dates of pages/posts
+              with schema microdata hooks, search engine index configurations,
+              and templates customization.
+            </p>
+            <span
+              class="text-xs text-accent mt-6 inline-block font-semibold group-hover:underline"
+              >View in WordPress Directory &rarr;</span
+            >
           </a>
 
-          <a href="https://wordpress.org/plugins/revivepress/" target="_blank" rel="noopener noreferrer" class="glass p-8 group block reveal r2 hover-glow-rose hover:-translate-y-1">
+          <a
+            href="https://wordpress.org/plugins/revivepress/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="glass p-8 group block reveal r2 hover-glow-rose hover:-translate-y-1"
+          >
             <div class="flex items-start justify-between mb-6">
               <div class="flex flex-wrap gap-1.5">
-                <span class="tag">PHP</span><span class="tag">WordPress</span><span class="tag">Marketing</span>
+                <span class="tag">PHP</span><span class="tag">WordPress</span
+                ><span class="tag">Marketing</span>
               </div>
-              <span class="text-xs font-mono text-muted bg-raised px-2.5 py-1 rounded border border-subtle">7,000+ active installs</span>
+              <span
+                class="text-xs font-mono text-muted bg-raised px-2.5 py-1 rounded border border-subtle"
+                >7,000+ active installs</span
+              >
             </div>
-            <h3 class="text-xl font-bold group-hover:text-accent transition-colors duration-300 flex items-center gap-2">
+            <h3
+              class="text-xl font-bold group-hover:text-accent transition-colors duration-300 flex items-center gap-2"
+            >
               RevivePress
-              <svg class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+              <svg
+                class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+                ><path
+                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                ></path></svg
+              >
             </h3>
-            <p class="t-body mt-3 text-sm">All-in-one plugin for republishing and cloning old posts and pages. Modernizes publishing dates automatically to drive traffic back to legacy content.</p>
-            <span class="text-xs text-accent mt-6 inline-block font-semibold group-hover:underline">View in WordPress Directory &rarr;</span>
+            <p class="t-body mt-3 text-sm">
+              All-in-one plugin for republishing and cloning old posts and
+              pages. Modernizes publishing dates automatically to drive traffic
+              back to legacy content.
+            </p>
+            <span
+              class="text-xs text-accent mt-6 inline-block font-semibold group-hover:underline"
+              >View in WordPress Directory &rarr;</span
+            >
           </a>
         </div>
 
         <!-- Mini secondary grid layout -->
         <div class="grid md:grid-cols-3 gap-6 mt-8 reveal">
-          <div class="glass p-6 bg-surface hover-glow-purple hover:-translate-y-0.5 transition-all">
-            <div class="flex flex-wrap gap-1.5 mb-4"><span class="tag">React</span><span class="tag">PHP</span></div>
+          <div
+            class="glass p-6 bg-surface hover-glow-purple hover:-translate-y-0.5 transition-all"
+          >
+            <div class="flex flex-wrap gap-1.5 mb-4">
+              <span class="tag">React</span><span class="tag">PHP</span>
+            </div>
             <h4 class="font-bold text-sm text-primary">Gutena Blocks</h4>
-            <p class="text-xs text-secondary mt-2">Custom tabs, accordion, and slider components built for Gutenberg block builders.</p>
+            <p class="text-xs text-secondary mt-2">
+              Custom tabs, accordion, and slider components built for Gutenberg
+              block builders.
+            </p>
           </div>
-          <div class="glass p-6 bg-surface hover-glow-blue hover:-translate-y-0.5 transition-all">
-            <div class="flex flex-wrap gap-1.5 mb-4"><span class="tag">TypeScript</span><span class="tag">Next.js</span></div>
+          <div
+            class="glass p-6 bg-surface hover-glow-blue hover:-translate-y-0.5 transition-all"
+          >
+            <div class="flex flex-wrap gap-1.5 mb-4">
+              <span class="tag">TypeScript</span><span class="tag"
+                >Next.js</span>
+            </div>
             <h4 class="font-bold text-sm text-primary">shuvamrahamusic</h4>
-            <p class="text-xs text-secondary mt-2">High-performance music portfolio and academy site with responsive Tailwind design.</p>
+            <p class="text-xs text-secondary mt-2">
+              High-performance music portfolio and academy site with responsive
+              Tailwind design.
+            </p>
           </div>
-          <div class="glass p-6 bg-surface hover-glow-emerald hover:-translate-y-0.5 transition-all">
-            <div class="flex flex-wrap gap-1.5 mb-4"><span class="tag">PHP</span><span class="tag">Composer</span></div>
+          <div
+            class="glass p-6 bg-surface hover-glow-emerald hover:-translate-y-0.5 transition-all"
+          >
+            <div class="flex flex-wrap gap-1.5 mb-4">
+              <span class="tag">PHP</span><span class="tag">Composer</span>
+            </div>
             <h4 class="font-bold text-sm text-primary">Connect Helpers</h4>
-            <p class="text-xs text-secondary mt-2">InstaWP core composer library managing remote connections, site synchronization, and auth hooks.</p>
+            <p class="text-xs text-secondary mt-2">
+              InstaWP core composer library managing remote connections, site
+              synchronization, and auth hooks.
+            </p>
           </div>
         </div>
       </div>
@@ -358,30 +669,50 @@ const stats = [
     <section class="py-24 relative bg-surface border-y border-subtle">
       <div class="mx">
         <div class="grid md:grid-cols-3 gap-8 reveal">
-          <div class="glass p-8 bg-deep text-center relative border-subtle flex flex-col justify-between hover-glow-amber">
+          <div
+            class="glass p-8 bg-deep text-center relative border-subtle flex flex-col justify-between hover-glow-amber"
+          >
             <div>
               <p class="t-mono text-accent text-[10px]">CURRENT ROLE</p>
               <h3 class="t-title mt-2 text-lg font-bold">TeamUpdraft</h3>
-              <p class="text-xs text-muted mt-1">Senior Developer · UK (Remote)</p>
-              <p class="t-body-sm mt-4 text-center leading-relaxed">Developing and maintaining UpdraftCentral, managing remote site backups, core upgrades, and security protocols across hundreds of thousands of active nodes.</p>
+              <p class="text-xs text-muted mt-1">
+                Senior Developer · UK (Remote)
+              </p>
+              <p class="t-body-sm mt-4 text-center leading-relaxed">
+                Developing and maintaining UpdraftCentral, managing remote site
+                backups, core upgrades, and security protocols across hundreds
+                of thousands of active nodes.
+              </p>
             </div>
           </div>
-          
-          <div class="glass p-8 bg-deep text-center relative border-subtle flex flex-col justify-between hover-glow-purple">
+
+          <div
+            class="glass p-8 bg-deep text-center relative border-subtle flex flex-col justify-between hover-glow-purple"
+          >
             <div>
               <p class="t-mono text-accent text-[10px]">OPEN SOURCE</p>
               <h3 class="t-title mt-2 text-lg font-bold">WordPress Core</h3>
               <p class="text-xs text-muted mt-1">Contributor since 2018</p>
-              <p class="t-body-sm mt-4 text-center leading-relaxed">Active open-source contributor providing code patches, optimization fixes, and layout configurations directly to the core CMS engine.</p>
+              <p class="t-body-sm mt-4 text-center leading-relaxed">
+                Active open-source contributor providing code patches,
+                optimization fixes, and layout configurations directly to the
+                core CMS engine.
+              </p>
             </div>
           </div>
 
-          <div class="glass p-8 bg-deep text-center relative border-subtle flex flex-col justify-between hover-glow-rose">
+          <div
+            class="glass p-8 bg-deep text-center relative border-subtle flex flex-col justify-between hover-glow-rose"
+          >
             <div>
               <p class="t-mono text-accent text-[10px]">EDUCATION</p>
               <h3 class="t-title mt-2 text-lg font-bold">MSc Info Security</h3>
               <p class="text-xs text-muted mt-1">IGNOU · First Class</p>
-              <p class="t-body-sm mt-4 text-center leading-relaxed">Professional training in secure application architectures, data storage models, and encryption patterns, enforcing safety directly in product code.</p>
+              <p class="t-body-sm mt-4 text-center leading-relaxed">
+                Professional training in secure application architectures, data
+                storage models, and encryption patterns, enforcing safety
+                directly in product code.
+              </p>
             </div>
           </div>
         </div>
@@ -391,17 +722,33 @@ const stats = [
     <!-- ── Interactive CTA ── -->
     <section class="py-28 relative overflow-hidden">
       <!-- Glow behind content -->
-      <div class="absolute inset-0 opacity-[0.08] pointer-events-none" style="background:radial-gradient(circle at 50% 50%, #f43f5e, transparent 65%)"></div>
-      
+      <div
+        class="absolute inset-0 opacity-[0.08] pointer-events-none"
+        style="background:radial-gradient(circle at 50% 50%, #f43f5e, transparent 65%)"
+      >
+      </div>
+
       <div class="mx relative z-10 text-center space-y-6">
         <p class="t-mono text-accent">Work together</p>
-        <h2 class="t-heading max-w-2xl mx-auto">Let's build something remarkable.</h2>
+        <h2 class="t-heading max-w-2xl mx-auto">
+          Let's build something remarkable.
+        </h2>
         <p class="t-body max-w-lg mx-auto">
-          Need a performant custom WordPress plugin, an optimized React/Next/Astro interface, or scalable API integrations? Let's discuss your requirements.
+          Need a performant custom WordPress plugin, an optimized
+          React/Next/Astro interface, or scalable API integrations? Let's
+          discuss your requirements.
         </p>
         <div class="flex flex-wrap justify-center gap-4 pt-6">
-          <a href="/contact" class="b b-primary shadow-lg hover:scale-105 transition-transform duration-300">Start a conversation</a>
-          <a href="/projects" class="b b-ghost hover:scale-105 transition-transform duration-300">Browse all 12 projects</a>
+          <a
+            href="/contact"
+            class="b b-primary shadow-lg hover:scale-105 transition-transform duration-300"
+            >Start a conversation</a
+          >
+          <a
+            href="/projects"
+            class="b b-ghost hover:scale-105 transition-transform duration-300"
+            >Browse all 12 projects</a
+          >
         </div>
       </div>
     </section>
@@ -411,13 +758,42 @@ const stats = [
 
 <script>
   // Simple IntersectionObserver reveal animation script
-  var observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-      }
+  var observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
+      });
+    },
+    { threshold: 0.05 },
+  );
+
+  document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+
+  // IDE Mockup Tab Switcher Logic
+  const tabs = document.querySelectorAll(".ide-tab");
+  const panels = document.querySelectorAll(".code-panel");
+
+  tabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      const target = tab.getAttribute("data-tab");
+
+      tabs.forEach((t) => {
+        t.classList.remove("active", "bg-deep", "text-accent", "border-t", "border-t-accent");
+        t.classList.add("bg-surface", "text-muted");
+      });
+
+      tab.classList.add("active", "bg-deep", "text-accent", "border-t", "border-t-accent");
+      tab.classList.remove("bg-surface", "text-muted");
+
+      panels.forEach((p) => {
+        if (p.id === `code-${target}`) {
+          p.classList.remove("hidden");
+        } else {
+          p.classList.add("hidden");
+        }
+      });
     });
-  }, { threshold: 0.05 });
-  
-  document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+  });
 </script>
