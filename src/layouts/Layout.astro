@@ -10,8 +10,11 @@ export interface Props {
 
 const {
   title = "Sayan Datta — Senior Full Stack Developer & Open Source Engineer",
-  description = "Senior Full Stack Developer specializing in high-performance WooCommerce systems, custom payment gateways, Laravel backends, and modern TypeScript (Astro, Next.js). 8+ years experience, 1M+ downloads."
+  description = "Senior Full Stack Developer specializing in high-performance WooCommerce systems, custom payment gateways, Laravel backends, and modern TypeScript (Astro, Next.js). 8+ years experience.",
+  image = "https://sayandatta.co.in/favicon.png"
 } = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://sayandatta.co.in");
 ---
 
 <!doctype html>
@@ -26,17 +29,19 @@ const {
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:url" content={Astro.url.href} />
+    <meta property="og:url" content={canonicalURL.href} />
     <meta property="og:site_name" content="Sayan Datta Portfolio" />
+    <meta property="og:image" content={image} />
     
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:creator" content="@im_sayaan" />
+    <meta name="twitter:image" content={image} />
     
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="canonical" href={Astro.url.href} />
+    <link rel="canonical" href={canonicalURL.href} />
     
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -53,7 +58,7 @@ const {
         "@type": "Person",
         "name": "Sayan Datta",
         "url": "https://sayandatta.co.in",
-        "image": "https://sayandatta.co.in/og-image.jpg",
+        "image": "https://sayandatta.co.in/favicon.png",
         "sameAs": [
           "https://github.com/iamsayan",
           "https://linkedin.com/in/meetsayan",
@@ -69,7 +74,7 @@ const {
     </script>
   </head>
   <body class="min-h-screen relative">
-    <div class="bg-grid"></div>
+    <div class="bg-grid" aria-hidden="true"></div>
     <div class="relative z-10 flex flex-col min-h-screen">
       <slot />
     </div>

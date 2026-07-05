@@ -8,11 +8,11 @@ const profile = await getProfile();
 const faqs = await getFAQs();
 ---
 
-<Layout title="Contact | Let's Build Digital Experiences" description="Get in touch for contract consulting, full-time engineering roles, payment integration projects, or headless CMS migrations.">
+<Layout title="Contact | Let's Build Together" description="Get in touch for plugin consulting, API migrations, payment integrations, or backend engineering roles.">
   <Header />
-  <main class="py-24 relative overflow-hidden" data-email={profile.email}>
+  <main class="py-24 relative overflow-hidden" id="main-content" data-email={profile.email} data-formspree={profile.formspreeId || ""}>
     <!-- Background overlay grid -->
-    <div class="absolute inset-0 opacity-[0.08] pointer-events-none" style="background:radial-gradient(circle at 80% 30%, var(--accent), transparent 50%)"></div>
+    <div class="absolute inset-0 opacity-[0.08] pointer-events-none" style="background:radial-gradient(circle at 80% 30%, var(--accent), transparent 50%)" aria-hidden="true"></div>
 
     <section class="pt-16 pb-12 relative z-10">
       <div class="mx">
@@ -31,7 +31,7 @@ const faqs = await getFAQs();
             <!-- Context Info blocks -->
             <div class="space-y-4 reveal r3">
               <div class="glass p-5 bg-[var(--bg-surface)] border-[var(--border-subtle)] flex items-start gap-4">
-                <span class="w-8 h-8 rounded bg-[var(--accent-glow)] text-[var(--accent)] flex items-center justify-center flex-shrink-0 font-mono text-sm">✉</span>
+                <span class="w-8 h-8 rounded bg-[var(--accent-glow)] text-[var(--accent)] flex items-center justify-center flex-shrink-0 font-mono text-sm" aria-hidden="true">✉</span>
                 <div>
                   <p class="text-[10px] font-mono text-[var(--text-muted)] uppercase tracking-wider">Direct Channels</p>
                   <a href={`mailto:${profile.email}`} class="text-sm font-semibold text-[var(--accent)] hover:text-[var(--accent-bright)] transition-colors mt-1 block">{profile.email}</a>
@@ -39,7 +39,7 @@ const faqs = await getFAQs();
               </div>
 
               <div class="glass p-5 bg-[var(--bg-surface)] border-[var(--border-subtle)] flex items-start gap-4">
-                <span class="w-8 h-8 rounded bg-[var(--accent-glow)] text-[var(--accent)] flex items-center justify-center flex-shrink-0 font-mono text-sm">𖡡</span>
+                <span class="w-8 h-8 rounded bg-[var(--accent-glow)] text-[var(--accent)] flex items-center justify-center flex-shrink-0 font-mono text-sm" aria-hidden="true">𖡡</span>
                 <div>
                   <p class="text-[10px] font-mono text-[var(--text-muted)] uppercase tracking-wider">Operational Location</p>
                   <p class="text-sm text-[var(--text-secondary)] mt-1 font-semibold">{profile.location} &middot; Remote operations globally</p>
@@ -47,7 +47,7 @@ const faqs = await getFAQs();
               </div>
 
               <div class="glass p-5 bg-[var(--bg-surface)] border-[var(--border-subtle)] flex items-start gap-4">
-                <span class="w-8 h-8 rounded bg-[var(--success-glow)] text-[var(--success)] flex items-center justify-center flex-shrink-0 font-mono text-sm">●</span>
+                <span class="w-8 h-8 rounded bg-[var(--success-glow)] text-[var(--success)] flex items-center justify-center flex-shrink-0 font-mono text-sm" aria-hidden="true">●</span>
                 <div>
                   <p class="text-[10px] font-mono text-[var(--text-muted)] uppercase tracking-wider">Work Availability</p>
                   <p class="text-sm text-[var(--text-secondary)] mt-1 font-semibold">Open for Freelance and Contract roles</p>
@@ -56,9 +56,9 @@ const faqs = await getFAQs();
             </div>
 
             <div class="flex items-center gap-6 pt-4 reveal r4">
-              <a href={profile.socials.github} target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors">&lt; GitHub &gt;</a>
-              <a href={profile.socials.linkedin} target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors">&lt; LinkedIn &gt;</a>
-              <a href={profile.socials.twitter} target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors">&lt; Twitter &gt;</a>
+              <a href={profile.socials.github} target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors" aria-label="Github Profile">&lt; GitHub &gt;</a>
+              <a href={profile.socials.linkedin} target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors" aria-label="LinkedIn Profile">&lt; LinkedIn &gt;</a>
+              <a href={profile.socials.twitter} target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors" aria-label="Twitter Profile">&lt; Twitter &gt;</a>
             </div>
           </div>
 
@@ -69,57 +69,70 @@ const faqs = await getFAQs();
               <!-- Form header -->
               <div class="flex items-center justify-between border-b border-[var(--border-subtle)] pb-4 mb-6">
                 <span class="text-xs font-mono text-[var(--text-primary)]">secure-contact-session</span>
-                <span class="w-2.5 h-2.5 rounded-full bg-[var(--success)] animate-pulse"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-[var(--success)] animate-pulse" aria-label="Active status indicator"></span>
               </div>
 
               <!-- Contact Form -->
               <form id="contact-form" class="space-y-5">
                 <!-- Floating Label Name -->
                 <div class="relative">
-                  <input type="text" id="name" name="name" required class="w-full px-4 py-3 bg-[var(--bg-deep)] border border-[var(--border-subtle)] focus:border-[var(--accent)] focus:outline-none rounded-lg text-sm transition-all peer placeholder-transparent" placeholder="Name" />
+                  <input type="text" id="name" name="name" required class="w-full px-4 py-3 bg-[var(--bg-deep)] border border-[var(--border-subtle)] focus:border-[var(--accent)] focus:outline-none rounded-lg text-sm transition-all peer placeholder-transparent focus-visible:ring-2 focus-visible:ring-[var(--accent)]" placeholder="Name" />
                   <label for="name" class="absolute left-4 top-3 text-xs text-[var(--text-muted)] transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:top-3 peer-focus:top-1 peer-focus:text-[10px] peer-focus:text-[var(--accent)] -translate-y-2.5 bg-[var(--bg-surface)] px-1 peer-focus:px-1 pointer-events-none">Your Name</label>
                 </div>
 
                 <!-- Floating Label Email -->
                 <div class="relative">
-                  <input type="email" id="email" name="email" required class="w-full px-4 py-3 bg-[var(--bg-deep)] border border-[var(--border-subtle)] focus:border-[var(--accent)] focus:outline-none rounded-lg text-sm transition-all peer placeholder-transparent" placeholder="Email" />
+                  <input type="email" id="email" name="email" required class="w-full px-4 py-3 bg-[var(--bg-deep)] border border-[var(--border-subtle)] focus:border-[var(--accent)] focus:outline-none rounded-lg text-sm transition-all peer placeholder-transparent focus-visible:ring-2 focus-visible:ring-[var(--accent)]" placeholder="Email" />
                   <label for="email" class="absolute left-4 top-3 text-xs text-[var(--text-muted)] transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:top-3 peer-focus:top-1 peer-focus:text-[10px] peer-focus:text-[var(--accent)] -translate-y-2.5 bg-[var(--bg-surface)] px-1 peer-focus:px-1 pointer-events-none">Email Address</label>
                 </div>
 
                 <!-- Floating Label Scope -->
                 <div class="relative">
-                  <input type="text" id="scope" name="scope" required class="w-full px-4 py-3 bg-[var(--bg-deep)] border border-[var(--border-subtle)] focus:border-[var(--accent)] focus:outline-none rounded-lg text-sm transition-all peer placeholder-transparent" placeholder="Scope" />
-                  <label for="scope" class="absolute left-4 top-3 text-xs text-[var(--text-muted)] transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:top-3 peer-focus:top-1 peer-focus:text-[10px] peer-focus:text-[var(--accent)] -translate-y-2.5 bg-[var(--bg-surface)] px-1 peer-focus:px-1 pointer-events-none">Project Scope (e.g. Plugin, Web App)</label>
+                  <input type="text" id="scope" name="scope" required class="w-full px-4 py-3 bg-[var(--bg-deep)] border border-[var(--border-subtle)] focus:border-[var(--accent)] focus:outline-none rounded-lg text-sm transition-all peer placeholder-transparent focus-visible:ring-2 focus-visible:ring-[var(--accent)]" placeholder="Scope" />
+                  <label for="scope" class="absolute left-4 top-3 text-xs text-[var(--text-muted)] transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:top-3 peer-focus:top-1 peer-focus:text-[10px] peer-focus:text-[var(--accent)] -translate-y-2.5 bg-[var(--bg-surface)] px-1 peer-focus:px-1 pointer-events-none">Project Scope (e.g. WooCommerce Plugin, Laravel API)</label>
                 </div>
 
                 <!-- Message Details -->
                 <div class="relative">
-                  <textarea id="message" name="message" rows="4" required class="w-full px-4 py-3 bg-[var(--bg-deep)] border border-[var(--border-subtle)] focus:border-[var(--accent)] focus:outline-none rounded-lg text-sm transition-all peer placeholder-transparent" placeholder="Message"></textarea>
-                  <label for="message" class="absolute left-4 top-3 text-xs text-[var(--text-muted)] transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:top-3 peer-focus:top-1 peer-focus:text-[10px] peer-focus:text-[var(--accent)] -translate-y-2.5 bg-[var(--bg-surface)] px-1 peer-focus:px-1 pointer-events-none">Message details...</label>
+                  <textarea id="message" name="message" rows="4" required class="w-full px-4 py-3 bg-[var(--bg-deep)] border border-[var(--border-subtle)] focus:border-[var(--accent)] focus:outline-none rounded-lg text-sm transition-all peer placeholder-transparent focus-visible:ring-2 focus-visible:ring-[var(--accent)]" placeholder="Message"></textarea>
+                  <label for="message" class="absolute left-4 top-3 text-xs text-[var(--text-muted)] transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:top-3 peer-focus:top-1 peer-focus:text-[10px] peer-focus:text-[var(--accent)] -translate-y-2.5 bg-[var(--bg-surface)] px-1 peer-focus:px-1 pointer-events-none">Project Details / Requirements</label>
                 </div>
 
-                <button type="submit" class="b b-primary w-full py-3 shadow-md mt-2 relative overflow-hidden" id="submit-btn">
+                <button type="submit" class="b b-primary w-full py-3 shadow-md mt-2 relative overflow-hidden transition-all focus-visible:ring-2 focus-visible:ring-[var(--accent)] cursor-pointer" id="submit-btn">
                   <span id="btn-text">Transmit Request</span>
                 </button>
               </form>
 
               <!-- Interactive loading state -->
-              <div id="loading-state" class="hidden py-12 flex flex-col items-center justify-center space-y-4">
+              <div id="loading-state" class="hidden py-12 flex flex-col items-center justify-center space-y-4" role="status">
                 <div class="w-8 h-8 rounded-full border-2 border-[var(--border-subtle)] border-t-[var(--accent)] animate-spin"></div>
-                <p class="text-xs font-mono text-[var(--accent)]" id="loading-log">Connecting socket...</p>
+                <p class="text-xs font-mono text-[var(--accent)]" id="loading-log">Preparing payload...</p>
                 <div class="w-64 bg-[var(--bg-deep)] h-1 rounded overflow-hidden border border-[var(--border-subtle)] mt-2">
                   <div id="loading-bar" class="h-full bg-[var(--accent)] transition-all duration-300" style="width: 0%"></div>
                 </div>
               </div>
 
               <!-- Success window overlay -->
-              <div id="success-state" class="hidden py-8 text-center space-y-6">
-                <div class="w-12 h-12 rounded-full bg-[var(--success-glow)] text-[var(--success)] flex items-center justify-center mx-auto text-xl font-bold border border border-[rgba(16,185,129,0.2)]">✓</div>
+              <div id="success-state" class="hidden py-8 text-center space-y-6" role="status">
+                <div class="w-12 h-12 rounded-full bg-[var(--success-glow)] text-[var(--success)] flex items-center justify-center mx-auto text-xl font-bold border border-[rgba(16,185,129,0.2)]">✓</div>
                 <div>
-                  <h3 class="text-md font-bold text-[var(--text-primary)]">Transmission Successful</h3>
-                  <p class="text-xs text-[var(--text-secondary)] mt-2 max-w-sm mx-auto">Your details have been validated. Fallback email client is prepped. Opening composer...</p>
+                  <h3 class="text-md font-bold text-[var(--text-primary)]">Message Transmitted Successfully</h3>
+                  <p class="text-xs text-[var(--text-secondary)] mt-2 max-w-sm mx-auto">Your request has been successfully processed and forwarded to Sayan Datta's primary inbox. You should receive a direct follow-up shortly.</p>
                 </div>
-                <button id="reset-btn" class="b b-ghost text-xs py-2 px-4">Open direct fallback email</button>
+                <button id="close-success-btn" class="b b-ghost text-xs py-2 px-4">Submit another request</button>
+              </div>
+
+              <!-- Error state & Fallback panel -->
+              <div id="error-state" class="hidden py-8 text-center space-y-6" role="alert">
+                <div class="w-12 h-12 rounded-full bg-red-500/10 text-red-500 flex items-center justify-center mx-auto text-xl font-bold border border-red-500/20">!</div>
+                <div>
+                  <h3 class="text-md font-bold text-[var(--text-primary)]">Transmission Interrupted</h3>
+                  <p id="error-message" class="text-xs text-[var(--text-secondary)] mt-2 max-w-sm mx-auto">We encountered an issue routing your form details via Formspree API layers.</p>
+                </div>
+                <div class="space-y-2">
+                  <button id="fallback-email-btn" class="b b-primary w-full py-2.5 text-xs shadow-md">Open Fallback Email Draft</button>
+                  <button id="retry-btn" class="b b-ghost text-xs py-2 px-4 w-full text-center">Return to Form</button>
+                </div>
               </div>
 
             </div>
@@ -137,13 +150,13 @@ const faqs = await getFAQs();
         </div>
         <div class="space-y-4">
           {faqs.map((faq, fi) => (
-            <div class="glass p-6 bg-[var(--bg-surface)] border-[var(--border-subtle)] cursor-pointer group transition-all" data-faq={fi}>
+            <div class="glass p-6 bg-[var(--bg-surface)] border-[var(--border-subtle)] cursor-pointer group transition-all" data-faq={fi} tabindex="0" role="button" aria-expanded="false" aria-controls={`faq-ans-${fi}`}>
               <div class="flex items-center justify-between">
                 <h3 class="font-bold text-sm text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors">{faq.q}</h3>
-                <span class="text-xs text-[var(--text-muted)] font-mono transition-transform duration-300 select-none faq-plus">+</span>
+                <span class="text-xs text-[var(--text-muted)] font-mono transition-transform duration-300 select-none faq-plus" aria-hidden="true">+</span>
               </div>
-              <div class="max-h-0 opacity-0 overflow-hidden transition-all duration-300 faq-answer">
-                <p class="text-xs text-[var(--text-secondary)] mt-4 leading-relaxed">{faq.a}</p>
+              <div id={`faq-ans-${fi}`} class="max-h-0 opacity-0 overflow-hidden transition-all duration-300 faq-answer">
+                <p class="text-xs text-[var(--text-secondary)] mt-4 leading-relaxed font-sans">{faq.a}</p>
               </div>
             </div>
           ))}
@@ -155,89 +168,129 @@ const faqs = await getFAQs();
 </Layout>
 
 <script>
-  var contactForm = document.getElementById("contact-form");
-  var contactConsole = document.getElementById("contact-console");
-  var submitBtn = document.getElementById("submit-btn");
-  var btnText = document.getElementById("btn-text");
+  const contactForm = document.getElementById("contact-form") as HTMLFormElement;
+  const contactConsole = document.getElementById("contact-console");
+  const submitBtn = document.getElementById("submit-btn") as HTMLButtonElement;
   
-  var loadingState = document.getElementById("loading-state");
-  var loadingLog = document.getElementById("loading-log");
-  var loadingBar = document.getElementById("loading-bar");
+  const loadingState = document.getElementById("loading-state");
+  const loadingLog = document.getElementById("loading-log");
+  const loadingBar = document.getElementById("loading-bar");
   
-  var successState = document.getElementById("success-state");
-  var resetBtn = document.getElementById("reset-btn");
+  const successState = document.getElementById("success-state");
+  const closeSuccessBtn = document.getElementById("close-success-btn");
   
-  var emailAddr = document.querySelector("main").getAttribute("data-email") || "hello@sayandatta.dev";
+  const errorState = document.getElementById("error-state");
+  const errorMessage = document.getElementById("error-message");
+  const fallbackEmailBtn = document.getElementById("fallback-email-btn");
+  const retryBtn = document.getElementById("retry-btn");
   
-  var logs = [
-    { text: "Establishing secure handshake...", val: 20 },
-    { text: "Validating envelope payload fields...", val: 50 },
-    { text: "Transmitting headers & encryption...", val: 80 },
-    { text: "Handshake completed successfully.", val: 100 }
-  ];
+  const mainEl = document.getElementById("main-content");
+  const emailAddr = mainEl?.getAttribute("data-email") || "hello@sayandatta.dev";
+  const formspreeId = mainEl?.getAttribute("data-formspree") || "";
+
+  function getFormValues() {
+    return {
+      name: (document.getElementById("name") as HTMLInputElement).value.trim(),
+      email: (document.getElementById("email") as HTMLInputElement).value.trim(),
+      scope: (document.getElementById("scope") as HTMLInputElement).value.trim(),
+      message: (document.getElementById("message") as HTMLTextAreaElement).value.trim(),
+    };
+  }
+
+  function triggerMailtoFallback() {
+    const { name, email, scope, message } = getFormValues();
+    const body = `Hello Sayan,\n\nMy name is ${name} (${email}). I am writing to discuss a project regarding "${scope}".\n\nDetails:\n${message}\n\nBest regards,\n${name}`;
+    const mailtoUrl = `mailto:${emailAddr}?subject=Project Consultation: ${encodeURIComponent(scope)}&body=${encodeURIComponent(body)}`;
+    window.location.href = mailtoUrl;
+  }
 
   if (contactForm) {
-    contactForm.addEventListener("submit", (e) => {
+    contactForm.addEventListener("submit", async (e) => {
       e.preventDefault();
       
-      var nameVal = (document.getElementById("name") as HTMLInputElement).value;
-      var emailVal = (document.getElementById("email") as HTMLInputElement).value;
-      var scopeVal = (document.getElementById("scope") as HTMLInputElement).value;
-      var msgVal = (document.getElementById("message") as HTMLTextAreaElement).value;
+      const { name, email, scope, message } = getFormValues();
+      if (!name || !email || !scope || !message) return;
 
-      // Switch views
+      // Swap view to loading screen
       contactForm.classList.add("hidden");
-      loadingState.classList.remove("hidden");
+      loadingState?.classList.remove("hidden");
+      if (loadingBar) loadingBar.style.width = "10%";
+      if (loadingLog) loadingLog.textContent = "Resolving DNS routing...";
 
-      let currentStep = 0;
-      
-      function runLogSteps() {
-        if (currentStep < logs.length) {
-          var step = logs[currentStep];
-          loadingLog.textContent = step.text;
-          loadingBar.style.width = step.val + "%";
-          currentStep++;
-          setTimeout(runLogSteps, 600);
-        } else {
-          // Transition to success state
-          loadingState.classList.add("hidden");
-          successState.classList.remove("hidden");
-          
-          // Trigger fallback action
-          var body = `Hello Sayan,\n\nMy name is ${nameVal} (${emailVal}). I am writing to discuss a ${scopeVal} project.\n\nDetails:\n${msgVal}\n\nBest regards,\n${nameVal}`;
-          var mailtoUrl = `mailto:${emailAddr}?subject=Project Scope: ${encodeURIComponent(scopeVal)}&body=${encodeURIComponent(body)}`;
-          
-          // Small delay before opening mailto client
-          setTimeout(() => {
-            window.location.href = mailtoUrl;
-          }, 800);
-        }
+      // If Formspree endpoint is not set, skip AJAX and jump straight to error mailto fallback panel
+      if (!formspreeId) {
+        setTimeout(() => {
+          loadingState?.classList.add("hidden");
+          errorState?.classList.remove("hidden");
+          if (errorMessage) {
+            errorMessage.textContent = "Formspree integration ID is not configured. Direct local email fallback is ready.";
+          }
+        }, 1000);
+        return;
       }
 
-      runLogSteps();
+      try {
+        if (loadingBar) loadingBar.style.width = "40%";
+        if (loadingLog) loadingLog.textContent = "Packaging payload data...";
+
+        const response = await fetch(`https://formspree.io/f/${formspreeId}`, {
+          method: "POST",
+          headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ name, email, scope, message })
+        });
+
+        if (loadingBar) loadingBar.style.width = "80%";
+        if (loadingLog) loadingLog.textContent = "Negotiating handshake response...";
+
+        if (response.ok) {
+          if (loadingBar) loadingBar.style.width = "100%";
+          setTimeout(() => {
+            loadingState?.classList.add("hidden");
+            successState?.classList.remove("hidden");
+            contactForm.reset();
+          }, 400);
+        } else {
+          throw new Error("Formspree response not OK");
+        }
+      } catch (err) {
+        setTimeout(() => {
+          loadingState?.classList.add("hidden");
+          errorState?.classList.remove("hidden");
+          if (errorMessage) {
+            errorMessage.textContent = "Network error. Sayan's form handler is currently offline. Direct local email fallback is ready.";
+          }
+        }, 800);
+      }
     });
   }
 
-  if (resetBtn) {
-    resetBtn.addEventListener("click", () => {
-      // Re-trigger mailto
-      var nameVal = (document.getElementById("name") as HTMLInputElement).value;
-      var emailVal = (document.getElementById("email") as HTMLInputElement).value;
-      var scopeVal = (document.getElementById("scope") as HTMLInputElement).value;
-      var msgVal = (document.getElementById("message") as HTMLTextAreaElement).value;
-      
-      var body = `Hello Sayan,\n\nMy name is ${nameVal} (${emailVal}). I am writing to discuss a ${scopeVal} project.\n\nDetails:\n${msgVal}\n\nBest regards,\n${nameVal}`;
-      var mailtoUrl = `mailto:${emailAddr}?subject=Project Scope: ${encodeURIComponent(scopeVal)}&body=${encodeURIComponent(body)}`;
-      window.location.href = mailtoUrl;
-    });
-  }
+  // Success button reset
+  closeSuccessBtn?.addEventListener("click", () => {
+    successState?.classList.add("hidden");
+    contactForm?.classList.remove("hidden");
+  });
 
-  // FAQ Toggling logic
-  document.querySelectorAll("[data-faq]").forEach(el => {
-    el.addEventListener("click", () => {
+  // Fallback direct email mailto triggers
+  fallbackEmailBtn?.addEventListener("click", triggerMailtoFallback);
+
+  // Return to Form from Error view
+  retryBtn?.addEventListener("click", () => {
+    errorState?.classList.add("hidden");
+    contactForm?.classList.remove("hidden");
+  });
+
+  // FAQ Interactive & Keyboard Accessibility
+  const faqs = document.querySelectorAll("[data-faq]");
+  faqs.forEach(el => {
+    const toggle = () => {
       const answer = el.querySelector(".faq-answer") as HTMLElement;
       const plus = el.querySelector(".faq-plus") as HTMLElement;
       const isOpen = el.classList.toggle("faq-open");
+      
+      el.setAttribute("aria-expanded", isOpen ? "true" : "false");
       
       if (isOpen) {
         answer.style.maxHeight = answer.scrollHeight + "px";
@@ -250,11 +303,19 @@ const faqs = await getFAQs();
         plus.style.transform = "none";
         plus.textContent = "+";
       }
+    };
+
+    el.addEventListener("click", toggle);
+    el.addEventListener("keydown", (e) => {
+      if ((e as KeyboardEvent).key === "Enter" || (e as KeyboardEvent).key === " ") {
+        e.preventDefault();
+        toggle();
+      }
     });
   });
 
-  // IntersectionObserver reveal animations
-  var observer = new IntersectionObserver(entries => {
+  // Unified reveal observer
+  const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add("visible");

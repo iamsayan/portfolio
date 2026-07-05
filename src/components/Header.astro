@@ -1,11 +1,27 @@
+---
+import { getProfile } from "@/lib/data";
+
+const profile = await getProfile();
+const initialLetter = profile.name.charAt(0);
+const pathname = Astro.url.pathname;
+const isActive = (path: string) => {
+  if (path === "/") {
+    return pathname === "/" || pathname === "";
+  }
+  return pathname.startsWith(path);
+};
+---
 <header class="fixed top-0 inset-x-0 z-50 transition-all duration-500 py-4" id="site-header">
+  <!-- Skip to Content link for keyboard accessibility -->
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:z-[999] focus:top-6 focus:left-6 focus:bg-[var(--accent)] focus:text-white focus:px-4 focus:py-2 focus:rounded-lg focus:shadow-xl focus:outline-none">Skip to Content</a>
+
   <div class="mx">
     <div class="glass glass-glow rounded-2xl flex items-center justify-between px-6 transition-all duration-500" style="height:4rem" id="header-inner">
       <a href="/" class="flex items-center gap-3 group">
-        <span class="w-8 h-8 rounded-lg bg-[var(--accent)] flex items-center justify-center text-[var(--bg-deep)] font-bold text-sm shadow-md group-hover:scale-105 transition-transform duration-300">S</span>
+        <span class="w-8 h-8 rounded-lg bg-[var(--accent)] flex items-center justify-center text-[var(--bg-deep)] font-bold text-sm shadow-md group-hover:scale-105 transition-transform duration-300">{initialLetter}</span>
         <div class="flex flex-col">
-          <span class="font-[var(--font-display)] text-base font-bold tracking-tight text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors duration-300">Sayan Datta</span>
-          <div class="flex items-center gap-1.5 mt-0.5">
+          <span class="font-[var(--font-display)] text-base font-bold tracking-tight text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors duration-300">{profile.name}</span>
+          <div class="flex items-center gap-1.5 mt-0.5" aria-hidden="true">
             <span class="pulse-dot"></span>
             <span class="text-[9px] font-mono tracking-widest text-[var(--success)] uppercase">Available for Hire</span>
           </div>
@@ -13,13 +29,15 @@
       </a>
 
       <div class="flex items-center gap-6">
-        <nav class="hidden md:flex items-center gap-8">
-          <a href="/" class="nav-link text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors relative py-1">Home</a>
-          <a href="/about-me" class="nav-link text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors relative py-1">About</a>
-          <a href="/services" class="nav-link text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors relative py-1">Services</a>
-          <a href="/projects" class="nav-link text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors relative py-1">Projects</a>
-          <a href="/blog" class="nav-link text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors relative py-1">Blog</a>
-          <a href="/contact" class="b b-primary !text-xs !py-2 !px-4 shadow-sm">Contact</a>
+        <nav class="hidden md:flex items-center gap-8" aria-label="Main Navigation">
+          <a href="/" class={`nav-link text-sm font-medium transition-colors relative py-1 ${isActive("/") ? "text-[var(--accent)] font-semibold active-nav" : "text-[var(--text-secondary)] hover:text-[var(--accent)]"}`} aria-current={isActive("/") ? "page" : undefined}>Home</a>
+          <a href="/about-me" class={`nav-link text-sm font-medium transition-colors relative py-1 ${isActive("/about-me") ? "text-[var(--accent)] font-semibold active-nav" : "text-[var(--text-secondary)] hover:text-[var(--accent)]"}`} aria-current={isActive("/about-me") ? "page" : undefined}>About</a>
+          <a href="/skills" class={`nav-link text-sm font-medium transition-colors relative py-1 ${isActive("/skills") ? "text-[var(--accent)] font-semibold active-nav" : "text-[var(--text-secondary)] hover:text-[var(--accent)]"}`} aria-current={isActive("/skills") ? "page" : undefined}>Skills</a>
+          <a href="/services" class={`nav-link text-sm font-medium transition-colors relative py-1 ${isActive("/services") ? "text-[var(--accent)] font-semibold active-nav" : "text-[var(--text-secondary)] hover:text-[var(--accent)]"}`} aria-current={isActive("/services") ? "page" : undefined}>Services</a>
+          <a href="/projects" class={`nav-link text-sm font-medium transition-colors relative py-1 ${isActive("/projects") ? "text-[var(--accent)] font-semibold active-nav" : "text-[var(--text-secondary)] hover:text-[var(--accent)]"}`} aria-current={isActive("/projects") ? "page" : undefined}>Projects</a>
+          <a href="/blog" class={`nav-link text-sm font-medium transition-colors relative py-1 ${isActive("/blog") ? "text-[var(--accent)] font-semibold active-nav" : "text-[var(--text-secondary)] hover:text-[var(--accent)]"}`} aria-current={isActive("/blog") ? "page" : undefined}>Blog</a>
+          <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" class="nav-link text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors relative py-1">Resume</a>
+          <a href="/contact" class={`b b-primary !text-xs !py-2 !px-4 shadow-sm ${isActive("/contact") ? "ring-2 ring-[var(--accent)]" : ""}`} aria-current={isActive("/contact") ? "page" : undefined}>Contact</a>
         </nav>
 
         <div class="flex items-center gap-2.5">
@@ -29,27 +47,29 @@
             class="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-[11px] font-mono text-[var(--text-secondary)] hover:text-[var(--accent)] border border-[var(--border-subtle)] hover:border-[var(--accent)] transition-all bg-[var(--bg-raised)] cursor-pointer"
             title="Open Developer Console (Press `)"
             aria-label="Open Developer Console"
+            aria-haspopup="dialog"
+            aria-controls="dev-console-panel"
           >
-            <span class="w-1.5 h-1.5 rounded-full bg-[var(--accent)] animate-pulse"></span>
+            <span class="w-1.5 h-1.5 rounded-full bg-[var(--accent)] animate-pulse" aria-hidden="true"></span>
             <span>CLI</span>
-            <kbd class="px-1 rounded bg-[var(--bg-deep)] border border-[var(--border-subtle)] text-[9px] text-[var(--text-muted)]">`</kbd>
+            <kbd class="px-1 rounded bg-[var(--bg-deep)] border border-[var(--border-subtle)] text-[9px] text-[var(--text-muted)]" aria-hidden="true">`</kbd>
           </button>
 
           <button id="theme-toggle" class="w-9 h-9 rounded-lg flex items-center justify-center border border-[var(--border-subtle)] hover:border-[var(--accent)] transition-colors bg-[var(--bg-raised)] cursor-pointer" aria-label="Toggle theme">
             <!-- Sun icon (visible in dark mode) -->
-            <svg id="sun-icon" class="w-4 h-4 text-[var(--text-secondary)] transition-transform duration-300 hover:rotate-45" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <svg id="sun-icon" class="w-4 h-4 text-[var(--text-secondary)] transition-transform duration-300 hover:rotate-45" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
               <circle cx="12" cy="12" r="5"/>
               <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
             </svg>
             <!-- Moon icon (visible in light mode) -->
-            <svg id="moon-icon" class="w-4 h-4 text-[var(--text-secondary)] hidden transition-transform duration-300 hover:-rotate-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <svg id="moon-icon" class="w-4 h-4 text-[var(--text-secondary)] hidden transition-transform duration-300 hover:-rotate-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
               <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
             </svg>
           </button>
 
-          <button id="menu-btn" class="md:hidden w-9 h-9 rounded-lg border border-[var(--border-subtle)] flex flex-col items-center justify-center gap-1.5 bg-[var(--bg-raised)] cursor-pointer" aria-label="Menu">
-            <span class="block w-4 h-[2px] bg-[var(--text-primary)] rounded transition-all duration-300 origin-center" id="l1"></span>
-            <span class="block w-4 h-[2px] bg-[var(--text-primary)] rounded transition-all duration-300 origin-center" id="l2"></span>
+          <button id="menu-btn" class="md:hidden w-9 h-9 rounded-lg border border-[var(--border-subtle)] flex flex-col items-center justify-center gap-1.5 bg-[var(--bg-raised)] cursor-pointer" aria-label="Toggle Mobile Menu" aria-expanded="false" aria-controls="mob-menu">
+            <span class="block w-4 h-[2px] bg-[var(--text-primary)] rounded transition-all duration-300 origin-center" id="l1" aria-hidden="true"></span>
+            <span class="block w-4 h-[2px] bg-[var(--text-primary)] rounded transition-all duration-300 origin-center" id="l2" aria-hidden="true"></span>
           </button>
         </div>
       </div>
@@ -57,14 +77,17 @@
   </div>
 
   <!-- Mobile Menu Dropdown -->
-  <div id="mob-menu" class="md:hidden overflow-hidden transition-all duration-400 ease-out px-4 max-h-0 opacity-0">
+  <div id="mob-menu" class="md:hidden overflow-hidden transition-all duration-400 ease-out px-4 max-h-0 opacity-0" aria-label="Mobile Navigation">
     <div class="glass p-6 mt-2 flex flex-col gap-4 shadow-lg border-[var(--border-strong)]">
-      <a href="/" class="text-[var(--text-secondary)] hover:text-[var(--accent)] text-base font-semibold py-1 transition-colors border-b border-[var(--border-subtle)]" data-close>Home</a>
-      <a href="/about-me" class="text-[var(--text-secondary)] hover:text-[var(--accent)] text-base font-semibold py-1 transition-colors border-b border-[var(--border-subtle)]" data-close>About</a>
-      <a href="/services" class="text-[var(--text-secondary)] hover:text-[var(--accent)] text-base font-semibold py-1 transition-colors border-b border-[var(--border-subtle)]" data-close>Services</a>
-      <a href="/projects" class="text-[var(--text-secondary)] hover:text-[var(--accent)] text-base font-semibold py-1 transition-colors border-b border-[var(--border-subtle)]" data-close>Projects</a>
-      <a href="/blog" class="text-[var(--text-secondary)] hover:text-[var(--accent)] text-base font-semibold py-1 transition-colors border-b border-[var(--border-subtle)]" data-close>Blog</a>
-      <a href="/contact" class="b b-primary w-full text-center py-2.5 mt-2" data-close>Contact</a>
+      <a href="/" class={`text-base font-semibold py-1 transition-colors border-b border-[var(--border-subtle)] ${isActive("/") ? "text-[var(--accent)]" : "text-[var(--text-secondary)] hover:text-[var(--accent)]"}`} data-close aria-current={isActive("/") ? "page" : undefined}>Home</a>
+      <a href="/about-me" class={`text-base font-semibold py-1 transition-colors border-b border-[var(--border-subtle)] ${isActive("/about-me") ? "text-[var(--accent)]" : "text-[var(--text-secondary)] hover:text-[var(--accent)]"}`} data-close aria-current={isActive("/about-me") ? "page" : undefined}>About</a>
+      <a href="/skills" class={`text-base font-semibold py-1 transition-colors border-b border-[var(--border-subtle)] ${isActive("/skills") ? "text-[var(--accent)]" : "text-[var(--text-secondary)] hover:text-[var(--accent)]"}`} data-close aria-current={isActive("/skills") ? "page" : undefined}>Skills</a>
+      <a href="/services" class={`text-base font-semibold py-1 transition-colors border-b border-[var(--border-subtle)] ${isActive("/services") ? "text-[var(--accent)]" : "text-[var(--text-secondary)] hover:text-[var(--accent)]"}`} data-close aria-current={isActive("/services") ? "page" : undefined}>Services</a>
+      <a href="/projects" class={`text-base font-semibold py-1 transition-colors border-b border-[var(--border-subtle)] ${isActive("/projects") ? "text-[var(--accent)]" : "text-[var(--text-secondary)] hover:text-[var(--accent)]"}`} data-close aria-current={isActive("/projects") ? "page" : undefined}>Projects</a>
+      <a href="/blog" class={`text-base font-semibold py-1 transition-colors border-b border-[var(--border-subtle)] ${isActive("/blog") ? "text-[var(--accent)]" : "text-[var(--text-secondary)] hover:text-[var(--accent)]"}`} data-close aria-current={isActive("/blog") ? "page" : undefined}>Blog</a>
+      <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" class="text-[var(--text-secondary)] hover:text-[var(--accent)] text-base font-semibold py-1 transition-colors border-b border-[var(--border-subtle)]" data-close>View Resume</a>
+      <a href="/resume.pdf" download class="text-[var(--text-secondary)] hover:text-[var(--accent)] text-base font-semibold py-1 transition-colors border-b border-[var(--border-subtle)]" data-close>Download Resume</a>
+      <a href="/contact" class="b b-primary w-full text-center py-2.5 mt-2" data-close aria-current={isActive("/contact") ? "page" : undefined}>Contact</a>
     </div>
   </div>
 </header>
@@ -97,8 +120,9 @@
     transform-origin: bottom right;
     transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   }
-  .nav-link:hover::after {
-    transform: scaleX(1);
+  .nav-link:hover::after,
+  .active-nav::after {
+    transform: scaleX(1) !important;
     transform-origin: bottom left;
   }
 </style>
@@ -123,10 +147,6 @@
       var isLight = v === "light";
       document.documentElement.classList.toggle("light", isLight);
       document.documentElement.classList.toggle("light-scrollbar", isLight);
-      
-      // Update icons visibility:
-      // In light mode, show the Moon icon (to switch to dark)
-      // In dark mode, show the Sun icon (to switch to light)
       s.classList.toggle("hidden", isLight);
       m.classList.toggle("hidden", !isLight);
     }
@@ -138,7 +158,7 @@
       var n = c === "light" ? "dark" : "light";
       localStorage.setItem("theme", n);
       
-      if ((document as any).startViewTransition) {
+      if ((document as any).startViewTransition && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
         var x = e.clientX || window.innerWidth / 2;
         var y = e.clientY || window.innerHeight / 2;
         var endRadius = Math.hypot(
@@ -147,7 +167,6 @@
         );
         
         var transition = (document as any).startViewTransition(() => {
-          // Inside transition: only update document class light, do NOT toggle light-scrollbar!
           document.documentElement.classList.toggle("light", n === "light");
           s.classList.toggle("hidden", n === "light");
           m.classList.toggle("hidden", n !== "light");
@@ -170,7 +189,6 @@
         });
         
         transition.finished.then(() => {
-          // Toggle scrollbar color-scheme once transition has finished sweeping
           document.documentElement.classList.toggle("light-scrollbar", n === "light");
         });
       } else {
@@ -207,32 +225,38 @@
     });
   }
 
-  // Mobile Menu Menu Logic
+  // Mobile Menu Logic with accessibility support
   var tg = document.getElementById("menu-btn"),
       mn = document.getElementById("mob-menu"),
       l1 = document.getElementById("l1"),
       l2 = document.getElementById("l2"),
       o = false;
       
-  tg.addEventListener("click", () => {
-    o = !o;
-    mn.style.maxHeight = o ? "400px" : "0";
-    mn.style.opacity = o ? "1" : "0";
-    l1.style.transform = o ? "rotate(45deg) translate(4px, 4px)" : "";
-    l2.style.transform = o ? "rotate(-45deg) translate(4px, -4px)" : "";
-  });
-  
-  document.querySelectorAll("[data-close]").forEach(e => e.addEventListener("click", () => {
-    o = false;
-    mn.style.maxHeight = "0";
-    mn.style.opacity = "0";
-    l1.style.transform = "";
-    l2.style.transform = "";
-  }));
+  if (tg && mn && l1 && l2) {
+    tg.addEventListener("click", () => {
+      o = !o;
+      tg.setAttribute("aria-expanded", o ? "true" : "false");
+      mn.style.maxHeight = o ? "460px" : "0";
+      mn.style.opacity = o ? "1" : "0";
+      l1.style.transform = o ? "rotate(45deg) translate(4px, 4px)" : "";
+      l2.style.transform = o ? "rotate(-45deg) translate(4px, -4px)" : "";
+    });
+    
+    document.querySelectorAll("[data-close]").forEach(e => e.addEventListener("click", () => {
+      o = false;
+      tg.setAttribute("aria-expanded", "false");
+      mn.style.maxHeight = "0";
+      mn.style.opacity = "0";
+      l1.style.transform = "";
+      l2.style.transform = "";
+    }));
+  }
 
   // Scroll Behavior
   var h = document.getElementById("site-header");
-  addEventListener("scroll", () => {
-    h.classList.toggle("scrolled", scrollY > 10);
-  }, { passive: true });
+  if (h) {
+    addEventListener("scroll", () => {
+      h.classList.toggle("scrolled", scrollY > 10);
+    }, { passive: true });
+  }
 </script>

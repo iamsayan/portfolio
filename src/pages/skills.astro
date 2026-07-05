@@ -2,24 +2,30 @@
 import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
-
 import { getSkills } from "@/lib/data";
 
 const skillsData = await getSkills();
-const categories = skillsData.categories;
-const additional = skillsData.additional;
+
+const skillSections = [
+  { id: "core", name: "Core Expertise", desc: "My primary domains of product engineering and platform architecture.", skills: skillsData.core },
+  { id: "modern", name: "Modern Stack", desc: "JavaScript & TypeScript frameworks utilized for creating responsive applications.", skills: skillsData.modern },
+  { id: "backend", name: "Backend Architecture", desc: "Server environments, data design schemas, and relational database managers.", skills: skillsData.backend },
+  { id: "cms", name: "CMS Platforms", desc: "Extending core content pipelines, custom plugins, and headless CMS integrations.", skills: skillsData.cms },
+  { id: "infra", name: "Infrastructure & DevOps", desc: "Source control, automation pipelines, site hosting, and virtualization setups.", skills: skillsData.infra },
+  { id: "legacy", name: "Legacy Experience", desc: "Older technologies and legacy frontend libraries maintained on client portals.", skills: skillsData.legacy },
+];
 ---
 
-<Layout title="Skills — Sayan Datta" description="Comprehensive overview of Sayan Datta's development stack, tools, languages, and technical competencies.">
+<Layout title="Skills — Sayan Datta" description="Comprehensive overview of Sayan Datta's development stack, core WooCommerce expertise, backend architecture, and legacies.">
   <Header />
-  <main>
+  <main id="main-content">
     <!-- Header Hero -->
     <section class="pt-32 pb-20 relative">
       <div class="mx">
         <p class="t-mono text-[var(--accent)]">Tech stack</p>
         <h1 class="t-heading mt-4 reveal r1">Skills &amp; Toolkit.</h1>
         <p class="t-body mt-6 max-w-2xl reveal r2">
-          A list of the technologies and languages I work with on daily production builds, complete with details on my actual hands-on application.
+          A detailed catalog of the technologies, languages, and architectures I work with on daily production builds, categorized by domain proficiency.
         </p>
       </div>
     </section>
@@ -27,31 +33,21 @@ const additional = skillsData.additional;
     <!-- Skills Dashboard Grid -->
     <section class="pb-28">
       <div class="mx space-y-20">
-        {categories.map((cat, ci) => (
+        {skillSections.map((sec, idx) => (
           <div class="reveal">
             <!-- Category Header -->
-            <div class="mb-8 border-b border-[var(--border-subtle)] pb-4 flex items-center justify-between">
-              <div>
-                <span class="text-xs font-mono text-[var(--accent)] font-bold">0{ci + 1} &mdash; CATEGORY</span>
-                <h2 class="text-xl font-bold text-[var(--text-primary)] mt-1">{cat.name}</h2>
-                <p class="text-sm text-[var(--text-secondary)] mt-1">{cat.desc}</p>
-              </div>
+            <div class="mb-8 border-b border-[var(--border-subtle)] pb-4">
+              <span class="text-xs font-mono text-[var(--accent)] font-bold">0{idx + 1} &mdash; {sec.name.toUpperCase()}</span>
+              <p class="text-sm text-[var(--text-secondary)] mt-1">{sec.desc}</p>
             </div>
 
             <!-- Skills Cards Grid -->
             <div class="grid sm:grid-cols-2 gap-6">
-              {cat.skills.map(s => (
+              {sec.skills && sec.skills.map(s => (
                 <div class="glass p-6 bg-[var(--bg-surface)] border-[var(--border-subtle)] hover:border-[var(--accent-glow-strong)] transition-all">
                   <div class="flex justify-between items-baseline mb-3">
-                    <span class="text-sm font-bold text-[var(--text-primary)]">{s.name}</span>
-                    <span class="text-xs font-mono text-[var(--accent)] font-semibold">{s.pct}</span>
-                  </div>
-                  <!-- Laser Glow Progress Bar -->
-                  <div class="h-1.5 w-full bg-[var(--bg-deep)] rounded-full overflow-hidden border border-[var(--border-subtle)]">
-                    <div 
-                      class="h-full rounded-full bg-gradient-to-r from-[var(--accent)] to-[var(--accent-bright)] shadow-[0_0_8px_var(--accent)]" 
-                      style={`width: ${s.pct}`}
-                    ></div>
+                    <h3 class="text-sm font-bold text-[var(--text-primary)]">{s.name}</h3>
+                    <span class="text-[9px] px-2 py-0.5 rounded font-mono text-[var(--accent)] bg-[var(--accent-glow)] border border-rose-500/10 font-bold">{s.level}</span>
                   </div>
                   <p class="text-xs text-[var(--text-secondary)] mt-4 leading-relaxed font-sans">{s.context}</p>
                 </div>
@@ -59,16 +55,6 @@ const additional = skillsData.additional;
             </div>
           </div>
         ))}
-
-        <!-- Additional Secondary Technologies -->
-        <div class="glass p-8 bg-[var(--bg-surface)] border-[var(--border-subtle)] reveal">
-          <p class="t-mono text-[var(--accent)] mb-4 text-xs font-bold">Secondary Stack &amp; Libraries</p>
-          <div class="flex flex-wrap gap-2.5">
-            {additional.map(t => (
-              <span class="tag hover:scale-105 transition-transform duration-200">{t}</span>
-            ))}
-          </div>
-        </div>
       </div>
     </section>
   </main>
@@ -76,7 +62,8 @@ const additional = skillsData.additional;
 </Layout>
 
 <script>
-  var observer = new IntersectionObserver(entries => {
+  // Consolidated single IntersectionObserver for page elements
+  const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add("visible");

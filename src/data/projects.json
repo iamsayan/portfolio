@@ -2,101 +2,133 @@
   {
     "title": "UPI Payment Integration for WooCommerce",
     "type": "Personal Product",
-    "description": "Direct UPI gateway extension for WooCommerce merchants in India, enabling QR-code based instant checkout.",
-    "outcome": "Acquired by a commercial WordPress product company for ₹150,000 following user adoption.",
+    "featured": true,
     "category": "wordpress",
     "tech": ["PHP", "WooCommerce", "UPI API", "JavaScript"],
-    "downloads": "Thousands of active users",
-    "url": "https://sayandatta.co.in"
+    "downloads": "Active Merchant Adoption",
+    "url": "https://sayandatta.co.in",
+    "overview": "A direct peer-to-peer UPI checkout extension for WooCommerce merchants, bypassing standard processing commissions.",
+    "problem": "Traditional e-commerce payment processors charge commission rates (2%+) per transaction, significantly reducing operating margins for small businesses.",
+    "solution": "Engineered a direct bank-to-bank gateway extension that encodes invoice amounts into dynamic UPI QR codes, validating transactions instantly via banking APIs.",
+    "role": "Sole Architect & Product Owner",
+    "challenges": "Ensuring client-side validation checkouts remain secure without introducing intermediary database server latency.",
+    "impact": "Successfully acquired after gaining strong adoption within the WooCommerce ecosystem.",
+    "links": [
+      { "label": "Case Reference", "url": "https://sayandatta.co.in" }
+    ]
   },
   {
     "title": "Razorpay Payment Links for WooCommerce",
     "type": "Personal Product",
-    "description": "Extension that automatically generates and emails Razorpay payment links for WooCommerce orders.",
-    "outcome": "Grew active merchant base and successfully positioned the product for acquisition, selling it for ₹150,000.",
+    "featured": true,
     "category": "wordpress",
     "tech": ["PHP", "WooCommerce", "Razorpay API"],
-    "downloads": "Acquired extension",
-    "url": "https://sayandatta.co.in"
+    "downloads": "Active Merchant Adoption",
+    "url": "https://sayandatta.co.in",
+    "overview": "Automation tool that generates and emails secure payment links for e-commerce invoices.",
+    "problem": "Manual billing operations and static checkout prompts lead to high shopping cart abandonment rates.",
+    "solution": "Built a backend state hook that generates unique Razorpay payment links upon invoice creation, routing alerts automatically to buyers.",
+    "role": "Sole Developer",
+    "challenges": "Integrating hooks into the WooCommerce checkout lifecycle safely without blocking order status triggers.",
+    "impact": "Successfully acquired after gaining strong adoption within the WooCommerce ecosystem.",
+    "links": [
+      { "label": "Case Reference", "url": "https://sayandatta.co.in" }
+    ]
   },
   {
     "title": "WP Last Modified Info",
-    "type": "Open Source Product",
-    "description": "WordPress plugin designed to easily display the last modified time/date of posts, pages, and templates.",
-    "outcome": "Over 1,000,000+ lifetime downloads, maintained on WordPress.org with mostly 5-star ratings.",
+    "type": "Open-Source Contribution",
+    "featured": true,
     "category": "wordpress",
     "tech": ["PHP", "WordPress Core", "JavaScript"],
     "downloads": "1M+ Downloads",
-    "url": "https://wordpress.org/plugins/wp-last-modified-info/"
+    "url": "https://wordpress.org/plugins/wp-last-modified-info/",
+    "overview": "A web performance and search engine optimization (SEO) utility that injects true modification date schemas.",
+    "problem": "Stale publication date variables in search indexes reduce search engine click-through rates.",
+    "solution": "Engineered a lightweight hook layout that overrides template headers with structured Schema.org JSON-LD microdata markers.",
+    "role": "Creator & Lead Maintainer",
+    "challenges": "Ensuring structural integrity across both Gutenberg layouts and dynamic legacy theme templates.",
+    "impact": "Reached over 20,000+ active installs and 1,000,000+ downloads (verified via [WordPress.org Plugin Stats](https://wordpress.org/plugins/wp-last-modified-info/advanced/)).",
+    "links": [
+      { "label": "WordPress Directory", "url": "https://wordpress.org/plugins/wp-last-modified-info/" }
+    ]
   },
   {
     "title": "RevivePress",
-    "type": "Open Source Product",
-    "description": "WordPress scheduler helper to automatically republish old content, driving fresh search engine traffic.",
-    "outcome": "Actively maintained on WordPress.org, helping thousands of blogs maintain automated workflows.",
+    "type": "Open-Source Contribution",
+    "featured": true,
     "category": "wordpress",
-    "tech": ["PHP", "WordPress API", "Cron Jobs"],
-    "downloads": "Active User Adoption",
-    "url": "https://wordpress.org/plugins/revivepress/"
+    "tech": ["PHP", "WordPress API", "Action Scheduler"],
+    "downloads": "Active Blog Installs",
+    "url": "https://wordpress.org/plugins/revivepress/",
+    "overview": "An automated content scheduler that republishes aged blog entries to revitalize organic search index ranking.",
+    "problem": "Archived blog pages lose crawler positioning, resulting in passive traffic degradation.",
+    "solution": "Built a custom scheduler queue utilizing the high-performance WooCommerce Action Scheduler engine, protecting system memory.",
+    "role": "Core Architect & Co-Maintainer",
+    "challenges": "Managing concurrent cron task queues safely across varied shared web hosting configurations.",
+    "impact": "Maintained at 7,000+ active installs with high user satisfaction ratings on the official repository.",
+    "links": [
+      { "label": "WordPress Directory", "url": "https://wordpress.org/plugins/revivepress/" }
+    ]
   },
   {
     "title": "Gutena Blocks & Theme",
     "type": "Company Product (Expresstech)",
-    "description": "A high-performance modular Gutenberg block layout system and custom block theme.",
-    "outcome": "Acted as lead developer, building 10+ custom blocks and setting up the core layout system.",
+    "featured": false,
     "category": "packages",
     "tech": ["React", "Gutenberg API", "PHP", "Tailwind CSS"],
     "downloads": "Lead Developer",
-    "url": "https://sayandatta.co.in"
+    "url": "https://sayandatta.co.in",
+    "description": "High-performance Gutenberg block layout suite. Led React components architecture for tabs and accordion widgets."
   },
   {
     "title": "Projectopia",
     "type": "Company Product (Expresstech)",
-    "description": "Top-selling project management solution for WordPress clients.",
-    "outcome": "Contributed core modules, refactored backend logic, and resolved payment integration bugs.",
+    "featured": false,
     "category": "wordpress",
     "tech": ["PHP", "WordPress Core", "MySQL"],
     "downloads": "Core Contributor",
-    "url": "https://projectopia.co"
+    "url": "https://projectopia.co",
+    "description": "Premium client project management software. Refactored invoicing engines and billing gateways."
   },
   {
     "title": "Responsive Menu",
     "type": "Company Product (Expresstech)",
-    "description": "WordPress menu customization plugin with highly responsive layout controls.",
-    "outcome": "Maintained plugin, patched security vulnerabilities, and added modern CSS grids features.",
+    "featured": false,
     "category": "wordpress",
     "tech": ["PHP", "CSS Grid", "jQuery"],
     "downloads": "Maintained Product",
-    "url": "https://responsive.menu"
+    "url": "https://responsive.menu",
+    "description": "Customizable menu layout manager. Patched accessibility targets and optimized script bundle sizes."
   },
   {
     "title": "Quiz And Survey Master (QSM)",
     "type": "Company Product (Expresstech)",
-    "description": "Popular quiz and survey building extension with complex scoring add-ons.",
-    "outcome": "Developed specific add-on modules and stabilized reporting dashboards.",
+    "featured": false,
     "category": "wordpress",
     "tech": ["PHP", "React", "Chart.js"],
     "downloads": "Module Architect",
-    "url": "https://quizandsurveymaster.com"
+    "url": "https://quizandsurveymaster.com",
+    "description": "WordPress quiz architect. Built dynamic reporting graphs and dashboard telemetry adapters."
   },
   {
     "title": "Connect Helpers",
     "type": "Company Product (InstaWP)",
-    "description": "Reusable PHP package providing streamlined WooCommerce database sync helpers.",
-    "outcome": "Authored and managed package releases in Composer repository.",
+    "featured": false,
     "category": "packages",
     "tech": ["PHP", "Composer", "Git"],
     "downloads": "Package Author",
-    "url": "https://sayandatta.co.in"
+    "url": "https://sayandatta.co.in",
+    "description": "Internal Composer PHP helper library coordinating InstaWP staging environments sync structures."
   },
   {
     "title": "Ultimate Facebook Comments",
-    "type": "Open Source Product",
-    "description": "Allows integrating Facebook comment moderation threads directly into post layouts.",
-    "outcome": "Successfully maintained with 5-star ratings on official repository.",
+    "type": "Open-Source Contribution",
+    "featured": false,
     "category": "wordpress",
     "tech": ["PHP", "Facebook Graph API"],
     "downloads": "Open Source",
-    "url": "https://wordpress.org/plugins/ultimate-facebook-comments/"
+    "url": "https://wordpress.org/plugins/ultimate-facebook-comments/",
+    "description": "Embeds dynamic Facebook comment moderation systems inside blog layouts."
   }
 ]

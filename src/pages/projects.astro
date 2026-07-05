@@ -6,22 +6,22 @@ import { getProjects } from "@/lib/data";
 
 const allProjects = await getProjects();
 // First 4 are high impact featured plugins/products
-const featured = allProjects.slice(0, 4);
-const rest = allProjects.slice(4);
+const featured = allProjects.filter(p => p.featured);
+const rest = allProjects.filter(p => !p.featured);
 ---
 
-<Layout title="Projects | Open Source Plugins & Acquired Products" description="Explore commercial plugins, custom SaaS tools, Composer packages, and open-source contributions by Sayan Datta, reaching 1M+ active downloads.">
+<Layout title="Projects | Open Source Plugins & Acquired Products" description="Explore WooCommerce checkouts, custom payment integrations, Composer packages, and open-source contributions by Sayan Datta.">
   <Header />
-  <main class="py-24 relative overflow-hidden">
+  <main class="py-24 relative overflow-hidden" id="main-content">
     <!-- Background overlay grid -->
-    <div class="absolute inset-0 opacity-[0.08] pointer-events-none" style="background:radial-gradient(circle at 80% 30%, var(--accent), transparent 50%)"></div>
+    <div class="absolute inset-0 opacity-[0.08] pointer-events-none" style="background:radial-gradient(circle at 80% 30%, var(--accent), transparent 50%)" aria-hidden="true"></div>
 
     <section class="pt-16 pb-8 relative z-10">
       <div class="mx">
         <p class="t-mono text-[var(--accent)] uppercase font-bold">Project Showroom</p>
         <h1 class="t-heading mt-4 reveal r1">Shipped Software.</h1>
         <p class="t-body mt-6 max-w-2xl reveal r2">
-          Explore WordPress plugins with over a million downloads, Composer packages, and modern full-stack web applications. Select a category below to filter.
+          Explore e-commerce systems, open-source plugins, Composer libraries, and full-stack software. Select a category below to filter.
         </p>
       </div>
     </section>
@@ -33,7 +33,6 @@ const rest = allProjects.slice(4);
         <div class="flex flex-wrap items-center gap-2 border-b border-[var(--border-subtle)] pb-6 mb-12 reveal">
           <button class="filter-btn active text-xs font-mono px-4 py-2 rounded-lg border border-[var(--border-subtle)] hover:border-[var(--accent)] transition-all cursor-pointer bg-[var(--bg-surface)] text-[var(--accent)]" data-filter="all">ALL PROJECTS</button>
           <button class="filter-btn text-xs font-mono px-4 py-2 rounded-lg border border-[var(--border-subtle)] hover:border-[var(--accent)] transition-all cursor-pointer bg-[var(--bg-surface)] text-[var(--text-secondary)]" data-filter="wordpress">WP PLUGINS</button>
-          <button class="filter-btn text-xs font-mono px-4 py-2 rounded-lg border border-[var(--border-subtle)] hover:border-[var(--accent)] transition-all cursor-pointer bg-[var(--bg-surface)] text-[var(--text-secondary)]" data-filter="fullstack">WEB APPS</button>
           <button class="filter-btn text-xs font-mono px-4 py-2 rounded-lg border border-[var(--border-subtle)] hover:border-[var(--accent)] transition-all cursor-pointer bg-[var(--bg-surface)] text-[var(--text-secondary)]" data-filter="packages">LIBRARIES / PACKAGES</button>
         </div>
 
@@ -42,29 +41,75 @@ const rest = allProjects.slice(4);
           {featured.map((p) => (
             <div class="project-card reveal" data-cat={p.category}>
               <div class="grid lg:grid-cols-12 gap-8 items-start">
+                <!-- Side Panel Info -->
                 <div class="lg:col-span-4 lg:sticky lg:top-24">
-                  <span class="text-xs font-mono text-[var(--accent)] uppercase tracking-wider bg-[var(--accent-glow)] px-3 py-1 rounded-md border border-rose-500/10">FEATURED RELEASE</span>
-                  <h2 class="t-title text-2xl font-bold mt-3">{p.title}</h2>
-                  <p class="text-xs font-mono text-[var(--text-secondary)] mt-2 leading-relaxed">{p.downloads}</p>
+                  <span class="text-[9px] font-mono text-[var(--accent)] uppercase tracking-widest bg-[var(--accent-glow)] px-2.5 py-1 rounded border border-rose-500/10 font-bold block w-fit">{p.type}</span>
+                  <h2 class="t-title text-2xl font-bold mt-4 text-[var(--text-primary)]">{p.title}</h2>
+                  <p class="text-xs font-mono text-[var(--text-secondary)] mt-2.5 flex items-center gap-1.5">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[var(--accent)]" aria-hidden="true"></span>
+                    {p.downloads}
+                  </p>
                 </div>
+                
+                <!-- Expanded Detail Card -->
                 <div class="lg:col-span-8">
                   <div class="glass hover-glow-rose p-8 bg-[var(--bg-surface)] border-[var(--border-subtle)] flex flex-col justify-between min-h-[220px]">
                     <div>
-                      <div class="flex flex-wrap gap-2 mb-4">
+                      <div class="flex flex-wrap gap-1.5 mb-6">
                         {p.tech.map(t => <span class="tag">{t}</span>)}
                       </div>
-                      <p class="t-body text-sm leading-relaxed">{p.description}</p>
-                      {p.outcome && (
-                        <p class="t-body text-xs mt-3 text-[var(--text-secondary)] font-medium bg-[var(--bg-raised)] p-3 rounded-lg border border-[var(--border-subtle)]">
-                          <strong class="text-[var(--accent-bright)] font-mono uppercase text-[10px] tracking-wider block mb-1">Impact &amp; Outcome</strong>
-                          {p.outcome}
-                        </p>
+                      
+                      <!-- Overview -->
+                      <p class="text-sm text-[var(--text-primary)] leading-relaxed font-sans mb-6 font-medium">
+                        {p.overview}
+                      </p>
+
+                      <!-- Problem & Solution Block -->
+                      <div class="grid sm:grid-cols-2 gap-6 mt-6 border-t border-[var(--border-subtle)] pt-6">
+                        <div>
+                          <h4 class="text-[10px] font-mono uppercase tracking-wider text-[var(--accent)] font-bold mb-2">The Problem</h4>
+                          <p class="text-xs text-[var(--text-secondary)] leading-relaxed font-sans">{p.problem}</p>
+                        </div>
+                        <div>
+                          <h4 class="text-[10px] font-mono uppercase tracking-wider text-[var(--success)] font-bold mb-2">The Solution</h4>
+                          <p class="text-xs text-[var(--text-secondary)] leading-relaxed font-sans">{p.solution}</p>
+                        </div>
+                      </div>
+
+                      <!-- Role & Challenges -->
+                      <div class="grid sm:grid-cols-2 gap-6 mt-6 border-t border-[var(--border-subtle)] pt-6">
+                        <div>
+                          <h4 class="text-[10px] font-mono uppercase tracking-wider text-[var(--text-muted)] font-bold mb-1">My Role</h4>
+                          <p class="text-xs text-[var(--text-primary)] font-semibold font-sans">{p.role}</p>
+                        </div>
+                        <div>
+                          <h4 class="text-[10px] font-mono uppercase tracking-wider text-[var(--text-muted)] font-bold mb-1">Key Challenges</h4>
+                          <p class="text-xs text-[var(--text-secondary)] leading-relaxed font-sans">{p.challenges}</p>
+                        </div>
+                      </div>
+
+                      <!-- Impact Block -->
+                      {p.impact && (
+                        <div class="t-body text-xs mt-6 text-[var(--text-secondary)] font-medium bg-[var(--bg-raised)] p-4 rounded-lg border border-[var(--border-subtle)]">
+                          <strong class="text-[var(--accent-bright)] font-mono uppercase text-[9px] tracking-widest block mb-1">Measurable Impact</strong>
+                          {p.impact}
+                        </div>
                       )}
                     </div>
-                    <a href={p.url} target="_blank" rel="noopener noreferrer" class="b b-primary mt-6 self-start shadow-md text-xs">
-                      View Directory / Live
-                      <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-                    </a>
+
+                    <!-- Direct Links -->
+                    <div class="flex flex-wrap gap-4 mt-8 pt-6 border-t border-[var(--border-subtle)]">
+                      <a href={p.url} target="_blank" rel="noopener noreferrer" class="b b-primary text-xs flex items-center gap-1.5 shadow-md">
+                        View Directory / Live
+                        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                      </a>
+                      {p.links && p.links.map(link => (
+                        <a href={link.url} target="_blank" rel="noopener noreferrer" class="b b-ghost text-xs flex items-center gap-1">
+                          {link.label}
+                          <span aria-hidden="true">&rarr;</span>
+                        </a>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -72,7 +117,7 @@ const rest = allProjects.slice(4);
           ))}
 
           <!-- Rest Secondary Grid -->
-          <div class="pt-8 border-t border-[var(--border-subtle)]" id="secondary-grid-header">
+          <div class="pt-16 border-t border-[var(--border-subtle)]" id="secondary-grid-header">
             <span class="t-mono text-xs text-[var(--text-muted)] tracking-wider uppercase font-bold">Secondary Implementations &amp; Integrations</span>
             <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8" id="secondary-grid">
               {rest.map(p => (
@@ -81,13 +126,14 @@ const rest = allProjects.slice(4);
                     <div class="flex flex-wrap gap-1.5 mb-4">
                       {p.tech.map(t => <span class="tag">{t}</span>)}
                     </div>
-                    <h3 class="text-md font-bold text-[var(--text-primary)]">{p.title}</h3>
-                    <p class="text-xs text-[var(--text-secondary)] mt-3 leading-relaxed">{p.description}</p>
+                    <span class="text-[9px] font-mono text-[var(--text-muted)] uppercase tracking-wider block mb-1 font-bold">{p.type}</span>
+                    <h3 class="text-md font-bold text-[var(--text-primary)] mt-1">{p.title}</h3>
+                    <p class="text-xs text-[var(--text-secondary)] mt-3 leading-relaxed font-sans">{p.description}</p>
                   </div>
                   
                   <a href={p.url} target="_blank" rel="noopener noreferrer" class="pt-4 flex items-center gap-1.5 text-xs text-[var(--accent)] font-semibold mt-4 hover:underline">
                     <span>Source / Website</span>
-                    <span>&rarr;</span>
+                    <span aria-hidden="true">&rarr;</span>
                   </a>
                 </div>
               ))}
@@ -124,52 +170,55 @@ const rest = allProjects.slice(4);
   var secondaryHeader = document.getElementById("secondary-grid-header");
   var secondaryGrid = document.getElementById("secondary-grid");
 
-  buttons.forEach(btn => {
-    btn.addEventListener("click", () => {
-      // Toggle button states
-      buttons.forEach(b => {
-        b.classList.remove("active");
-        b.classList.remove("text-[var(--accent)]");
-        b.classList.add("text-[var(--text-secondary)]");
-      });
-      btn.classList.add("active");
-      btn.classList.remove("text-[var(--text-secondary)]");
-      btn.classList.add("text-[var(--accent)]");
+  if (buttons.length && cards.length) {
+    buttons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        // Toggle button states
+        buttons.forEach(b => {
+          b.classList.remove("active");
+          b.classList.remove("text-[var(--accent)]");
+          b.classList.add("text-[var(--text-secondary)]");
+        });
+        btn.classList.add("active");
+        btn.classList.remove("text-[var(--text-secondary)]");
+        btn.classList.add("text-[var(--accent)]");
 
-      var filterVal = btn.getAttribute("data-filter");
+        var filterVal = btn.getAttribute("data-filter");
 
-      let visibleSecondaryCount = 0;
+        let visibleSecondaryCount = 0;
 
-      // Filter project cards
-      cards.forEach(card => {
-        var cardCat = card.getAttribute("data-cat");
-        if (filterVal === "all" || cardCat === filterVal) {
-          card.classList.remove("filtered-out");
-          // Fade animation
-          card.style.opacity = "0";
-          setTimeout(() => {
-            card.style.opacity = "1";
-          }, 50);
-          
-          if (card.parentElement.id === "secondary-grid") {
-            visibleSecondaryCount++;
+        // Filter project cards
+        cards.forEach(card => {
+          var cardCat = card.getAttribute("data-cat");
+          if (filterVal === "all" || cardCat === filterVal) {
+            card.classList.remove("filtered-out");
+            card.style.opacity = "0";
+            setTimeout(() => {
+              card.style.opacity = "1";
+            }, 50);
+            
+            if (card.parentElement.id === "secondary-grid") {
+              visibleSecondaryCount++;
+            }
+          } else {
+            card.classList.add("filtered-out");
           }
-        } else {
-          card.classList.add("filtered-out");
+        });
+
+        // Hide secondary grid container if empty
+        if (secondaryHeader && secondaryGrid) {
+          if (visibleSecondaryCount === 0 && filterVal !== "all") {
+            secondaryHeader.style.display = "none";
+          } else {
+            secondaryHeader.style.display = "block";
+          }
         }
       });
-
-      // Show or hide secondary section depending on visible cards
-      if (visibleSecondaryCount === 0 && filterVal !== "all") {
-        secondaryHeader.style.display = "none";
-      } else {
-        secondaryHeader.style.display = "block";
-      }
     });
-  });
+  }
 
-  // IntersectionObserver reveal animations
-  var observer = new IntersectionObserver(entries => {
+  // Unified single IntersectionObserver for page animate triggers
+  const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add("visible");

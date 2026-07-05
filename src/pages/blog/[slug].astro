@@ -17,15 +17,15 @@ const { post } = Astro.props;
 
 <Layout title={`${post.title} — Sayan Datta`} description={post.description}>
   <Header />
-  <main>
+  <main id="main-content">
     <article class="pt-32 pb-28 relative">
       <!-- Glow background behind post title -->
-      <div class="absolute top-0 inset-x-0 h-[40vh] opacity-[0.04] pointer-events-none" style="background:radial-gradient(circle at 50% 30%, var(--accent), transparent 70%)"></div>
+      <div class="absolute top-0 inset-x-0 h-[40vh] opacity-[0.04] pointer-events-none" style="background:radial-gradient(circle at 50% 30%, var(--accent), transparent 70%)" aria-hidden="true"></div>
 
       <div class="mx-narrow relative z-10">
         <!-- Back Button -->
         <a href="/blog" class="back-link t-mono hover:text-[var(--accent)] transition-colors inline-flex items-center gap-1.5 mb-8 group text-[10px] cursor-pointer">
-          <span class="group-hover:-translate-x-1 transition-transform">&larr;</span>
+          <span class="group-hover:-translate-x-1 transition-transform" aria-hidden="true">&larr;</span>
           <span>Back to Feed</span>
         </a>
 
@@ -43,12 +43,30 @@ const { post } = Astro.props;
           <time datetime={post.pubDate.toISOString()}>
             {post.pubDate.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
           </time>
-          <span>·</span>
+          <span aria-hidden="true">·</span>
           {post.readingTime && <span>{post.readingTime} min read</span>}
         </div>
 
-        <!-- Content -->
-        <div class="prose mt-10 mx-auto" set:html={post.content} />
+        <!-- Abstract & Coming Soon block -->
+        <div class="mt-12 space-y-8">
+          <div>
+            <h2 class="text-xs font-mono uppercase tracking-wider text-[var(--text-muted)] font-bold mb-3">Article Abstract</h2>
+            <p class="text-sm text-[var(--text-secondary)] leading-relaxed font-sans">{post.description}</p>
+          </div>
+
+          <div class="glass p-8 bg-[var(--bg-surface)] border-amber-500/20 rounded-xl space-y-4">
+            <div class="flex items-center gap-3">
+              <span class="text-xl text-amber-500" aria-hidden="true">⚙</span>
+              <h3 class="text-sm font-bold text-[var(--text-primary)]">Staged Draft — Integration in Progress</h3>
+            </div>
+            <p class="text-xs text-[var(--text-secondary)] leading-relaxed font-sans">
+              The full publication text is currently staged as a draft. Once Sayan configures the primary API collection endpoints inside <code class="px-1 py-0.5 rounded bg-[var(--bg-deep)] border border-[var(--border-subtle)] font-mono text-[10px]">src/lib/blog.ts</code>, this route will automatically sync and stream content directly from Cockpit CMS.
+            </p>
+            <p class="text-xs text-[var(--text-secondary)] leading-relaxed font-sans">
+              Stay tuned for in-depth insights into headless platforms, database query latency reductions, and modern JavaScript static pre-rendering pipelines.
+            </p>
+          </div>
+        </div>
       </div>
     </article>
   </main>

@@ -517,7 +517,7 @@ const projects = await getProjects();
         
       case "projects":
         projects.slice(0, 5).forEach((p: any, idx: number) => {
-          appendLine(`${idx + 1}. ${p.title} (${p.downloads || 'Active'}) - ${p.description.substring(0, 80)}...`);
+          appendLine(`${idx + 1}. ${p.title} (${p.downloads || 'Active'}) - ${(p.overview || p.description || '').substring(0, 80)}...`);
         });
         break;
         

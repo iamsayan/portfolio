@@ -17,6 +17,7 @@ export interface ProfileData {
     medium: string;
     long: string;
   };
+  formspreeId?: string;
 }
 
 export interface ExperienceItem {
@@ -31,21 +32,34 @@ export interface ExperienceItem {
 export interface ProjectItem {
   title: string;
   type: string;
-  description: string;
-  outcome?: string;
+  featured: boolean;
   category: "wordpress" | "fullstack" | "packages";
   tech: string[];
   downloads?: string;
   url: string;
+  overview?: string;
+  problem?: string;
+  solution?: string;
+  role?: string;
+  challenges?: string;
+  impact?: string;
+  links?: { label: string; url: string }[];
+  description?: string; // for secondary items
+}
+
+export interface SkillItem {
+  name: string;
+  level: string;
+  context: string;
 }
 
 export interface SkillsData {
-  categories: {
-    name: string;
-    desc: string;
-    skills: { name: string; pct: string; context: string }[];
-  }[];
-  additional: string[];
+  core: SkillItem[];
+  modern: SkillItem[];
+  backend: SkillItem[];
+  cms: SkillItem[];
+  infra: SkillItem[];
+  legacy: SkillItem[];
 }
 
 export interface FAQItem {

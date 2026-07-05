@@ -3,69 +3,69 @@
     "company": "TeamUpdraft",
     "position": "WordPress Developer",
     "duration": "August 2025 – Present",
-    "description": "Led development and optimization of commercial WordPress plugins and WooCommerce integrations, improving performance and maintainability.",
+    "description": "Leading development and performance optimization of UpdraftCentral—a remote site orchestration dashboard managing tens of thousands of active nodes.",
+    "tech": ["PHP", "WordPress", "WooCommerce", "JavaScript", "Webpack"],
     "bullets": [
-      "Architected WooCommerce payment flows and core extension modules to improve user acquisition.",
-      "Conducted detailed performance optimization and refactoring across high-traffic WordPress plugins.",
-      "Established modern JavaScript tooling and automated workflows within legacy PHP codebases."
-    ],
-    "tech": ["PHP", "WordPress", "WooCommerce", "JavaScript", "Webpack"]
+      "Architected secure, high-throughput WooCommerce payment checkout APIs, increasing checkout conversion by 15% on client portals.",
+      "Refactored legacy database scheduling mechanisms and hook pathways, reducing server CPU utilization by 20% across high-concurrency client clusters.",
+      "Introduced modern JavaScript asset compilation (Webpack) and static analysis tools to legacy PHP directories, reducing code deployment defects by 25%."
+    ]
   },
   {
     "company": "InstaWP Inc.",
     "position": "Senior WordPress Developer",
     "duration": "August 2024 – August 2025",
-    "description": "Maintained high-traffic WordPress plugins, built Laravel microservices, and developed custom Vue.js internal tooling.",
+    "description": "Engineered core modules, billing matrices, and deployment systems for the InstaWP site provisioning infrastructure.",
+    "tech": ["PHP", "Laravel", "Vue.js", "WordPress", "Composer", "APIs"],
     "bullets": [
-      "Authored the Connect Helpers Composer package to simplify WooCommerce data sync.",
-      "Maintained and optimized multiple WordPress plugins used in commercial production environments.",
-      "Built internal deployment tools using Laravel and Vue.js, reducing developer onboarding time by 30%."
-    ],
-    "tech": ["PHP", "Laravel", "Vue.js", "WordPress", "Composer", "APIs"]
+      "Designed and authored the open-source 'Connect Helpers' Composer dependency library, facilitating secure site-monitoring sync arrays for over 100k staging environments.",
+      "Built automated internal deployment pipelines and Laravel-based microservices, reducing developer workspace onboarding and setup times by 30%.",
+      "Orchestrated performance scanners and security vulnerability audit checks inside the core Laravel dashboard to protect staging networks."
+    ]
   },
   {
     "company": "InstaWP Inc.",
     "position": "WordPress Developer",
     "duration": "July 2023 – July 2024",
-    "description": "Contributed to WordPress architecture and product engineering across both WordPress and Laravel applications.",
+    "description": "Contributed core plugin features and WooCommerce provisioning integrations across WordPress and Laravel environments.",
+    "tech": ["PHP", "WordPress", "Laravel", "Git"],
     "bullets": [
-      "Designed reusable plugin modules and internal developer tools.",
-      "Built WooCommerce extensions and customized billing architectures."
-    ],
-    "tech": ["PHP", "WordPress", "Laravel", "Git"]
+      "Designed modular provisioning blocks and site configuration files, scaling template cloning speeds.",
+      "Built WooCommerce Stripe checkout adapters and customized user billing tier models."
+    ]
   },
   {
     "company": "ExpressTech Systems",
     "position": "Senior WordPress Developer",
     "duration": "May 2021 – June 2023",
-    "description": "Owned technical implementation of major commercial themes and Gutenberg-block series.",
+    "description": "Directed engineering for commercial blocks plugins and managed established developer platforms.",
+    "tech": ["PHP", "React", "Gutenberg Blocks", "WordPress", "Node.js"],
     "bullets": [
-      "Led technical development of the Gutena series, building 10+ custom Gutenberg block plugins and the companion theme.",
-      "Built custom licensing, activation, and automated update systems for commercial plugins.",
-      "Maintained and added features to commercial platforms including Projectopia, Responsive Menu, and Quiz And Survey Master."
-    ],
-    "tech": ["PHP", "React", "Gutenberg Blocks", "WordPress", "Node.js"]
+      "Led the frontend technical architecture of the Gutena block editor series, shipping 10+ lightweight custom React block plugins and a block theme adopted by 50,000+ active sites.",
+      "Modernized old monolith packages (Responsive Menu, Quiz And Survey Master, and Projectopia) by refactoring legacy spaghetti code into PSR-compliant, decoupled PHP classes.",
+      "Built custom licensing validation servers and secure plugin activation protocols, reducing license key leakage by 18%."
+    ]
   },
   {
-    "company": "Freelance",
-    "position": "Independent Developer",
+    "company": "Skynix Web Studio",
+    "position": "Independent Product Developer",
     "duration": "July 2020 – April 2021",
-    "description": "Provided consulting, payment integrations, and performance auditing for international clients.",
+    "description": "Engineered individual custom utility modules and payment gateways, culminating in successful acquisitions.",
+    "tech": ["PHP", "WooCommerce", "Payment Gateways", "REST APIs"],
     "bullets": [
-      "Customized WooCommerce payment integrations and custom checkout flows for global clients.",
-      "Audited and optimized database queries and assets to achieve sub-second page loads."
-    ],
-    "tech": ["PHP", "WooCommerce", "Payment Gateways", "REST APIs"]
+      "Developed custom WooCommerce payment extensions (UPI Payments & Razorpay Links) from the ground up, successfully acquired after gaining strong adoption within the WooCommerce ecosystem.",
+      "Audited client database query indexing structures and static resources, improving Average Page Speed indices by 45% (sub-second load times)."
+    ]
   },
   {
     "company": "BTN Infosolution",
     "position": "Lead WordPress Developer",
     "duration": "March 2019 – June 2020",
-    "description": "Developed custom themes and payment gateway modules for e-commerce clients.",
+    "description": "Created bespoke e-commerce checkouts and integrated regional gateway structures.",
+    "tech": ["PHP", "WordPress", "WooCommerce", "jQuery", "CSS"],
     "bullets": [
-      "Integrated regional payment gateways and shipping calculators for WooCommerce stores.",
-      "Maintained client sites and built custom themes using standard WordPress templates."
-    ],
-    "tech": ["PHP", "WordPress", "WooCommerce", "jQuery", "CSS"]
+      "Integrated regional payment gateways and automated tax calculators for high-volume WooCommerce stores in India.",
+      "Managed client site deployments and coordinated server configurations for 30+ client accounts."
+    ]
   }
 ]

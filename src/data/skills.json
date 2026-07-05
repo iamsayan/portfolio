@@ -1,35 +1,94 @@
 {
-  "categories": [
+  "core": [
     {
-      "name": "Frontend Stack",
-      "desc": "Crafting modular, high-speed user interfaces that are fast, accessible, and structured.",
-      "skills": [
-        { "name": "Next.js / React", "pct": "95%", "context": "Primary production framework. React Server Components, App Router, middleware routing, and dynamic data streaming." },
-        { "name": "TypeScript", "pct": "90%", "context": "Type safety across the stack. Generics, utility type mapping, strict configurations." },
-        { "name": "Tailwind CSS", "pct": "92%", "context": "Styling layout designs, utility structures, theme definitions, and custom Vite configs." },
-        { "name": "Vue.js", "pct": "70%", "context": "Single File Components, Vue Router, Pinia client state management." }
-      ]
+      "name": "WooCommerce Core & Checkout Engineering",
+      "level": "Expert",
+      "context": "Architecting custom payment gateways, secure webhooks, transactional email pipelines, and high-performance checkout structures that scale under high concurrency."
     },
     {
-      "name": "Backend Architecture",
-      "desc": "Designing secure, maintainable server environments that scale to real workloads.",
-      "skills": [
-        { "name": "PHP / WordPress", "pct": "95%", "context": "Custom plugins, database actions, headless WordPress API feeds. 8+ years deep." },
-        { "name": "Node.js", "pct": "80%", "context": "Vite dev servers, Express APIs, custom route handlers, request validation scripts." },
-        { "name": "Laravel", "pct": "78%", "context": "Eloquent ORM, artisan script command pipelines, database seed configurations." },
-        { "name": "Python", "pct": "65%", "context": "Script automation, JSON data processing modules, API endpoints." }
-      ]
-    },
-    {
-      "name": "DevOps & Databases",
-      "desc": "Infrastructure pipelines, version controls, and query indexing setups.",
-      "skills": [
-        { "name": "MySQL / PostgreSQL", "pct": "82%", "context": "Schema optimization, indexing, foreign keys, complex transaction management." },
-        { "name": "REST API / GraphQL", "pct": "88%", "context": "Secure API design pattern structures, WPGraphQL integrations, Apollo client feeds." },
-        { "name": "Git / CI-CD", "pct": "85%", "context": "GitHub Actions runner workflows, automated unit checking, zero-downtime Vercel/Docker deploys." },
-        { "name": "Docker / Linux", "pct": "75%", "context": "Multi-stage Dockerfile configurations, Docker Compose orchestration, Nginx reverse proxy routes." }
-      ]
+      "name": "WordPress Plugin Architecture",
+      "level": "Expert",
+      "context": "Over 8 years building commercial and open-source plugins. Deep expertise in WP Hooks, database tuning, security sanitization, and Gutenberg React block integrations."
     }
   ],
-  "additional": ["JavaScript", "HTML5", "CSS3", "jQuery", "AJAX", "Bootstrap", "WooCommerce", "Redis", "Nginx", "Vercel", "Gutenberg"]
+  "modern": [
+    {
+      "name": "React / Next.js",
+      "level": "Advanced",
+      "context": "Primary framework suite. Building decoupled frontends using React Server Components, client state stores, and optimized asset delivery."
+    },
+    {
+      "name": "TypeScript",
+      "level": "Advanced",
+      "context": "Strict type-safety across client and server modules. Defining interfaces, custom generics, and compilation checks to prevent production crashes."
+    },
+    {
+      "name": "Tailwind CSS v4 & Astro",
+      "level": "Expert",
+      "context": "Deploying zero-JS static sites with Astro. Styling modular layouts with Tailwind's fluid systems and theme tokens."
+    }
+  ],
+  "backend": [
+    {
+      "name": "PHP & Laravel",
+      "level": "Expert",
+      "context": "Building MVC applications, API routes, queue pipelines, Eloquent models, and automated tests."
+    },
+    {
+      "name": "Node.js & Express",
+      "level": "Proficient",
+      "context": "Creating clean REST API endpoints, routing logic, request validators, and background microservices."
+    },
+    {
+      "name": "API Design (REST & Graph)",
+      "level": "Advanced",
+      "context": "Structuring predictable resource schemas, custom endpoints, and GraphQL resolvers for headless integrations."
+    }
+  ],
+  "cms": [
+    {
+      "name": "WordPress",
+      "level": "Expert",
+      "context": "Extending themes, core overrides, custom post mappings, and database optimizations."
+    },
+    {
+      "name": "Headless CMS Platforms",
+      "level": "Proficient",
+      "context": "Setting up content collections, API sync hooks, and layouts for Cockpit CMS, Strapi, and PocketBase."
+    }
+  ],
+  "infra": [
+    {
+      "name": "MySQL / PostgreSQL",
+      "level": "Advanced",
+      "context": "Schema optimizations, indexing strategy, locking issues, and raw query tuning."
+    },
+    {
+      "name": "Git & CI/CD Pipelines",
+      "level": "Advanced",
+      "context": "Version control branching, GitHub Actions workflow tasks, automated checks, and deployments."
+    },
+    {
+      "name": "Docker & Linux Servers",
+      "level": "Working Knowledge",
+      "context": "Defining multi-stage Dockerfiles, compose setups, and administering Nginx gateways."
+    }
+  ],
+  "legacy": [
+    {
+      "name": "jQuery",
+      "level": "Proficient",
+      "context": "Maintaining legacy plugin interactions, selector event maps, and browser DOM manipulations."
+    },
+    {
+      "name": "AJAX",
+      "level": "Proficient",
+      "context": "Asynchronous form validation, raw XMLHttpRequests, and partial DOM swaps in legacy systems."
+    },
+    {
+      "name": "Bootstrap",
+      "level": "Proficient",
+      "context": "Maintaining grid templates and styling variables on older client portals."
+    }
+  ]
 }

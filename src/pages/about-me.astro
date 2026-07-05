@@ -2,24 +2,24 @@
 import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
-import { getProfile, getExperience } from "@/lib/data";
+import { getProfile, getExperience, getTestimonials } from "@/lib/data";
 
 const profile = await getProfile();
 const experience = await getExperience();
+const testimonials = await getTestimonials();
 ---
 
-<Layout title="About | Sayan Datta — Senior Developer" description="8+ years of engineering experience. From core WordPress plugin architecture to modern full-stack JavaScript. Learn about my journey and work history.">
+<Layout title="About | Sayan Datta — Senior Developer" description="8+ years of e-commerce engineering experience. From scaling WooCommerce checkouts to modern full-stack systems.">
   <Header />
-  <main class="py-24 relative overflow-hidden">
-    <!-- Grid overlay and spotlights -->
-    <div class="absolute inset-0 opacity-[0.08] pointer-events-none" style="background:radial-gradient(circle at 80% 30%, var(--accent), transparent 50%)"></div>
-    <div class="absolute inset-0 opacity-[0.08] pointer-events-none" style="background:radial-gradient(circle at 20% 70%, #6366f1, transparent 50%)"></div>
+  <main id="main-content">
+    <div class="mx py-24 relative overflow-hidden">
+      <!-- Background Ambient Glow Spotlight -->
+      <div class="absolute inset-0 opacity-[0.06] pointer-events-none" style="background:radial-gradient(circle at 10% 40%, var(--accent), transparent 50%)" aria-hidden="true"></div>
 
-    <div class="mx relative z-10 py-12">
-      <!-- Title Block -->
+      <!-- Bio Header -->
       <div class="max-w-3xl mb-16 reveal">
         <div class="flex items-center gap-3 mb-4">
-          <span class="w-1.5 h-1.5 rounded-full bg-[var(--accent)] animate-pulse"></span>
+          <span class="w-1.5 h-1.5 rounded-full bg-[var(--accent)] animate-pulse" aria-hidden="true"></span>
           <span class="text-[10px] font-mono tracking-wider text-[var(--accent)] uppercase font-bold">About Me</span>
         </div>
         <h1 class="t-heading">The person behind the <span class="t-accent">code.</span></h1>
@@ -32,10 +32,10 @@ const experience = await getExperience();
       <div class="grid lg:grid-cols-12 gap-12 items-start mb-24 reveal r1">
         <!-- Biography Text -->
         <div class="lg:col-span-8 space-y-6">
-          <p class="t-body leading-relaxed">
+          <p class="t-body leading-relaxed font-sans">
             {profile.bios.long}
           </p>
-          <p class="t-body leading-relaxed">
+          <p class="t-body leading-relaxed font-sans">
             With a focus on performance-first engineering, I ensure that web applications load in milliseconds, backend structures remain clean and linted, and custom plugin architectures map to standard scalable workflows.
           </p>
         </div>
@@ -59,7 +59,7 @@ const experience = await getExperience();
               </div>
               <div class="flex justify-between items-center text-sm">
                 <span class="text-[var(--text-muted)]">Freelance:</span>
-                <span class="status-badge !py-0.5 !px-2.5 !text-[11px]"><span class="pulse-dot"></span>Available</span>
+                <span class="status-badge !py-0.5 !px-2.5 !text-[11px]"><span class="pulse-dot" aria-hidden="true"></span>Available</span>
               </div>
             </div>
           </div>
@@ -69,7 +69,7 @@ const experience = await getExperience();
       <!-- Setup and Stack Details (Daily Tools) -->
       <div class="mb-24 reveal r2">
         <div class="flex items-center gap-3 mb-6">
-          <span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
+          <span class="w-1.5 h-1.5 rounded-full bg-blue-500" aria-hidden="true"></span>
           <span class="text-[10px] font-mono tracking-wider text-blue-500 uppercase font-bold">My Setup</span>
         </div>
         <h2 class="t-title mb-10">Tools I use daily.</h2>
@@ -78,53 +78,53 @@ const experience = await getExperience();
           <!-- Hardware Card -->
           <div class="glass hover-glow-blue p-6 bg-[var(--bg-surface)]">
             <h3 class="font-bold text-base text-[var(--text-primary)] mb-4 flex items-center gap-2">
-              <svg class="w-4 h-4 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+              <svg class="w-4 h-4 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
               Hardware
             </h3>
-            <ul class="space-y-2 text-xs text-[var(--text-secondary)]">
-              <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-blue-500"></span>Windows Workstation PC</li>
-              <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-blue-500"></span>Dell UltraSharp 4K display</li>
-              <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-blue-500"></span>Mechanical MX Brown Keyboard</li>
+            <ul class="space-y-2 text-xs text-[var(--text-secondary)] font-sans">
+              <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-blue-500" aria-hidden="true"></span>Windows Workstation PC</li>
+              <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-blue-500" aria-hidden="true"></span>Dell UltraSharp 4K display</li>
+              <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-blue-500" aria-hidden="true"></span>Mechanical MX Brown Keyboard</li>
             </ul>
           </div>
 
           <!-- Development Card -->
           <div class="glass hover-glow-emerald p-6 bg-[var(--bg-surface)]">
             <h3 class="font-bold text-base text-[var(--text-primary)] mb-4 flex items-center gap-2">
-              <svg class="w-4 h-4 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+              <svg class="w-4 h-4 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
               Development
             </h3>
-            <ul class="space-y-2 text-xs text-[var(--text-secondary)]">
-              <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-emerald-500"></span>VS Code &amp; Cursor IDEs</li>
-              <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-emerald-500"></span>Windows Terminal (ZSH)</li>
-              <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-emerald-500"></span>Git Version Control</li>
-              <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-emerald-500"></span>Docker Containers</li>
+            <ul class="space-y-2 text-xs text-[var(--text-secondary)] font-sans">
+              <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-emerald-500" aria-hidden="true"></span>VS Code &amp; Cursor IDEs</li>
+              <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-emerald-500" aria-hidden="true"></span>Windows Terminal (ZSH)</li>
+              <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-emerald-500" aria-hidden="true"></span>Git Version Control</li>
+              <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-emerald-500" aria-hidden="true"></span>Docker Containers</li>
             </ul>
           </div>
 
           <!-- Design Card -->
           <div class="glass hover-glow-rose p-6 bg-[var(--bg-surface)]">
             <h3 class="font-bold text-base text-[var(--text-primary)] mb-4 flex items-center gap-2">
-              <svg class="w-4 h-4 text-rose-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/></svg>
+              <svg class="w-4 h-4 text-rose-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/></svg>
               UI / UX
             </h3>
-            <ul class="space-y-2 text-xs text-[var(--text-secondary)]">
-              <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-rose-500"></span>Figma Design Board</li>
-              <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-rose-500"></span>Adobe XD Prototyping</li>
-              <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-rose-500"></span>Graph Paper Sketching</li>
+            <ul class="space-y-2 text-xs text-[var(--text-secondary)] font-sans">
+              <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-rose-500" aria-hidden="true"></span>Figma Design Board</li>
+              <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-rose-500" aria-hidden="true"></span>Adobe XD Prototyping</li>
+              <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-rose-500" aria-hidden="true"></span>Graph Paper Sketching</li>
             </ul>
           </div>
 
           <!-- Infrastructure Card -->
           <div class="glass hover-glow-amber p-6 bg-[var(--bg-surface)]">
             <h3 class="font-bold text-base text-[var(--text-primary)] mb-4 flex items-center gap-2">
-              <svg class="w-4 h-4 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+              <svg class="w-4 h-4 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
               Infrastructure
             </h3>
-            <ul class="space-y-2 text-xs text-[var(--text-secondary)]">
-              <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-amber-500"></span>Vercel Cloud Deploy</li>
-              <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-amber-500"></span>DigitalOcean VPS Droplets</li>
-              <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-amber-500"></span>Cloudflare Proxy DNS</li>
+            <ul class="space-y-2 text-xs text-[var(--text-secondary)] font-sans">
+              <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-amber-500" aria-hidden="true"></span>Vercel Cloud Deploy</li>
+              <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-amber-500" aria-hidden="true"></span>DigitalOcean VPS Droplets</li>
+              <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-amber-500" aria-hidden="true"></span>Cloudflare Proxy DNS</li>
             </ul>
           </div>
         </div>
@@ -133,7 +133,7 @@ const experience = await getExperience();
       <!-- Experience Timeline section -->
       <div class="mb-24 reveal r3">
         <div class="flex items-center gap-3 mb-6">
-          <span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span>
+          <span class="w-1.5 h-1.5 rounded-full bg-rose-500" aria-hidden="true"></span>
           <span class="text-[10px] font-mono tracking-wider text-rose-500 uppercase font-bold">Timeline</span>
         </div>
         <h2 class="t-title mb-12">Professional experience.</h2>
@@ -152,10 +152,10 @@ const experience = await getExperience();
                   </div>
                   <span class="text-xs bg-[var(--bg-raised)] border border-[var(--border-strong)] px-3 py-1 rounded-full text-[var(--text-secondary)] font-medium">{exp.duration}</span>
                 </div>
-                <p class="text-sm text-[var(--text-secondary)] leading-relaxed mb-3">
+                <p class="text-sm text-[var(--text-secondary)] leading-relaxed mb-3 font-sans">
                   {exp.description}
                 </p>
-                <ul class="list-disc pl-4 space-y-1 text-xs text-[var(--text-muted)]">
+                <ul class="list-disc pl-4 space-y-1 text-xs text-[var(--text-muted)] font-sans">
                   {exp.bullets.map((b) => (
                     <li>{b}</li>
                   ))}
@@ -166,13 +166,41 @@ const experience = await getExperience();
         </div>
       </div>
 
+      <!-- Verified References & Testimonials Section -->
+      {testimonials && testimonials.length > 0 && (
+        <div class="mb-24 reveal r4">
+          <div class="flex items-center gap-3 mb-6">
+            <span class="w-1.5 h-1.5 rounded-full bg-[var(--accent)] animate-pulse" aria-hidden="true"></span>
+            <span class="text-[10px] font-mono tracking-wider text-[var(--accent)] uppercase font-bold">Verified References</span>
+          </div>
+          <h2 class="t-title mb-10">Kind words from peers.</h2>
+          
+          <div class="grid md:grid-cols-2 gap-8">
+            {testimonials.map((t) => (
+              <div class="glass p-8 bg-[var(--bg-surface)] border-[var(--border-subtle)] hover:border-[var(--accent)] transition-colors relative flex flex-col justify-between">
+                <blockquote class="text-sm text-[var(--text-secondary)] leading-relaxed font-sans italic mb-6">
+                  "{t.text}"
+                </blockquote>
+                <div class="border-t border-[var(--border-subtle)] pt-4 flex items-center justify-between">
+                  <div>
+                    <cite class="text-sm font-bold text-[var(--text-primary)] not-italic block">{t.name}</cite>
+                    <span class="text-[10px] font-mono text-[var(--text-muted)] block mt-0.5">{t.role}</span>
+                  </div>
+                  <span class="text-[9px] bg-[var(--accent-glow)] text-[var(--accent)] border border-rose-500/10 px-2 py-0.5 rounded font-semibold tracking-wider font-mono uppercase" aria-label="Verified testimonial endorsement">Verified Reference</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
       <!-- Volunteering and open-source contributions -->
       <div class="grid md:grid-cols-2 gap-8 mb-24 reveal r4">
         <div class="glass p-8 hover-glow-purple bg-[var(--bg-surface)]">
           <p class="t-mono text-purple-400 text-[10px] mb-2">COMMUNITY ENGAGEMENT</p>
           <h3 class="font-bold text-base text-[var(--text-primary)]">Volunteer Developer</h3>
           <p class="text-xs text-[var(--text-muted)] mt-1 mb-4">Jagadhatri Online &mdash; Aug 2020 - Present</p>
-          <p class="text-sm text-[var(--text-secondary)] leading-relaxed">
+          <p class="text-sm text-[var(--text-secondary)] leading-relaxed font-sans">
             Volunteered to build and maintain the event and commerce portal utilizing Next.js, managing API sync frameworks with local WooCommerce catalogs.
           </p>
         </div>
@@ -181,7 +209,7 @@ const experience = await getExperience();
           <p class="t-mono text-rose-400 text-[10px] mb-2">OPEN SOURCE ECOSYSTEM</p>
           <h3 class="font-bold text-base text-[var(--text-primary)]">Core &amp; Plugin Contributor</h3>
           <p class="text-xs text-[var(--text-muted)] mt-1 mb-4">WordPress.org &mdash; Jul 2018 - Present</p>
-          <p class="text-sm text-[var(--text-secondary)] leading-relaxed">
+          <p class="text-sm text-[var(--text-secondary)] leading-relaxed font-sans">
             Submit patches, refactor actions, and provide interface enhancements inside the core WordPress platform, supporting open-source development globally.
           </p>
         </div>
@@ -206,7 +234,8 @@ const experience = await getExperience();
 </Layout>
 
 <script>
-  var observer = new IntersectionObserver(entries => {
+  // Unified single IntersectionObserver for page elements
+  const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add("visible");
