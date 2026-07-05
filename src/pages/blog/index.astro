@@ -1,0 +1,85 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import { getBlogPosts } from "@/lib/blog";
+
+const posts = await getBlogPosts();
+posts.sort((a, b) => b.pubDate.getTime() - a.pubDate.getTime());
+---
+
+<Layout title="Blog — Sayan Datta" description="Technical articles on WordPress, frontend performance, API architectures, and software engineering.">
+  <Header />
+  <main>
+    <!-- Header Hero -->
+    <section class="pt-32 pb-16 relative">
+      <div class="mx-narrow">
+        <p class="t-mono text-[var(--accent)]">Developer Feed</p>
+        <h1 class="t-heading mt-4 reveal r1">Writing on <span class="t-accent">the web.</span></h1>
+        <p class="t-body mt-4 reveal r2">Lessons, guides, and opinions from building high-traffic plugins, products, and full-stack software.</p>
+      </div>
+    </section>
+
+    <!-- Post Feed Grid -->
+    <section class="pb-28">
+      <div class="mx-narrow space-y-6">
+        {posts.length > 0 ? posts.map((p, i) => (
+          <a 
+            href={`/blog/${p.id}/`} 
+            class={`block glass p-6 bg-[var(--bg-surface)] border-[var(--border-subtle)] hover:border-[var(--accent)] hover:shadow-xl transition-all duration-300 group reveal r${Math.min(i + 1, 5)}`}
+          >
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-[var(--border-subtle)] pb-4 mb-4">
+              <div class="flex flex-wrap gap-1.5">
+                {p.tags.map((tag) => (
+                  <span class="tag">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              <div class="flex items-center gap-3 t-mono text-[10px] text-[var(--text-muted)] flex-shrink-0">
+                <time datetime={p.pubDate.toISOString()}>
+                  {p.pubDate.toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" })}
+                </time>
+                {p.readingTime && (
+                  <>
+                    <span>·</span>
+                    <span>{p.readingTime} min read</span>
+                  </>
+                )}
+              </div>
+            </div>
+            
+            <h2 class="t-title !text-lg font-bold group-hover:text-[var(--accent)] transition-colors duration-300 leading-snug">
+              {p.title}
+            </h2>
+            <p class="text-xs text-[var(--text-secondary)] mt-2.5 leading-relaxed">
+              {p.description}
+            </p>
+            
+            <div class="pt-4 flex items-center gap-1.5 text-xs text-[var(--accent)] font-semibold opacity-0 group-hover:opacity-100 transition-opacity">
+              <span>Read article</span>
+              <span>&rarr;</span>
+            </div>
+          </a>
+        )) : (
+          <div class="py-24 text-center glass border-[var(--border-subtle)] bg-[var(--bg-surface)]">
+            <p class="t-mono text-sm">No articles published yet. Check back soon.</p>
+          </div>
+        )}
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>
+
+<script>
+  var observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+      }
+    });
+  }, { threshold: 0.05 });
+  
+  document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+</script>

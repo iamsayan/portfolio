@@ -1,11 +1,405 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const stats = [
+  { value: "7+", label: "Years experience building across the stack" },
+  { value: "50+", label: "Projects delivered for global clients" },
+  { value: "1M+", label: "Plugin downloads across WP ecosystem" },
+  { value: "20+", label: "Open source repositories on GitHub" },
+];
 ---
 
 <Layout>
-	<Welcome />
+  <Header />
+  <main>
+    <!-- ── Hero — Split Screen Workbench ── -->
+    <section class="min-h-screen flex flex-col justify-center relative overflow-hidden pt-20">
+      <!-- Colorful Ambient Glow Spotlights -->
+      <div class="absolute inset-0 opacity-[0.12] pointer-events-none" style="background:radial-gradient(circle at 75% 35%, var(--accent), transparent 50%)"></div>
+      <div class="absolute inset-0 opacity-[0.1] pointer-events-none" style="background:radial-gradient(circle at 20% 75%, #6366f1, transparent 50%)"></div>
+
+      <div class="mx relative z-10 py-16 lg:py-24">
+        <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          <!-- Left: Pitch & Typography -->
+          <div class="lg:col-span-7 space-y-6">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[var(--accent-glow)] border border-rose-500/10">
+              <span class="relative flex h-2.5 w-2.5">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+              </span>
+              <span class="text-[10px] font-mono tracking-wider text-[var(--accent-bright)] uppercase">Open to Freelance &amp; Contract Work</span>
+            </div>
+            
+            <h1 class="t-display text-balance">
+              I build <span class="t-accent">digital experiences</span> that matter.
+            </h1>
+            
+            <p class="t-body max-w-xl text-lg leading-relaxed">
+              Hey, I'm <strong class="text-[var(--text-primary)] font-semibold">Sayan Datta</strong> — a Senior Software Engineer, Full Stack Developer, and WordPress Expert from India. I build custom plugins, scalable SaaS products, and performant web experiences.
+            </p>
+            
+            <div class="flex flex-wrap gap-4 pt-4">
+              <a href="/projects" class="b b-primary shadow-lg hover:scale-[1.02] active:scale-100 transition-transform">
+                Explore my work
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg>
+              </a>
+              <a href="/contact" class="b b-ghost hover:scale-[1.02] active:scale-100 transition-transform">Let's talk</a>
+            </div>
+
+            <!-- Stats Bar Below CTA -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 pt-10 border-t border-[var(--border-subtle)]">
+              {stats.map((s) => (
+                <div>
+                  <p class="text-3xl md:text-4xl font-black t-accent font-[var(--font-display)]">{s.value}</p>
+                  <p class="text-xs text-[var(--text-secondary)] mt-1">{s.label}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <!-- Right: Interactive Developer IDE Mockup -->
+          <div class="lg:col-span-5 relative">
+            <div class="absolute -inset-1.5 bg-gradient-to-r from-rose-500 to-purple-600 rounded-2xl blur-lg opacity-25"></div>
+            
+            <div class="glass glass-glow rounded-xl overflow-hidden shadow-2xl relative z-10 border-[var(--border-strong)]">
+              <!-- IDE Header -->
+              <div class="bg-[rgba(255,255,255,0.015)] border-b border-[var(--border-subtle)] px-4 py-3 flex items-center justify-between">
+                <div class="flex items-center gap-1.5">
+                  <span class="w-2.5 h-2.5 rounded-full bg-[#ff5f56]"></span>
+                  <span class="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]"></span>
+                  <span class="w-2.5 h-2.5 rounded-full bg-[#27c93f]"></span>
+                </div>
+                <div class="text-[10px] font-mono text-[var(--text-muted)] tracking-wider">meetsayan-workspace</div>
+                <div class="w-10"></div>
+              </div>
+              
+              <!-- Tab Bar -->
+              <div class="bg-[var(--bg-surface)] flex border-b border-[var(--border-subtle)] font-mono text-xs">
+                <div class="px-4 py-2 border-r border-[var(--border-subtle)] bg-[var(--bg-deep)] text-[var(--accent)] border-t border-t-[var(--accent)] flex items-center gap-2">
+                  <span class="text-[#21759b]">PHP</span>
+                  <span>Plugin.php</span>
+                </div>
+                <div class="px-4 py-2 border-r border-[var(--border-subtle)] text-[var(--text-muted)] flex items-center gap-2">
+                  <span class="text-[#38bdf8]">TS</span>
+                  <span>Stack.ts</span>
+                </div>
+                <div class="px-4 py-2 text-[var(--text-muted)] flex items-center gap-2">
+                  <span class="text-[#f59e0b]">JSON</span>
+                  <span>Composer.json</span>
+                </div>
+              </div>
+
+              <!-- Editor Workspace -->
+              <div class="p-6 font-mono text-xs text-[var(--text-secondary)] bg-[var(--bg-deep)] overflow-x-auto min-h-[300px]">
+                <div class="space-y-1">
+                  <div><span class="text-[#9333ea]">&lt;?php</span></div>
+                  <div><span class="text-[#3b82f6]">namespace</span> <span class="text-[#e54b4b]">Sayan\Core</span>;</div>
+                  <div class="text-[var(--text-muted)]">/**</div>
+                  <div class="text-[var(--text-muted)]"> * WordPress Core & Product Engineering</div>
+                  <div class="text-[var(--text-muted)]"> * @contrib 7+ years of active development</div>
+                  <div class="text-[var(--text-muted)]"> */</div>
+                  <div><span class="text-[#9333ea]">class</span> <span class="text-[#10b981]">SayanDatta</span> <span class="text-[#9333ea]">implements</span> <span class="text-[#38bdf8]">ExpertDeveloper</span> &#123;</div>
+                  <div class="pl-4"><span class="text-[#3b82f6]">public</span> <span class="text-[#9333ea]">function</span> <span class="text-[#38bdf8]">getStats</span>() &#123;</div>
+                  <div class="pl-8"><span class="text-[#9333ea]">return</span> [</div>
+                  <div class="pl-12"><span class="text-[#10b981]">'plugins_downloaded'</span> =&gt; <span class="text-[#f59e0b]">1000000</span>,</div>
+                  <div class="pl-12"><span class="text-[#10b981]">'wordpress_core'</span> =&gt; <span class="text-[#10b981]">'contributor'</span>,</div>
+                  <div class="pl-12"><span class="text-[#10b981]">'availability'</span> =&gt; <span class="text-[#10b981]">'✔️ Available'</span>,</div>
+                  <div class="pl-12"><span class="text-[#10b981]">'primary_skills'</span> =&gt; [<span class="text-[#10b981]">'PHP'</span>, <span class="text-[#10b981]">'Laravel'</span>, <span class="text-[#10b981]">'Next.js'</span>, <span class="text-[#10b981]">'Astro'</span>]</div>
+                  <div class="pl-8">];</div>
+                  <div class="pl-4">&#125;</div>
+                  <div>&#125;</div>
+                  <div class="pt-3"><span class="text-[#9333ea]">$sayan</span> = <span class="text-[#9333ea]">new</span> <span class="text-[#10b981]">SayanDatta</span>();</div>
+                  <div><span class="text-[#9333ea]">print_r</span>(<span class="text-[#9333ea]">$sayan</span>-&gt;<span class="text-[#38bdf8]">getStats</span>());</div>
+                  <div class="pt-2 text-[var(--text-muted)]">$ <span class="text-[var(--text-secondary)]">php Plugin.php</span></div>
+                  <div class="text-[var(--success)]">Array( [plugins_downloaded] => 1000000+ [wordpress_core] => contributor [availability] => Active )</div>
+                  <div class="text-[var(--text-muted)]">Active state: <span class="text-[var(--success)]">Ready to deploy</span><span class="terminal-cursor"></span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Scroll Indicator -->
+      <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50">
+        <span class="t-mono text-[9px] tracking-widest text-[var(--text-muted)]">Scroll Down</span>
+        <svg class="w-4 h-4 animate-bounce text-[var(--accent)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path d="M19 14l-7 7-7-7m14-6l-7 7-7-7"/>
+        </svg>
+      </div>
+    </section>
+
+    <!-- ── Services section with custom UI mockups ── -->
+    <section class="py-28 relative border-t border-[var(--border-subtle)]">
+      <div class="mx">
+        <div class="max-w-2xl">
+          <p class="t-mono text-[var(--accent)] uppercase">Services</p>
+          <h2 class="t-heading mt-3">Full-stack competencies.</h2>
+          <p class="t-body mt-4">I deliver performance-first solutions tailored to modern infrastructure and developer experience guidelines.</p>
+        </div>
+
+        <div class="space-y-24 mt-20">
+          <!-- Frontend -->
+          <div class="grid lg:grid-cols-12 gap-10 items-center reveal">
+            <div class="lg:col-span-5 space-y-5">
+              <span class="text-xs font-mono px-3 py-1 rounded-md bg-[rgba(59,130,246,0.1)] text-blue-500 border border-blue-500/10">01 &mdash; FRONTEND</span>
+              <h3 class="t-title text-2xl font-bold">Frontend Development</h3>
+              <p class="t-body">Pixel-perfect, accessible, and fast interfaces. Built using modern frameworks like Astro, Next.js, and React. Focus on responsive, device-independent layouts and animations.</p>
+              <div class="flex flex-wrap gap-2 pt-2">
+                <span class="tag">Next.js</span><span class="tag">React</span><span class="tag">Astro</span><span class="tag">TypeScript</span><span class="tag">Tailwind CSS</span>
+              </div>
+            </div>
+            
+            <div class="lg:col-span-7">
+              <div class="glass hover-glow-blue p-6 relative overflow-hidden bg-[var(--bg-surface)]">
+                <!-- Mock Dashboard Component -->
+                <div class="flex items-center justify-between border-b border-[var(--border-subtle)] pb-4 mb-6">
+                  <span class="text-xs font-mono text-[var(--text-primary)]">lighthouse-performance-audit</span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-[var(--success-glow)] text-[var(--success)]">Score: 100%</span>
+                </div>
+                <div class="grid grid-cols-3 gap-4 mb-6">
+                  <div class="p-4 rounded-lg bg-[var(--bg-deep)] border border-[var(--border-subtle)]">
+                    <p class="text-[10px] font-mono text-[var(--text-muted)] uppercase">FCP</p>
+                    <p class="text-lg font-bold text-[var(--success)] mt-1">0.2s</p>
+                  </div>
+                  <div class="p-4 rounded-lg bg-[var(--bg-deep)] border border-[var(--border-subtle)]">
+                    <p class="text-[10px] font-mono text-[var(--text-muted)] uppercase">LCP</p>
+                    <p class="text-lg font-bold text-[var(--success)] mt-1">0.5s</p>
+                  </div>
+                  <div class="p-4 rounded-lg bg-[var(--bg-deep)] border border-[var(--border-subtle)]">
+                    <p class="text-[10px] font-mono text-[var(--text-muted)] uppercase">CLS</p>
+                    <p class="text-lg font-bold text-[var(--success)] mt-1">0.00</p>
+                  </div>
+                </div>
+                <!-- glowing line chart -->
+                <div class="h-28 rounded-lg bg-[var(--bg-deep)] border border-[var(--border-subtle)] p-4 flex flex-col justify-between">
+                  <div class="flex justify-between items-center text-[9px] font-mono text-[var(--text-muted)]">
+                    <span>Astro Core Vitals load speed (ms)</span>
+                    <span class="text-blue-500">Perfect Score</span>
+                  </div>
+                  <svg class="w-full h-16 mt-2" viewBox="0 0 400 60" fill="none">
+                    <path d="M0 50 C 40 45, 80 15, 120 18 C 160 21, 200 48, 240 10 C 280 -8, 320 5, 360 8 L 400 4" stroke="#3b82f6" stroke-width="2" stroke-linecap="round"></path>
+                    <path d="M0 50 C 40 45, 80 15, 120 18 C 160 21, 200 48, 240 10 C 280 -8, 320 5, 360 8 L 400 4 L 400 60 L 0 60 Z" fill="url(#blueGrad)" opacity="0.1"></path>
+                    <defs>
+                      <linearGradient id="blueGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stop-color="#3b82f6"></stop>
+                        <stop offset="100%" stop-color="transparent"></stop>
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Backend -->
+          <div class="grid lg:grid-cols-12 gap-10 items-center reveal">
+            <div class="lg:col-span-5 lg:order-2 space-y-5">
+              <span class="text-xs font-mono px-3 py-1 rounded-md bg-[rgba(16,185,129,0.1)] text-emerald-500 border border-emerald-500/10">02 &mdash; BACKEND</span>
+              <h3 class="t-title text-2xl font-bold">Backend Architecture</h3>
+              <p class="t-body">Designing scalable REST/GraphQL APIs, database queries, and modular services. Building robust systems using Laravel, Node.js, and relational databases.</p>
+              <div class="flex flex-wrap gap-2 pt-2">
+                <span class="tag">PHP</span><span class="tag">Laravel</span><span class="tag">Node.js</span><span class="tag">PostgreSQL</span><span class="tag">MySQL</span>
+              </div>
+            </div>
+            
+            <div class="lg:col-span-7 lg:order-1">
+              <div class="glass hover-glow-emerald p-6 border-[var(--border-subtle)] bg-[var(--bg-surface)]">
+                <!-- Mock API Client -->
+                <div class="flex items-center gap-2 border-b border-[var(--border-subtle)] pb-4 mb-4">
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-[rgba(16,185,129,0.1)] text-[var(--success)]">GET</span>
+                  <span class="text-xs font-mono text-[var(--text-secondary)]">https://api.sayandatta.co.in/v1/health</span>
+                </div>
+                <div class="rounded-lg bg-[var(--bg-deep)] p-4 font-mono text-xs text-[var(--text-secondary)] border border-[var(--border-subtle)]">
+                  <div class="space-y-1">
+                    <div>&#123;</div>
+                    <div class="pl-4">"status": <span class="text-[var(--success)]">"operational"</span>,</div>
+                    <div class="pl-4">"latency_ms": <span class="text-[#f59e0b]">9</span>,</div>
+                    <div class="pl-4">"database": <span class="text-[var(--success)]">"connected"</span>,</div>
+                    <div class="pl-4">"cache_driver": <span class="text-[var(--success)]">"redis"</span>,</div>
+                    <div class="pl-4">"jobs_queue": <span class="text-[var(--success)]">"active"</span></div>
+                    <div>&#125;</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- WordPress -->
+          <div class="grid lg:grid-cols-12 gap-10 items-center reveal">
+            <div class="lg:col-span-5 space-y-5">
+              <span class="text-xs font-mono px-3 py-1 rounded-md bg-[rgba(245,158,11,0.1)] text-amber-500 border border-amber-500/10">03 &mdash; WORDPRESS</span>
+              <h3 class="t-title text-2xl font-bold">WordPress Engineering</h3>
+              <p class="t-body">Architecting custom plugins, Gutenberg blocks, headless CMS configurations, and WooCommerce extensions. Active contributor to WordPress core since 2018.</p>
+              <div class="flex flex-wrap gap-2 pt-2">
+                <span class="tag">WordPress</span><span class="tag">Gutenberg Blocks</span><span class="tag">WooCommerce</span><span class="tag">WP-CLI</span><span class="tag">Composer</span>
+              </div>
+            </div>
+            
+            <div class="lg:col-span-7">
+              <div class="glass hover-glow-amber p-6 relative overflow-hidden bg-[var(--bg-surface)]">
+                <!-- WordPress Plugin Card Mockup -->
+                <div class="flex justify-between items-start border-b border-[var(--border-subtle)] pb-4 mb-4">
+                  <div class="flex items-center gap-3">
+                    <div class="w-9 h-9 rounded bg-[#21759b] text-white flex items-center justify-center font-bold text-lg">W</div>
+                    <div>
+                      <h4 class="text-sm font-bold text-[var(--text-primary)]">WP Last Modified Info</h4>
+                      <p class="text-[10px] font-mono text-[var(--text-muted)]">Official Plugin Directory</p>
+                    </div>
+                  </div>
+                  <span class="text-xs font-mono text-[var(--accent)] font-bold">★ ★ ★ ★ ★</span>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                  <div class="p-4 rounded-lg bg-[var(--bg-deep)] border border-[var(--border-subtle)]">
+                    <p class="text-[10px] font-mono text-[var(--text-muted)] uppercase">Active Installs</p>
+                    <p class="text-xl font-bold text-[var(--text-primary)] mt-1">20,000+</p>
+                  </div>
+                  <div class="p-4 rounded-lg bg-[var(--bg-deep)] border border-[var(--border-subtle)]">
+                    <p class="text-[10px] font-mono text-[var(--text-muted)] uppercase">Total Downloads</p>
+                    <p class="text-xl font-bold text-[var(--text-primary)] mt-1">1,000,000+</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-16 text-center reveal">
+          <a href="/services" class="b b-ghost">View all services &amp; client workflows →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Featured projects ── -->
+    <section class="py-24 relative">
+      <div class="mx">
+        <div class="flex items-end justify-between flex-wrap gap-4 border-b border-[var(--border-subtle)] pb-6">
+          <div>
+            <p class="t-mono text-[var(--accent)] uppercase">Open Source</p>
+            <h2 class="t-heading mt-2">Plugin releases.</h2>
+          </div>
+          <a href="/projects" class="b b-ghost text-xs py-2 px-4">All 12 projects &amp; plugins →</a>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8 mt-12">
+          <a href="https://wordpress.org/plugins/wp-last-modified-info/" target="_blank" rel="noopener noreferrer" class="glass p-8 group block reveal r1 hover-glow-rose hover:-translate-y-1">
+            <div class="flex items-start justify-between mb-6">
+              <div class="flex flex-wrap gap-1.5">
+                <span class="tag">PHP</span><span class="tag">WordPress</span><span class="tag">SEO</span>
+              </div>
+              <span class="text-xs font-mono text-[var(--text-muted)] bg-[var(--bg-raised)] px-2.5 py-1 rounded border border-[var(--border-subtle)]">20,000+ active installs</span>
+            </div>
+            <h3 class="text-xl font-bold group-hover:text-[var(--accent)] transition-colors duration-300 flex items-center gap-2">
+              WP Last Modified Info
+              <svg class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M10 6H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </h3>
+            <p class="t-body mt-3 text-sm">WordPress plugin to display last modified dates of pages/posts with schema microdata hooks, search engine index configurations, and templates customization.</p>
+            <span class="text-xs text-[var(--accent)] mt-6 inline-block font-semibold group-hover:underline">View in WordPress Directory &rarr;</span>
+          </a>
+
+          <a href="https://wordpress.org/plugins/revivepress/" target="_blank" rel="noopener noreferrer" class="glass p-8 group block reveal r2 hover-glow-rose hover:-translate-y-1">
+            <div class="flex items-start justify-between mb-6">
+              <div class="flex flex-wrap gap-1.5">
+                <span class="tag">PHP</span><span class="tag">WordPress</span><span class="tag">Marketing</span>
+              </div>
+              <span class="text-xs font-mono text-[var(--text-muted)] bg-[var(--bg-raised)] px-2.5 py-1 rounded border border-[var(--border-subtle)]">7,000+ active installs</span>
+            </div>
+            <h3 class="text-xl font-bold group-hover:text-[var(--accent)] transition-colors duration-300 flex items-center gap-2">
+              RevivePress
+              <svg class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </h3>
+            <p class="t-body mt-3 text-sm">All-in-one plugin for republishing and cloning old posts and pages. Modernizes publishing dates automatically to drive traffic back to legacy content.</p>
+            <span class="text-xs text-[var(--accent)] mt-6 inline-block font-semibold group-hover:underline">View in WordPress Directory &rarr;</span>
+          </a>
+        </div>
+
+        <!-- Mini secondary grid layout -->
+        <div class="grid md:grid-cols-3 gap-6 mt-8 reveal">
+          <div class="glass p-6 bg-[var(--bg-surface)] hover-glow-purple hover:-translate-y-0.5 transition-all">
+            <div class="flex flex-wrap gap-1.5 mb-4"><span class="tag">React</span><span class="tag">PHP</span></div>
+            <h4 class="font-bold text-sm text-[var(--text-primary)]">Gutena Blocks</h4>
+            <p class="text-xs text-[var(--text-secondary)] mt-2">Custom tabs, accordion, and slider components built for Gutenberg block builders.</p>
+          </div>
+          <div class="glass p-6 bg-[var(--bg-surface)] hover-glow-blue hover:-translate-y-0.5 transition-all">
+            <div class="flex flex-wrap gap-1.5 mb-4"><span class="tag">TypeScript</span><span class="tag">Next.js</span></div>
+            <h4 class="font-bold text-sm text-[var(--text-primary)]">shuvamrahamusic</h4>
+            <p class="text-xs text-[var(--text-secondary)] mt-2">High-performance music portfolio and academy site with responsive Tailwind design.</p>
+          </div>
+          <div class="glass p-6 bg-[var(--bg-surface)] hover-glow-emerald hover:-translate-y-0.5 transition-all">
+            <div class="flex flex-wrap gap-1.5 mb-4"><span class="tag">PHP</span><span class="tag">Composer</span></div>
+            <h4 class="font-bold text-sm text-[var(--text-primary)]">Connect Helpers</h4>
+            <p class="text-xs text-[var(--text-secondary)] mt-2">InstaWP core composer library managing remote connections, site synchronization, and auth hooks.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Credibility & Background ── -->
+    <section class="py-24 relative bg-[var(--bg-surface)] border-y border-[var(--border-subtle)]">
+      <div class="mx">
+        <div class="grid md:grid-cols-3 gap-8 reveal">
+          <div class="glass p-8 bg-[var(--bg-deep)] text-center relative border-[var(--border-subtle)] flex flex-col justify-between hover-glow-amber">
+            <div>
+              <p class="t-mono text-[var(--accent)] text-[10px]">CURRENT ROLE</p>
+              <h3 class="t-title mt-2 text-lg font-bold">TeamUpdraft</h3>
+              <p class="text-xs text-[var(--text-muted)] mt-1">Senior Developer · UK (Remote)</p>
+              <p class="t-body-sm mt-4 text-center leading-relaxed">Developing and maintaining UpdraftCentral, managing remote site backups, core upgrades, and security protocols across hundreds of thousands of active nodes.</p>
+            </div>
+          </div>
+          
+          <div class="glass p-8 bg-[var(--bg-deep)] text-center relative border-[var(--border-subtle)] flex flex-col justify-between hover-glow-purple">
+            <div>
+              <p class="t-mono text-[var(--accent)] text-[10px]">OPEN SOURCE</p>
+              <h3 class="t-title mt-2 text-lg font-bold">WordPress Core</h3>
+              <p class="text-xs text-[var(--text-muted)] mt-1">Contributor since 2018</p>
+              <p class="t-body-sm mt-4 text-center leading-relaxed">Active open-source contributor providing code patches, optimization fixes, and layout configurations directly to the core CMS engine.</p>
+            </div>
+          </div>
+
+          <div class="glass p-8 bg-[var(--bg-deep)] text-center relative border-[var(--border-subtle)] flex flex-col justify-between hover-glow-rose">
+            <div>
+              <p class="t-mono text-[var(--accent)] text-[10px]">EDUCATION</p>
+              <h3 class="t-title mt-2 text-lg font-bold">MSc Info Security</h3>
+              <p class="text-xs text-[var(--text-muted)] mt-1">IGNOU · First Class</p>
+              <p class="t-body-sm mt-4 text-center leading-relaxed">Professional training in secure application architectures, data storage models, and encryption patterns, enforcing safety directly in product code.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Interactive CTA ── -->
+    <section class="py-28 relative overflow-hidden">
+      <!-- Glow behind content -->
+      <div class="absolute inset-0 opacity-[0.08] pointer-events-none" style="background:radial-gradient(circle at 50% 50%, #f43f5e, transparent 65%)"></div>
+      
+      <div class="mx relative z-10 text-center space-y-6">
+        <p class="t-mono text-[var(--accent)]">Work together</p>
+        <h2 class="t-heading max-w-2xl mx-auto">Let's build something remarkable.</h2>
+        <p class="t-body max-w-lg mx-auto">
+          Need a performant custom WordPress plugin, an optimized React/Next/Astro interface, or scalable API integrations? Let's discuss your requirements.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4 pt-6">
+          <a href="/contact" class="b b-primary shadow-lg hover:scale-105 transition-transform duration-300">Start a conversation</a>
+          <a href="/projects" class="b b-ghost hover:scale-105 transition-transform duration-300">Browse all 12 projects</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
 </Layout>
+
+<script>
+  // Simple IntersectionObserver reveal animation script
+  var observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+      }
+    });
+  }, { threshold: 0.05 });
+  
+  document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+</script>

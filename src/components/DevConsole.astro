@@ -1,0 +1,559 @@
+---
+---
+<div class="dev-console-wrapper font-mono text-xs">
+  <!-- Floating Toggle Button -->
+  <button id="dev-console-toggle" class="fixed bottom-6 right-6 z-100 flex items-center gap-2 px-4 py-2.5 rounded-xl border border-[var(--border-strong)] bg-[var(--bg-raised)] text-[var(--text-primary)] hover:border-[var(--accent)] hover:text-[var(--accent)] shadow-xl cursor-pointer select-none transition-all duration-300 hover:scale-105 active:scale-95" aria-label="Toggle developer console">
+    <span class="w-2.5 h-2.5 rounded-full bg-[var(--accent)] animate-pulse shadow-[0_0_8px_var(--accent)]"></span>
+    <span>&gt;_ DEV CONSOLE</span>
+    <span class="text-[9px] text-[var(--text-muted)] bg-[var(--bg-deep)] px-1 rounded border border-[var(--border-subtle)]">`</span>
+  </button>
+
+  <!-- Console Panel -->
+  <div id="dev-console-panel" class="fixed bottom-20 right-6 z-100 w-[380px] max-w-[calc(100vw-2rem)] h-[460px] glass border-[var(--border-strong)] rounded-2xl overflow-hidden shadow-2xl flex flex-col translate-y-4 opacity-0 pointer-events-none transition-all duration-300">
+    <!-- Panel Header -->
+    <div class="px-4 py-3 bg-[rgba(255,255,255,0.015)] border-b border-[var(--border-subtle)] flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <span class="w-2.5 h-2.5 rounded-full bg-[#ff5f56]"></span>
+        <span class="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]"></span>
+        <span class="w-2.5 h-2.5 rounded-full bg-[#27c93f]"></span>
+        <span class="font-bold text-[10px] text-[var(--text-secondary)] uppercase tracking-widest pl-2">Developer Dashboard</span>
+      </div>
+      <button id="dev-console-close" class="text-[var(--text-muted)] hover:text-[var(--accent)] cursor-pointer text-sm font-bold p-1">&times;</button>
+    </div>
+
+    <!-- Tabs Header -->
+    <div class="flex border-b border-[var(--border-subtle)] bg-[var(--bg-surface)] text-[10px]">
+      <button class="console-tab active flex-1 py-2.5 text-center border-r border-[var(--border-subtle)] border-t border-t-transparent hover:text-[var(--text-primary)] transition-all cursor-pointer font-bold uppercase" data-tab="telemetry">Telemetry</button>
+      <button class="console-tab flex-1 py-2.5 text-center border-r border-[var(--border-subtle)] border-t border-t-transparent hover:text-[var(--text-primary)] transition-all cursor-pointer font-bold uppercase" data-tab="toggles">Dashboard</button>
+      <button class="console-tab flex-1 py-2.5 text-center border-t border-t-transparent hover:text-[var(--text-primary)] transition-all cursor-pointer font-bold uppercase" data-tab="cli">CLI Terminal</button>
+    </div>
+
+    <!-- Tab Contents Container -->
+    <div class="flex-1 overflow-y-auto p-4 bg-[var(--bg-deep)] text-[var(--text-secondary)] space-y-4">
+      
+      <!-- TAB 1: TELEMETRY -->
+      <div id="tab-telemetry" class="console-tab-content space-y-3">
+        <h4 class="text-[10px] text-[var(--accent)] uppercase font-bold tracking-wider border-b border-[var(--border-subtle)] pb-1">Client Diagnostics</h4>
+        <div class="grid grid-cols-2 gap-3 text-[11px]">
+          <div class="p-2 rounded bg-[var(--bg-surface)] border border-[var(--border-subtle)]">
+            <p class="text-[9px] text-[var(--text-muted)] uppercase">Browser Engine</p>
+            <p id="tel-browser" class="font-bold text-[var(--text-primary)] truncate mt-1">Detecting...</p>
+          </div>
+          <div class="p-2 rounded bg-[var(--bg-surface)] border border-[var(--border-subtle)]">
+            <p class="text-[9px] text-[var(--text-muted)] uppercase">Screen Grid</p>
+            <p id="tel-screen" class="font-bold text-[var(--text-primary)] mt-1">Detecting...</p>
+          </div>
+          <div class="p-2 rounded bg-[var(--bg-surface)] border border-[var(--border-subtle)]">
+            <p class="text-[9px] text-[var(--text-muted)] uppercase">Page Load Latency</p>
+            <p id="tel-latency" class="font-bold text-[var(--success)] mt-1">Calculating...</p>
+          </div>
+          <div class="p-2 rounded bg-[var(--bg-surface)] border border-[var(--border-subtle)]">
+            <p class="text-[9px] text-[var(--text-muted)] uppercase">Memory Heap</p>
+            <p id="tel-memory" class="font-bold text-[var(--text-primary)] mt-1">N/A</p>
+          </div>
+        </div>
+        
+        <h4 class="text-[10px] text-[var(--accent)] uppercase font-bold tracking-wider border-b border-[var(--border-subtle)] pt-2 pb-1">Document Metadata</h4>
+        <div class="space-y-1.5 text-[11px] bg-[var(--bg-surface)] p-3 rounded border border-[var(--border-subtle)]">
+          <div class="flex justify-between"><span class="text-[var(--text-muted)]">Astro Mode:</span><span class="text-[var(--success)]">SSG Pre-rendered</span></div>
+          <div class="flex justify-between"><span class="text-[var(--text-muted)]">Render Pipeline:</span><span class="text-[var(--text-primary)]">Vite Optimization</span></div>
+          <div class="flex justify-between"><span class="text-[var(--text-muted)]">Stylesheet Size:</span><span class="text-[var(--text-primary)]">~8.2 KB Gzip</span></div>
+          <div class="flex justify-between"><span class="text-[var(--text-muted)]">Active Protocol:</span><span id="tel-protocol" class="text-[var(--text-primary)]">HTTP/2</span></div>
+        </div>
+      </div>
+
+      <!-- TAB 2: DASHBOARD TOGGLES -->
+      <div id="tab-toggles" class="console-tab-content hidden space-y-3.5">
+        <h4 class="text-[10px] text-[var(--accent)] uppercase font-bold tracking-wider border-b border-[var(--border-subtle)] pb-1">Visual Modifiers</h4>
+        
+        <div class="space-y-2">
+          <!-- Toggle Matrix Rain -->
+          <div class="flex items-center justify-between p-2.5 rounded bg-[var(--bg-surface)] border border-[var(--border-subtle)]">
+            <div>
+              <p class="text-xs font-bold text-[var(--text-primary)]">Matrix Digital Rain</p>
+              <p class="text-[9px] text-[var(--text-muted)]">Inject rain animation overlay behind DOM</p>
+            </div>
+            <button id="toggle-matrix" class="toggle-btn w-9 h-5 rounded-full bg-[var(--border-strong)] relative transition-colors cursor-pointer select-none">
+              <span class="toggle-dot absolute top-0.5 left-0.5 w-4 h-4 rounded-full bg-white transition-all"></span>
+            </button>
+          </div>
+
+          <!-- Toggle Grid Lines -->
+          <div class="flex items-center justify-between p-2.5 rounded bg-[var(--bg-surface)] border border-[var(--border-subtle)]">
+            <div>
+              <p class="text-xs font-bold text-[var(--text-primary)]">Blueprint Gridlines</p>
+              <p class="text-[9px] text-[var(--text-muted)]">Show or hide background grid wires</p>
+            </div>
+            <button id="toggle-grid" class="toggle-btn active w-9 h-5 rounded-full bg-[var(--accent)] relative transition-colors cursor-pointer select-none">
+              <span class="toggle-dot absolute top-0.5 right-0.5 w-4 h-4 rounded-full bg-white transition-all"></span>
+            </button>
+          </div>
+
+          <!-- Toggle CRT Mode -->
+          <div class="flex items-center justify-between p-2.5 rounded bg-[var(--bg-surface)] border border-[var(--border-subtle)]">
+            <div>
+              <p class="text-xs font-bold text-[var(--text-primary)]">CRT Screen Scanlines</p>
+              <p class="text-[9px] text-[var(--text-muted)]">Add old CRT terminal flicker overlay</p>
+            </div>
+            <button id="toggle-crt" class="toggle-btn w-9 h-5 rounded-full bg-[var(--border-strong)] relative transition-colors cursor-pointer select-none">
+              <span class="toggle-dot absolute top-0.5 left-0.5 w-4 h-4 rounded-full bg-white transition-all"></span>
+            </button>
+          </div>
+
+          <!-- Toggle Mechanical Audio Clicks -->
+          <div class="flex items-center justify-between p-2.5 rounded bg-[var(--bg-surface)] border border-[var(--border-subtle)]">
+            <div>
+              <p class="text-xs font-bold text-[var(--text-primary)]">Mechanical Clicks (SFX)</p>
+              <p class="text-[9px] text-[var(--text-muted)]">Synthesize browser keystroke audios</p>
+            </div>
+            <button id="toggle-sfx" class="toggle-btn w-9 h-5 rounded-full bg-[var(--border-strong)] relative transition-colors cursor-pointer select-none">
+              <span class="toggle-dot absolute top-0.5 left-0.5 w-4 h-4 rounded-full bg-white transition-all"></span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 3: CLI TERMINAL -->
+      <div id="tab-cli" class="console-tab-content hidden flex flex-col h-full space-y-2">
+        <div id="cli-output" class="flex-1 min-h-[220px] max-h-[240px] overflow-y-auto bg-[rgba(0,0,0,0.4)] p-3 rounded-lg border border-[var(--border-subtle)] text-[11px] space-y-1.5 scrollbar-thin">
+          <div class="text-[var(--text-muted)]">=== Sayan CLI Session Initialized ===</div>
+          <div class="text-[var(--text-secondary)]">Type <span class="text-[var(--accent)] font-bold">help</span> to view active session commands.</div>
+        </div>
+        <form id="cli-form" class="flex gap-2 items-center">
+          <span class="text-[var(--accent)] font-bold">&gt;</span>
+          <input type="text" id="cli-input" class="flex-1 bg-[var(--bg-surface)] border border-[var(--border-subtle)] focus:border-[var(--accent)] focus:outline-none px-3 py-1.5 rounded text-sm text-[var(--text-primary)]" placeholder="Command..." autocomplete="off" />
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Fullscreen Canvas for Matrix digital rain drops overlay -->
+  <canvas id="matrix-canvas" class="fixed inset-0 z-0 pointer-events-none opacity-0 transition-opacity duration-500"></canvas>
+  
+  <!-- CRT overlay container -->
+  <div id="crt-overlay" class="fixed inset-0 z-9999 pointer-events-none opacity-0 transition-opacity duration-300"></div>
+</div>
+
+<style>
+  /* Toggle Switch Animation Overrides */
+  .toggle-btn.active {
+    background-color: var(--accent) !important;
+  }
+  .toggle-btn.active .toggle-dot {
+    transform: translateX(16px);
+  }
+  .toggle-btn:not(.active) .toggle-dot {
+    transform: translateX(0);
+  }
+  
+  /* CRT mode style */
+  #crt-overlay.active {
+    opacity: 1;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    background-size: 100% 4px, 6px 100%;
+    animation: crt-flicker 0.15s infinite;
+  }
+  
+  @keyframes crt-flicker {
+    0% { opacity: 0.99; }
+    50% { opacity: 0.97; }
+    100% { opacity: 0.99; }
+  }
+
+  /* Custom terminal output scrollbar styling */
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 0.25rem;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: var(--border-strong);
+    border-radius: 4px;
+  }
+</style>
+
+<script>
+  // ── Web Audio API Mechanical Sound Synthesizer ─────────────────
+  let sfxEnabled = false;
+  let audioCtx = null;
+
+  function playClickSound(freq = 900, duration = 0.012) {
+    if (!sfxEnabled) return;
+    try {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || (window as any).webkitAudioContext)();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      
+      const osc = audioCtx.createOscillator();
+      const gainNode = audioCtx.createGain();
+      
+      osc.connect(gainNode);
+      gainNode.connect(audioCtx.destination);
+      
+      // Make a clean tick/click sound
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+      
+      // Gain envelope
+      gainNode.gain.setValueAtTime(0.04, audioCtx.currentTime);
+      gainNode.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+      
+      osc.start();
+      osc.stop(audioCtx.currentTime + duration);
+    } catch (e) {
+      console.warn("Audio Context init blocked:", e);
+    }
+  }
+
+  // Bind audio click to all document pointer clicks
+  document.addEventListener("click", (e) => {
+    // Check if target is clickable
+    const target = e.target as HTMLElement;
+    if (target.closest('a, button, input, textarea, [role="button"]')) {
+      playClickSound(800, 0.015);
+    }
+  });
+
+  // Bind audio sound to text inputs
+  document.addEventListener("keydown", (e) => {
+    const target = e.target as HTMLElement;
+    if (target.closest('input, textarea')) {
+      // Key press tick sound
+      playClickSound(950, 0.008);
+    }
+  });
+
+  // ── CLI & Dev Console Panel Drawer Logic ───────────────────────
+  const toggleBtn = document.getElementById("dev-console-toggle");
+  const closeBtn = document.getElementById("dev-console-close");
+  const panel = document.getElementById("dev-console-panel");
+
+  function openConsole() {
+    panel.classList.remove("pointer-events-none", "opacity-0", "translate-y-4");
+    panel.classList.add("opacity-100", "translate-y-0");
+    playClickSound(1200, 0.03);
+    // Focus CLI input if tab is CLI
+    const activeTab = document.querySelector(".console-tab.active");
+    if (activeTab?.getAttribute("data-tab") === "cli") {
+      document.getElementById("cli-input")?.focus();
+    }
+  }
+
+  function closeConsole() {
+    panel.classList.add("pointer-events-none", "opacity-0", "translate-y-4");
+    panel.classList.remove("opacity-100", "translate-y-0");
+  }
+
+  toggleBtn?.addEventListener("click", () => {
+    if (panel?.classList.contains("opacity-0")) {
+      openConsole();
+    } else {
+      closeConsole();
+    }
+  });
+
+  closeBtn?.addEventListener("click", closeConsole);
+
+  // Close console on backtick key press `
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "`") {
+      const activeEl = document.activeElement as HTMLElement;
+      // If user is typing in an input, don't hijack unless it is our CLI input
+      if (activeEl && (activeEl.tagName === 'INPUT' || activeEl.tagName === 'TEXTAREA')) {
+        if (activeEl.id !== 'cli-input') return;
+      }
+      e.preventDefault();
+      if (panel?.classList.contains("opacity-0")) {
+        openConsole();
+      } else {
+        closeConsole();
+      }
+    }
+  });
+
+  // Tabs Switching
+  const tabs = document.querySelectorAll(".console-tab");
+  const contents = document.querySelectorAll(".console-tab-content");
+
+  tabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+      tabs.forEach(t => {
+        t.classList.remove("active", "border-t-[var(--accent)]");
+        t.classList.add("border-t-transparent");
+      });
+      tab.classList.add("active", "border-t-[var(--accent)]");
+      tab.classList.remove("border-t-transparent");
+
+      const targetTab = tab.getAttribute("data-tab");
+      contents.forEach(content => {
+        if (content.id === `tab-${targetTab}`) {
+          content.classList.remove("hidden");
+        } else {
+          content.classList.add("hidden");
+        }
+      });
+      
+      if (targetTab === "cli") {
+        document.getElementById("cli-input")?.focus();
+      }
+    });
+  });
+
+  // ── Telemetry Updates ──────────────────────────────────────────
+  function updateTelemetry() {
+    // User Agent / Browser Name
+    const browserEl = document.getElementById("tel-browser");
+    if (browserEl) {
+      const ua = navigator.userAgent;
+      let browser = "Webkit Browser";
+      if (ua.indexOf("Firefox") > -1) browser = "Firefox Engine";
+      else if (ua.indexOf("Chrome") > -1) browser = "V8 Chrome Engine";
+      else if (ua.indexOf("Safari") > -1) browser = "WebKit Safari";
+      else if (ua.indexOf("Edge") > -1) browser = "Chromium Edge";
+      browserEl.textContent = browser;
+    }
+
+    // Screen Dimensions
+    const screenEl = document.getElementById("tel-screen");
+    if (screenEl) {
+      screenEl.textContent = `${window.innerWidth} x ${window.innerHeight} px`;
+    }
+    
+    // Latency
+    const latencyEl = document.getElementById("tel-latency");
+    if (latencyEl) {
+      const timing = window.performance.timing;
+      if (timing) {
+        const loadTime = timing.loadEventEnd - timing.navigationStart;
+        if (loadTime > 0) {
+          latencyEl.textContent = `${loadTime} ms`;
+        } else {
+          // Fallback timing
+          const duration = performance.now().toFixed(1);
+          latencyEl.textContent = `${duration} ms (DOM)`;
+        }
+      }
+    }
+
+    // Memory Heap
+    const memoryEl = document.getElementById("tel-memory");
+    if (memoryEl && (performance as any).memory) {
+      const used = ((performance as any).memory.usedJSHeapSize / 1048576).toFixed(1);
+      memoryEl.textContent = `${used} MB`;
+    }
+
+    // Protocol
+    const protoEl = document.getElementById("tel-protocol");
+    if (protoEl) {
+      protoEl.textContent = window.location.protocol === "https:" ? "HTTP/2 (SSL)" : "HTTP/1.1 (Local)";
+    }
+  }
+
+  // Update on hover/open
+  toggleBtn?.addEventListener("mouseenter", updateTelemetry);
+  updateTelemetry();
+  setInterval(updateTelemetry, 3000);
+
+  // ── Toggles Handlers ───────────────────────────────────────────
+  const gridToggle = document.getElementById("toggle-grid");
+  const crtToggle = document.getElementById("toggle-crt");
+  const sfxToggle = document.getElementById("toggle-sfx");
+  const matrixToggle = document.getElementById("toggle-matrix");
+
+  // Grid
+  gridToggle?.addEventListener("click", () => {
+    gridToggle.classList.toggle("active");
+    const gridElements = document.querySelectorAll(".bg-grid");
+    gridElements.forEach(el => {
+      if (gridToggle.classList.contains("active")) {
+        (el as HTMLElement).style.display = "block";
+      } else {
+        (el as HTMLElement).style.display = "none";
+      }
+    });
+  });
+
+  // CRT Scanlines
+  crtToggle?.addEventListener("click", () => {
+    crtToggle.classList.toggle("active");
+    const crtOverlay = document.getElementById("crt-overlay");
+    if (crtToggle.classList.contains("active")) {
+      crtOverlay?.classList.add("active");
+    } else {
+      crtOverlay?.classList.remove("active");
+    }
+  });
+
+  // Sound Clicks
+  sfxToggle?.addEventListener("click", () => {
+    sfxToggle.classList.toggle("active");
+    sfxEnabled = sfxToggle.classList.contains("active");
+    if (sfxEnabled) {
+      // Trigger context request
+      playClickSound(1000, 0.05);
+    }
+  });
+
+  // ── Matrix Digital Rain Logic ──────────────────────────────────
+  const canvas = document.getElementById("matrix-canvas") as HTMLCanvasElement;
+  let matrixInterval: any = null;
+
+  function runMatrix() {
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const katakana = "ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜﾝ1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const alphabet = katakana.split("");
+
+    const fontSize = 14;
+    const columns = canvas.width / fontSize;
+
+    const rainDrops: number[] = [];
+
+    for (let x = 0; x < columns; x++) {
+      rainDrops[x] = 1;
+    }
+
+    const draw = () => {
+      // Slightly translucent black background to create trail
+      ctx.fillStyle = "rgba(3, 3, 6, 0.05)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = "#10b981"; // Emerald color
+      ctx.font = fontSize + "px monospace";
+
+      for (let i = 0; i < rainDrops.length; i++) {
+        const text = alphabet[Math.floor(Math.random() * alphabet.length)];
+        const x = i * fontSize;
+        const y = rainDrops[i] * fontSize;
+
+        ctx.fillText(text, x, y);
+
+        if (y > canvas.height && Math.random() > 0.975) {
+          rainDrops[i] = 0;
+        }
+        rainDrops[i]++;
+      }
+    };
+
+    if (matrixInterval) clearInterval(matrixInterval);
+    matrixInterval = setInterval(draw, 30);
+  }
+
+  matrixToggle?.addEventListener("click", () => {
+    matrixToggle.classList.toggle("active");
+    if (matrixToggle.classList.contains("active")) {
+      canvas.classList.remove("opacity-0");
+      canvas.classList.add("opacity-15"); // Subtle overlay
+      runMatrix();
+      window.addEventListener("resize", runMatrix);
+    } else {
+      canvas.classList.add("opacity-0");
+      canvas.classList.remove("opacity-15");
+      if (matrixInterval) clearInterval(matrixInterval);
+      window.removeEventListener("resize", runMatrix);
+    }
+  });
+
+  // ── CLI Command Engine ──────────────────────────────────────────
+  const cliForm = document.getElementById("cli-form");
+  const cliInput = document.getElementById("cli-input") as HTMLInputElement;
+  const cliOutput = document.getElementById("cli-output");
+
+  function appendLine(text: string, color = "text-[var(--text-secondary)]") {
+    if (!cliOutput) return;
+    const div = document.createElement("div");
+    div.className = `${color} leading-relaxed`;
+    div.innerHTML = text;
+    cliOutput.appendChild(div);
+    cliOutput.scrollTop = cliOutput.scrollHeight;
+  }
+
+  cliForm?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    if (!cliInput) return;
+    const input = cliInput.value.trim().toLowerCase();
+    cliInput.value = "";
+    if (!input) return;
+
+    // Log input command
+    appendLine(`&gt; ${input}`, "text-[var(--accent)] font-bold");
+
+    // Command Parser
+    const args = input.split(" ");
+    const cmd = args[0];
+
+    switch (cmd) {
+      case "help":
+        appendLine("Active commands:");
+        appendLine("  <span class='text-[var(--text-primary)] font-bold'>about</span>       - Bio details summary");
+        appendLine("  <span class='text-[var(--text-primary)] font-bold'>projects</span>    - List core active releases");
+        appendLine("  <span class='text-[var(--text-primary)] font-bold'>goto [page]</span> - Route navigation: home, about, services, projects, contact, blog");
+        appendLine("  <span class='text-[var(--text-primary)] font-bold'>matrix</span>      - Toggle digital rain overlay");
+        appendLine("  <span class='text-[var(--text-primary)] font-bold'>crt</span>         - Toggle CRT scanline screen lines");
+        appendLine("  <span class='text-[var(--text-primary)] font-bold'>theme</span>       - Toggle visual light/dark theme");
+        appendLine("  <span class='text-[var(--text-primary)] font-bold'>clear</span>       - Clear terminal window logs");
+        break;
+      
+      case "about":
+        appendLine("Sayan Datta &mdash; Senior WordPress Developer &amp; Full Stack Software Engineer.");
+        appendLine("Core tools: PHP, Laravel, TypeScript, Next.js, Astro, PostgreSQL.");
+        appendLine("Stats: 7+ Years Experience, 1M+ downloads across open-source nodes.");
+        break;
+        
+      case "projects":
+        appendLine("1. WP Last Modified Info (20k+ installs) - SEO utility");
+        appendLine("2. RevivePress (7k+ installs) - Republish automated scheduler");
+        appendLine("3. Connect Helpers - Composer authorization hooks client library");
+        appendLine("4. Gutena Blocks - React Gutenberg UI widgets");
+        break;
+        
+      case "clear":
+        if (cliOutput) cliOutput.innerHTML = "";
+        break;
+
+      case "matrix":
+        matrixToggle?.click();
+        appendLine(matrixToggle?.classList.contains("active") ? "Matrix Rain activated." : "Matrix Rain deactivated.");
+        break;
+
+      case "crt":
+        crtToggle?.click();
+        appendLine(crtToggle?.classList.contains("active") ? "CRT Scanlines enabled." : "CRT Scanlines disabled.");
+        break;
+
+      case "theme":
+        const themeBtn = document.getElementById("theme-toggle");
+        themeBtn?.click();
+        appendLine("Toggled styling theme mode.");
+        break;
+
+      case "goto":
+        const page = args[1];
+        if (!page) {
+          appendLine("Usage: goto [home | about | services | projects | contact | blog]", "text-red-500");
+          break;
+        }
+        appendLine(`Navigating to /${page === 'home' ? '' : page}...`);
+        setTimeout(() => {
+          if (page === "home") window.location.href = "/";
+          else if (page === "about") window.location.href = "/about-me";
+          else if (["services", "projects", "contact", "blog"].includes(page)) {
+            window.location.href = `/${page}`;
+          } else {
+            appendLine(`Unknown location target: ${page}`, "text-red-500");
+          }
+        }, 500);
+        break;
+
+      default:
+        appendLine(`Command not found: ${cmd}. Type <span class='text-[var(--accent)] font-bold'>help</span> for valid commands.`, "text-red-500");
+    }
+  });
+</script>

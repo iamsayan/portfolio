@@ -1,0 +1,282 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+---
+
+<Layout title="About | Sayan Datta">
+  <Header />
+  <main class="py-24 relative overflow-hidden">
+    <!-- Grid overlay and spotlights -->
+    <div class="absolute inset-0 opacity-[0.08] pointer-events-none" style="background:radial-gradient(circle at 80% 30%, var(--accent), transparent 50%)"></div>
+    <div class="absolute inset-0 opacity-[0.08] pointer-events-none" style="background:radial-gradient(circle at 20% 70%, #6366f1, transparent 50%)"></div>
+
+    <div class="mx relative z-10 py-12">
+      <!-- Title Block -->
+      <div class="max-w-3xl mb-16 reveal">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="w-1.5 h-1.5 rounded-full bg-[var(--accent)] animate-pulse"></span>
+          <span class="text-[10px] font-mono tracking-wider text-[var(--accent)] uppercase font-bold">About Me</span>
+        </div>
+        <h1 class="t-heading">The person behind the <span class="t-accent">code.</span></h1>
+        <p class="t-body mt-6 text-xl leading-snug">
+          I'm Sayan Datta — a software engineer who turns product blueprints into clean, scalable, and performant web solutions.
+        </p>
+      </div>
+
+      <!-- Main Profile Summary Split -->
+      <div class="grid lg:grid-cols-12 gap-12 items-start mb-24 reveal r1">
+        <!-- Biography Text -->
+        <div class="lg:col-span-8 space-y-6">
+          <p class="t-body">
+            I am a tech enthusiast, a WordPress Developer by passion and a Software Engineer by profession. I invest the majority of my free time and energy writing code. I love Open Source technologies like WordPress and contributing back to the web community.
+          </p>
+          <p class="t-body">
+            With 7+ years of experience across the stack, I specialize in custom plugins development, core Gutenberg architectures, and scalable full-stack integrations. Over the years, I have built products downloaded over a million times and contributed patches directly into WordPress core.
+          </p>
+          <p class="t-body">
+            I am highly proficient in PHP, TypeScript, JavaScript, Next.js, Astro, Laravel, and database optimizations. I believe in clean code (strict formatting, linting, and PSR compliance), accessibility, and creating interfaces that deliver exceptional speed.
+          </p>
+        </div>
+
+        <!-- Quick Info Panel -->
+        <div class="lg:col-span-4">
+          <div class="glass p-6 border-[var(--border-strong)] bg-[var(--bg-surface)] space-y-4">
+            <h3 class="font-bold text-sm text-[var(--text-primary)] uppercase tracking-wider border-b border-[var(--border-subtle)] pb-2">Quick Stats</h3>
+            <div class="space-y-3">
+              <div class="flex justify-between items-center text-sm">
+                <span class="text-[var(--text-muted)]">Location:</span>
+                <span class="font-medium text-[var(--text-primary)]">🇮🇳 West Bengal, India</span>
+              </div>
+              <div class="flex justify-between items-center text-sm">
+                <span class="text-[var(--text-muted)]">Email:</span>
+                <a href="mailto:hello@sayandatta.dev" class="font-semibold text-[var(--accent)] hover:underline">hello@sayandatta.dev</a>
+              </div>
+              <div class="flex justify-between items-center text-sm">
+                <span class="text-[var(--text-muted)]">Website:</span>
+                <span class="font-medium text-[var(--text-primary)]">sayandatta.co.in</span>
+              </div>
+              <div class="flex justify-between items-center text-sm">
+                <span class="text-[var(--text-muted)]">Freelance:</span>
+                <span class="status-badge !py-0.5 !px-2.5 !text-[11px]"><span class="pulse-dot"></span>Available</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Setup and Stack Details (Daily Tools) -->
+      <div class="mb-24 reveal r2">
+        <div class="flex items-center gap-3 mb-6">
+          <span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
+          <span class="text-[10px] font-mono tracking-wider text-blue-500 uppercase font-bold">My Setup</span>
+        </div>
+        <h2 class="t-title mb-10">Tools I use daily.</h2>
+        
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <!-- Hardware Card -->
+          <div class="glass hover-glow-blue p-6 bg-[var(--bg-surface)]">
+            <h3 class="font-bold text-base text-[var(--text-primary)] mb-4 flex items-center gap-2">
+              <svg class="w-4 h-4 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+              Hardware
+            </h3>
+            <ul class="space-y-2 text-xs text-[var(--text-secondary)]">
+              <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-blue-500"></span>Windows Workstation PC</li>
+              <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-blue-500"></span>Dell UltraSharp 4K display</li>
+              <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-blue-500"></span>Mechanical MX Brown Keyboard</li>
+            </ul>
+          </div>
+
+          <!-- Development Card -->
+          <div class="glass hover-glow-emerald p-6 bg-[var(--bg-surface)]">
+            <h3 class="font-bold text-base text-[var(--text-primary)] mb-4 flex items-center gap-2">
+              <svg class="w-4 h-4 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+              Development
+            </h3>
+            <ul class="space-y-2 text-xs text-[var(--text-secondary)]">
+              <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-emerald-500"></span>VS Code &amp; Cursor IDEs</li>
+              <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-emerald-500"></span>Windows Terminal (ZSH)</li>
+              <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-emerald-500"></span>Git Version Control</li>
+              <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-emerald-500"></span>Docker Containers</li>
+            </ul>
+          </div>
+
+          <!-- Design Card -->
+          <div class="glass hover-glow-rose p-6 bg-[var(--bg-surface)]">
+            <h3 class="font-bold text-base text-[var(--text-primary)] mb-4 flex items-center gap-2">
+              <svg class="w-4 h-4 text-rose-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/></svg>
+              UI / UX
+            </h3>
+            <ul class="space-y-2 text-xs text-[var(--text-secondary)]">
+              <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-rose-500"></span>Figma Design Board</li>
+              <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-rose-500"></span>Adobe XD Prototyping</li>
+              <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-rose-500"></span>Graph Paper Sketching</li>
+            </ul>
+          </div>
+
+          <!-- Infrastructure Card -->
+          <div class="glass hover-glow-amber p-6 bg-[var(--bg-surface)]">
+            <h3 class="font-bold text-base text-[var(--text-primary)] mb-4 flex items-center gap-2">
+              <svg class="w-4 h-4 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+              Infrastructure
+            </h3>
+            <ul class="space-y-2 text-xs text-[var(--text-secondary)]">
+              <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-amber-500"></span>Vercel Cloud Deploy</li>
+              <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-amber-500"></span>DigitalOcean VPS Droplets</li>
+              <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-amber-500"></span>Cloudflare Proxy DNS</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Experience Timeline section -->
+      <div class="mb-24 reveal r3">
+        <div class="flex items-center gap-3 mb-6">
+          <span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span>
+          <span class="text-[10px] font-mono tracking-wider text-rose-500 uppercase font-bold">Timeline</span>
+        </div>
+        <h2 class="t-title mb-12">Professional experience.</h2>
+
+        <div class="timeline-container space-y-12">
+          <!-- TeamUpdraft -->
+          <div class="relative pl-6">
+            <div class="timeline-node"></div>
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-2">
+              <div>
+                <h3 class="font-bold text-lg text-[var(--text-primary)]">Senior WordPress Developer</h3>
+                <p class="text-xs text-[var(--accent)] font-semibold">TeamUpdraft &mdash; United Kingdom (Remote)</p>
+              </div>
+              <span class="text-xs bg-[var(--bg-raised)] border border-[var(--border-strong)] px-3 py-1 rounded-full text-[var(--text-secondary)] font-medium">Aug 2025 - Present</span>
+            </div>
+            <p class="text-sm text-[var(--text-secondary)] leading-relaxed">
+              Leading the development of UpdraftCentral, an advanced remote site administrator orchestration utility. Overseeing core plugin integrations, scheduling pipelines, and security updates for tens of thousands of active nodes.
+            </p>
+          </div>
+
+          <!-- InstaWP (Full Stack Role) -->
+          <div class="relative pl-6">
+            <div class="timeline-node" style="border-color:#38bdf8; box-shadow:0 0 10px rgba(56,189,248,0.5)"></div>
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-2">
+              <div>
+                <h3 class="font-bold text-lg text-[var(--text-primary)]">Full Stack Developer</h3>
+                <p class="text-xs text-sky-400 font-semibold">InstaWP Inc. &mdash; Wilmington, USA (Remote)</p>
+              </div>
+              <span class="text-xs bg-[var(--bg-raised)] border border-[var(--border-strong)] px-3 py-1 rounded-full text-[var(--text-secondary)] font-medium">Jul 2024 - Jul 2025</span>
+            </div>
+            <p class="text-sm text-[var(--text-secondary)] leading-relaxed">
+              Designed the complex Pay Per User billing matrix, Site Management components, Push Migration architecture, WaaS integration layouts, Connect Helpers Composer packages, and headless CLI remote admin tools.
+            </p>
+          </div>
+
+          <!-- InstaWP (Senior WP Role) -->
+          <div class="relative pl-6">
+            <div class="timeline-node" style="border-color:#a855f7; box-shadow:0 0 10px rgba(168,85,247,0.5)"></div>
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-2">
+              <div>
+                <h3 class="font-bold text-lg text-[var(--text-primary)]">Senior WordPress Developer</h3>
+                <p class="text-xs text-purple-400 font-semibold">InstaWP Inc. &mdash; Wilmington, USA (Remote)</p>
+              </div>
+              <span class="text-xs bg-[var(--bg-raised)] border border-[var(--border-strong)] px-3 py-1 rounded-full text-[var(--text-secondary)] font-medium">Jul 2023 - Jun 2024</span>
+            </div>
+            <p class="text-sm text-[var(--text-secondary)] leading-relaxed">
+              Implemented site monitoring tools, custom Reports generation systems, Configuration Managers, Activity Logger components, and the Vulnerability/Performance scanner inside the core Laravel app and WP helper plugin.
+            </p>
+          </div>
+
+          <!-- ExpressTech Systems -->
+          <div class="relative pl-6">
+            <div class="timeline-node" style="border-color:#10b981; box-shadow:0 0 10px rgba(16,185,129,0.5)"></div>
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-2">
+              <div>
+                <h3 class="font-bold text-lg text-[var(--text-primary)]">Senior Software Engineer</h3>
+                <p class="text-xs text-emerald-400 font-semibold">ExpressTech Systems</p>
+              </div>
+              <span class="text-xs bg-[var(--bg-raised)] border border-[var(--border-strong)] px-3 py-1 rounded-full text-[var(--text-secondary)] font-medium">May 2021 - Jun 2023</span>
+            </div>
+            <p class="text-sm text-[var(--text-secondary)] leading-relaxed">
+              Architected lightweight React-based accordion, tabs, and slider blocks for the Gutena Product Suite block editor. Modernized old monolith products like Quiz &amp; Survey Master, Responsive Menu, and Projectopia into structured configurations.
+            </p>
+          </div>
+
+          <!-- Skynix Web Studio -->
+          <div class="relative pl-6">
+            <div class="timeline-node" style="border-color:#f59e0b; box-shadow:0 0 10px rgba(245,158,11,0.5)"></div>
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-2">
+              <div>
+                <h3 class="font-bold text-lg text-[var(--text-primary)]">Independent Product Developer</h3>
+                <p class="text-xs text-amber-500 font-semibold">Skynix Web Studio</p>
+              </div>
+              <span class="text-xs bg-[var(--bg-raised)] border border-[var(--border-strong)] px-3 py-1 rounded-full text-[var(--text-secondary)] font-medium">Jul 2020 - Apr 2021</span>
+            </div>
+            <p class="text-sm text-[var(--text-secondary)] leading-relaxed">
+              Engineered individual custom utility modules and plugins for client websites. Analyzed database performance, resolved speed degradation issues, and refactored plugin actions for high scalability.
+            </p>
+          </div>
+
+          <!-- BTN Infosolution -->
+          <div class="relative pl-6">
+            <div class="timeline-node" style="border-color:#e11d48; box-shadow:0 0 10px rgba(225,29,72,0.5)"></div>
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-2">
+              <div>
+                <h3 class="font-bold text-lg text-[var(--text-primary)]">Lead WordPress Developer</h3>
+                <p class="text-xs text-rose-500 font-semibold">BTN Infosolution</p>
+              </div>
+              <span class="text-xs bg-[var(--bg-raised)] border border-[var(--border-strong)] px-3 py-1 rounded-full text-[var(--text-secondary)] font-medium">Mar 2019 - Jun 2020</span>
+            </div>
+            <p class="text-sm text-[var(--text-secondary)] leading-relaxed">
+              Maintained client systems, structured Elementor widgets configurations, and developed custom corporate theme layouts using PHP, WordPress hooks, Gulp, and vanilla JavaScript.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Volunteering and open-source contributions -->
+      <div class="grid md:grid-cols-2 gap-8 mb-24 reveal r4">
+        <div class="glass p-8 hover-glow-purple bg-[var(--bg-surface)]">
+          <p class="t-mono text-purple-400 text-[10px] mb-2">COMMUNITY ENGAGEMENT</p>
+          <h3 class="font-bold text-base text-[var(--text-primary)]">Volunteer Developer</h3>
+          <p class="text-xs text-[var(--text-muted)] mt-1 mb-4">Jagadhatri Online &mdash; Aug 2020 - Present</p>
+          <p class="text-sm text-[var(--text-secondary)] leading-relaxed">
+            Volunteered to build and maintain the event and commerce portal utilizing Next.js, managing API sync frameworks with local WooCommerce catalogs.
+          </p>
+        </div>
+
+        <div class="glass p-8 hover-glow-rose bg-[var(--bg-surface)]">
+          <p class="t-mono text-rose-400 text-[10px] mb-2">OPEN SOURCE ECOSYSTEM</p>
+          <h3 class="font-bold text-base text-[var(--text-primary)]">Core &amp; Plugin Contributor</h3>
+          <p class="text-xs text-[var(--text-muted)] mt-1 mb-4">WordPress.org &mdash; Jul 2018 - Present</p>
+          <p class="text-sm text-[var(--text-secondary)] leading-relaxed">
+            Submit patches, refactor actions, and provide interface enhancements inside the core WordPress platform, supporting open-source development globally.
+          </p>
+        </div>
+      </div>
+
+      <!-- Interests -->
+      <div class="reveal r5">
+        <p class="t-mono text-[var(--accent)] mb-4">Interests</p>
+        <h2 class="t-title mb-6">Outside of writing code.</h2>
+        <div class="flex flex-wrap gap-3">
+          <span class="px-4 py-2.5 rounded-lg bg-[var(--bg-surface)] border border-[var(--border-strong)] text-sm font-semibold text-[var(--text-primary)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors">🎵 Music</span>
+          <span class="px-4 py-2.5 rounded-lg bg-[var(--bg-surface)] border border-[var(--border-strong)] text-sm font-semibold text-[var(--text-primary)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors">📚 Reading Books</span>
+          <span class="px-4 py-2.5 rounded-lg bg-[var(--bg-surface)] border border-[var(--border-strong)] text-sm font-semibold text-[var(--text-primary)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors">🌍 Travel</span>
+          <span class="px-4 py-2.5 rounded-lg bg-[var(--bg-surface)] border border-[var(--border-strong)] text-sm font-semibold text-[var(--text-primary)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors">🎮 Gaming</span>
+          <span class="px-4 py-2.5 rounded-lg bg-[var(--bg-surface)] border border-[var(--border-strong)] text-sm font-semibold text-[var(--text-primary)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors">☕ Coffee</span>
+          <span class="px-4 py-2.5 rounded-lg bg-[var(--bg-surface)] border border-[var(--border-strong)] text-sm font-semibold text-[var(--text-primary)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors">🧘 Mindfulness</span>
+        </div>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</Layout>
+
+<script>
+  var observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+      }
+    });
+  }, { threshold: 0.05 });
+  
+  document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+</script>

@@ -1,0 +1,63 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import { getBlogPosts } from "@/lib/blog";
+
+export async function getStaticPaths() {
+  const posts = await getBlogPosts();
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+---
+
+<Layout title={`${post.title} — Sayan Datta`} description={post.description}>
+  <Header />
+  <main>
+    <article class="pt-32 pb-28 relative">
+      <!-- Glow background behind post title -->
+      <div class="absolute top-0 inset-x-0 h-[40vh] opacity-[0.04] pointer-events-none" style="background:radial-gradient(circle at 50% 30%, var(--accent), transparent 70%)"></div>
+
+      <div class="mx-narrow relative z-10">
+        <!-- Back Button -->
+        <a href="/blog" class="back-link t-mono hover:text-[var(--accent)] transition-colors inline-flex items-center gap-1.5 mb-8 group text-[10px] cursor-pointer">
+          <span class="group-hover:-translate-x-1 transition-transform">&larr;</span>
+          <span>Back to Feed</span>
+        </a>
+
+        <!-- Tags -->
+        <div class="flex flex-wrap gap-2 mb-6">
+          {post.tags.map((tag) => <span class="tag">{tag}</span>)}
+        </div>
+
+        <!-- Title & Metadata -->
+        <h1 class="t-heading text-balance font-extrabold leading-tight tracking-tight text-[var(--text-primary)]">
+          {post.title}
+        </h1>
+
+        <div class="flex items-center gap-4 mt-6 t-mono text-xs text-[var(--text-muted)] border-b border-[var(--border-subtle)] pb-6">
+          <time datetime={post.pubDate.toISOString()}>
+            {post.pubDate.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
+          </time>
+          <span>·</span>
+          {post.readingTime && <span>{post.readingTime} min read</span>}
+        </div>
+
+        <!-- Content -->
+        <div class="prose mt-10 mx-auto" set:html={post.content} />
+      </div>
+    </article>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  /* Back link micro-interaction */
+  .back-link span {
+    display: inline-block;
+  }
+</style>

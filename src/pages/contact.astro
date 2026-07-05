@@ -1,0 +1,216 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+---
+
+<Layout title="Contact | Sayan Datta" description="Start a project conversation with Sayan Datta. Get in touch for custom WordPress plugins, API architectures, or contract roles.">
+  <Header />
+  <main class="py-24 relative overflow-hidden">
+    <!-- Background overlay grid -->
+    <div class="absolute inset-0 opacity-[0.08] pointer-events-none" style="background:radial-gradient(circle at 80% 30%, var(--accent), transparent 50%)"></div>
+
+    <section class="pt-16 pb-24 relative z-10">
+      <div class="mx">
+        <div class="grid lg:grid-cols-12 gap-12 lg:gap-20">
+          
+          <!-- Left Panel: Context & Details -->
+          <div class="lg:col-span-5 space-y-8">
+            <div>
+              <p class="t-mono text-[var(--accent)] uppercase font-bold">Project Handshake</p>
+              <h1 class="t-heading mt-4 reveal r1">Let's build together.</h1>
+              <p class="t-body mt-4 leading-relaxed reveal r2">
+                Have a plugin concept, API architecture requirement, or technical bottleneck you need resolved? Send a message and let's coordinate.
+              </p>
+            </div>
+
+            <!-- Context Info blocks -->
+            <div class="space-y-4 reveal r3">
+              <div class="glass p-5 bg-[var(--bg-surface)] border-[var(--border-subtle)] flex items-start gap-4">
+                <span class="w-8 h-8 rounded bg-[var(--accent-glow)] text-[var(--accent)] flex items-center justify-center flex-shrink-0 font-mono text-sm">✉</span>
+                <div>
+                  <p class="text-[10px] font-mono text-[var(--text-muted)] uppercase tracking-wider">Direct Channels</p>
+                  <a href="mailto:hello@sayandatta.dev" class="text-sm font-semibold text-[var(--accent)] hover:text-[var(--accent-bright)] transition-colors mt-1 block">hello@sayandatta.dev</a>
+                </div>
+              </div>
+
+              <div class="glass p-5 bg-[var(--bg-surface)] border-[var(--border-subtle)] flex items-start gap-4">
+                <span class="w-8 h-8 rounded bg-[var(--accent-glow)] text-[var(--accent)] flex items-center justify-center flex-shrink-0 font-mono text-sm">𖡡</span>
+                <div>
+                  <p class="text-[10px] font-mono text-[var(--text-muted)] uppercase tracking-wider">Operational Location</p>
+                  <p class="text-sm text-[var(--text-secondary)] mt-1 font-semibold">India &middot; Remote operations globally</p>
+                </div>
+              </div>
+
+              <div class="glass p-5 bg-[var(--bg-surface)] border-[var(--border-subtle)] flex items-start gap-4">
+                <span class="w-8 h-8 rounded bg-[var(--success-glow)] text-[var(--success)] flex items-center justify-center flex-shrink-0 font-mono text-sm">●</span>
+                <div>
+                  <p class="text-[10px] font-mono text-[var(--text-muted)] uppercase tracking-wider">Work Availability</p>
+                  <p class="text-sm text-[var(--text-secondary)] mt-1 font-semibold">Open for Freelance and Contract roles</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-6 pt-4 reveal r4">
+              <a href="https://github.com/iamsayan" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors">&lt; GitHub &gt;</a>
+              <a href="https://www.linkedin.com/in/meetsayan/" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors">&lt; LinkedIn &gt;</a>
+              <a href="https://x.com/im_sayaan" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors">&lt; Twitter &gt;</a>
+            </div>
+          </div>
+
+          <!-- Right Panel: Interactive Form Console -->
+          <div class="lg:col-span-7 relative">
+            <div class="glass hover-glow-rose p-8 bg-[var(--bg-surface)] border-[var(--border-subtle)] reveal r2" id="contact-console">
+              
+              <!-- Form header -->
+              <div class="flex items-center justify-between border-b border-[var(--border-subtle)] pb-4 mb-6">
+                <span class="text-xs font-mono text-[var(--text-primary)]">secure-contact-session</span>
+                <span class="w-2.5 h-2.5 rounded-full bg-[var(--success)] animate-pulse"></span>
+              </div>
+
+              <!-- Contact Form -->
+              <form id="contact-form" class="space-y-5">
+                <!-- Floating Label Name -->
+                <div class="relative">
+                  <input type="text" id="name" name="name" required class="w-full px-4 py-3 bg-[var(--bg-deep)] border border-[var(--border-subtle)] focus:border-[var(--accent)] focus:outline-none rounded-lg text-sm transition-all peer placeholder-transparent" placeholder="Name" />
+                  <label for="name" class="absolute left-4 top-3 text-xs text-[var(--text-muted)] transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:top-3 peer-focus:top-1 peer-focus:text-[10px] peer-focus:text-[var(--accent)] -translate-y-2.5 bg-[var(--bg-surface)] px-1 peer-focus:px-1 pointer-events-none">Your Name</label>
+                </div>
+
+                <!-- Floating Label Email -->
+                <div class="relative">
+                  <input type="email" id="email" name="email" required class="w-full px-4 py-3 bg-[var(--bg-deep)] border border-[var(--border-subtle)] focus:border-[var(--accent)] focus:outline-none rounded-lg text-sm transition-all peer placeholder-transparent" placeholder="Email" />
+                  <label for="email" class="absolute left-4 top-3 text-xs text-[var(--text-muted)] transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:top-3 peer-focus:top-1 peer-focus:text-[10px] peer-focus:text-[var(--accent)] -translate-y-2.5 bg-[var(--bg-surface)] px-1 peer-focus:px-1 pointer-events-none">Email Address</label>
+                </div>
+
+                <!-- Floating Label Scope -->
+                <div class="relative">
+                  <input type="text" id="scope" name="scope" required class="w-full px-4 py-3 bg-[var(--bg-deep)] border border-[var(--border-subtle)] focus:border-[var(--accent)] focus:outline-none rounded-lg text-sm transition-all peer placeholder-transparent" placeholder="Scope" />
+                  <label for="scope" class="absolute left-4 top-3 text-xs text-[var(--text-muted)] transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:top-3 peer-focus:top-1 peer-focus:text-[10px] peer-focus:text-[var(--accent)] -translate-y-2.5 bg-[var(--bg-surface)] px-1 peer-focus:px-1 pointer-events-none">Project Scope (e.g. Plugin, Web App)</label>
+                </div>
+
+                <!-- Message Details -->
+                <div class="relative">
+                  <textarea id="message" name="message" rows="4" required class="w-full px-4 py-3 bg-[var(--bg-deep)] border border-[var(--border-subtle)] focus:border-[var(--accent)] focus:outline-none rounded-lg text-sm transition-all peer placeholder-transparent" placeholder="Message"></textarea>
+                  <label for="message" class="absolute left-4 top-3 text-xs text-[var(--text-muted)] transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:top-3 peer-focus:top-1 peer-focus:text-[10px] peer-focus:text-[var(--accent)] -translate-y-2.5 bg-[var(--bg-surface)] px-1 peer-focus:px-1 pointer-events-none">Message details...</label>
+                </div>
+
+                <button type="submit" class="b b-primary w-full py-3 shadow-md mt-2 relative overflow-hidden" id="submit-btn">
+                  <span id="btn-text">Transmit Request</span>
+                </button>
+              </form>
+
+              <!-- Interactive loading state -->
+              <div id="loading-state" class="hidden py-12 flex flex-col items-center justify-center space-y-4">
+                <div class="w-8 h-8 rounded-full border-2 border-[var(--border-subtle)] border-t-[var(--accent)] animate-spin"></div>
+                <p class="text-xs font-mono text-[var(--accent)]" id="loading-log">Connecting socket...</p>
+                <div class="w-64 bg-[var(--bg-deep)] h-1 rounded overflow-hidden border border-[var(--border-subtle)] mt-2">
+                  <div id="loading-bar" class="h-full bg-[var(--accent)] transition-all duration-300" style="width: 0%"></div>
+                </div>
+              </div>
+
+              <!-- Success window overlay -->
+              <div id="success-state" class="hidden py-8 text-center space-y-6">
+                <div class="w-12 h-12 rounded-full bg-[var(--success-glow)] text-[var(--success)] flex items-center justify-center mx-auto text-xl font-bold border border-[rgba(16,185,129,0.2)]">✓</div>
+                <div>
+                  <h3 class="text-md font-bold text-[var(--text-primary)]">Transmission Successful</h3>
+                  <p class="text-xs text-[var(--text-secondary)] mt-2 max-w-sm mx-auto">Your details have been validated. Fallback email client is prepped. Opening composer...</p>
+                </div>
+                <button id="reset-btn" class="b b-ghost text-xs py-2 px-4">Open direct fallback email</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>
+
+<script>
+  var contactForm = document.getElementById("contact-form");
+  var contactConsole = document.getElementById("contact-console");
+  var submitBtn = document.getElementById("submit-btn");
+  var btnText = document.getElementById("btn-text");
+  
+  var loadingState = document.getElementById("loading-state");
+  var loadingLog = document.getElementById("loading-log");
+  var loadingBar = document.getElementById("loading-bar");
+  
+  var successState = document.getElementById("success-state");
+  var resetBtn = document.getElementById("reset-btn");
+  
+  var logs = [
+    { text: "Establishing secure handshake...", val: 20 },
+    { text: "Validating envelope payload fields...", val: 50 },
+    { text: "Transmitting headers & encryption...", val: 80 },
+    { text: "Handshake completed successfully.", val: 100 }
+  ];
+
+  if (contactForm) {
+    contactForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      
+      var nameVal = (document.getElementById("name") as HTMLInputElement).value;
+      var emailVal = (document.getElementById("email") as HTMLInputElement).value;
+      var scopeVal = (document.getElementById("scope") as HTMLInputElement).value;
+      var msgVal = (document.getElementById("message") as HTMLTextAreaElement).value;
+
+      // Switch views
+      contactForm.classList.add("hidden");
+      loadingState.classList.remove("hidden");
+
+      let currentStep = 0;
+      
+      function runLogSteps() {
+        if (currentStep < logs.length) {
+          var step = logs[currentStep];
+          loadingLog.textContent = step.text;
+          loadingBar.style.width = step.val + "%";
+          currentStep++;
+          setTimeout(runLogSteps, 600);
+        } else {
+          // Transition to success state
+          loadingState.classList.add("hidden");
+          successState.classList.remove("hidden");
+          
+          // Trigger fallback action
+          var body = `Hello Sayan,\n\nMy name is ${nameVal} (${emailVal}). I am writing to discuss a ${scopeVal} project.\n\nDetails:\n${msgVal}\n\nBest regards,\n${nameVal}`;
+          var mailtoUrl = `mailto:hello@sayandatta.dev?subject=Project Scope: ${encodeURIComponent(scopeVal)}&body=${encodeURIComponent(body)}`;
+          
+          // Small delay before opening mailto client
+          setTimeout(() => {
+            window.location.href = mailtoUrl;
+          }, 800);
+        }
+      }
+
+      runLogSteps();
+    });
+  }
+
+  if (resetBtn) {
+    resetBtn.addEventListener("click", () => {
+      // Re-trigger mailto
+      var nameVal = (document.getElementById("name") as HTMLInputElement).value;
+      var emailVal = (document.getElementById("email") as HTMLInputElement).value;
+      var scopeVal = (document.getElementById("scope") as HTMLInputElement).value;
+      var msgVal = (document.getElementById("message") as HTMLTextAreaElement).value;
+      
+      var body = `Hello Sayan,\n\nMy name is ${nameVal} (${emailVal}). I am writing to discuss a ${scopeVal} project.\n\nDetails:\n${msgVal}\n\nBest regards,\n${nameVal}`;
+      var mailtoUrl = `mailto:hello@sayandatta.dev?subject=Project Scope: ${encodeURIComponent(scopeVal)}&body=${encodeURIComponent(body)}`;
+      window.location.href = mailtoUrl;
+    });
+  }
+
+  // IntersectionObserver reveal animations
+  var observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+      }
+    });
+  }, { threshold: 0.05 });
+  
+  document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+</script>
