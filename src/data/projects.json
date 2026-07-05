@@ -130,5 +130,15 @@
     "downloads": "Open Source",
     "url": "https://wordpress.org/plugins/ultimate-facebook-comments/",
     "description": "Embeds dynamic Facebook comment moderation systems inside blog layouts."
+  },
+  {
+    "title": "shuvamrahamusic",
+    "type": "Freelance Product",
+    "featured": false,
+    "category": "fullstack",
+    "tech": ["TypeScript", "Next.js"],
+    "downloads": "Production Live",
+    "url": "https://sayandatta.co.in",
+    "description": "High-performance music portfolio and academy site with responsive Tailwind design."
   }
 ]

@@ -2,10 +2,26 @@
 import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
-import { getProfile, getStatistics } from "@/lib/data";
+import { getProfile, getStatistics, getProjects } from "@/lib/data";
 
 const profile = await getProfile();
 const statsData = await getStatistics();
+const allProjects = await getProjects();
+
+// Retrieve top 2 featured open source contributions or plugins
+const featuredProjects = allProjects.filter(p => p.featured && p.url.includes("wordpress.org/plugins")).slice(0, 2);
+
+// If there are less than 2, fill with other featured projects
+if (featuredProjects.length < 2) {
+  const others = allProjects.filter(p => p.featured && !featuredProjects.includes(p));
+  featuredProjects.push(...others);
+}
+
+// Keep exactly top 2 for the main hero showcase columns
+const mainShowcaseProjects = featuredProjects.slice(0, 2);
+
+// Retrieve exactly 3 non-featured projects/packages/repos for the secondary grid
+const secondaryShowcaseProjects = allProjects.filter(p => !p.featured).slice(0, 3);
 
 const stats = [
   { value: statsData.experience, label: "Professional Experience" },
@@ -547,139 +563,77 @@ const stats = [
           <div>
             <p class="t-mono text-accent uppercase font-bold">Open Source</p>
             <h2 class="t-display text-4xl md:text-5xl font-extrabold tracking-tight leading-none text-primary mt-2">
-              Plugin <span class="t-accent">releases.</span>
+              Project <span class="t-accent">releases.</span>
             </h2>
           </div>
           <a href="/projects" class="b b-ghost text-xs py-2 px-4"
-            >All 12 projects &amp; plugins →</a
+            >All projects &amp; packages →</a
           >
         </div>
 
         <div class="grid md:grid-cols-2 gap-8 mt-12">
-          <a
-            href="https://wordpress.org/plugins/wp-last-modified-info/"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="glass p-8 group block reveal r1 hover-glow-rose hover:-translate-y-1"
-          >
-            <div class="flex items-start justify-between mb-6">
-              <div class="flex flex-wrap gap-1.5">
-                <span class="tag">PHP</span><span class="tag">WordPress</span
-                ><span class="tag">SEO</span>
+          {mainShowcaseProjects.map((project, index) => (
+            <a
+              href={project.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class={`glass p-8 group block reveal hover-glow-rose hover:-translate-y-1 r${index + 1}`}
+            >
+              <div class="flex items-start justify-between mb-6">
+                <div class="flex flex-wrap gap-1.5">
+                  {project.tech.map((t) => (
+                    <span class="tag">{t}</span>
+                  ))}
+                </div>
+                {project.downloads && (
+                  <span class="text-xs font-mono text-muted bg-raised px-2.5 py-1 rounded border border-subtle">
+                    {project.downloads}
+                  </span>
+                )}
               </div>
-              <span
-                class="text-xs font-mono text-muted bg-raised px-2.5 py-1 rounded border border-subtle"
-                >20,000+ active installs</span
-              >
-            </div>
-            <h3
-              class="text-xl font-bold group-hover:text-accent transition-colors duration-300 flex items-center gap-2"
-            >
-              WP Last Modified Info
-              <svg
-                class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                stroke-width="2"
-                ><path
-                  d="M10 6H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4M14 4h6m0 0v6m0-6L10 14"
-                ></path></svg
-              >
-            </h3>
-            <p class="t-body mt-3 text-sm">
-              WordPress plugin to display last modified dates of pages/posts
-              with schema microdata hooks, search engine index configurations,
-              and templates customization.
-            </p>
-            <span
-              class="text-xs text-accent mt-6 inline-block font-semibold group-hover:underline"
-              >View in WordPress Directory &rarr;</span
-            >
-          </a>
-
-          <a
-            href="https://wordpress.org/plugins/revivepress/"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="glass p-8 group block reveal r2 hover-glow-rose hover:-translate-y-1"
-          >
-            <div class="flex items-start justify-between mb-6">
-              <div class="flex flex-wrap gap-1.5">
-                <span class="tag">PHP</span><span class="tag">WordPress</span
-                ><span class="tag">Marketing</span>
-              </div>
-              <span
-                class="text-xs font-mono text-muted bg-raised px-2.5 py-1 rounded border border-subtle"
-                >7,000+ active installs</span
-              >
-            </div>
-            <h3
-              class="text-xl font-bold group-hover:text-accent transition-colors duration-300 flex items-center gap-2"
-            >
-              RevivePress
-              <svg
-                class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                stroke-width="2"
-                ><path
-                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                ></path></svg
-              >
-            </h3>
-            <p class="t-body mt-3 text-sm">
-              All-in-one plugin for republishing and cloning old posts and
-              pages. Modernizes publishing dates automatically to drive traffic
-              back to legacy content.
-            </p>
-            <span
-              class="text-xs text-accent mt-6 inline-block font-semibold group-hover:underline"
-              >View in WordPress Directory &rarr;</span
-            >
-          </a>
+              <h3 class="text-xl font-bold group-hover:text-accent transition-colors duration-300 flex items-center gap-2">
+                {project.title}
+                <svg
+                  class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  aria-hidden="true"
+                >
+                  <path d="M10 6H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </h3>
+              <p class="t-body mt-3 text-sm">
+                {project.overview || project.description}
+              </p>
+              <span class="text-xs text-accent mt-6 inline-block font-semibold group-hover:underline">
+                {project.url.includes("wordpress.org") ? "View in WordPress Directory →" : "View Project Source →"}
+              </span>
+            </a>
+          ))}
         </div>
 
         <!-- Mini secondary grid layout -->
         <div class="grid md:grid-cols-3 gap-6 mt-8 reveal">
-          <div
-            class="glass p-6 bg-surface hover-glow-purple hover:-translate-y-0.5 transition-all"
-          >
-            <div class="flex flex-wrap gap-1.5 mb-4">
-              <span class="tag">React</span><span class="tag">PHP</span>
-            </div>
-            <h4 class="font-bold text-sm text-primary">Gutena Blocks</h4>
-            <p class="text-xs text-secondary mt-2">
-              Custom tabs, accordion, and slider components built for Gutenberg
-              block builders.
-            </p>
-          </div>
-          <div
-            class="glass p-6 bg-surface hover-glow-blue hover:-translate-y-0.5 transition-all"
-          >
-            <div class="flex flex-wrap gap-1.5 mb-4">
-              <span class="tag">TypeScript</span><span class="tag"
-                >Next.js</span>
-            </div>
-            <h4 class="font-bold text-sm text-primary">shuvamrahamusic</h4>
-            <p class="text-xs text-secondary mt-2">
-              High-performance music portfolio and academy site with responsive
-              Tailwind design.
-            </p>
-          </div>
-          <div
-            class="glass p-6 bg-surface hover-glow-emerald hover:-translate-y-0.5 transition-all"
-          >
-            <div class="flex flex-wrap gap-1.5 mb-4">
-              <span class="tag">PHP</span><span class="tag">Composer</span>
-            </div>
-            <h4 class="font-bold text-sm text-primary">Connect Helpers</h4>
-            <p class="text-xs text-secondary mt-2">
-              InstaWP core composer library managing remote connections, site
-              synchronization, and auth hooks.
-            </p>
-          </div>
+          {secondaryShowcaseProjects.map((project) => (
+            <a
+              href={project.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="glass p-6 bg-surface hover-glow-purple hover:-translate-y-0.5 transition-all block group"
+            >
+              <div class="flex flex-wrap gap-1.5 mb-4">
+                {project.tech.map((t) => (
+                  <span class="tag">{t}</span>
+                ))}
+              </div>
+              <h4 class="font-bold text-sm text-primary group-hover:text-accent transition-colors">{project.title}</h4>
+              <p class="text-xs text-secondary mt-2">
+                {project.description || project.overview}
+              </p>
+            </a>
+          ))}
         </div>
       </div>
     </section>
