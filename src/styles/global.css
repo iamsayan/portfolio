@@ -40,9 +40,9 @@
   --radius: 0.85rem;
   --radius-lg: 1.25rem;
 
-  --font-display: "Geist", system-ui, -apple-system, sans-serif;
-  --font-sans: "Geist", system-ui, -apple-system, sans-serif;
-  --font-mono: "Geist Mono", ui-monospace, monospace;
+  --font-display: "Inter", system-ui, -apple-system, sans-serif;
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
 }
 
 :root.light {
@@ -89,9 +89,9 @@
   --color-accent-glow: var(--accent-glow);
   --color-success-glow: var(--success-glow);
 
-  --font-sans: "Geist", system-ui, -apple-system, sans-serif;
-  --font-mono: "Geist Mono", ui-monospace, monospace;
-  --font-display: "Geist", system-ui, -apple-system, sans-serif;
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --font-display: "Inter", system-ui, -apple-system, sans-serif;
 }
 
 /* ── Base ─────────────────────────────────────────────── */

@@ -1,12 +1,12 @@
 # Sayan Datta — Senior Developer Portfolio
 
-A premium, high-performance developer portfolio built with **Astro v7**, **React**, **Tailwind CSS v4**, and **Vercel's Geist Sans & Mono** typography. This project showcases deep full-stack product engineering, WooCommerce payment integrations, and modular frontend components.
+A premium, high-performance developer portfolio built with **Astro v7**, **React**, **Tailwind CSS v4**, and **Inter & JetBrains Mono** typography. This project showcases deep full-stack product engineering, WooCommerce payment integrations, and modular frontend components.
 
 ---
 
 ## 🚀 Key Features
 
-- **Geist Typography & Sleek Styling**: Uses Vercel's high-tech `Geist` sans-serif and `Geist Mono` typefaces, integrated directly into Tailwind v4 variables.
+- **Inter & JetBrains Mono Typography**: Uses universally crisp `Inter` and `JetBrains Mono` typefaces, optimized for pixel-perfect readability and sub-pixel hinting on all monitor resolutions.
 - **Dynamic JSON Data Layer**: The entire website content is powered by structural schemas in `src/data/`. Updating these JSON files updates the site content dynamically.
 - **Preconfigured Linter & Formatter**: Uses modern ESLint v10 flat configs (`eslint.config.js`) and Prettier formatting configs (`.prettierrc.mjs`) to enforce strict codebase consistency and syntax parsing.
 - **Reusable Page Banners**: Centralizes page hero banners, background ambient spotlights, and scroll-entry animations using the reusable `<PageHero />` component.

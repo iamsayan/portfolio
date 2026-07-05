@@ -34,7 +34,7 @@ Welcome! This document outlines architectural principles, coding rules, and cons
   - Borders: `border-subtle`, `border-strong`
   - Typography Colors: `text-primary`, `text-secondary`, `text-muted`
   - Accents & Glows: `text-accent`, `bg-accent`, `bg-accent-glow`, `bg-success-glow`
-  - Typography Fonts: `font-sans` (Geist), `font-mono` (Geist Mono), `font-display` (Geist)
+  - Typography Fonts: `font-sans` (Inter), `font-mono` (JetBrains Mono), `font-display` (Inter)
 - **Preserve Aesthetics**: Do not redesign or change the visual identity (glassmorphism overlays, color schemes, font display, and interactive hover scales).
 
 ---
