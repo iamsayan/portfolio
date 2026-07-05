@@ -22,7 +22,19 @@
           <a href="/contact" class="b b-primary !text-xs !py-2 !px-4 shadow-sm">Contact</a>
         </nav>
 
-        <div class="flex items-center gap-3">
+        <div class="flex items-center gap-2.5">
+          <!-- Interactive CLI Discoverability Badge -->
+          <button 
+            id="cli-trigger-btn" 
+            class="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-[11px] font-mono text-[var(--text-secondary)] hover:text-[var(--accent)] border border-[var(--border-subtle)] hover:border-[var(--accent)] transition-all bg-[var(--bg-raised)] cursor-pointer"
+            title="Open Developer Console (Press `)"
+            aria-label="Open Developer Console"
+          >
+            <span class="w-1.5 h-1.5 rounded-full bg-[var(--accent)] animate-pulse"></span>
+            <span>CLI</span>
+            <kbd class="px-1 rounded bg-[var(--bg-deep)] border border-[var(--border-subtle)] text-[9px] text-[var(--text-muted)]">`</kbd>
+          </button>
+
           <button id="theme-toggle" class="w-9 h-9 rounded-lg flex items-center justify-center border border-[var(--border-subtle)] hover:border-[var(--accent)] transition-colors bg-[var(--bg-raised)] cursor-pointer" aria-label="Toggle theme">
             <!-- Sun icon (visible in dark mode) -->
             <svg id="sun-icon" class="w-4 h-4 text-[var(--text-secondary)] transition-transform duration-300 hover:rotate-45" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -177,6 +189,19 @@
     document.addEventListener("DOMContentLoaded", initTheme);
   } else {
     initTheme();
+  }
+
+  // CLI Trigger Click Handler
+  var cliBtn = document.getElementById("cli-trigger-btn");
+  if (cliBtn) {
+    cliBtn.addEventListener("click", () => {
+      var consoleToggle = document.getElementById("console-toggle-btn");
+      if (consoleToggle) {
+        consoleToggle.click();
+      } else {
+        window.dispatchEvent(new KeyboardEvent("keydown", { key: "`" }));
+      }
+    });
   }
 
   // Mobile Menu Menu Logic
