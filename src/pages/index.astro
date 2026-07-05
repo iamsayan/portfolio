@@ -271,8 +271,10 @@ const stats = [
     <section class="py-28 relative border-t border-subtle">
       <div class="mx">
         <div class="max-w-2xl">
-          <p class="t-mono text-accent uppercase">Services</p>
-          <h2 class="t-heading mt-3">Full-stack competencies.</h2>
+          <p class="t-mono text-accent uppercase font-bold">Services</p>
+          <h2 class="t-display text-4xl md:text-5xl font-extrabold tracking-tight leading-none text-primary mt-3">
+            Full-stack <span class="t-accent">competencies.</span>
+          </h2>
           <p class="t-body mt-4">
             I deliver performance-first solutions tailored to modern
             infrastructure and developer experience guidelines.
@@ -284,7 +286,7 @@ const stats = [
           <div class="grid lg:grid-cols-12 gap-10 items-center reveal">
             <div class="lg:col-span-5 space-y-5">
               <span
-                class="text-xs font-mono px-3 py-1 rounded-md bg-[rgba(59,130,246,0.1)] text-blue-500 border border-blue-500/10"
+                class="inline-block text-xs font-mono px-3 py-1 rounded-md bg-[rgba(59,130,246,0.1)] text-blue-500 border border-blue-500/10"
                 >01 &mdash; FRONTEND</span
               >
               <h3 class="t-title text-2xl font-bold">Frontend Development</h3>
@@ -301,9 +303,14 @@ const stats = [
               </div>
             </div>
 
-            <div class="lg:col-span-7">
+            <div class="lg:col-span-7 relative">
               <div
-                class="glass hover-glow-blue p-6 relative overflow-hidden bg-surface"
+                class="absolute -inset-1 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-2xl blur-md opacity-20"
+                aria-hidden="true"
+              >
+              </div>
+              <div
+                class="glass glass-glow rounded-xl overflow-hidden shadow-2xl relative z-10 border-strong p-6 bg-surface"
               >
                 <!-- Mock Dashboard Component -->
                 <div
@@ -383,7 +390,7 @@ const stats = [
           <div class="grid lg:grid-cols-12 gap-10 items-center reveal">
             <div class="lg:col-span-5 lg:order-2 space-y-5">
               <span
-                class="text-xs font-mono px-3 py-1 rounded-md bg-[rgba(16,185,129,0.1)] text-emerald-500 border border-emerald-500/10"
+                class="inline-block text-xs font-mono px-3 py-1 rounded-md bg-[rgba(16,185,129,0.1)] text-emerald-500 border border-emerald-500/10"
                 >02 &mdash; BACKEND</span
               >
               <h3 class="t-title text-2xl font-bold">Backend Architecture</h3>
@@ -400,9 +407,14 @@ const stats = [
               </div>
             </div>
 
-            <div class="lg:col-span-7 lg:order-1">
+            <div class="lg:col-span-7 lg:order-1 relative">
               <div
-                class="glass hover-glow-emerald p-6 border-subtle bg-surface"
+                class="absolute -inset-1 bg-gradient-to-r from-emerald-500 to-teal-600 rounded-2xl blur-md opacity-20"
+                aria-hidden="true"
+              >
+              </div>
+              <div
+                class="glass glass-glow rounded-xl overflow-hidden shadow-2xl relative z-10 border-strong p-6 bg-surface"
               >
                 <!-- Mock API Client -->
                 <div
@@ -447,7 +459,7 @@ const stats = [
           <div class="grid lg:grid-cols-12 gap-10 items-center reveal">
             <div class="lg:col-span-5 space-y-5">
               <span
-                class="text-xs font-mono px-3 py-1 rounded-md bg-[rgba(245,158,11,0.1)] text-amber-500 border border-amber-500/10"
+                class="inline-block text-xs font-mono px-3 py-1 rounded-md bg-[rgba(245,158,11,0.1)] text-amber-500 border border-amber-500/10"
                 >03 &mdash; WORDPRESS</span
               >
               <h3 class="t-title text-2xl font-bold">WordPress Engineering</h3>
@@ -465,9 +477,14 @@ const stats = [
               </div>
             </div>
 
-            <div class="lg:col-span-7">
+            <div class="lg:col-span-7 relative">
               <div
-                class="glass hover-glow-amber p-6 relative overflow-hidden bg-surface"
+                class="absolute -inset-1 bg-gradient-to-r from-amber-500 to-orange-600 rounded-2xl blur-md opacity-20"
+                aria-hidden="true"
+              >
+              </div>
+              <div
+                class="glass glass-glow rounded-xl overflow-hidden shadow-2xl relative z-10 border-strong p-6 bg-surface"
               >
                 <!-- WordPress Plugin Card Mockup -->
                 <div
@@ -528,8 +545,10 @@ const stats = [
           class="flex items-end justify-between flex-wrap gap-4 border-b border-subtle pb-6"
         >
           <div>
-            <p class="t-mono text-accent uppercase">Open Source</p>
-            <h2 class="t-heading mt-2">Plugin releases.</h2>
+            <p class="t-mono text-accent uppercase font-bold">Open Source</p>
+            <h2 class="t-display text-4xl md:text-5xl font-extrabold tracking-tight leading-none text-primary mt-2">
+              Plugin <span class="t-accent">releases.</span>
+            </h2>
           </div>
           <a href="/projects" class="b b-ghost text-xs py-2 px-4"
             >All 12 projects &amp; plugins →</a
@@ -729,9 +748,9 @@ const stats = [
       </div>
 
       <div class="mx relative z-10 text-center space-y-6">
-        <p class="t-mono text-accent">Work together</p>
-        <h2 class="t-heading max-w-2xl mx-auto">
-          Let's build something remarkable.
+        <p class="t-mono text-accent uppercase font-bold">Work together</p>
+        <h2 class="t-display text-4xl md:text-6xl font-extrabold tracking-tight leading-none text-primary max-w-2xl mx-auto">
+          Let's build something <span class="t-accent">remarkable.</span>
         </h2>
         <p class="t-body max-w-lg mx-auto">
           Need a performant custom WordPress plugin, an optimized
