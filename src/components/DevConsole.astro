@@ -1,6 +1,10 @@
 ---
+import { getProfile, getProjects } from "@/lib/data";
+
+const profile = await getProfile();
+const projects = await getProjects();
 ---
-<div class="dev-console-wrapper font-mono text-xs">
+<div class="dev-console-wrapper font-mono text-xs" data-profile={JSON.stringify(profile)} data-projects={JSON.stringify(projects)}>
   <!-- Floating Toggle Button -->
   <button id="dev-console-toggle" class="fixed bottom-6 right-6 z-100 flex items-center gap-2 px-4 py-2.5 rounded-xl border border-[var(--border-strong)] bg-[var(--bg-raised)] text-[var(--text-primary)] hover:border-[var(--accent)] hover:text-[var(--accent)] shadow-xl cursor-pointer select-none transition-all duration-300 hover:scale-105 active:scale-95" aria-label="Toggle developer console">
     <span class="w-2.5 h-2.5 rounded-full bg-[var(--accent)] animate-pulse shadow-[0_0_8px_var(--accent)]"></span>
@@ -475,6 +479,10 @@
     cliOutput.scrollTop = cliOutput.scrollHeight;
   }
 
+  const wrapper = document.querySelector(".dev-console-wrapper");
+  const profile = JSON.parse(wrapper?.getAttribute("data-profile") || "{}");
+  const projects = JSON.parse(wrapper?.getAttribute("data-projects") || "[]");
+
   cliForm?.addEventListener("submit", (e) => {
     e.preventDefault();
     if (!cliInput) return;
@@ -502,16 +510,15 @@
         break;
       
       case "about":
-        appendLine("Sayan Datta &mdash; Senior WordPress Developer &amp; Full Stack Software Engineer.");
-        appendLine("Core tools: PHP, Laravel, TypeScript, Next.js, Astro, PostgreSQL.");
-        appendLine("Stats: 7+ Years Experience, 1M+ downloads across open-source nodes.");
+        appendLine(`${profile.name} &mdash; ${profile.title}.`);
+        appendLine(`Location: ${profile.location}.`);
+        appendLine(`Bios: ${profile.bios.medium || profile.bios.short}`);
         break;
         
       case "projects":
-        appendLine("1. WP Last Modified Info (20k+ installs) - SEO utility");
-        appendLine("2. RevivePress (7k+ installs) - Republish automated scheduler");
-        appendLine("3. Connect Helpers - Composer authorization hooks client library");
-        appendLine("4. Gutena Blocks - React Gutenberg UI widgets");
+        projects.slice(0, 5).forEach((p: any, idx: number) => {
+          appendLine(`${idx + 1}. ${p.title} (${p.downloads || 'Active'}) - ${p.description.substring(0, 80)}...`);
+        });
         break;
         
       case "clear":
