@@ -194,12 +194,15 @@
   // CLI Trigger Click Handler
   var cliBtn = document.getElementById("cli-trigger-btn");
   if (cliBtn) {
-    cliBtn.addEventListener("click", () => {
-      var consoleToggle = document.getElementById("console-toggle-btn");
-      if (consoleToggle) {
-        consoleToggle.click();
-      } else {
-        window.dispatchEvent(new KeyboardEvent("keydown", { key: "`" }));
+    cliBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      var toggleBtn = document.getElementById("dev-console-toggle");
+      if (toggleBtn) {
+        toggleBtn.click();
+        var cliTabBtn = document.querySelector('.console-tab[data-tab="cli"]') as HTMLElement;
+        if (cliTabBtn) {
+          cliTabBtn.click();
+        }
       }
     });
   }

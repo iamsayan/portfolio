@@ -484,11 +484,12 @@ p {
 }
 
 /* ── Divider ──────────────────────────────────────────── */
-.hr {
-  height: 1px;
-  background: linear-gradient(to right, transparent, var(--border-subtle) 20%, var(--border-subtle) 80%, transparent);
-  border: none;
-  margin: 0;
+@layer components {
+  .hr {
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--border-subtle) 20%, var(--border-subtle) 80%, transparent);
+    border: none;
+  }
 }
 
 /* ── Scroll reveal ────────────────────────────────────── */
