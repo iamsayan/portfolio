@@ -1,13 +1,16 @@
 # Sayan Datta — Senior Developer Portfolio
 
-A premium, high-performance developer portfolio built with **Astro v7**, **React**, and **Tailwind CSS v4**. This project showcases deep full-stack product engineering, WooCommerce payment integrations, and modular frontend components.
+A premium, high-performance developer portfolio built with **Astro v7**, **React**, **Tailwind CSS v4**, and **Vercel's Geist Sans & Mono** typography. This project showcases deep full-stack product engineering, WooCommerce payment integrations, and modular frontend components.
 
 ---
 
 ## 🚀 Key Features
 
+- **Geist Typography & Sleek Styling**: Uses Vercel's high-tech `Geist` sans-serif and `Geist Mono` typefaces, integrated directly into Tailwind v4 variables.
 - **Dynamic JSON Data Layer**: The entire website content is powered by structural schemas in `src/data/`. Updating these JSON files updates the site content dynamically.
-- **Tailwind CSS v4 Design Tokens**: Uses Tailwind v4 inline theme variables mapped inside `global.css`, allowing clean color classes like `bg-surface`, `bg-deep`, `border-subtle`, and `text-primary`.
+- **Preconfigured Linter & Formatter**: Uses modern ESLint v10 flat configs (`eslint.config.js`) and Prettier formatting configs (`.prettierrc.mjs`) to enforce strict codebase consistency and syntax parsing.
+- **Reusable Page Banners**: Centralizes page hero banners, background ambient spotlights, and scroll-entry animations using the reusable `<PageHero />` component.
+- **Unified Phosphor Icon Pack**: Purges inline raw SVG path code in favor of the lightweight `<Icon />` component imported from the `astro-icon` library.
 - **Interactive Code Playground**: Features an interactive mockup IDE on the homepage showcasing a real-world WooCommerce UPI payment gateway architecture across cohesive files (`plugin.php`, `gateway.ts`, `composer.json`).
 - **Real Contact Form Routing**: Integrates directly with **Formspree AJAX API** with built-in loading states, visual validation logs, and a clean fallback email action if routing gets blocked.
 - **SEO & Crawl Engine Optimization**:
@@ -23,13 +26,17 @@ A premium, high-performance developer portfolio built with **Astro v7**, **React
 
 ```text
 /
+├── .prettierrc.mjs          # Prettier formatting configurations
+├── eslint.config.js         # ESLint flat config with Astro & TypeScript rules
 ├── public/                  # Static assets
 │   ├── resume.pdf           # Sayan's professional printable resume
 │   └── favicon.svg          # Portfolio favicon logo
 ├── src/
+├── src/
 │   ├── components/          # Reusable Astro layouts
 │   │   ├── Header.astro     # Responsive navigation menu
-│   │   └── Footer.astro     # System health and copyright bar
+│   │   ├── Footer.astro     # System health and copyright bar
+│   │   └── PageHero.astro   # Reusable header banner layout
 │   ├── data/                # Data storage layer (JSON)
 │   │   ├── profile.json     # Personal details & Formspree credentials
 │   │   ├── statistics.json  # Metric count stats
@@ -64,6 +71,8 @@ All terminal commands are run from the project root directory:
 | :---------------- | :-------------------------------------------------------------------- |
 | `npm install`     | Installs project dependency nodes.                                    |
 | `npm run dev`     | Starts local development server at `localhost:4321` (live-reloading). |
+| `npm run lint`    | Runs ESLint syntax verification across the workspace.                 |
+| `npm run format`  | Runs Prettier to auto-format files.                                   |
 | `npm run build`   | Compiles a production-ready static bundle under `dist/`.              |
 | `npm run preview` | Spins up a local preview server for built static pages.               |
 
@@ -75,13 +84,13 @@ To update the data rendered on the portfolio, modify the respective schemas in t
 
 ### 1. Personal & Contact Settings (`profile.json`)
 
-Manage operational locations, email addresses, bios, social channels, and Formspree endpoints:
+Manage locations, email addresses, bios, social channels, and Formspree credentials:
 
 ```json
 {
   "name": "Sayan Datta",
   "title": "Senior Full Stack Developer",
-  "email": "meetsayan@outlook.com",
+  "email": "hello@sayandatta.dev",
   "formspreeId": "xwpveyob",
   "location": "Kolkata, India",
   "socials": {

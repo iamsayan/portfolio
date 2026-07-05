@@ -18,6 +18,11 @@ Welcome! This document outlines architectural principles, coding rules, and cons
    ```bash
    npm run build
    ```
+3. **Linter & Formatter Code Check**: Run ESLint checks and Prettier formatting before committing changes:
+   ```bash
+   npm run lint
+   npm run format
+   ```
 
 ---
 
@@ -29,7 +34,33 @@ Welcome! This document outlines architectural principles, coding rules, and cons
   - Borders: `border-subtle`, `border-strong`
   - Typography Colors: `text-primary`, `text-secondary`, `text-muted`
   - Accents & Glows: `text-accent`, `bg-accent`, `bg-accent-glow`, `bg-success-glow`
+  - Typography Fonts: `font-sans` (Geist), `font-mono` (Geist Mono), `font-display` (Geist)
 - **Preserve Aesthetics**: Do not redesign or change the visual identity (glassmorphism overlays, color schemes, font display, and interactive hover scales).
+
+---
+
+## 🏗 Reusable Banner Layout Component (`PageHero.astro`)
+
+- **Never Duplicate Banners**: All inner page banners (about, skills, services, projects, blog) must use the central `PageHero` component in `src/components/PageHero.astro`.
+- **Nesting Spans/Custom Headings**: To pass custom HTML highlights like `<span class="t-accent">code.</span>` to the header, use Astro's `title` slot fragment:
+  ```astro
+  <PageHero badge="Category" description="Intro text.">
+    <Fragment slot="title">Main Title <span class="t-accent">Highlight</span></Fragment>
+  </PageHero>
+  ```
+
+---
+
+## 📦 Unified SVG Icon Library
+
+- **Use Astro Icon**: Never write custom, raw inline SVGs for standard icons. Always use the `astro-icon` library with Phosphor Icon pack (`@iconify-json/ph`).
+- **Syntax**:
+  ```astro
+  import { Icon } from "astro-icon/components";
+  
+  <Icon name="ph:arrow-right" class="w-4 h-4" aria-hidden="true" />
+  ```
+- **Exceptions**: Custom graphic shapes representing custom coordinate vector charts (such as load speed line graphs) may remain as inline path elements.
 
 ---
 
@@ -51,3 +82,4 @@ Welcome! This document outlines architectural principles, coding rules, and cons
   - Every route must use the core `<Layout>` component.
   - Layout props must specify unique `title`, `description`, and `image` elements.
   - The canonical link header (`<link rel="canonical" href={canonicalURL.href} />`) must be dynamically pre-calculated on every render path.
+- **JSX Loop Comments**: Never use raw HTML comments (`<!-- comment -->`) inside map or array loops inside Astro files. They cause syntax parse errors. Always use JSX javascript comment blocks: `{/* comment */}`.
