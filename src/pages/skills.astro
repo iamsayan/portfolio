@@ -3,58 +3,95 @@ import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import { getSkills } from "@/lib/data";
+import PageHero from "@/components/PageHero.astro";
 
 const skillsData = await getSkills();
 
 const skillSections = [
-  { id: "core", name: "Core Expertise", desc: "My primary domains of product engineering and platform architecture.", skills: skillsData.core },
-  { id: "modern", name: "Modern Stack", desc: "JavaScript & TypeScript frameworks utilized for creating responsive applications.", skills: skillsData.modern },
-  { id: "backend", name: "Backend Architecture", desc: "Server environments, data design schemas, and relational database managers.", skills: skillsData.backend },
-  { id: "cms", name: "CMS Platforms", desc: "Extending core content pipelines, custom plugins, and headless CMS integrations.", skills: skillsData.cms },
-  { id: "infra", name: "Infrastructure & DevOps", desc: "Source control, automation pipelines, site hosting, and virtualization setups.", skills: skillsData.infra },
-  { id: "legacy", name: "Legacy Experience", desc: "Older technologies and legacy frontend libraries maintained on client portals.", skills: skillsData.legacy },
+  {
+    id: "core",
+    name: "Core Expertise",
+    desc: "My primary domains of product engineering and platform architecture.",
+    skills: skillsData.core,
+  },
+  {
+    id: "modern",
+    name: "Modern Stack",
+    desc: "JavaScript & TypeScript frameworks utilized for creating responsive applications.",
+    skills: skillsData.modern,
+  },
+  {
+    id: "backend",
+    name: "Backend Architecture",
+    desc: "Server environments, data design schemas, and relational database managers.",
+    skills: skillsData.backend,
+  },
+  {
+    id: "cms",
+    name: "CMS Platforms",
+    desc: "Extending core content pipelines, custom plugins, and headless CMS integrations.",
+    skills: skillsData.cms,
+  },
+  {
+    id: "infra",
+    name: "Infrastructure & DevOps",
+    desc: "Source control, automation pipelines, site hosting, and virtualization setups.",
+    skills: skillsData.infra,
+  },
+  {
+    id: "legacy",
+    name: "Legacy Experience",
+    desc: "Older technologies and legacy frontend libraries maintained on client portals.",
+    skills: skillsData.legacy,
+  },
 ];
 ---
 
-<Layout title="Skills — Sayan Datta" description="Comprehensive overview of Sayan Datta's development stack, core WooCommerce expertise, backend architecture, and legacies.">
+<Layout
+  title="Skills — Sayan Datta"
+  description="Comprehensive overview of Sayan Datta's development stack, core WooCommerce expertise, backend architecture, and legacies."
+>
   <Header />
-  <main id="main-content">
-    <!-- Header Hero -->
-    <section class="pt-32 pb-20 relative">
-      <div class="mx">
-        <p class="t-mono text-accent">Tech stack</p>
-        <h1 class="t-heading mt-4 reveal r1">Skills &amp; Toolkit.</h1>
-        <p class="t-body mt-6 max-w-2xl reveal r2">
-          A detailed catalog of the technologies, languages, and architectures I work with on daily production builds, categorized by domain proficiency.
-        </p>
-      </div>
-    </section>
+  <main id="main-content" class="py-24 relative overflow-hidden">
+    <PageHero
+      badge="Tech Stack"
+      description="A detailed catalog of the technologies, languages, and architectures I work with on daily production builds, categorized by domain proficiency."
+    >
+      <Fragment slot="title">Skills &amp; <span class="t-accent">toolkit.</span></Fragment>
+    </PageHero>
 
     <!-- Skills Dashboard Grid -->
     <section class="pb-28">
       <div class="mx space-y-20">
-        {skillSections.map((sec, idx) => (
-          <div class="reveal">
-            <!-- Category Header -->
-            <div class="mb-8 border-b border-subtle pb-4">
-              <span class="text-xs font-mono text-accent font-bold">0{idx + 1} &mdash; {sec.name.toUpperCase()}</span>
-              <p class="text-sm text-secondary mt-1">{sec.desc}</p>
-            </div>
+        {
+          skillSections.map((sec, idx) => (
+            <div class="reveal">
+              {/* Category Header */}
+              <div class="mb-8 border-b border-subtle pb-4">
+                <span class="text-xs font-mono text-accent font-bold">
+                  0{idx + 1} &mdash; {sec.name.toUpperCase()}
+                </span>
+                <p class="text-sm text-secondary mt-1">{sec.desc}</p>
+              </div>
 
-            <!-- Skills Cards Grid -->
-            <div class="grid sm:grid-cols-2 gap-6">
-              {sec.skills && sec.skills.map(s => (
-                <div class="glass p-6 bg-surface border-subtle hover:border-accent/25 transition-all">
-                  <div class="flex justify-between items-baseline mb-3">
-                    <h3 class="text-sm font-bold text-primary">{s.name}</h3>
-                    <span class="text-[9px] px-2 py-0.5 rounded font-mono text-accent bg-accent-glow border border-rose-500/10 font-bold">{s.level}</span>
-                  </div>
-                  <p class="text-xs text-secondary mt-4 leading-relaxed font-sans">{s.context}</p>
-                </div>
-              ))}
+              {/* Skills Cards Grid */}
+              <div class="grid sm:grid-cols-2 gap-6">
+                {sec.skills &&
+                  sec.skills.map((s) => (
+                    <div class="glass p-6 bg-surface border-subtle hover:border-accent/25 transition-all">
+                      <div class="flex justify-between items-baseline mb-3">
+                        <h3 class="text-sm font-bold text-primary">{s.name}</h3>
+                        <span class="text-[9px] px-2 py-0.5 rounded font-mono text-accent bg-accent-glow border border-rose-500/10 font-bold">
+                          {s.level}
+                        </span>
+                      </div>
+                      <p class="text-xs text-secondary mt-4 leading-relaxed font-sans">{s.context}</p>
+                    </div>
+                  ))}
+              </div>
             </div>
-          </div>
-        ))}
+          ))
+        }
       </div>
     </section>
   </main>
@@ -63,13 +100,16 @@ const skillSections = [
 
 <script>
   // Consolidated single IntersectionObserver for page elements
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-      }
-    });
-  }, { threshold: 0.05 });
-  
-  document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
+      });
+    },
+    { threshold: 0.05 }
+  );
+
+  document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
 </script>

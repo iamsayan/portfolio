@@ -4,31 +4,27 @@ import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import { getProfile, getExperience, getTestimonials } from "@/lib/data";
 import { Icon } from "astro-icon/components";
+import PageHero from "@/components/PageHero.astro";
 
 const profile = await getProfile();
 const experience = await getExperience();
 const testimonials = await getTestimonials();
 ---
 
-<Layout title="About | Sayan Datta — Senior Developer" description="8+ years of e-commerce engineering experience. From scaling WooCommerce checkouts to modern full-stack systems.">
+<Layout
+  title="About | Sayan Datta — Senior Developer"
+  description="8+ years of e-commerce engineering experience. From scaling WooCommerce checkouts to modern full-stack systems."
+>
   <Header />
-  <main id="main-content">
-    <div class="mx py-24 relative overflow-hidden">
-      <!-- Background Ambient Glow Spotlight -->
-      <div class="absolute inset-0 opacity-[0.06] pointer-events-none" style="background:radial-gradient(circle at 10% 40%, var(--accent), transparent 50%)" aria-hidden="true"></div>
+  <main id="main-content" class="py-24 relative overflow-hidden">
+    <PageHero
+      badge="About Me"
+      description={`I'm ${profile.name} — a software engineer who turns product blueprints into clean, scalable, and performant web solutions.`}
+    >
+      <Fragment slot="title">The person behind the <span class="t-accent">code.</span></Fragment>
+    </PageHero>
 
-      <!-- Bio Header -->
-      <div class="max-w-3xl mb-16 reveal">
-        <div class="flex items-center gap-3 mb-4">
-          <span class="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" aria-hidden="true"></span>
-          <span class="text-[10px] font-mono tracking-wider text-accent uppercase font-bold">About Me</span>
-        </div>
-        <h1 class="t-heading">The person behind the <span class="t-accent">code.</span></h1>
-        <p class="t-body mt-6 text-xl leading-snug">
-          I'm {profile.name} — a software engineer who turns product blueprints into clean, scalable, and performant web solutions.
-        </p>
-      </div>
-
+    <div class="mx relative z-10">
       <!-- Main Profile Summary Split -->
       <div class="grid lg:grid-cols-12 gap-12 items-start mb-24 reveal r1">
         <!-- Biography Text -->
@@ -37,14 +33,17 @@ const testimonials = await getTestimonials();
             {profile.bios.long}
           </p>
           <p class="t-body leading-relaxed font-sans">
-            With a focus on performance-first engineering, I ensure that web applications load in milliseconds, backend structures remain clean and linted, and custom plugin architectures map to standard scalable workflows.
+            With a focus on performance-first engineering, I ensure that web applications load in milliseconds, backend
+            structures remain clean and linted, and custom plugin architectures map to standard scalable workflows.
           </p>
         </div>
 
         <!-- Quick Info Panel -->
         <div class="lg:col-span-4">
           <div class="glass p-6 border-strong bg-surface space-y-4">
-            <h3 class="font-bold text-sm text-primary uppercase tracking-wider border-b border-subtle pb-2">Quick Stats</h3>
+            <h3 class="font-bold text-sm text-primary uppercase tracking-wider border-b border-subtle pb-2">
+              Quick Stats
+            </h3>
             <div class="space-y-3">
               <div class="flex justify-between items-center text-sm">
                 <span class="text-muted">Location:</span>
@@ -52,7 +51,8 @@ const testimonials = await getTestimonials();
               </div>
               <div class="flex justify-between items-center text-sm">
                 <span class="text-muted">Email:</span>
-                <a href={`mailto:${profile.email}`} class="font-semibold text-accent hover:underline">{profile.email}</a>
+                <a href={`mailto:${profile.email}`} class="font-semibold text-accent hover:underline">{profile.email}</a
+                >
               </div>
               <div class="flex justify-between items-center text-sm">
                 <span class="text-muted">Website:</span>
@@ -60,7 +60,9 @@ const testimonials = await getTestimonials();
               </div>
               <div class="flex justify-between items-center text-sm">
                 <span class="text-muted">Freelance:</span>
-                <span class="status-badge !py-0.5 !px-2.5 !text-[11px]"><span class="pulse-dot" aria-hidden="true"></span>Available</span>
+                <span class="status-badge !py-0.5 !px-2.5 !text-[11px]"
+                  ><span class="pulse-dot" aria-hidden="true"></span>Available</span
+                >
               </div>
             </div>
           </div>
@@ -74,7 +76,7 @@ const testimonials = await getTestimonials();
           <span class="text-[10px] font-mono tracking-wider text-blue-500 uppercase font-bold">My Setup</span>
         </div>
         <h2 class="t-title mb-10">Tools I use daily.</h2>
-        
+
         <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           <!-- Hardware Card -->
           <div class="glass hover-glow-blue p-6 bg-surface">
@@ -83,9 +85,15 @@ const testimonials = await getTestimonials();
               Hardware
             </h3>
             <ul class="space-y-2 text-xs text-secondary font-sans">
-              <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-blue-500" aria-hidden="true"></span>Windows Workstation PC</li>
-              <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-blue-500" aria-hidden="true"></span>Dell UltraSharp 4K display</li>
-              <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-blue-500" aria-hidden="true"></span>Mechanical MX Brown Keyboard</li>
+              <li class="flex items-center gap-2">
+                <span class="w-1 h-1 rounded-full bg-blue-500" aria-hidden="true"></span>Windows Workstation PC
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="w-1 h-1 rounded-full bg-blue-500" aria-hidden="true"></span>Dell UltraSharp 4K display
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="w-1 h-1 rounded-full bg-blue-500" aria-hidden="true"></span>Mechanical MX Brown Keyboard
+              </li>
             </ul>
           </div>
 
@@ -96,10 +104,18 @@ const testimonials = await getTestimonials();
               Development
             </h3>
             <ul class="space-y-2 text-xs text-secondary font-sans">
-              <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-emerald-500" aria-hidden="true"></span>VS Code &amp; Cursor IDEs</li>
-              <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-emerald-500" aria-hidden="true"></span>Windows Terminal (ZSH)</li>
-              <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-emerald-500" aria-hidden="true"></span>Git Version Control</li>
-              <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-emerald-500" aria-hidden="true"></span>Docker Containers</li>
+              <li class="flex items-center gap-2">
+                <span class="w-1 h-1 rounded-full bg-emerald-500" aria-hidden="true"></span>VS Code &amp; Cursor IDEs
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="w-1 h-1 rounded-full bg-emerald-500" aria-hidden="true"></span>Windows Terminal (ZSH)
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="w-1 h-1 rounded-full bg-emerald-500" aria-hidden="true"></span>Git Version Control
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="w-1 h-1 rounded-full bg-emerald-500" aria-hidden="true"></span>Docker Containers
+              </li>
             </ul>
           </div>
 
@@ -110,9 +126,15 @@ const testimonials = await getTestimonials();
               UI / UX
             </h3>
             <ul class="space-y-2 text-xs text-secondary font-sans">
-              <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-rose-500" aria-hidden="true"></span>Figma Design Board</li>
-              <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-rose-500" aria-hidden="true"></span>Adobe XD Prototyping</li>
-              <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-rose-500" aria-hidden="true"></span>Graph Paper Sketching</li>
+              <li class="flex items-center gap-2">
+                <span class="w-1 h-1 rounded-full bg-rose-500" aria-hidden="true"></span>Figma Design Board
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="w-1 h-1 rounded-full bg-rose-500" aria-hidden="true"></span>Adobe XD Prototyping
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="w-1 h-1 rounded-full bg-rose-500" aria-hidden="true"></span>Graph Paper Sketching
+              </li>
             </ul>
           </div>
 
@@ -123,9 +145,15 @@ const testimonials = await getTestimonials();
               Infrastructure
             </h3>
             <ul class="space-y-2 text-xs text-secondary font-sans">
-              <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-amber-500" aria-hidden="true"></span>Vercel Cloud Deploy</li>
-              <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-amber-500" aria-hidden="true"></span>DigitalOcean VPS Droplets</li>
-              <li class="flex items-center gap-2"><span class="w-1 h-1 rounded-full bg-amber-500" aria-hidden="true"></span>Cloudflare Proxy DNS</li>
+              <li class="flex items-center gap-2">
+                <span class="w-1 h-1 rounded-full bg-amber-500" aria-hidden="true"></span>Vercel Cloud Deploy
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="w-1 h-1 rounded-full bg-amber-500" aria-hidden="true"></span>DigitalOcean VPS Droplets
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="w-1 h-1 rounded-full bg-amber-500" aria-hidden="true"></span>Cloudflare Proxy DNS
+              </li>
             </ul>
           </div>
         </div>
@@ -140,60 +168,73 @@ const testimonials = await getTestimonials();
         <h2 class="t-title mb-12">Professional experience.</h2>
 
         <div class="timeline-container space-y-12">
-          {experience.map((exp, idx) => {
-            const colors = ["#f43f5e", "#38bdf8", "#a855f7", "#10b981", "#f59e0b", "#e11d48"];
-            const color = colors[idx % colors.length];
-            return (
-              <div class="relative pl-6">
-                <div class="timeline-node" style={`border-color: ${color}; box-shadow: 0 0 10px ${color}80`}></div>
-                <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-2">
-                  <div>
-                    <h3 class="font-bold text-lg text-primary">{exp.position}</h3>
-                    <p class="text-xs font-semibold" style={`color: ${color}`}>{exp.company} &mdash; Remote</p>
+          {
+            experience.map((exp, idx) => {
+              const colors = ["#f43f5e", "#38bdf8", "#a855f7", "#10b981", "#f59e0b", "#e11d48"];
+              const color = colors[idx % colors.length];
+              return (
+                <div class="relative pl-6">
+                  <div class="timeline-node" style={`border-color: ${color}; box-shadow: 0 0 10px ${color}80`} />
+                  <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-2">
+                    <div>
+                      <h3 class="font-bold text-lg text-primary">{exp.position}</h3>
+                      <p class="text-xs font-semibold" style={`color: ${color}`}>
+                        {exp.company} &mdash; Remote
+                      </p>
+                    </div>
+                    <span class="text-xs bg-raised border border-strong px-3 py-1 rounded-full text-secondary font-medium">
+                      {exp.duration}
+                    </span>
                   </div>
-                  <span class="text-xs bg-raised border border-strong px-3 py-1 rounded-full text-secondary font-medium">{exp.duration}</span>
+                  <p class="text-sm text-secondary leading-relaxed mb-3 font-sans">{exp.description}</p>
+                  <ul class="list-disc pl-4 space-y-1 text-xs text-muted font-sans">
+                    {exp.bullets.map((b) => (
+                      <li>{b}</li>
+                    ))}
+                  </ul>
                 </div>
-                <p class="text-sm text-secondary leading-relaxed mb-3 font-sans">
-                  {exp.description}
-                </p>
-                <ul class="list-disc pl-4 space-y-1 text-xs text-muted font-sans">
-                  {exp.bullets.map((b) => (
-                    <li>{b}</li>
-                  ))}
-                </ul>
-              </div>
-            );
-          })}
+              );
+            })
+          }
         </div>
       </div>
 
       <!-- Verified References & Testimonials Section -->
-      {testimonials && testimonials.length > 0 && (
-        <div class="mb-24 reveal r4">
-          <div class="flex items-center gap-3 mb-6">
-            <span class="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" aria-hidden="true"></span>
-            <span class="text-[10px] font-mono tracking-wider text-accent uppercase font-bold">Verified References</span>
-          </div>
-          <h2 class="t-title mb-10">Kind words from peers.</h2>
-          
-          <div class="grid md:grid-cols-2 gap-8">
-            {testimonials.map((t) => (
-              <div class="glass p-8 bg-surface border-subtle hover:border-accent transition-colors relative flex flex-col justify-between">
-                <blockquote class="text-sm text-secondary leading-relaxed font-sans italic mb-6">
-                  "{t.text}"
-                </blockquote>
-                <div class="border-t border-subtle pt-4 flex items-center justify-between">
-                  <div>
-                    <cite class="text-sm font-bold text-primary not-italic block">{t.name}</cite>
-                    <span class="text-[10px] font-mono text-muted block mt-0.5">{t.role}</span>
+      {
+        testimonials && testimonials.length > 0 && (
+          <div class="mb-24 reveal r4">
+            <div class="flex items-center gap-3 mb-6">
+              <span class="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" aria-hidden="true" />
+              <span class="text-[10px] font-mono tracking-wider text-accent uppercase font-bold">
+                Verified References
+              </span>
+            </div>
+            <h2 class="t-title mb-10">Kind words from peers.</h2>
+
+            <div class="grid md:grid-cols-2 gap-8">
+              {testimonials.map((t) => (
+                <div class="glass p-8 bg-surface border-subtle hover:border-accent transition-colors relative flex flex-col justify-between">
+                  <blockquote class="text-sm text-secondary leading-relaxed font-sans italic mb-6">
+                    "{t.text}"
+                  </blockquote>
+                  <div class="border-t border-subtle pt-4 flex items-center justify-between">
+                    <div>
+                      <cite class="text-sm font-bold text-primary not-italic block">{t.name}</cite>
+                      <span class="text-[10px] font-mono text-muted block mt-0.5">{t.role}</span>
+                    </div>
+                    <span
+                      class="text-[9px] bg-accent-glow text-accent border border-rose-500/10 px-2 py-0.5 rounded font-semibold tracking-wider font-mono uppercase"
+                      aria-label="Verified testimonial endorsement"
+                    >
+                      Verified Reference
+                    </span>
                   </div>
-                  <span class="text-[9px] bg-accent-glow text-accent border border-rose-500/10 px-2 py-0.5 rounded font-semibold tracking-wider font-mono uppercase" aria-label="Verified testimonial endorsement">Verified Reference</span>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      )}
+        )
+      }
 
       <!-- Volunteering and open-source contributions -->
       <div class="grid md:grid-cols-2 gap-8 mb-24 reveal r4">
@@ -202,7 +243,8 @@ const testimonials = await getTestimonials();
           <h3 class="font-bold text-base text-primary">Volunteer Developer</h3>
           <p class="text-xs text-muted mt-1 mb-4">Jagadhatri Online &mdash; Aug 2020 - Present</p>
           <p class="text-sm text-secondary leading-relaxed font-sans">
-            Volunteered to build and maintain the event and commerce portal utilizing Next.js, managing API sync frameworks with local WooCommerce catalogs.
+            Volunteered to build and maintain the event and commerce portal utilizing Next.js, managing API sync
+            frameworks with local WooCommerce catalogs.
           </p>
         </div>
 
@@ -211,7 +253,8 @@ const testimonials = await getTestimonials();
           <h3 class="font-bold text-base text-primary">Core &amp; Plugin Contributor</h3>
           <p class="text-xs text-muted mt-1 mb-4">WordPress.org &mdash; Jul 2018 - Present</p>
           <p class="text-sm text-secondary leading-relaxed font-sans">
-            Submit patches, refactor actions, and provide interface enhancements inside the core WordPress platform, supporting open-source development globally.
+            Submit patches, refactor actions, and provide interface enhancements inside the core WordPress platform,
+            supporting open-source development globally.
           </p>
         </div>
       </div>
@@ -221,12 +264,30 @@ const testimonials = await getTestimonials();
         <p class="t-mono text-accent mb-4">Interests</p>
         <h2 class="t-title mb-6">Outside of writing code.</h2>
         <div class="flex flex-wrap gap-3">
-          <span class="px-4 py-2.5 rounded-lg bg-surface border border-strong text-sm font-semibold text-primary hover:border-accent hover:text-accent transition-colors">🎵 Music</span>
-          <span class="px-4 py-2.5 rounded-lg bg-surface border border-strong text-sm font-semibold text-primary hover:border-accent hover:text-accent transition-colors">📚 Reading Books</span>
-          <span class="px-4 py-2.5 rounded-lg bg-surface border border-strong text-sm font-semibold text-primary hover:border-accent hover:text-accent transition-colors">🌍 Travel</span>
-          <span class="px-4 py-2.5 rounded-lg bg-surface border border-strong text-sm font-semibold text-primary hover:border-accent hover:text-accent transition-colors">🎮 Gaming</span>
-          <span class="px-4 py-2.5 rounded-lg bg-surface border border-strong text-sm font-semibold text-primary hover:border-accent hover:text-accent transition-colors">☕ Coffee</span>
-          <span class="px-4 py-2.5 rounded-lg bg-surface border border-strong text-sm font-semibold text-primary hover:border-accent hover:text-accent transition-colors">🧘 Mindfulness</span>
+          <span
+            class="px-4 py-2.5 rounded-lg bg-surface border border-strong text-sm font-semibold text-primary hover:border-accent hover:text-accent transition-colors"
+            >🎵 Music</span
+          >
+          <span
+            class="px-4 py-2.5 rounded-lg bg-surface border border-strong text-sm font-semibold text-primary hover:border-accent hover:text-accent transition-colors"
+            >📚 Reading Books</span
+          >
+          <span
+            class="px-4 py-2.5 rounded-lg bg-surface border border-strong text-sm font-semibold text-primary hover:border-accent hover:text-accent transition-colors"
+            >🌍 Travel</span
+          >
+          <span
+            class="px-4 py-2.5 rounded-lg bg-surface border border-strong text-sm font-semibold text-primary hover:border-accent hover:text-accent transition-colors"
+            >🎮 Gaming</span
+          >
+          <span
+            class="px-4 py-2.5 rounded-lg bg-surface border border-strong text-sm font-semibold text-primary hover:border-accent hover:text-accent transition-colors"
+            >☕ Coffee</span
+          >
+          <span
+            class="px-4 py-2.5 rounded-lg bg-surface border border-strong text-sm font-semibold text-primary hover:border-accent hover:text-accent transition-colors"
+            >🧘 Mindfulness</span
+          >
         </div>
       </div>
     </div>
@@ -236,13 +297,16 @@ const testimonials = await getTestimonials();
 
 <script>
   // Unified single IntersectionObserver for page elements
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-      }
-    });
-  }, { threshold: 0.05 });
-  
-  document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
+      });
+    },
+    { threshold: 0.05 }
+  );
+
+  document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
 </script>

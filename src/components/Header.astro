@@ -13,10 +13,7 @@ const isActive = (path: string) => {
 };
 ---
 
-<header
-  class="fixed top-0 inset-x-0 z-50 transition-all duration-500 py-4"
-  id="site-header"
->
+<header class="fixed top-0 inset-x-0 z-50 transition-all duration-500 py-4" id="site-header">
   <!-- Skip to Content link for keyboard accessibility -->
   <a
     href="#main-content"
@@ -42,19 +39,13 @@ const isActive = (path: string) => {
           >
           <div class="flex items-center gap-1.5 mt-0.5" aria-hidden="true">
             <span class="pulse-dot"></span>
-            <span
-              class="text-[9px] font-mono tracking-widest text-success uppercase"
-              >Available for Hire</span
-            >
+            <span class="text-[9px] font-mono tracking-widest text-success uppercase">Available for Hire</span>
           </div>
         </div>
       </a>
 
       <div class="flex items-center gap-6">
-        <nav
-          class="hidden md:flex items-center gap-8"
-          aria-label="Main Navigation"
-        >
+        <nav class="hidden md:flex items-center gap-8" aria-label="Main Navigation">
           <a
             href="/"
             class={`nav-link text-sm font-medium transition-colors relative py-1 ${isActive("/") ? "text-accent font-semibold active-nav" : "text-secondary hover:text-accent"}`}
@@ -73,14 +64,12 @@ const isActive = (path: string) => {
           <a
             href="/services"
             class={`nav-link text-sm font-medium transition-colors relative py-1 ${isActive("/services") ? "text-accent font-semibold active-nav" : "text-secondary hover:text-accent"}`}
-            aria-current={isActive("/services") ? "page" : undefined}
-            >Services</a
+            aria-current={isActive("/services") ? "page" : undefined}>Services</a
           >
           <a
             href="/projects"
             class={`nav-link text-sm font-medium transition-colors relative py-1 ${isActive("/projects") ? "text-accent font-semibold active-nav" : "text-secondary hover:text-accent"}`}
-            aria-current={isActive("/projects") ? "page" : undefined}
-            >Projects</a
+            aria-current={isActive("/projects") ? "page" : undefined}>Projects</a
           >
           <a
             href="/blog"
@@ -256,9 +245,7 @@ const isActive = (path: string) => {
     function getTheme() {
       var t = localStorage.getItem("theme");
       if (!t) {
-        return matchMedia("(prefers-color-scheme:light)").matches
-          ? "light"
-          : "dark";
+        return matchMedia("(prefers-color-scheme:light)").matches ? "light" : "dark";
       }
       return t;
     }
@@ -278,16 +265,10 @@ const isActive = (path: string) => {
       var n = c === "light" ? "dark" : "light";
       localStorage.setItem("theme", n);
 
-      if (
-        (document as any).startViewTransition &&
-        !matchMedia("(prefers-reduced-motion: reduce)").matches
-      ) {
+      if ((document as any).startViewTransition && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
         var x = e.clientX || window.innerWidth / 2;
         var y = e.clientY || window.innerHeight / 2;
-        var endRadius = Math.hypot(
-          Math.max(x, window.innerWidth - x),
-          Math.max(y, window.innerHeight - y),
-        );
+        var endRadius = Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y));
 
         var transition = (document as any).startViewTransition(() => {
           document.documentElement.classList.toggle("light", n === "light");
@@ -307,33 +288,23 @@ const isActive = (path: string) => {
               duration: 450,
               easing: "cubic-bezier(0.4, 0, 0.2, 1)",
               pseudoElement: "::view-transition-new(root)",
-            },
+            }
           );
         });
 
         transition.finished.then(() => {
-          document.documentElement.classList.toggle(
-            "light-scrollbar",
-            n === "light",
-          );
+          document.documentElement.classList.toggle("light-scrollbar", n === "light");
         });
       } else {
         st(n);
       }
     });
 
-    matchMedia("(prefers-color-scheme:light)").addEventListener(
-      "change",
-      () => {
-        if (!localStorage.getItem("theme")) {
-          st(
-            matchMedia("(prefers-color-scheme:light)").matches
-              ? "light"
-              : "dark",
-          );
-        }
-      },
-    );
+    matchMedia("(prefers-color-scheme:light)").addEventListener("change", () => {
+      if (!localStorage.getItem("theme")) {
+        st(matchMedia("(prefers-color-scheme:light)").matches ? "light" : "dark");
+      }
+    });
   }
 
   if (document.readyState === "loading") {
@@ -367,7 +338,7 @@ const isActive = (path: string) => {
         mn.style.opacity = "0";
         l1.style.transform = "";
         l2.style.transform = "";
-      }),
+      })
     );
   }
 
@@ -379,7 +350,7 @@ const isActive = (path: string) => {
       () => {
         h.classList.toggle("scrolled", scrollY > 10);
       },
-      { passive: true },
+      { passive: true }
     );
   }
 </script>

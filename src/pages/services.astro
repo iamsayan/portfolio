@@ -2,36 +2,38 @@
 import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
+import PageHero from "@/components/PageHero.astro";
 ---
 
-<Layout title="Services | Custom Plugins & WooCommerce Solutions" description="Expert full-stack development consulting. Specializing in WooCommerce checkout scaling, payment gateway integrations, custom APIs, and headless site architecture.">
+<Layout
+  title="Services | Custom Plugins & WooCommerce Solutions"
+  description="Expert full-stack development consulting. Specializing in WooCommerce checkout scaling, payment gateway integrations, custom APIs, and headless site architecture."
+>
   <Header />
   <main id="main-content" class="py-24 relative overflow-hidden">
-    <!-- Background overlay grid -->
-    <div class="absolute inset-0 opacity-[0.08] pointer-events-none" style="background:radial-gradient(circle at 80% 30%, var(--accent), transparent 50%)"></div>
-
-    <!-- Header Hero -->
-    <section class="pt-16 pb-20 relative z-10">
-      <div class="mx">
-        <p class="t-mono text-accent uppercase font-bold">Engineering Capabilities</p>
-        <h1 class="t-heading mt-4 reveal r1">Services &amp; Architecture.</h1>
-        <p class="t-body mt-6 max-w-2xl reveal r2">
-          Providing full-cycle code implementation &mdash; from systems design and database structures to responsive layouts and accessibility audits. Every system is build-tested and documented.
-        </p>
-      </div>
-    </section>
+    <PageHero
+      badge="Engineering Capabilities"
+      description="Providing full-cycle code implementation — from systems design and database structures to responsive layouts and accessibility audits. Every system is build-tested and documented."
+    >
+      <Fragment slot="title">Services &amp; <span class="t-accent">architecture.</span></Fragment>
+    </PageHero>
 
     <!-- Services Detail Grids -->
     <section class="pb-28 relative z-10">
       <div class="mx space-y-28">
-        
         <!-- Frontend Development -->
         <div class="grid lg:grid-cols-12 gap-12 items-start reveal">
           <div class="lg:col-span-5 lg:sticky lg:top-24 space-y-5">
-            <span class="text-xs font-mono text-blue-500 uppercase tracking-wider bg-blue-500/10 px-3 py-1 rounded-md border border-blue-500/10">01 &mdash; FRONTEND</span>
+            <span
+              class="text-xs font-mono text-blue-500 uppercase tracking-wider bg-blue-500/10 px-3 py-1 rounded-md border border-blue-500/10"
+              >01 &mdash; FRONTEND</span
+            >
             <h2 class="t-title text-2xl font-bold">Frontend Development</h2>
-            <p class="t-body">Building fluid, responsive, and fully accessible digital layouts. Structured using React, Next.js, and Astro. Focus on layout stability, image loading optimization, and low bundle size.</p>
-            
+            <p class="t-body">
+              Building fluid, responsive, and fully accessible digital layouts. Structured using React, Next.js, and
+              Astro. Focus on layout stability, image loading optimization, and low bundle size.
+            </p>
+
             <div class="grid grid-cols-2 gap-4 pt-3">
               <div class="border border-subtle p-4 rounded-lg bg-surface">
                 <p class="text-[10px] font-mono text-muted uppercase">Lighthouse Performance</p>
@@ -43,45 +45,70 @@ import Footer from "@/components/Footer.astro";
               </div>
             </div>
           </div>
-          
+
           <div class="lg:col-span-7 space-y-6">
             <div class="glass hover-glow-blue p-8 bg-surface border-subtle">
               <h3 class="text-md font-bold text-primary mb-4">Core Focus Areas</h3>
               <div class="space-y-4">
                 <div class="flex gap-3">
-                  <span class="w-5 h-5 rounded-full bg-blue-500/10 text-blue-500 flex items-center justify-center font-mono text-[10px] flex-shrink-0 mt-0.5">✓</span>
+                  <span
+                    class="w-5 h-5 rounded-full bg-blue-500/10 text-blue-500 flex items-center justify-center font-mono text-[10px] flex-shrink-0 mt-0.5"
+                    >✓</span
+                  >
                   <div>
                     <h4 class="text-sm font-bold text-primary">Render Optimization</h4>
-                    <p class="text-xs text-secondary mt-1">Utilizing static generation (SSG) and server-side rendering (SSR) appropriately. Optimizing First Contentful Paint (FCP) and Cumulative Layout Shift (CLS).</p>
+                    <p class="text-xs text-secondary mt-1">
+                      Utilizing static generation (SSG) and server-side rendering (SSR) appropriately. Optimizing First
+                      Contentful Paint (FCP) and Cumulative Layout Shift (CLS).
+                    </p>
                   </div>
                 </div>
                 <div class="flex gap-3">
-                  <span class="w-5 h-5 rounded-full bg-blue-500/10 text-blue-500 flex items-center justify-center font-mono text-[10px] flex-shrink-0 mt-0.5">✓</span>
+                  <span
+                    class="w-5 h-5 rounded-full bg-blue-500/10 text-blue-500 flex items-center justify-center font-mono text-[10px] flex-shrink-0 mt-0.5"
+                    >✓</span
+                  >
                   <div>
                     <h4 class="text-sm font-bold text-primary">Type-Safe Client States</h4>
-                    <p class="text-xs text-secondary mt-1">Strict type checking in TypeScript for all props, component inputs, and fetch interfaces. Reduced client runtime crashes.</p>
+                    <p class="text-xs text-secondary mt-1">
+                      Strict type checking in TypeScript for all props, component inputs, and fetch interfaces. Reduced
+                      client runtime crashes.
+                    </p>
                   </div>
                 </div>
                 <div class="flex gap-3">
-                  <span class="w-5 h-5 rounded-full bg-blue-500/10 text-blue-500 flex items-center justify-center font-mono text-[10px] flex-shrink-0 mt-0.5">✓</span>
+                  <span
+                    class="w-5 h-5 rounded-full bg-blue-500/10 text-blue-500 flex items-center justify-center font-mono text-[10px] flex-shrink-0 mt-0.5"
+                    >✓</span
+                  >
                   <div>
                     <h4 class="text-sm font-bold text-primary">Interactive Micro-Animations</h4>
-                    <p class="text-xs text-secondary mt-1">Adding subtle hover feedbacks, smooth tab selections, transitions, and loading states without introducing heavy external library scripts.</p>
+                    <p class="text-xs text-secondary mt-1">
+                      Adding subtle hover feedbacks, smooth tab selections, transitions, and loading states without
+                      introducing heavy external library scripts.
+                    </p>
                   </div>
                 </div>
               </div>
-              
+
               <!-- Blueprint Mock Widget -->
               <div class="mt-8 border border-subtle rounded-lg bg-deep p-5">
                 <p class="text-[10px] font-mono text-muted mb-3">FRONTEND LAYOUT BLUEPRINT</p>
-                <div class="border border-dashed border-strong rounded p-4 flex flex-col md:flex-row gap-4 items-center justify-between">
+                <div
+                  class="border border-dashed border-strong rounded p-4 flex flex-col md:flex-row gap-4 items-center justify-between"
+                >
                   <div class="flex items-center gap-3">
                     <span class="w-2.5 h-2.5 rounded-full bg-blue-500"></span>
                     <span class="text-xs font-mono text-primary">Header.astro &gt; .glass-glow</span>
                   </div>
                   <div class="flex gap-2">
-                    <span class="px-2 py-0.5 border border-strong text-[9px] font-mono rounded text-secondary">padding: 1.5rem</span>
-                    <span class="px-2 py-0.5 border border-blue-500 text-[9px] font-mono rounded text-blue-400 bg-blue-500/10">flex justify-between</span>
+                    <span class="px-2 py-0.5 border border-strong text-[9px] font-mono rounded text-secondary"
+                      >padding: 1.5rem</span
+                    >
+                    <span
+                      class="px-2 py-0.5 border border-blue-500 text-[9px] font-mono rounded text-blue-400 bg-blue-500/10"
+                      >flex justify-between</span
+                    >
                   </div>
                 </div>
               </div>
@@ -92,10 +119,16 @@ import Footer from "@/components/Footer.astro";
         <!-- Backend Architecture -->
         <div class="grid lg:grid-cols-12 gap-12 items-start reveal">
           <div class="lg:col-span-5 lg:sticky lg:top-24 space-y-5">
-            <span class="text-xs font-mono text-emerald-500 uppercase tracking-wider bg-emerald-500/10 px-3 py-1 rounded-md border border-emerald-500/10">02 &mdash; BACKEND</span>
+            <span
+              class="text-xs font-mono text-emerald-500 uppercase tracking-wider bg-emerald-500/10 px-3 py-1 rounded-md border border-emerald-500/10"
+              >02 &mdash; BACKEND</span
+            >
             <h2 class="t-title text-2xl font-bold">Backend Architecture</h2>
-            <p class="t-body">Designing secure APIs, relational database schemas, and microservice topologies. Built using Node.js, Express, and PHP/Laravel. Optimized queries and automated deployments.</p>
-            
+            <p class="t-body">
+              Designing secure APIs, relational database schemas, and microservice topologies. Built using Node.js,
+              Express, and PHP/Laravel. Optimized queries and automated deployments.
+            </p>
+
             <div class="grid grid-cols-2 gap-4 pt-3">
               <div class="border border-subtle p-4 rounded-lg bg-surface">
                 <p class="text-[10px] font-mono text-muted uppercase">Database Indexing</p>
@@ -107,30 +140,48 @@ import Footer from "@/components/Footer.astro";
               </div>
             </div>
           </div>
-          
+
           <div class="lg:col-span-7 space-y-6">
             <div class="glass hover-glow-emerald p-8 bg-surface border-subtle">
               <h3 class="text-md font-bold text-primary mb-4">Database &amp; Routing Operations</h3>
               <div class="space-y-4">
                 <div class="flex gap-3">
-                  <span class="w-5 h-5 rounded-full bg-emerald-500/10 text-emerald-500 flex items-center justify-center font-mono text-[10px] flex-shrink-0 mt-0.5">✓</span>
+                  <span
+                    class="w-5 h-5 rounded-full bg-emerald-500/10 text-emerald-500 flex items-center justify-center font-mono text-[10px] flex-shrink-0 mt-0.5"
+                    >✓</span
+                  >
                   <div>
                     <h4 class="text-sm font-bold text-primary">REST &amp; GraphQL Schema Design</h4>
-                    <p class="text-xs text-secondary mt-1">Building modular schema structures with secure query authorization, payload validations, and structured error responses.</p>
+                    <p class="text-xs text-secondary mt-1">
+                      Building modular schema structures with secure query authorization, payload validations, and
+                      structured error responses.
+                    </p>
                   </div>
                 </div>
                 <div class="flex gap-3">
-                  <span class="w-5 h-5 rounded-full bg-emerald-500/10 text-emerald-500 flex items-center justify-center font-mono text-[10px] flex-shrink-0 mt-0.5">✓</span>
+                  <span
+                    class="w-5 h-5 rounded-full bg-emerald-500/10 text-emerald-500 flex items-center justify-center font-mono text-[10px] flex-shrink-0 mt-0.5"
+                    >✓</span
+                  >
                   <div>
                     <h4 class="text-sm font-bold text-primary">Caching &amp; Optimization</h4>
-                    <p class="text-xs text-secondary mt-1">Configuring Redis cache pipelines to speed up read-heavy APIs and reduce database query pressure on relational databases.</p>
+                    <p class="text-xs text-secondary mt-1">
+                      Configuring Redis cache pipelines to speed up read-heavy APIs and reduce database query pressure
+                      on relational databases.
+                    </p>
                   </div>
                 </div>
                 <div class="flex gap-3">
-                  <span class="w-5 h-5 rounded-full bg-emerald-500/10 text-emerald-500 flex items-center justify-center font-mono text-[10px] flex-shrink-0 mt-0.5">✓</span>
+                  <span
+                    class="w-5 h-5 rounded-full bg-emerald-500/10 text-emerald-500 flex items-center justify-center font-mono text-[10px] flex-shrink-0 mt-0.5"
+                    >✓</span
+                  >
                   <div>
                     <h4 class="text-sm font-bold text-primary">Security hardening</h4>
-                    <p class="text-xs text-secondary mt-1">Configuring CORS rules, rate limit parameters, JWT/API token encryptions, and sanitizing SQL/NoSQL inputs to block vulnerability risks.</p>
+                    <p class="text-xs text-secondary mt-1">
+                      Configuring CORS rules, rate limit parameters, JWT/API token encryptions, and sanitizing SQL/NoSQL
+                      inputs to block vulnerability risks.
+                    </p>
                   </div>
                 </div>
               </div>
@@ -141,7 +192,9 @@ import Footer from "@/components/Footer.astro";
                 <div class="flex flex-col md:flex-row items-center justify-center gap-4 text-xs font-mono text-center">
                   <div class="p-2 border border-strong rounded bg-surface w-full md:w-32">Client Req</div>
                   <div class="text-emerald-500 hidden md:block">➔</div>
-                  <div class="p-2 border border-emerald-500 rounded bg-emerald-500/10 text-emerald-400 w-full md:w-32">API Gateway</div>
+                  <div class="p-2 border border-emerald-500 rounded bg-emerald-500/10 text-emerald-400 w-full md:w-32">
+                    API Gateway
+                  </div>
                   <div class="text-emerald-500 hidden md:block">➔</div>
                   <div class="p-2 border border-strong rounded bg-surface w-full md:w-32">DB Cache (Redis)</div>
                 </div>
@@ -153,10 +206,16 @@ import Footer from "@/components/Footer.astro";
         <!-- WordPress Engineering -->
         <div class="grid lg:grid-cols-12 gap-12 items-start reveal">
           <div class="lg:col-span-5 lg:sticky lg:top-24 space-y-5">
-            <span class="text-xs font-mono text-amber-500 uppercase tracking-wider bg-amber-500/10 px-3 py-1 rounded-md border border-amber-500/10">03 &mdash; WORDPRESS</span>
+            <span
+              class="text-xs font-mono text-amber-500 uppercase tracking-wider bg-amber-500/10 px-3 py-1 rounded-md border border-amber-500/10"
+              >03 &mdash; WORDPRESS</span
+            >
             <h2 class="t-title text-2xl font-bold">WordPress Engineering</h2>
-            <p class="t-body">Custom plug-ins, headless GraphQL setups, and optimization for enterprise traffic. Active maintainer of plugins with 27,000+ active installs. 7+ years experience in WP actions, hooks, and database schemas.</p>
-            
+            <p class="t-body">
+              Custom plug-ins, headless GraphQL setups, and optimization for enterprise traffic. Active maintainer of
+              plugins with 27,000+ active installs. 7+ years experience in WP actions, hooks, and database schemas.
+            </p>
+
             <div class="grid grid-cols-2 gap-4 pt-3">
               <div class="border border-subtle p-4 rounded-lg bg-surface">
                 <p class="text-[10px] font-mono text-muted uppercase">Combined active installs</p>
@@ -168,30 +227,48 @@ import Footer from "@/components/Footer.astro";
               </div>
             </div>
           </div>
-          
+
           <div class="lg:col-span-7 space-y-6">
             <div class="glass hover-glow-amber p-8 bg-surface border-subtle">
               <h3 class="text-md font-bold text-primary mb-4">Plugin &amp; Headless Capabilities</h3>
               <div class="space-y-4">
                 <div class="flex gap-3">
-                  <span class="w-5 h-5 rounded-full bg-amber-500/10 text-amber-500 flex items-center justify-center font-mono text-[10px] flex-shrink-0 mt-0.5">✓</span>
+                  <span
+                    class="w-5 h-5 rounded-full bg-amber-500/10 text-amber-500 flex items-center justify-center font-mono text-[10px] flex-shrink-0 mt-0.5"
+                    >✓</span
+                  >
                   <div>
                     <h4 class="text-sm font-bold text-primary">Custom Plugin Architecture</h4>
-                    <p class="text-xs text-secondary mt-1">Developing hook-based plugin architectures that run smoothly without slowing down admin panels or public database queries.</p>
+                    <p class="text-xs text-secondary mt-1">
+                      Developing hook-based plugin architectures that run smoothly without slowing down admin panels or
+                      public database queries.
+                    </p>
                   </div>
                 </div>
                 <div class="flex gap-3">
-                  <span class="w-5 h-5 rounded-full bg-amber-500/10 text-amber-500 flex items-center justify-center font-mono text-[10px] flex-shrink-0 mt-0.5">✓</span>
+                  <span
+                    class="w-5 h-5 rounded-full bg-amber-500/10 text-amber-500 flex items-center justify-center font-mono text-[10px] flex-shrink-0 mt-0.5"
+                    >✓</span
+                  >
                   <div>
                     <h4 class="text-sm font-bold text-primary">Headless CMS Setup</h4>
-                    <p class="text-xs text-secondary mt-1">Unlocking WordPress content using WPGraphQL. Integrated with static builders (like Next.js and Astro) for lightning-fast page loading speeds.</p>
+                    <p class="text-xs text-secondary mt-1">
+                      Unlocking WordPress content using WPGraphQL. Integrated with static builders (like Next.js and
+                      Astro) for lightning-fast page loading speeds.
+                    </p>
                   </div>
                 </div>
                 <div class="flex gap-3">
-                  <span class="w-5 h-5 rounded-full bg-amber-500/10 text-amber-500 flex items-center justify-center font-mono text-[10px] flex-shrink-0 mt-0.5">✓</span>
+                  <span
+                    class="w-5 h-5 rounded-full bg-amber-500/10 text-amber-500 flex items-center justify-center font-mono text-[10px] flex-shrink-0 mt-0.5"
+                    >✓</span
+                  >
                   <div>
                     <h4 class="text-sm font-bold text-primary">WooCommerce Integrations</h4>
-                    <p class="text-xs text-secondary mt-1">Building custom shipping rules, subscription handlers, and checkout modifications for WooCommerce platforms.</p>
+                    <p class="text-xs text-secondary mt-1">
+                      Building custom shipping rules, subscription handlers, and checkout modifications for WooCommerce
+                      platforms.
+                    </p>
                   </div>
                 </div>
               </div>
@@ -202,10 +279,16 @@ import Footer from "@/components/Footer.astro";
         <!-- Mobile-First Responsive Design -->
         <div class="grid lg:grid-cols-12 gap-12 items-start reveal">
           <div class="lg:col-span-5 lg:sticky lg:top-24 space-y-5">
-            <span class="text-xs font-mono text-rose-500 uppercase tracking-wider bg-rose-500/10 px-3 py-1 rounded-md border border-rose-500/10">04 &mdash; LAYOUT DESIGN</span>
+            <span
+              class="text-xs font-mono text-rose-500 uppercase tracking-wider bg-rose-500/10 px-3 py-1 rounded-md border border-rose-500/10"
+              >04 &mdash; LAYOUT DESIGN</span
+            >
             <h2 class="t-title text-2xl font-bold">Mobile-First UI Design</h2>
-            <p class="t-body">Designing responsive grid architectures from 320px up. Focused on logical layout reflows, typography scaling, fluid spacing variables, and cross-browser testing.</p>
-            
+            <p class="t-body">
+              Designing responsive grid architectures from 320px up. Focused on logical layout reflows, typography
+              scaling, fluid spacing variables, and cross-browser testing.
+            </p>
+
             <div class="grid grid-cols-2 gap-4 pt-3">
               <div class="border border-subtle p-4 rounded-lg bg-surface">
                 <p class="text-[10px] font-mono text-muted uppercase">Container Queries</p>
@@ -217,30 +300,41 @@ import Footer from "@/components/Footer.astro";
               </div>
             </div>
           </div>
-          
+
           <div class="lg:col-span-7 space-y-6">
             <div class="glass hover-glow-rose p-8 bg-surface border-subtle">
               <h3 class="text-md font-bold text-primary mb-4">Responsive Strategy</h3>
               <div class="space-y-4">
                 <div class="flex gap-3">
-                  <span class="w-5 h-5 rounded-full bg-rose-500/10 text-rose-500 flex items-center justify-center font-mono text-[10px] flex-shrink-0 mt-0.5">✓</span>
+                  <span
+                    class="w-5 h-5 rounded-full bg-rose-500/10 text-rose-500 flex items-center justify-center font-mono text-[10px] flex-shrink-0 mt-0.5"
+                    >✓</span
+                  >
                   <div>
                     <h4 class="text-sm font-bold text-primary">Fluid Typography</h4>
-                    <p class="text-xs text-secondary mt-1">Using CSS variables and clamp mappings to smoothly scale down headings from ultra-bold headers on desktop to readable typography on phone screens.</p>
+                    <p class="text-xs text-secondary mt-1">
+                      Using CSS variables and clamp mappings to smoothly scale down headings from ultra-bold headers on
+                      desktop to readable typography on phone screens.
+                    </p>
                   </div>
                 </div>
                 <div class="flex gap-3">
-                  <span class="w-5 h-5 rounded-full bg-rose-500/10 text-rose-500 flex items-center justify-center font-mono text-[10px] flex-shrink-0 mt-0.5">✓</span>
+                  <span
+                    class="w-5 h-5 rounded-full bg-rose-500/10 text-rose-500 flex items-center justify-center font-mono text-[10px] flex-shrink-0 mt-0.5"
+                    >✓</span
+                  >
                   <div>
                     <h4 class="text-sm font-bold text-primary">Accessibility first (A11y)</h4>
-                    <p class="text-xs text-secondary mt-1">Ensuring screen reader accessibility, semantic HTML elements, high color contrast levels, and interactive focus states for screen readers.</p>
+                    <p class="text-xs text-secondary mt-1">
+                      Ensuring screen reader accessibility, semantic HTML elements, high color contrast levels, and
+                      interactive focus states for screen readers.
+                    </p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-
       </div>
     </section>
   </main>
@@ -248,13 +342,16 @@ import Footer from "@/components/Footer.astro";
 </Layout>
 
 <script>
-  var observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-      }
-    });
-  }, { threshold: 0.05 });
-  
-  document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+  var observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
+      });
+    },
+    { threshold: 0.05 }
+  );
+
+  document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
 </script>

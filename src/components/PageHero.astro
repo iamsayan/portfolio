@@ -1,0 +1,30 @@
+---
+export interface Props {
+  badge: string;
+  title?: string;
+  description: string;
+}
+
+const { badge, title, description } = Astro.props;
+---
+
+<!-- Background Ambient Glow Spotlight -->
+<div
+  class="absolute inset-0 opacity-[0.08] pointer-events-none"
+  style="background:radial-gradient(circle at 80% 30%, var(--accent), transparent 50%)"
+  aria-hidden="true"
+>
+</div>
+
+<!-- Header Hero -->
+<section class="pt-16 pb-20 relative z-10">
+  <div class="mx">
+    <p class="t-mono text-accent uppercase font-bold">{badge}</p>
+    <h1 class="t-heading mt-4 reveal r1">
+      <slot name="title">{title}</slot>
+    </h1>
+    <p class="t-body mt-6 max-w-2xl reveal r2">
+      {description}
+    </p>
+  </div>
+</section>

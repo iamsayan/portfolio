@@ -3,24 +3,31 @@ import { getProfile } from "@/lib/data";
 import { Icon } from "astro-icon/components";
 const profile = await getProfile();
 ---
+
 <footer class="border-t border-subtle bg-deep relative overflow-hidden mt-auto">
   <!-- Glowing ambient light spotlight -->
-  <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[500px] h-[250px] rounded-full bg-[radial-gradient(circle,var(--accent-glow-strong)_0%,transparent_70%)] opacity-30 blur-2xl pointer-events-none" aria-hidden="true"></div>
+  <div
+    class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[500px] h-[250px] rounded-full bg-[radial-gradient(circle,var(--accent-glow-strong)_0%,transparent_70%)] opacity-30 blur-2xl pointer-events-none"
+    aria-hidden="true"
+  >
+  </div>
 
   <div class="mx pt-16">
-
     <!-- Bento Grid Style Footer Layout -->
     <div class="grid lg:grid-cols-12 gap-8 mb-16 border-b border-subtle pb-16">
-      
       <!-- Brand & Status Panel -->
       <div class="lg:col-span-5 space-y-6">
         <div>
           <a href="/" class="flex items-center gap-2.5 group w-fit">
-            <span class="w-8 h-8 rounded-lg bg-accent flex items-center justify-center text-deep font-bold text-sm shadow-md group-hover:rotate-6 transition-transform">S</span>
+            <span
+              class="w-8 h-8 rounded-lg bg-accent flex items-center justify-center text-deep font-bold text-sm shadow-md group-hover:rotate-6 transition-transform"
+              >S</span
+            >
             <span class="font-sans font-extrabold tracking-tight text-primary text-md">Sayan Datta</span>
           </a>
           <p class="text-xs text-secondary mt-4 max-w-sm leading-relaxed font-sans">
-            Full Stack Developer specializing in high-performance WooCommerce plugin architectures, custom payment gateways, secure Laravel backends, and modern frontend systems.
+            Full Stack Developer specializing in high-performance WooCommerce plugin architectures, custom payment
+            gateways, secure Laravel backends, and modern frontend systems.
           </p>
         </div>
 
@@ -28,7 +35,8 @@ const profile = await getProfile();
         <div class="glass p-4 bg-surface border-subtle rounded-xl flex items-center justify-between gap-4 max-w-sm">
           <div class="flex items-center gap-3">
             <span class="relative flex h-2.5 w-2.5" aria-hidden="true">
-              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"
+              ></span>
               <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
             </span>
             <div>
@@ -45,27 +53,48 @@ const profile = await getProfile();
 
       <!-- Quick Directory Navigation -->
       <div class="lg:col-span-3 lg:col-start-7 space-y-4">
-        <span class="text-[10px] font-mono text-primary uppercase font-bold tracking-wider block border-b border-subtle pb-2">Directory</span>
+        <span
+          class="text-[10px] font-mono text-primary uppercase font-bold tracking-wider block border-b border-subtle pb-2"
+          >Directory</span
+        >
         <div class="grid grid-cols-2 gap-x-4 gap-y-2">
           <a href="/" class="text-xs text-secondary hover:text-accent transition-colors flex items-center gap-1 group">
             <span class="text-muted group-hover:text-accent font-mono text-[9px]">&gt;</span> Home
           </a>
-          <a href="/about-me" class="text-xs text-secondary hover:text-accent transition-colors flex items-center gap-1 group">
+          <a
+            href="/about-me"
+            class="text-xs text-secondary hover:text-accent transition-colors flex items-center gap-1 group"
+          >
             <span class="text-muted group-hover:text-accent font-mono text-[9px]">&gt;</span> About
           </a>
-          <a href="/skills" class="text-xs text-secondary hover:text-accent transition-colors flex items-center gap-1 group">
+          <a
+            href="/skills"
+            class="text-xs text-secondary hover:text-accent transition-colors flex items-center gap-1 group"
+          >
             <span class="text-muted group-hover:text-accent font-mono text-[9px]">&gt;</span> Skills
           </a>
-          <a href="/services" class="text-xs text-secondary hover:text-accent transition-colors flex items-center gap-1 group">
+          <a
+            href="/services"
+            class="text-xs text-secondary hover:text-accent transition-colors flex items-center gap-1 group"
+          >
             <span class="text-muted group-hover:text-accent font-mono text-[9px]">&gt;</span> Services
           </a>
-          <a href="/projects" class="text-xs text-secondary hover:text-accent transition-colors flex items-center gap-1 group">
+          <a
+            href="/projects"
+            class="text-xs text-secondary hover:text-accent transition-colors flex items-center gap-1 group"
+          >
             <span class="text-muted group-hover:text-accent font-mono text-[9px]">&gt;</span> Projects
           </a>
-          <a href="/blog" class="text-xs text-secondary hover:text-accent transition-colors flex items-center gap-1 group">
+          <a
+            href="/blog"
+            class="text-xs text-secondary hover:text-accent transition-colors flex items-center gap-1 group"
+          >
             <span class="text-muted group-hover:text-accent font-mono text-[9px]">&gt;</span> Blog
           </a>
-          <a href="/contact" class="text-xs text-secondary hover:text-accent transition-colors flex items-center gap-1 group col-span-2">
+          <a
+            href="/contact"
+            class="text-xs text-secondary hover:text-accent transition-colors flex items-center gap-1 group col-span-2"
+          >
             <span class="text-muted group-hover:text-accent font-mono text-[9px]">&gt;</span> Contact
           </a>
         </div>
@@ -73,46 +102,95 @@ const profile = await getProfile();
 
       <!-- Developer Connect & Profiles Panel -->
       <div class="lg:col-span-3 space-y-4">
-        <span class="text-[10px] font-mono text-primary uppercase font-bold tracking-wider block border-b border-subtle pb-2">Connect Channels</span>
+        <span
+          class="text-[10px] font-mono text-primary uppercase font-bold tracking-wider block border-b border-subtle pb-2"
+          >Connect Channels</span
+        >
         <div class="space-y-3">
-          <a href={profile.socials.github} target="_blank" rel="noopener noreferrer" class="glass px-3 py-2 bg-surface hover:border-accent flex items-center justify-between text-xs text-secondary hover:text-accent transition-all rounded-lg group" aria-label="GitHub Profile">
+          <a
+            href={profile.socials.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="glass px-3 py-2 bg-surface hover:border-accent flex items-center justify-between text-xs text-secondary hover:text-accent transition-all rounded-lg group"
+            aria-label="GitHub Profile"
+          >
             <span class="flex items-center gap-2">
               <Icon name="ph:github-logo" class="w-3.5 h-3.5" aria-hidden="true" />
               GitHub
             </span>
-            <span class="text-[9px] font-mono opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden="true">&rarr;</span>
+            <span class="text-[9px] font-mono opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden="true"
+              >&rarr;</span
+            >
           </a>
-          <a href={profile.socials.linkedin} target="_blank" rel="noopener noreferrer" class="glass px-3 py-2 bg-surface hover:border-accent flex items-center justify-between text-xs text-secondary hover:text-accent transition-all rounded-lg group" aria-label="LinkedIn Profile">
+          <a
+            href={profile.socials.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="glass px-3 py-2 bg-surface hover:border-accent flex items-center justify-between text-xs text-secondary hover:text-accent transition-all rounded-lg group"
+            aria-label="LinkedIn Profile"
+          >
             <span class="flex items-center gap-2">
               <Icon name="ph:linkedin-logo" class="w-3.5 h-3.5" aria-hidden="true" />
               LinkedIn
             </span>
-            <span class="text-[9px] font-mono opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden="true">&rarr;</span>
+            <span class="text-[9px] font-mono opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden="true"
+              >&rarr;</span
+            >
           </a>
-          <a href={profile.socials.twitter} target="_blank" rel="noopener noreferrer" class="glass px-3 py-2 bg-surface hover:border-accent flex items-center justify-between text-xs text-secondary hover:text-accent transition-all rounded-lg group" aria-label="Twitter Profile">
+          <a
+            href={profile.socials.twitter}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="glass px-3 py-2 bg-surface hover:border-accent flex items-center justify-between text-xs text-secondary hover:text-accent transition-all rounded-lg group"
+            aria-label="Twitter Profile"
+          >
             <span class="flex items-center gap-2">
               <Icon name="ph:x-logo" class="w-3.5 h-3.5" aria-hidden="true" />
               Twitter / X
             </span>
-            <span class="text-[9px] font-mono opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden="true">&rarr;</span>
+            <span class="text-[9px] font-mono opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden="true"
+              >&rarr;</span
+            >
           </a>
         </div>
       </div>
     </div>
-    
+
     <!-- Health Indicators & Copyright Metadata -->
     <div class="flex flex-col md:flex-row items-center justify-between gap-6 pb-12">
       <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
-        <p class="text-[10px] font-mono text-secondary">© {new Date().getFullYear()} Sayan Datta. All rights reserved.</p>
+        <p class="text-[10px] font-mono text-secondary">
+          © {new Date().getFullYear()} Sayan Datta. All rights reserved.
+        </p>
         <span class="text-muted hidden md:inline" aria-hidden="true">|</span>
-        <a href="/resume.pdf" class="text-[10px] font-mono text-muted hover:text-accent" target="_blank" rel="noopener noreferrer">print_resume.pdf</a>
+        <a
+          href="/resume.pdf"
+          class="text-[10px] font-mono text-muted hover:text-accent"
+          target="_blank"
+          rel="noopener noreferrer">print_resume.pdf</a
+        >
         <span class="text-muted hidden md:inline" aria-hidden="true">|</span>
-        <a href="/robots.txt" class="text-[10px] font-mono text-muted hover:text-accent" target="_blank" rel="noopener noreferrer">robots.txt</a>
+        <a
+          href="/robots.txt"
+          class="text-[10px] font-mono text-muted hover:text-accent"
+          target="_blank"
+          rel="noopener noreferrer">robots.txt</a
+        >
       </div>
-      <div class="flex items-center gap-4 flex-wrap justify-center select-none" aria-label="System telemetry stats" role="group">
-        <span class="text-[9px] font-mono px-2 py-0.5 rounded bg-surface border border-subtle text-muted">build: passing</span>
-        <span class="text-[9px] font-mono px-2 py-0.5 rounded bg-surface border border-subtle text-muted">nodes: sitemap (11)</span>
-        <span class="text-[9px] font-mono px-2 py-0.5 rounded bg-surface border border-subtle text-muted">engine: Astro v7</span>
+      <div
+        class="flex items-center gap-4 flex-wrap justify-center select-none"
+        aria-label="System telemetry stats"
+        role="group"
+      >
+        <span class="text-[9px] font-mono px-2 py-0.5 rounded bg-surface border border-subtle text-muted"
+          >build: passing</span
+        >
+        <span class="text-[9px] font-mono px-2 py-0.5 rounded bg-surface border border-subtle text-muted"
+          >nodes: sitemap (11)</span
+        >
+        <span class="text-[9px] font-mono px-2 py-0.5 rounded bg-surface border border-subtle text-muted"
+          >engine: Astro v7</span
+        >
       </div>
     </div>
   </div>
@@ -122,15 +200,15 @@ const profile = await getProfile();
   function updateTime() {
     const el = document.getElementById("local-time");
     if (!el) return;
-    
+
     const options: Intl.DateTimeFormatOptions = {
       timeZone: "Asia/Kolkata",
       hour: "2-digit",
       minute: "2-digit",
       second: "2-digit",
-      hour12: true
+      hour12: true,
     };
-    
+
     try {
       const timeStr = new Date().toLocaleTimeString("en-US", options);
       el.textContent = timeStr;
@@ -139,7 +217,7 @@ const profile = await getProfile();
       el.textContent = d.toUTCString();
     }
   }
-  
+
   // Start clock
   updateTime();
   setInterval(updateTime, 1000);

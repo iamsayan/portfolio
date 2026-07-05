@@ -68,41 +68,41 @@ export interface FAQItem {
 }
 
 export async function getProfile(): Promise<ProfileData> {
-  const data = await import('../data/profile.json');
+  const data = await import("../data/profile.json");
   return data.default as ProfileData;
 }
 
 export async function getExperience(): Promise<ExperienceItem[]> {
-  const data = await import('../data/experience.json');
+  const data = await import("../data/experience.json");
   return data.default as ExperienceItem[];
 }
 
 export async function getProjects(): Promise<ProjectItem[]> {
-  const data = await import('../data/projects.json');
+  const data = await import("../data/projects.json");
   return data.default as ProjectItem[];
 }
 
 export async function getSkills(): Promise<SkillsData> {
-  const data = await import('../data/skills.json');
+  const data = await import("../data/skills.json");
   return data.default as SkillsData;
 }
 
 export async function getPhilosophy() {
-  const data = await import('../data/philosophy.json');
+  const data = await import("../data/philosophy.json");
   return data.default;
 }
 
 export async function getFAQs(): Promise<FAQItem[]> {
-  const data = await import('../data/FAQs.json');
+  const data = await import("../data/FAQs.json");
   return data.default as FAQItem[];
 }
 
 export async function getTestimonials() {
-  const data = await import('../data/testimonials.json');
+  const data = await import("../data/testimonials.json");
   return data.default;
 }
 
 export async function getStatistics() {
-  const data = await import('../data/statistics.json');
+  const data = await import("../data/statistics.json");
   return data.default;
 }

@@ -17,14 +17,22 @@ const { post } = Astro.props;
 
 <Layout title={`${post.title} — Sayan Datta`} description={post.description}>
   <Header />
-  <main id="main-content">
-    <article class="pt-32 pb-28 relative">
+  <main id="main-content" class="py-24 relative overflow-hidden">
+    <article class="pt-16 pb-28 relative z-10">
       <!-- Glow background behind post title -->
-      <div class="absolute top-0 inset-x-0 h-[40vh] opacity-[0.04] pointer-events-none" style="background:radial-gradient(circle at 50% 30%, var(--accent), transparent 70%)" aria-hidden="true"></div>
+      <div
+        class="absolute inset-0 opacity-[0.08] pointer-events-none"
+        style="background:radial-gradient(circle at 80% 30%, var(--accent), transparent 50%)"
+        aria-hidden="true"
+      >
+      </div>
 
       <div class="mx-narrow relative z-10">
         <!-- Back Button -->
-        <a href="/blog" class="back-link t-mono hover:text-accent transition-colors inline-flex items-center gap-1.5 mb-8 group text-[10px] cursor-pointer">
+        <a
+          href="/blog"
+          class="back-link t-mono hover:text-accent transition-colors inline-flex items-center gap-1.5 mb-8 group text-[10px] cursor-pointer"
+        >
           <span class="group-hover:-translate-x-1 transition-transform" aria-hidden="true">&larr;</span>
           <span>Back to Feed</span>
         </a>
@@ -60,10 +68,14 @@ const { post } = Astro.props;
               <h3 class="text-sm font-bold text-primary">Staged Draft — Integration in Progress</h3>
             </div>
             <p class="text-xs text-secondary leading-relaxed font-sans">
-              The full publication text is currently staged as a draft. Once Sayan configures the primary API collection endpoints inside <code class="px-1 py-0.5 rounded bg-deep border border-subtle font-mono text-[10px]">src/lib/blog.ts</code>, this route will automatically sync and stream content directly from Cockpit CMS.
+              The full publication text is currently staged as a draft. Once Sayan configures the primary API collection
+              endpoints inside <code class="px-1 py-0.5 rounded bg-deep border border-subtle font-mono text-[10px]"
+                >src/lib/blog.ts</code
+              >, this route will automatically sync and stream content directly from Cockpit CMS.
             </p>
             <p class="text-xs text-secondary leading-relaxed font-sans">
-              Stay tuned for in-depth insights into headless platforms, database query latency reductions, and modern JavaScript static pre-rendering pipelines.
+              Stay tuned for in-depth insights into headless platforms, database query latency reductions, and modern
+              JavaScript static pre-rendering pipelines.
             </p>
           </div>
         </div>

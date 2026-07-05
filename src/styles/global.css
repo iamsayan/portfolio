@@ -6,43 +6,43 @@
   --bg-surface: #09090f;
   --bg-raised: #111119;
   --bg-glass: rgba(9, 9, 15, 0.75);
-  
+
   --border-subtle: rgba(255, 255, 255, 0.035);
   --border-strong: rgba(255, 255, 255, 0.08);
-  
+
   --text-primary: #f8f9fa;
   --text-secondary: #a0a6b5;
   --text-muted: #5e6473;
-  
+
   /* Primary Accent & Brightness */
   --accent: #f43f5e;
   --accent-bright: #ec4899;
   --accent-glow: rgba(244, 63, 94, 0.12);
   --accent-glow-strong: rgba(244, 63, 94, 0.25);
-  
+
   /* Static Scrollbar variables to prevent instant flashes */
   --scrollbar-track: #030306;
   --scrollbar-thumb: rgba(255, 255, 255, 0.07);
   --scrollbar-thumb-hover: #f43f5e;
-  
+
   /* Specular Highlight Shadow Variables (Vercel & Linear Spec) */
   --shadow-glass: 0 10px 30px -10px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.06);
-  
+
   /* Colorful Gradient Theme Options */
   --gradient-rose-purple: linear-gradient(135deg, #f43f5e 0%, #a855f7 50%, #6366f1 100%);
   --gradient-cyan-emerald: linear-gradient(135deg, #06b6d4 0%, #10b981 100%);
   --gradient-amber-rose: linear-gradient(135deg, #f59e0b 0%, #e11d48 100%);
   --gradient-blue-violet: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
-  
+
   --success: #10b981;
   --success-glow: rgba(16, 185, 129, 0.15);
   --radius-sm: 0.5rem;
   --radius: 0.85rem;
   --radius-lg: 1.25rem;
-  
-  --font-display: "Outfit", system-ui, -apple-system, sans-serif;
-  --font-sans: "Outfit", system-ui, -apple-system, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --font-display: "Geist", system-ui, -apple-system, sans-serif;
+  --font-sans: "Geist", system-ui, -apple-system, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, monospace;
 }
 
 :root.light {
@@ -50,26 +50,27 @@
   --bg-surface: #ffffff;
   --bg-raised: #f1f5f9;
   --bg-glass: rgba(255, 255, 255, 0.82);
-  
+
   --border-subtle: rgba(15, 23, 42, 0.035);
   --border-strong: rgba(15, 23, 42, 0.09);
-  
+
   --text-primary: #0f172a;
   --text-secondary: #475569;
   --text-muted: #64748b;
-  
+
   --accent: #e11d48;
   --accent-bright: #be123c;
   --accent-glow: rgba(225, 29, 72, 0.05);
   --accent-glow-strong: rgba(225, 29, 72, 0.12);
-  
-  --shadow-glass: 0 10px 25px -5px rgba(15, 23, 42, 0.05), 0 1px 3px rgba(15, 23, 42, 0.02), inset 0 1px 0 rgba(255, 255, 255, 0.8);
-  
+
+  --shadow-glass:
+    0 10px 25px -5px rgba(15, 23, 42, 0.05), 0 1px 3px rgba(15, 23, 42, 0.02), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+
   --gradient-rose-purple: linear-gradient(135deg, #be123c 0%, #7e22ce 50%, #4338ca 100%);
   --gradient-cyan-emerald: linear-gradient(135deg, #0e7490 0%, #047857 100%);
   --gradient-amber-rose: linear-gradient(135deg, #b45309 0%, #be123c 100%);
   --gradient-blue-violet: linear-gradient(135deg, #1d4ed8 0%, #6d28d9 100%);
-  
+
   --success: #047857;
   --success-glow: rgba(4, 120, 87, 0.08);
 }
@@ -88,14 +89,16 @@
   --color-accent-glow: var(--accent-glow);
   --color-success-glow: var(--success-glow);
 
-  --font-sans: "Outfit", system-ui, -apple-system, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, monospace;
-  --font-display: "Outfit", system-ui, -apple-system, sans-serif;
+  --font-sans: "Geist", system-ui, -apple-system, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, monospace;
+  --font-display: "Geist", system-ui, -apple-system, sans-serif;
 }
 
 /* ── Base ─────────────────────────────────────────────── */
 @layer base {
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     box-sizing: border-box;
   }
   html {
@@ -119,16 +122,32 @@
     position: relative;
     overflow-x: hidden;
   }
-  
+
   /* Unified Transition System for theme switching */
-  body, p, h1, h2, h3, h4, h5, h6, span, a, input, textarea, button, .glass, .tag, .status-badge {
-    transition: background-color 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), 
-                color 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), 
-                border-color 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), 
-                text-shadow 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
-                box-shadow 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  body,
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  span,
+  a,
+  input,
+  textarea,
+  button,
+  .glass,
+  .tag,
+  .status-badge {
+    transition:
+      background-color 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+      color 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+      border-color 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+      text-shadow 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+      box-shadow 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
   }
-  
+
   ::selection {
     background: var(--accent);
     color: #fff;
@@ -153,7 +172,9 @@
     border-radius: 4px;
   }
   @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
+    *,
+    *::before,
+    *::after {
       animation-duration: 0.01ms !important;
       transition-duration: 0.01ms !important;
     }
@@ -174,7 +195,7 @@
   z-index: 0;
   pointer-events: none;
   background-size: 50px 50px;
-  background-image: 
+  background-image:
     linear-gradient(to right, var(--border-subtle) 1px, transparent 1px),
     linear-gradient(to bottom, var(--border-subtle) 1px, transparent 1px);
   mask-image: radial-gradient(ellipse at 50% 50%, black 50%, transparent 100%);
@@ -220,13 +241,19 @@ body::before {
     font-size: 1.05rem;
     line-height: 1.75;
     color: var(--text-secondary);
-    text-shadow: 0 0 8px var(--bg-deep), 0 0 8px var(--bg-deep), 0 0 12px var(--bg-deep);
+    text-shadow:
+      0 0 8px var(--bg-deep),
+      0 0 8px var(--bg-deep),
+      0 0 12px var(--bg-deep);
   }
   .t-body-sm {
     font-size: 0.9rem;
     line-height: 1.65;
     color: var(--text-muted);
-    text-shadow: 0 0 8px var(--bg-deep), 0 0 8px var(--bg-deep), 0 0 12px var(--bg-deep);
+    text-shadow:
+      0 0 8px var(--bg-deep),
+      0 0 8px var(--bg-deep),
+      0 0 12px var(--bg-deep);
   }
   .t-mono {
     font-family: var(--font-mono);
@@ -235,9 +262,11 @@ body::before {
     font-weight: 600;
     color: var(--text-muted);
     text-transform: uppercase;
-    text-shadow: 0 0 8px var(--bg-deep), 0 0 8px var(--bg-deep);
+    text-shadow:
+      0 0 8px var(--bg-deep),
+      0 0 8px var(--bg-deep);
   }
-  
+
   /* Color Text Gradients */
   .t-accent {
     background: var(--gradient-rose-purple);
@@ -271,10 +300,15 @@ body::before {
 
 /* ── Global Text Readability overrides ────────────────── */
 p {
-  text-shadow: 0 0 8px var(--bg-deep), 0 0 8px var(--bg-deep), 0 0 12px var(--bg-deep);
+  text-shadow:
+    0 0 8px var(--bg-deep),
+    0 0 8px var(--bg-deep),
+    0 0 12px var(--bg-deep);
 }
 .prose p {
-  text-shadow: 0 0 8px var(--bg-deep), 0 0 8px var(--bg-deep);
+  text-shadow:
+    0 0 8px var(--bg-deep),
+    0 0 8px var(--bg-deep);
 }
 
 /* ── Layout ───────────────────────────────────────────── */
@@ -301,61 +335,81 @@ p {
     border-radius: var(--radius);
     box-shadow: var(--shadow-glass);
   }
-  
+
   .glass:hover {
     border-color: var(--border-strong);
   }
-  
+
   /* Category Specific Glowing Hover Outlines */
   .hover-glow-rose:hover {
     border-color: rgba(244, 63, 94, 0.3) !important;
-    box-shadow: 0 12px 35px -5px rgba(244, 63, 94, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.035) !important;
+    box-shadow:
+      0 12px 35px -5px rgba(244, 63, 94, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 0.035) !important;
   }
   .light .hover-glow-rose:hover {
     border-color: rgba(225, 29, 72, 0.25) !important;
-    box-shadow: 0 12px 30px -5px rgba(225, 29, 72, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.6) !important;
+    box-shadow:
+      0 12px 30px -5px rgba(225, 29, 72, 0.06),
+      inset 0 1px 0 rgba(255, 255, 255, 0.6) !important;
   }
-  
+
   .hover-glow-blue:hover {
     border-color: rgba(59, 130, 246, 0.3) !important;
-    box-shadow: 0 12px 35px -5px rgba(59, 130, 246, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.035) !important;
+    box-shadow:
+      0 12px 35px -5px rgba(59, 130, 246, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 0.035) !important;
   }
   .light .hover-glow-blue:hover {
     border-color: rgba(37, 99, 235, 0.25) !important;
-    box-shadow: 0 12px 30px -5px rgba(37, 99, 235, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.6) !important;
+    box-shadow:
+      0 12px 30px -5px rgba(37, 99, 235, 0.06),
+      inset 0 1px 0 rgba(255, 255, 255, 0.6) !important;
   }
-  
+
   .hover-glow-emerald:hover {
     border-color: rgba(16, 185, 129, 0.3) !important;
-    box-shadow: 0 12px 35px -5px rgba(16, 185, 129, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.035) !important;
+    box-shadow:
+      0 12px 35px -5px rgba(16, 185, 129, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 0.035) !important;
   }
   .light .hover-glow-emerald:hover {
     border-color: rgba(5, 150, 105, 0.25) !important;
-    box-shadow: 0 12px 30px -5px rgba(5, 150, 105, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.6) !important;
+    box-shadow:
+      0 12px 30px -5px rgba(5, 150, 105, 0.06),
+      inset 0 1px 0 rgba(255, 255, 255, 0.6) !important;
   }
-  
+
   .hover-glow-amber:hover {
     border-color: rgba(245, 158, 11, 0.3) !important;
-    box-shadow: 0 12px 35px -5px rgba(245, 158, 11, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.035) !important;
+    box-shadow:
+      0 12px 35px -5px rgba(245, 158, 11, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 0.035) !important;
   }
   .light .hover-glow-amber:hover {
     border-color: rgba(217, 119, 6, 0.25) !important;
-    box-shadow: 0 12px 30px -5px rgba(217, 119, 6, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.6) !important;
+    box-shadow:
+      0 12px 30px -5px rgba(217, 119, 6, 0.06),
+      inset 0 1px 0 rgba(255, 255, 255, 0.6) !important;
   }
-  
+
   .hover-glow-purple:hover {
     border-color: rgba(168, 85, 247, 0.3) !important;
-    box-shadow: 0 12px 35px -5px rgba(168, 85, 247, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.035) !important;
+    box-shadow:
+      0 12px 35px -5px rgba(168, 85, 247, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 0.035) !important;
   }
   .light .hover-glow-purple:hover {
     border-color: rgba(147, 51, 234, 0.25) !important;
-    box-shadow: 0 12px 30px -5px rgba(147, 51, 234, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.6) !important;
+    box-shadow:
+      0 12px 30px -5px rgba(147, 51, 234, 0.06),
+      inset 0 1px 0 rgba(255, 255, 255, 0.6) !important;
   }
-  
+
   .glass-glow {
     position: relative;
   }
-  
+
   .glass-glow::after {
     content: "";
     position: absolute;
@@ -363,15 +417,19 @@ p {
     border-radius: inherit;
     padding: 1px;
     background: linear-gradient(135deg, var(--accent-glow) 0%, transparent 60%);
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
     pointer-events: none;
     opacity: 0.8;
     transition: opacity 0.4s ease;
   }
-  
+
   .glass-glow:hover::after {
     background: linear-gradient(135deg, var(--accent) 0%, transparent 60%);
   }
@@ -481,8 +539,15 @@ p {
 }
 
 @keyframes pulse-ring {
-  0% { transform: scale(0.95); opacity: 0.9; }
-  80%, 100% { transform: scale(2.8); opacity: 0; }
+  0% {
+    transform: scale(0.95);
+    opacity: 0.9;
+  }
+  80%,
+  100% {
+    transform: scale(2.8);
+    opacity: 0;
+  }
 }
 
 /* ── Divider ──────────────────────────────────────────── */
@@ -498,18 +563,30 @@ p {
 .reveal {
   opacity: 0;
   transform: translateY(25px);
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transition:
+    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform, opacity;
 }
 .reveal.visible {
   opacity: 1;
   transform: translateY(0);
 }
-.r1 { transition-delay: 0.08s; }
-.r2 { transition-delay: 0.16s; }
-.r3 { transition-delay: 0.24s; }
-.r4 { transition-delay: 0.32s; }
-.r5 { transition-delay: 0.4s; }
+.r1 {
+  transition-delay: 0.08s;
+}
+.r2 {
+  transition-delay: 0.16s;
+}
+.r3 {
+  transition-delay: 0.24s;
+}
+.r4 {
+  transition-delay: 0.32s;
+}
+.r5 {
+  transition-delay: 0.4s;
+}
 
 /* ── Mock IDE Terminal Layout ────────────────────────── */
 .terminal-window {
@@ -554,7 +631,9 @@ p {
   animation: blink-cursor 1s steps(2, start) infinite;
 }
 @keyframes blink-cursor {
-  to { visibility: hidden; }
+  to {
+    visibility: hidden;
+  }
 }
 
 /* ── Vertical Timeline Styles ─────────────────────────── */
@@ -569,7 +648,13 @@ p {
   top: 8px;
   bottom: 8px;
   width: 2px;
-  background: linear-gradient(to bottom, var(--accent) 0%, var(--border-strong) 40%, var(--border-strong) 80%, transparent 100%);
+  background: linear-gradient(
+    to bottom,
+    var(--accent) 0%,
+    var(--border-strong) 40%,
+    var(--border-strong) 80%,
+    transparent 100%
+  );
 }
 .timeline-node {
   position: absolute;
@@ -655,7 +740,8 @@ p {
 .light .prose pre code {
   color: #24292e;
 }
-.prose ul, .prose ol {
+.prose ul,
+.prose ol {
   padding-left: 1.5em;
   margin-bottom: 1.35em;
 }

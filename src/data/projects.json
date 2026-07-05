@@ -13,9 +13,7 @@
     "role": "Sole Architect & Product Owner",
     "challenges": "Ensuring client-side validation checkouts remain secure without introducing intermediary database server latency.",
     "impact": "Successfully acquired after gaining strong adoption within the WooCommerce ecosystem.",
-    "links": [
-      { "label": "Case Reference", "url": "https://sayandatta.co.in" }
-    ]
+    "links": [{ "label": "Case Reference", "url": "https://sayandatta.co.in" }]
   },
   {
     "title": "Razorpay Payment Links for WooCommerce",
@@ -31,9 +29,7 @@
     "role": "Sole Developer",
     "challenges": "Integrating hooks into the WooCommerce checkout lifecycle safely without blocking order status triggers.",
     "impact": "Successfully acquired after gaining strong adoption within the WooCommerce ecosystem.",
-    "links": [
-      { "label": "Case Reference", "url": "https://sayandatta.co.in" }
-    ]
+    "links": [{ "label": "Case Reference", "url": "https://sayandatta.co.in" }]
   },
   {
     "title": "WP Last Modified Info",
@@ -49,9 +45,7 @@
     "role": "Creator & Lead Maintainer",
     "challenges": "Ensuring structural integrity across both Gutenberg layouts and dynamic legacy theme templates.",
     "impact": "Reached over 20,000+ active installs and 1,000,000+ downloads (verified via [WordPress.org Plugin Stats](https://wordpress.org/plugins/wp-last-modified-info/advanced/)).",
-    "links": [
-      { "label": "WordPress Directory", "url": "https://wordpress.org/plugins/wp-last-modified-info/" }
-    ]
+    "links": [{ "label": "WordPress Directory", "url": "https://wordpress.org/plugins/wp-last-modified-info/" }]
   },
   {
     "title": "RevivePress",
@@ -67,9 +61,7 @@
     "role": "Core Architect & Co-Maintainer",
     "challenges": "Managing concurrent cron task queues safely across varied shared web hosting configurations.",
     "impact": "Maintained at 7,000+ active installs with high user satisfaction ratings on the official repository.",
-    "links": [
-      { "label": "WordPress Directory", "url": "https://wordpress.org/plugins/revivepress/" }
-    ]
+    "links": [{ "label": "WordPress Directory", "url": "https://wordpress.org/plugins/revivepress/" }]
   },
   {
     "title": "Gutena Blocks & Theme",

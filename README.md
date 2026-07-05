@@ -6,16 +6,16 @@ A premium, high-performance developer portfolio built with **Astro v7**, **React
 
 ## 🚀 Key Features
 
-* **Dynamic JSON Data Layer**: The entire website content is powered by structural schemas in `src/data/`. Updating these JSON files updates the site content dynamically.
-* **Tailwind CSS v4 Design Tokens**: Uses Tailwind v4 inline theme variables mapped inside `global.css`, allowing clean color classes like `bg-surface`, `bg-deep`, `border-subtle`, and `text-primary`.
-* **Interactive Code Playground**: Features an interactive mockup IDE on the homepage showcasing a real-world WooCommerce UPI payment gateway architecture across cohesive files (`plugin.php`, `gateway.ts`, `composer.json`).
-* **Real Contact Form Routing**: Integrates directly with **Formspree AJAX API** with built-in loading states, visual validation logs, and a clean fallback email action if routing gets blocked.
-* **SEO & Crawl Engine Optimization**:
+- **Dynamic JSON Data Layer**: The entire website content is powered by structural schemas in `src/data/`. Updating these JSON files updates the site content dynamically.
+- **Tailwind CSS v4 Design Tokens**: Uses Tailwind v4 inline theme variables mapped inside `global.css`, allowing clean color classes like `bg-surface`, `bg-deep`, `border-subtle`, and `text-primary`.
+- **Interactive Code Playground**: Features an interactive mockup IDE on the homepage showcasing a real-world WooCommerce UPI payment gateway architecture across cohesive files (`plugin.php`, `gateway.ts`, `composer.json`).
+- **Real Contact Form Routing**: Integrates directly with **Formspree AJAX API** with built-in loading states, visual validation logs, and a clean fallback email action if routing gets blocked.
+- **SEO & Crawl Engine Optimization**:
   - Full structured schema data (`application/ld+json`).
   - Dynamic XML sitemaps using `@astrojs/sitemap`.
   - robots.txt crawl directives.
   - Proper canonical URL linkages and Open Graph meta fallbacks.
-* **WCAG AA Accessibility Compliant**: Keyboard focus indicators (`:focus-visible`), aria screen-reader descriptions, and skip-to-content links.
+- **WCAG AA Accessibility Compliant**: Keyboard focus indicators (`:focus-visible`), aria screen-reader descriptions, and skip-to-content links.
 
 ---
 
@@ -60,12 +60,12 @@ A premium, high-performance developer portfolio built with **Astro v7**, **React
 
 All terminal commands are run from the project root directory:
 
-| Command | Action |
-| :--- | :--- |
-| `npm install` | Installs project dependency nodes. |
-| `npm run dev` | Starts local development server at `localhost:4321` (live-reloading). |
-| `npm run build` | Compiles a production-ready static bundle under `dist/`. |
-| `npm run preview` | Spins up a local preview server for built static pages. |
+| Command           | Action                                                                |
+| :---------------- | :-------------------------------------------------------------------- |
+| `npm install`     | Installs project dependency nodes.                                    |
+| `npm run dev`     | Starts local development server at `localhost:4321` (live-reloading). |
+| `npm run build`   | Compiles a production-ready static bundle under `dist/`.              |
+| `npm run preview` | Spins up a local preview server for built static pages.               |
 
 ---
 
@@ -74,7 +74,9 @@ All terminal commands are run from the project root directory:
 To update the data rendered on the portfolio, modify the respective schemas in the `/src/data/` folder:
 
 ### 1. Personal & Contact Settings (`profile.json`)
+
 Manage operational locations, email addresses, bios, social channels, and Formspree endpoints:
+
 ```json
 {
   "name": "Sayan Datta",
@@ -91,7 +93,9 @@ Manage operational locations, email addresses, bios, social channels, and Formsp
 ```
 
 ### 2. Experience Milestones (`experience.json`)
+
 Describe career timelines. Focus on outcomes, measurable speedups, and engineering metrics:
+
 ```json
 [
   {
@@ -108,7 +112,9 @@ Describe career timelines. Focus on outcomes, measurable speedups, and engineeri
 ```
 
 ### 3. Project Showcase Logs (`projects.json`)
+
 Document projects in a problem-solution format, listing development roles, technical stacks, and measurable impact:
+
 ```json
 [
   {
