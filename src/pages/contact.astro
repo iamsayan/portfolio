@@ -53,11 +53,20 @@ const faqs = await getFAQs();
                 </span>
                 <div>
                   <p class="text-[10px] font-mono text-muted uppercase tracking-wider">Direct Channels</p>
-                  <a
-                    href={`mailto:${profile.email}`}
-                    class="text-sm font-semibold text-accent hover:text-accent-bright transition-colors mt-1 block"
-                    >{profile.email}</a
-                  >
+                  <div class="flex items-center gap-2 mt-1">
+                    <a
+                      href={`mailto:${profile.email}`}
+                      class="text-sm font-semibold text-accent hover:text-accent-bright transition-colors block"
+                      >{profile.email}</a
+                    >
+                    <button
+                      class="copy-email-btn text-muted hover:text-accent transition-colors cursor-pointer flex items-center justify-center p-0.5 rounded"
+                      data-email={profile.email}
+                      aria-label="Copy email to clipboard"
+                    >
+                      <Icon name="ph:copy" class="w-3.5 h-3.5" />
+                    </button>
+                  </div>
                 </div>
               </div>
 

@@ -35,12 +35,13 @@ const profile = await getProfile();
         <div class="glass p-4 bg-surface border-subtle rounded-xl flex items-center justify-between gap-4 max-w-sm">
           <div class="flex items-center gap-3">
             <span class="relative flex h-2.5 w-2.5" aria-hidden="true">
-              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"
-              ></span>
-              <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+              <span
+                id="status-ping"
+                class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span id="status-dot" class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
             </span>
             <div>
-              <span class="text-[9px] font-mono text-muted uppercase block">Kolkata, IN</span>
+              <span id="status-label" class="text-[9px] font-mono text-muted uppercase block">Kolkata, IN</span>
               <span id="local-time" class="text-xs font-mono text-primary font-bold">--:--:--</span>
             </div>
           </div>
@@ -191,6 +192,10 @@ const profile = await getProfile();
         <span class="text-[9px] font-mono px-2 py-0.5 rounded bg-surface border border-subtle text-muted"
           >engine: Astro v7</span
         >
+        <span
+          class="text-[9px] font-mono px-2 py-0.5 rounded bg-surface border border-accent/20 text-accent font-semibold"
+          >hotkeys: "?" enabled</span
+        >
       </div>
     </div>
   </div>
@@ -210,8 +215,33 @@ const profile = await getProfile();
     };
 
     try {
-      const timeStr = new Date().toLocaleTimeString("en-US", options);
+      const now = new Date();
+      const timeStr = now.toLocaleTimeString("en-US", options);
       el.textContent = timeStr;
+
+      // Sleep availability detector based on Kolkata local time hour
+      const hourFormatter = new Intl.DateTimeFormat("en-US", {
+        timeZone: "Asia/Kolkata",
+        hour: "numeric",
+        hour12: false,
+      });
+      const localHour = parseInt(hourFormatter.format(now), 10);
+      const isSleeping = localHour >= 23 || localHour < 7;
+
+      const ping = document.getElementById("status-ping");
+      const dot = document.getElementById("status-dot");
+      const label = document.getElementById("status-label");
+
+      if (isSleeping) {
+        if (ping) ping.className = "absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-50";
+        if (dot) dot.className = "relative inline-flex rounded-full h-2.5 w-2.5 bg-amber-500";
+        if (label) label.textContent = "Kolkata, IN (Sleeping)";
+      } else {
+        if (ping)
+          ping.className = "animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75";
+        if (dot) dot.className = "relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500";
+        if (label) label.textContent = "Kolkata, IN (Coding)";
+      }
     } catch (e) {
       const d = new Date();
       el.textContent = d.toUTCString();

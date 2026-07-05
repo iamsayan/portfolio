@@ -56,8 +56,8 @@ Welcome! This document outlines architectural principles, coding rules, and cons
 - **Use Astro Icon**: Never write custom, raw inline SVGs for standard icons. Always use the `astro-icon` library with Phosphor Icon pack (`@iconify-json/ph`).
 - **Syntax**:
   ```astro
-  import { Icon } from "astro-icon/components";
-  
+  import {Icon} from "astro-icon/components";
+
   <Icon name="ph:arrow-right" class="w-4 h-4" aria-hidden="true" />
   ```
 - **Exceptions**: Custom graphic shapes representing custom coordinate vector charts (such as load speed line graphs) may remain as inline path elements.
