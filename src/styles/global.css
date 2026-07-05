@@ -75,16 +75,18 @@
 }
 
 @theme inline {
-  --color-bg-deep: var(--bg-deep);
-  --color-bg-surface: var(--bg-surface);
-  --color-bg-raised: var(--bg-raised);
-  --color-border-subtle: var(--border-subtle);
-  --color-border-strong: var(--border-strong);
-  --color-text-primary: var(--text-primary);
-  --color-text-secondary: var(--text-secondary);
-  --color-text-muted: var(--text-muted);
+  --color-deep: var(--bg-deep);
+  --color-surface: var(--bg-surface);
+  --color-raised: var(--bg-raised);
+  --color-subtle: var(--border-subtle);
+  --color-strong: var(--border-strong);
+  --color-primary: var(--text-primary);
+  --color-secondary: var(--text-secondary);
+  --color-muted: var(--text-muted);
   --color-accent: var(--accent);
   --color-accent-bright: var(--accent-bright);
+  --color-accent-glow: var(--accent-glow);
+  --color-success-glow: var(--success-glow);
 
   --font-sans: "Outfit", system-ui, -apple-system, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;

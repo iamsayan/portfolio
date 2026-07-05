@@ -18,7 +18,7 @@ const rest = allProjects.filter(p => !p.featured);
 
     <section class="pt-16 pb-8 relative z-10">
       <div class="mx">
-        <p class="t-mono text-[var(--accent)] uppercase font-bold">Project Showroom</p>
+        <p class="t-mono text-accent uppercase font-bold">Project Showroom</p>
         <h1 class="t-heading mt-4 reveal r1">Shipped Software.</h1>
         <p class="t-body mt-6 max-w-2xl reveal r2">
           Explore e-commerce systems, open-source plugins, Composer libraries, and full-stack software. Select a category below to filter.
@@ -30,10 +30,10 @@ const rest = allProjects.filter(p => !p.featured);
     <section class="pb-28 relative z-10">
       <div class="mx">
         <!-- Filter Tabs -->
-        <div class="flex flex-wrap items-center gap-2 border-b border-[var(--border-subtle)] pb-6 mb-12 reveal">
-          <button class="filter-btn active text-xs font-mono px-4 py-2 rounded-lg border border-[var(--border-subtle)] hover:border-[var(--accent)] transition-all cursor-pointer bg-[var(--bg-surface)] text-[var(--accent)]" data-filter="all">ALL PROJECTS</button>
-          <button class="filter-btn text-xs font-mono px-4 py-2 rounded-lg border border-[var(--border-subtle)] hover:border-[var(--accent)] transition-all cursor-pointer bg-[var(--bg-surface)] text-[var(--text-secondary)]" data-filter="wordpress">WP PLUGINS</button>
-          <button class="filter-btn text-xs font-mono px-4 py-2 rounded-lg border border-[var(--border-subtle)] hover:border-[var(--accent)] transition-all cursor-pointer bg-[var(--bg-surface)] text-[var(--text-secondary)]" data-filter="packages">LIBRARIES / PACKAGES</button>
+        <div class="flex flex-wrap items-center gap-2 border-b border-subtle pb-6 mb-12 reveal">
+          <button class="filter-btn active text-xs font-mono px-4 py-2 rounded-lg border border-subtle hover:border-accent transition-all cursor-pointer bg-surface text-accent" data-filter="all">ALL PROJECTS</button>
+          <button class="filter-btn text-xs font-mono px-4 py-2 rounded-lg border border-subtle hover:border-accent transition-all cursor-pointer bg-surface text-secondary" data-filter="wordpress">WP PLUGINS</button>
+          <button class="filter-btn text-xs font-mono px-4 py-2 rounded-lg border border-subtle hover:border-accent transition-all cursor-pointer bg-surface text-secondary" data-filter="packages">LIBRARIES / PACKAGES</button>
         </div>
 
         <!-- Featured Projects List -->
@@ -43,62 +43,62 @@ const rest = allProjects.filter(p => !p.featured);
               <div class="grid lg:grid-cols-12 gap-8 items-start">
                 <!-- Side Panel Info -->
                 <div class="lg:col-span-4 lg:sticky lg:top-24">
-                  <span class="text-[9px] font-mono text-[var(--accent)] uppercase tracking-widest bg-[var(--accent-glow)] px-2.5 py-1 rounded border border-rose-500/10 font-bold block w-fit">{p.type}</span>
-                  <h2 class="t-title text-2xl font-bold mt-4 text-[var(--text-primary)]">{p.title}</h2>
-                  <p class="text-xs font-mono text-[var(--text-secondary)] mt-2.5 flex items-center gap-1.5">
-                    <span class="w-1.5 h-1.5 rounded-full bg-[var(--accent)]" aria-hidden="true"></span>
+                  <span class="text-[9px] font-mono text-accent uppercase tracking-widest bg-accent-glow px-2.5 py-1 rounded border border-rose-500/10 font-bold block w-fit">{p.type}</span>
+                  <h2 class="t-title text-2xl font-bold mt-4 text-primary">{p.title}</h2>
+                  <p class="text-xs font-mono text-secondary mt-2.5 flex items-center gap-1.5">
+                    <span class="w-1.5 h-1.5 rounded-full bg-accent" aria-hidden="true"></span>
                     {p.downloads}
                   </p>
                 </div>
                 
                 <!-- Expanded Detail Card -->
                 <div class="lg:col-span-8">
-                  <div class="glass hover-glow-rose p-8 bg-[var(--bg-surface)] border-[var(--border-subtle)] flex flex-col justify-between min-h-[220px]">
+                  <div class="glass hover-glow-rose p-8 bg-surface border-subtle flex flex-col justify-between min-h-[220px]">
                     <div>
                       <div class="flex flex-wrap gap-1.5 mb-6">
                         {p.tech.map(t => <span class="tag">{t}</span>)}
                       </div>
                       
                       <!-- Overview -->
-                      <p class="text-sm text-[var(--text-primary)] leading-relaxed font-sans mb-6 font-medium">
+                      <p class="text-sm text-primary leading-relaxed font-sans mb-6 font-medium">
                         {p.overview}
                       </p>
 
                       <!-- Problem & Solution Block -->
-                      <div class="grid sm:grid-cols-2 gap-6 mt-6 border-t border-[var(--border-subtle)] pt-6">
+                      <div class="grid sm:grid-cols-2 gap-6 mt-6 border-t border-subtle pt-6">
                         <div>
-                          <h4 class="text-[10px] font-mono uppercase tracking-wider text-[var(--accent)] font-bold mb-2">The Problem</h4>
-                          <p class="text-xs text-[var(--text-secondary)] leading-relaxed font-sans">{p.problem}</p>
+                          <h4 class="text-[10px] font-mono uppercase tracking-wider text-accent font-bold mb-2">The Problem</h4>
+                          <p class="text-xs text-secondary leading-relaxed font-sans">{p.problem}</p>
                         </div>
                         <div>
-                          <h4 class="text-[10px] font-mono uppercase tracking-wider text-[var(--success)] font-bold mb-2">The Solution</h4>
-                          <p class="text-xs text-[var(--text-secondary)] leading-relaxed font-sans">{p.solution}</p>
+                          <h4 class="text-[10px] font-mono uppercase tracking-wider text-success font-bold mb-2">The Solution</h4>
+                          <p class="text-xs text-secondary leading-relaxed font-sans">{p.solution}</p>
                         </div>
                       </div>
 
                       <!-- Role & Challenges -->
-                      <div class="grid sm:grid-cols-2 gap-6 mt-6 border-t border-[var(--border-subtle)] pt-6">
+                      <div class="grid sm:grid-cols-2 gap-6 mt-6 border-t border-subtle pt-6">
                         <div>
-                          <h4 class="text-[10px] font-mono uppercase tracking-wider text-[var(--text-muted)] font-bold mb-1">My Role</h4>
-                          <p class="text-xs text-[var(--text-primary)] font-semibold font-sans">{p.role}</p>
+                          <h4 class="text-[10px] font-mono uppercase tracking-wider text-muted font-bold mb-1">My Role</h4>
+                          <p class="text-xs text-primary font-semibold font-sans">{p.role}</p>
                         </div>
                         <div>
-                          <h4 class="text-[10px] font-mono uppercase tracking-wider text-[var(--text-muted)] font-bold mb-1">Key Challenges</h4>
-                          <p class="text-xs text-[var(--text-secondary)] leading-relaxed font-sans">{p.challenges}</p>
+                          <h4 class="text-[10px] font-mono uppercase tracking-wider text-muted font-bold mb-1">Key Challenges</h4>
+                          <p class="text-xs text-secondary leading-relaxed font-sans">{p.challenges}</p>
                         </div>
                       </div>
 
                       <!-- Impact Block -->
                       {p.impact && (
-                        <div class="t-body text-xs mt-6 text-[var(--text-secondary)] font-medium bg-[var(--bg-raised)] p-4 rounded-lg border border-[var(--border-subtle)]">
-                          <strong class="text-[var(--accent-bright)] font-mono uppercase text-[9px] tracking-widest block mb-1">Measurable Impact</strong>
+                        <div class="t-body text-xs mt-6 text-secondary font-medium bg-raised p-4 rounded-lg border border-subtle">
+                          <strong class="text-accent-bright font-mono uppercase text-[9px] tracking-widest block mb-1">Measurable Impact</strong>
                           {p.impact}
                         </div>
                       )}
                     </div>
 
                     <!-- Direct Links -->
-                    <div class="flex flex-wrap gap-4 mt-8 pt-6 border-t border-[var(--border-subtle)]">
+                    <div class="flex flex-wrap gap-4 mt-8 pt-6 border-t border-subtle">
                       <a href={p.url} target="_blank" rel="noopener noreferrer" class="b b-primary text-xs flex items-center gap-1.5 shadow-md">
                         View Directory / Live
                         <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
@@ -117,21 +117,21 @@ const rest = allProjects.filter(p => !p.featured);
           ))}
 
           <!-- Rest Secondary Grid -->
-          <div class="pt-16 border-t border-[var(--border-subtle)]" id="secondary-grid-header">
-            <span class="t-mono text-xs text-[var(--text-muted)] tracking-wider uppercase font-bold">Secondary Implementations &amp; Integrations</span>
+          <div class="pt-16 border-t border-subtle" id="secondary-grid-header">
+            <span class="t-mono text-xs text-muted tracking-wider uppercase font-bold">Secondary Implementations &amp; Integrations</span>
             <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8" id="secondary-grid">
               {rest.map(p => (
-                <div class="project-card glass p-6 bg-[var(--bg-surface)] border-[var(--border-subtle)] hover:-translate-y-1 transition-all flex flex-col justify-between" data-cat={p.category}>
+                <div class="project-card glass p-6 bg-surface border-subtle hover:-translate-y-1 transition-all flex flex-col justify-between" data-cat={p.category}>
                   <div>
                     <div class="flex flex-wrap gap-1.5 mb-4">
                       {p.tech.map(t => <span class="tag">{t}</span>)}
                     </div>
-                    <span class="text-[9px] font-mono text-[var(--text-muted)] uppercase tracking-wider block mb-1 font-bold">{p.type}</span>
-                    <h3 class="text-md font-bold text-[var(--text-primary)] mt-1">{p.title}</h3>
-                    <p class="text-xs text-[var(--text-secondary)] mt-3 leading-relaxed font-sans">{p.description}</p>
+                    <span class="text-[9px] font-mono text-muted uppercase tracking-wider block mb-1 font-bold">{p.type}</span>
+                    <h3 class="text-md font-bold text-primary mt-1">{p.title}</h3>
+                    <p class="text-xs text-secondary mt-3 leading-relaxed font-sans">{p.description}</p>
                   </div>
                   
-                  <a href={p.url} target="_blank" rel="noopener noreferrer" class="pt-4 flex items-center gap-1.5 text-xs text-[var(--accent)] font-semibold mt-4 hover:underline">
+                  <a href={p.url} target="_blank" rel="noopener noreferrer" class="pt-4 flex items-center gap-1.5 text-xs text-accent font-semibold mt-4 hover:underline">
                     <span>Source / Website</span>
                     <span aria-hidden="true">&rarr;</span>
                   </a>
@@ -176,12 +176,12 @@ const rest = allProjects.filter(p => !p.featured);
         // Toggle button states
         buttons.forEach(b => {
           b.classList.remove("active");
-          b.classList.remove("text-[var(--accent)]");
-          b.classList.add("text-[var(--text-secondary)]");
+          b.classList.remove("text-accent");
+          b.classList.add("text-secondary");
         });
         btn.classList.add("active");
-        btn.classList.remove("text-[var(--text-secondary)]");
-        btn.classList.add("text-[var(--accent)]");
+        btn.classList.remove("text-secondary");
+        btn.classList.add("text-accent");
 
         var filterVal = btn.getAttribute("data-filter");
 

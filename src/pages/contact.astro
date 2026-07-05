@@ -21,7 +21,7 @@ const faqs = await getFAQs();
           <!-- Left Panel: Context & Details -->
           <div class="lg:col-span-5 space-y-8">
             <div>
-              <p class="t-mono text-[var(--accent)] uppercase font-bold">Project Handshake</p>
+              <p class="t-mono text-accent uppercase font-bold">Project Handshake</p>
               <h1 class="t-heading mt-4 reveal r1">Let's build together.</h1>
               <p class="t-body mt-4 leading-relaxed reveal r2">
                 Have a plugin concept, API architecture requirement, or technical bottleneck you need resolved? Send a message and let's coordinate.
@@ -30,94 +30,94 @@ const faqs = await getFAQs();
 
             <!-- Context Info blocks -->
             <div class="space-y-4 reveal r3">
-              <div class="glass p-5 bg-[var(--bg-surface)] border-[var(--border-subtle)] flex items-start gap-4">
-                <span class="w-8 h-8 rounded bg-[var(--accent-glow)] text-[var(--accent)] flex items-center justify-center flex-shrink-0 font-mono text-sm" aria-hidden="true">✉</span>
+              <div class="glass p-5 bg-surface border-subtle flex items-start gap-4">
+                <span class="w-8 h-8 rounded bg-accent-glow text-accent flex items-center justify-center flex-shrink-0 font-mono text-sm" aria-hidden="true">✉</span>
                 <div>
-                  <p class="text-[10px] font-mono text-[var(--text-muted)] uppercase tracking-wider">Direct Channels</p>
-                  <a href={`mailto:${profile.email}`} class="text-sm font-semibold text-[var(--accent)] hover:text-[var(--accent-bright)] transition-colors mt-1 block">{profile.email}</a>
+                  <p class="text-[10px] font-mono text-muted uppercase tracking-wider">Direct Channels</p>
+                  <a href={`mailto:${profile.email}`} class="text-sm font-semibold text-accent hover:text-accent-bright transition-colors mt-1 block">{profile.email}</a>
                 </div>
               </div>
 
-              <div class="glass p-5 bg-[var(--bg-surface)] border-[var(--border-subtle)] flex items-start gap-4">
-                <span class="w-8 h-8 rounded bg-[var(--accent-glow)] text-[var(--accent)] flex items-center justify-center flex-shrink-0 font-mono text-sm" aria-hidden="true">𖡡</span>
+              <div class="glass p-5 bg-surface border-subtle flex items-start gap-4">
+                <span class="w-8 h-8 rounded bg-accent-glow text-accent flex items-center justify-center flex-shrink-0 font-mono text-sm" aria-hidden="true">𖡡</span>
                 <div>
-                  <p class="text-[10px] font-mono text-[var(--text-muted)] uppercase tracking-wider">Operational Location</p>
-                  <p class="text-sm text-[var(--text-secondary)] mt-1 font-semibold">{profile.location} &middot; Remote operations globally</p>
+                  <p class="text-[10px] font-mono text-muted uppercase tracking-wider">Operational Location</p>
+                  <p class="text-sm text-secondary mt-1 font-semibold">{profile.location} &middot; Remote operations globally</p>
                 </div>
               </div>
 
-              <div class="glass p-5 bg-[var(--bg-surface)] border-[var(--border-subtle)] flex items-start gap-4">
-                <span class="w-8 h-8 rounded bg-[var(--success-glow)] text-[var(--success)] flex items-center justify-center flex-shrink-0 font-mono text-sm" aria-hidden="true">●</span>
+              <div class="glass p-5 bg-surface border-subtle flex items-start gap-4">
+                <span class="w-8 h-8 rounded bg-success-glow text-success flex items-center justify-center flex-shrink-0 font-mono text-sm" aria-hidden="true">●</span>
                 <div>
-                  <p class="text-[10px] font-mono text-[var(--text-muted)] uppercase tracking-wider">Work Availability</p>
-                  <p class="text-sm text-[var(--text-secondary)] mt-1 font-semibold">Open for Freelance and Contract roles</p>
+                  <p class="text-[10px] font-mono text-muted uppercase tracking-wider">Work Availability</p>
+                  <p class="text-sm text-secondary mt-1 font-semibold">Open for Freelance and Contract roles</p>
                 </div>
               </div>
             </div>
 
             <div class="flex items-center gap-6 pt-4 reveal r4">
-              <a href={profile.socials.github} target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors" aria-label="Github Profile">&lt; GitHub &gt;</a>
-              <a href={profile.socials.linkedin} target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors" aria-label="LinkedIn Profile">&lt; LinkedIn &gt;</a>
-              <a href={profile.socials.twitter} target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors" aria-label="Twitter Profile">&lt; Twitter &gt;</a>
+              <a href={profile.socials.github} target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-secondary hover:text-accent transition-colors" aria-label="Github Profile">&lt; GitHub &gt;</a>
+              <a href={profile.socials.linkedin} target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-secondary hover:text-accent transition-colors" aria-label="LinkedIn Profile">&lt; LinkedIn &gt;</a>
+              <a href={profile.socials.twitter} target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-secondary hover:text-accent transition-colors" aria-label="Twitter Profile">&lt; Twitter &gt;</a>
             </div>
           </div>
 
           <!-- Right Panel: Interactive Form Console -->
           <div class="lg:col-span-7 relative">
-            <div class="glass hover-glow-rose p-8 bg-[var(--bg-surface)] border-[var(--border-subtle)] reveal r2" id="contact-console">
+            <div class="glass hover-glow-rose p-8 bg-surface border-subtle reveal r2" id="contact-console">
               
               <!-- Form header -->
-              <div class="flex items-center justify-between border-b border-[var(--border-subtle)] pb-4 mb-6">
-                <span class="text-xs font-mono text-[var(--text-primary)]">secure-contact-session</span>
-                <span class="w-2.5 h-2.5 rounded-full bg-[var(--success)] animate-pulse" aria-label="Active status indicator"></span>
+              <div class="flex items-center justify-between border-b border-subtle pb-4 mb-6">
+                <span class="text-xs font-mono text-primary">secure-contact-session</span>
+                <span class="w-2.5 h-2.5 rounded-full bg-success animate-pulse" aria-label="Active status indicator"></span>
               </div>
 
               <!-- Contact Form -->
               <form id="contact-form" class="space-y-5">
                 <!-- Floating Label Name -->
                 <div class="relative">
-                  <input type="text" id="name" name="name" required class="w-full px-4 py-3 bg-[var(--bg-deep)] border border-[var(--border-subtle)] focus:border-[var(--accent)] focus:outline-none rounded-lg text-sm transition-all peer placeholder-transparent focus-visible:ring-2 focus-visible:ring-[var(--accent)]" placeholder="Name" />
-                  <label for="name" class="absolute left-4 top-3 text-xs text-[var(--text-muted)] transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:top-3 peer-focus:top-1 peer-focus:text-[10px] peer-focus:text-[var(--accent)] -translate-y-2.5 bg-[var(--bg-surface)] px-1 peer-focus:px-1 pointer-events-none">Your Name</label>
+                  <input type="text" id="name" name="name" required class="w-full px-4 py-3 bg-deep border border-subtle focus:border-accent focus:outline-none rounded-lg text-sm transition-all peer placeholder-transparent focus-visible:ring-2 focus-visible:ring-accent" placeholder="Name" />
+                  <label for="name" class="absolute left-4 top-3 text-xs text-muted transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:top-3 peer-focus:top-1 peer-focus:text-[10px] peer-focus:text-accent -translate-y-2.5 bg-surface px-1 peer-focus:px-1 pointer-events-none">Your Name</label>
                 </div>
 
                 <!-- Floating Label Email -->
                 <div class="relative">
-                  <input type="email" id="email" name="email" required class="w-full px-4 py-3 bg-[var(--bg-deep)] border border-[var(--border-subtle)] focus:border-[var(--accent)] focus:outline-none rounded-lg text-sm transition-all peer placeholder-transparent focus-visible:ring-2 focus-visible:ring-[var(--accent)]" placeholder="Email" />
-                  <label for="email" class="absolute left-4 top-3 text-xs text-[var(--text-muted)] transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:top-3 peer-focus:top-1 peer-focus:text-[10px] peer-focus:text-[var(--accent)] -translate-y-2.5 bg-[var(--bg-surface)] px-1 peer-focus:px-1 pointer-events-none">Email Address</label>
+                  <input type="email" id="email" name="email" required class="w-full px-4 py-3 bg-deep border border-subtle focus:border-accent focus:outline-none rounded-lg text-sm transition-all peer placeholder-transparent focus-visible:ring-2 focus-visible:ring-accent" placeholder="Email" />
+                  <label for="email" class="absolute left-4 top-3 text-xs text-muted transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:top-3 peer-focus:top-1 peer-focus:text-[10px] peer-focus:text-accent -translate-y-2.5 bg-surface px-1 peer-focus:px-1 pointer-events-none">Email Address</label>
                 </div>
 
                 <!-- Floating Label Scope -->
                 <div class="relative">
-                  <input type="text" id="scope" name="scope" required class="w-full px-4 py-3 bg-[var(--bg-deep)] border border-[var(--border-subtle)] focus:border-[var(--accent)] focus:outline-none rounded-lg text-sm transition-all peer placeholder-transparent focus-visible:ring-2 focus-visible:ring-[var(--accent)]" placeholder="Scope" />
-                  <label for="scope" class="absolute left-4 top-3 text-xs text-[var(--text-muted)] transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:top-3 peer-focus:top-1 peer-focus:text-[10px] peer-focus:text-[var(--accent)] -translate-y-2.5 bg-[var(--bg-surface)] px-1 peer-focus:px-1 pointer-events-none">Project Scope (e.g. WooCommerce Plugin, Laravel API)</label>
+                  <input type="text" id="scope" name="scope" required class="w-full px-4 py-3 bg-deep border border-subtle focus:border-accent focus:outline-none rounded-lg text-sm transition-all peer placeholder-transparent focus-visible:ring-2 focus-visible:ring-accent" placeholder="Scope" />
+                  <label for="scope" class="absolute left-4 top-3 text-xs text-muted transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:top-3 peer-focus:top-1 peer-focus:text-[10px] peer-focus:text-accent -translate-y-2.5 bg-surface px-1 peer-focus:px-1 pointer-events-none">Project Scope (e.g. WooCommerce Plugin, Laravel API)</label>
                 </div>
 
                 <!-- Message Details -->
                 <div class="relative">
-                  <textarea id="message" name="message" rows="4" required class="w-full px-4 py-3 bg-[var(--bg-deep)] border border-[var(--border-subtle)] focus:border-[var(--accent)] focus:outline-none rounded-lg text-sm transition-all peer placeholder-transparent focus-visible:ring-2 focus-visible:ring-[var(--accent)]" placeholder="Message"></textarea>
-                  <label for="message" class="absolute left-4 top-3 text-xs text-[var(--text-muted)] transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:top-3 peer-focus:top-1 peer-focus:text-[10px] peer-focus:text-[var(--accent)] -translate-y-2.5 bg-[var(--bg-surface)] px-1 peer-focus:px-1 pointer-events-none">Project Details / Requirements</label>
+                  <textarea id="message" name="message" rows="4" required class="w-full px-4 py-3 bg-deep border border-subtle focus:border-accent focus:outline-none rounded-lg text-sm transition-all peer placeholder-transparent focus-visible:ring-2 focus-visible:ring-accent" placeholder="Message"></textarea>
+                  <label for="message" class="absolute left-4 top-3 text-xs text-muted transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:top-3 peer-focus:top-1 peer-focus:text-[10px] peer-focus:text-accent -translate-y-2.5 bg-surface px-1 peer-focus:px-1 pointer-events-none">Project Details / Requirements</label>
                 </div>
 
-                <button type="submit" class="b b-primary w-full py-3 shadow-md mt-2 relative overflow-hidden transition-all focus-visible:ring-2 focus-visible:ring-[var(--accent)] cursor-pointer" id="submit-btn">
+                <button type="submit" class="b b-primary w-full py-3 shadow-md mt-2 relative overflow-hidden transition-all focus-visible:ring-2 focus-visible:ring-accent cursor-pointer" id="submit-btn">
                   <span id="btn-text">Transmit Request</span>
                 </button>
               </form>
 
               <!-- Interactive loading state -->
               <div id="loading-state" class="hidden py-12 flex flex-col items-center justify-center space-y-4" role="status">
-                <div class="w-8 h-8 rounded-full border-2 border-[var(--border-subtle)] border-t-[var(--accent)] animate-spin"></div>
-                <p class="text-xs font-mono text-[var(--accent)]" id="loading-log">Preparing payload...</p>
-                <div class="w-64 bg-[var(--bg-deep)] h-1 rounded overflow-hidden border border-[var(--border-subtle)] mt-2">
-                  <div id="loading-bar" class="h-full bg-[var(--accent)] transition-all duration-300" style="width: 0%"></div>
+                <div class="w-8 h-8 rounded-full border-2 border-subtle border-t-accent animate-spin"></div>
+                <p class="text-xs font-mono text-accent" id="loading-log">Preparing payload...</p>
+                <div class="w-64 bg-deep h-1 rounded overflow-hidden border border-subtle mt-2">
+                  <div id="loading-bar" class="h-full bg-accent transition-all duration-300" style="width: 0%"></div>
                 </div>
               </div>
 
               <!-- Success window overlay -->
               <div id="success-state" class="hidden py-8 text-center space-y-6" role="status">
-                <div class="w-12 h-12 rounded-full bg-[var(--success-glow)] text-[var(--success)] flex items-center justify-center mx-auto text-xl font-bold border border-[rgba(16,185,129,0.2)]">✓</div>
+                <div class="w-12 h-12 rounded-full bg-success-glow text-success flex items-center justify-center mx-auto text-xl font-bold border border-[rgba(16,185,129,0.2)]">✓</div>
                 <div>
-                  <h3 class="text-md font-bold text-[var(--text-primary)]">Message Transmitted Successfully</h3>
-                  <p class="text-xs text-[var(--text-secondary)] mt-2 max-w-sm mx-auto">Your request has been successfully processed and forwarded to Sayan Datta's primary inbox. You should receive a direct follow-up shortly.</p>
+                  <h3 class="text-md font-bold text-primary">Message Transmitted Successfully</h3>
+                  <p class="text-xs text-secondary mt-2 max-w-sm mx-auto">Your request has been successfully processed and forwarded to Sayan Datta's primary inbox. You should receive a direct follow-up shortly.</p>
                 </div>
                 <button id="close-success-btn" class="b b-ghost text-xs py-2 px-4">Submit another request</button>
               </div>
@@ -126,8 +126,8 @@ const faqs = await getFAQs();
               <div id="error-state" class="hidden py-8 text-center space-y-6" role="alert">
                 <div class="w-12 h-12 rounded-full bg-red-500/10 text-red-500 flex items-center justify-center mx-auto text-xl font-bold border border-red-500/20">!</div>
                 <div>
-                  <h3 class="text-md font-bold text-[var(--text-primary)]">Transmission Interrupted</h3>
-                  <p id="error-message" class="text-xs text-[var(--text-secondary)] mt-2 max-w-sm mx-auto">We encountered an issue routing your form details via Formspree API layers.</p>
+                  <h3 class="text-md font-bold text-primary">Transmission Interrupted</h3>
+                  <p id="error-message" class="text-xs text-secondary mt-2 max-w-sm mx-auto">We encountered an issue routing your form details via Formspree API layers.</p>
                 </div>
                 <div class="space-y-2">
                   <button id="fallback-email-btn" class="b b-primary w-full py-2.5 text-xs shadow-md">Open Fallback Email Draft</button>
@@ -142,21 +142,21 @@ const faqs = await getFAQs();
     </section>
 
     <!-- FAQs Section -->
-    <section class="pb-24 border-t border-[var(--border-subtle)] pt-20 relative z-10 reveal">
+    <section class="pb-24 border-t border-subtle pt-20 relative z-10 reveal">
       <div class="mx-narrow">
         <div class="text-center mb-12">
-          <p class="t-mono text-[var(--accent)] uppercase">Frequently Asked Questions</p>
+          <p class="t-mono text-accent uppercase">Frequently Asked Questions</p>
           <h2 class="t-title text-2xl font-bold mt-2">Common developer queries.</h2>
         </div>
         <div class="space-y-4">
           {faqs.map((faq, fi) => (
-            <div class="glass p-6 bg-[var(--bg-surface)] border-[var(--border-subtle)] cursor-pointer group transition-all" data-faq={fi} tabindex="0" role="button" aria-expanded="false" aria-controls={`faq-ans-${fi}`}>
+            <div class="glass p-6 bg-surface border-subtle cursor-pointer group transition-all" data-faq={fi} tabindex="0" role="button" aria-expanded="false" aria-controls={`faq-ans-${fi}`}>
               <div class="flex items-center justify-between">
-                <h3 class="font-bold text-sm text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors">{faq.q}</h3>
-                <span class="text-xs text-[var(--text-muted)] font-mono transition-transform duration-300 select-none faq-plus" aria-hidden="true">+</span>
+                <h3 class="font-bold text-sm text-primary group-hover:text-accent transition-colors">{faq.q}</h3>
+                <span class="text-xs text-muted font-mono transition-transform duration-300 select-none faq-plus" aria-hidden="true">+</span>
               </div>
               <div id={`faq-ans-${fi}`} class="max-h-0 opacity-0 overflow-hidden transition-all duration-300 faq-answer">
-                <p class="text-xs text-[var(--text-secondary)] mt-4 leading-relaxed font-sans">{faq.a}</p>
+                <p class="text-xs text-secondary mt-4 leading-relaxed font-sans">{faq.a}</p>
               </div>
             </div>
           ))}

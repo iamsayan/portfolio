@@ -13,47 +13,47 @@ const isActive = (path: string) => {
 ---
 <header class="fixed top-0 inset-x-0 z-50 transition-all duration-500 py-4" id="site-header">
   <!-- Skip to Content link for keyboard accessibility -->
-  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:z-[999] focus:top-6 focus:left-6 focus:bg-[var(--accent)] focus:text-white focus:px-4 focus:py-2 focus:rounded-lg focus:shadow-xl focus:outline-none">Skip to Content</a>
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:z-[999] focus:top-6 focus:left-6 focus:bg-accent focus:text-white focus:px-4 focus:py-2 focus:rounded-lg focus:shadow-xl focus:outline-none">Skip to Content</a>
 
   <div class="mx">
     <div class="glass glass-glow rounded-2xl flex items-center justify-between px-6 transition-all duration-500" style="height:4rem" id="header-inner">
       <a href="/" class="flex items-center gap-3 group">
-        <span class="w-8 h-8 rounded-lg bg-[var(--accent)] flex items-center justify-center text-[var(--bg-deep)] font-bold text-sm shadow-md group-hover:scale-105 transition-transform duration-300">{initialLetter}</span>
+        <span class="w-8 h-8 rounded-lg bg-accent flex items-center justify-center text-deep font-bold text-sm shadow-md group-hover:scale-105 transition-transform duration-300">{initialLetter}</span>
         <div class="flex flex-col">
-          <span class="font-[var(--font-display)] text-base font-bold tracking-tight text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors duration-300">{profile.name}</span>
+          <span class="font-[var(--font-display)] text-base font-bold tracking-tight text-primary group-hover:text-accent transition-colors duration-300">{profile.name}</span>
           <div class="flex items-center gap-1.5 mt-0.5" aria-hidden="true">
             <span class="pulse-dot"></span>
-            <span class="text-[9px] font-mono tracking-widest text-[var(--success)] uppercase">Available for Hire</span>
+            <span class="text-[9px] font-mono tracking-widest text-success uppercase">Available for Hire</span>
           </div>
         </div>
       </a>
 
       <div class="flex items-center gap-6">
         <nav class="hidden md:flex items-center gap-8" aria-label="Main Navigation">
-          <a href="/" class={`nav-link text-sm font-medium transition-colors relative py-1 ${isActive("/") ? "text-[var(--accent)] font-semibold active-nav" : "text-[var(--text-secondary)] hover:text-[var(--accent)]"}`} aria-current={isActive("/") ? "page" : undefined}>Home</a>
-          <a href="/about-me" class={`nav-link text-sm font-medium transition-colors relative py-1 ${isActive("/about-me") ? "text-[var(--accent)] font-semibold active-nav" : "text-[var(--text-secondary)] hover:text-[var(--accent)]"}`} aria-current={isActive("/about-me") ? "page" : undefined}>About</a>
-          <a href="/skills" class={`nav-link text-sm font-medium transition-colors relative py-1 ${isActive("/skills") ? "text-[var(--accent)] font-semibold active-nav" : "text-[var(--text-secondary)] hover:text-[var(--accent)]"}`} aria-current={isActive("/skills") ? "page" : undefined}>Skills</a>
-          <a href="/services" class={`nav-link text-sm font-medium transition-colors relative py-1 ${isActive("/services") ? "text-[var(--accent)] font-semibold active-nav" : "text-[var(--text-secondary)] hover:text-[var(--accent)]"}`} aria-current={isActive("/services") ? "page" : undefined}>Services</a>
-          <a href="/projects" class={`nav-link text-sm font-medium transition-colors relative py-1 ${isActive("/projects") ? "text-[var(--accent)] font-semibold active-nav" : "text-[var(--text-secondary)] hover:text-[var(--accent)]"}`} aria-current={isActive("/projects") ? "page" : undefined}>Projects</a>
-          <a href="/blog" class={`nav-link text-sm font-medium transition-colors relative py-1 ${isActive("/blog") ? "text-[var(--accent)] font-semibold active-nav" : "text-[var(--text-secondary)] hover:text-[var(--accent)]"}`} aria-current={isActive("/blog") ? "page" : undefined}>Blog</a>
-          <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" class="nav-link text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors relative py-1">Resume</a>
-          <a href="/contact" class={`b b-primary !text-xs !py-2 !px-4 shadow-sm ${isActive("/contact") ? "ring-2 ring-[var(--accent)]" : ""}`} aria-current={isActive("/contact") ? "page" : undefined}>Contact</a>
+          <a href="/" class={`nav-link text-sm font-medium transition-colors relative py-1 ${isActive("/") ? "text-accent font-semibold active-nav" : "text-secondary hover:text-accent"}`} aria-current={isActive("/") ? "page" : undefined}>Home</a>
+          <a href="/about-me" class={`nav-link text-sm font-medium transition-colors relative py-1 ${isActive("/about-me") ? "text-accent font-semibold active-nav" : "text-secondary hover:text-accent"}`} aria-current={isActive("/about-me") ? "page" : undefined}>About</a>
+          <a href="/skills" class={`nav-link text-sm font-medium transition-colors relative py-1 ${isActive("/skills") ? "text-accent font-semibold active-nav" : "text-secondary hover:text-accent"}`} aria-current={isActive("/skills") ? "page" : undefined}>Skills</a>
+          <a href="/services" class={`nav-link text-sm font-medium transition-colors relative py-1 ${isActive("/services") ? "text-accent font-semibold active-nav" : "text-secondary hover:text-accent"}`} aria-current={isActive("/services") ? "page" : undefined}>Services</a>
+          <a href="/projects" class={`nav-link text-sm font-medium transition-colors relative py-1 ${isActive("/projects") ? "text-accent font-semibold active-nav" : "text-secondary hover:text-accent"}`} aria-current={isActive("/projects") ? "page" : undefined}>Projects</a>
+          <a href="/blog" class={`nav-link text-sm font-medium transition-colors relative py-1 ${isActive("/blog") ? "text-accent font-semibold active-nav" : "text-secondary hover:text-accent"}`} aria-current={isActive("/blog") ? "page" : undefined}>Blog</a>
+          <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" class="nav-link text-sm font-medium text-secondary hover:text-accent transition-colors relative py-1">Resume</a>
+          <a href="/contact" class={`b b-primary !text-xs !py-2 !px-4 shadow-sm ${isActive("/contact") ? "ring-2 ring-accent" : ""}`} aria-current={isActive("/contact") ? "page" : undefined}>Contact</a>
         </nav>
 
         <div class="flex items-center gap-2.5">
-          <button id="theme-toggle" class="w-9 h-9 rounded-lg flex items-center justify-center border border-[var(--border-subtle)] hover:border-[var(--accent)] transition-colors bg-[var(--bg-raised)] cursor-pointer" aria-label="Toggle theme">
+          <button id="theme-toggle" class="w-9 h-9 rounded-lg flex items-center justify-center border border-subtle hover:border-accent transition-colors bg-raised cursor-pointer" aria-label="Toggle theme">
             <!-- Sun icon (visible in dark mode) -->
-            <svg id="sun-icon" class="w-4 h-4 text-[var(--text-secondary)] transition-transform duration-300 hover:rotate-45" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <svg id="sun-icon" class="w-4 h-4 text-secondary transition-transform duration-300 hover:rotate-45" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
               <circle cx="12" cy="12" r="5"/>
               <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
             </svg>
             <!-- Moon icon (visible in light mode) -->
-            <svg id="moon-icon" class="w-4 h-4 text-[var(--text-secondary)] hidden transition-transform duration-300 hover:-rotate-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <svg id="moon-icon" class="w-4 h-4 text-secondary hidden transition-transform duration-300 hover:-rotate-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
               <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
             </svg>
           </button>
 
-          <button id="menu-btn" class="md:hidden w-9 h-9 rounded-lg border border-[var(--border-subtle)] flex flex-col items-center justify-center gap-1.5 bg-[var(--bg-raised)] cursor-pointer" aria-label="Toggle Mobile Menu" aria-expanded="false" aria-controls="mob-menu">
+          <button id="menu-btn" class="md:hidden w-9 h-9 rounded-lg border border-subtle flex flex-col items-center justify-center gap-1.5 bg-raised cursor-pointer" aria-label="Toggle Mobile Menu" aria-expanded="false" aria-controls="mob-menu">
             <span class="block w-4 h-[2px] bg-[var(--text-primary)] rounded transition-all duration-300 origin-center" id="l1" aria-hidden="true"></span>
             <span class="block w-4 h-[2px] bg-[var(--text-primary)] rounded transition-all duration-300 origin-center" id="l2" aria-hidden="true"></span>
           </button>
@@ -64,15 +64,15 @@ const isActive = (path: string) => {
 
   <!-- Mobile Menu Dropdown -->
   <div id="mob-menu" class="md:hidden overflow-hidden transition-all duration-400 ease-out px-4 max-h-0 opacity-0" aria-label="Mobile Navigation">
-    <div class="glass p-6 mt-2 flex flex-col gap-4 shadow-lg border-[var(--border-strong)]">
-      <a href="/" class={`text-base font-semibold py-1 transition-colors border-b border-[var(--border-subtle)] ${isActive("/") ? "text-[var(--accent)]" : "text-[var(--text-secondary)] hover:text-[var(--accent)]"}`} data-close aria-current={isActive("/") ? "page" : undefined}>Home</a>
-      <a href="/about-me" class={`text-base font-semibold py-1 transition-colors border-b border-[var(--border-subtle)] ${isActive("/about-me") ? "text-[var(--accent)]" : "text-[var(--text-secondary)] hover:text-[var(--accent)]"}`} data-close aria-current={isActive("/about-me") ? "page" : undefined}>About</a>
-      <a href="/skills" class={`text-base font-semibold py-1 transition-colors border-b border-[var(--border-subtle)] ${isActive("/skills") ? "text-[var(--accent)]" : "text-[var(--text-secondary)] hover:text-[var(--accent)]"}`} data-close aria-current={isActive("/skills") ? "page" : undefined}>Skills</a>
-      <a href="/services" class={`text-base font-semibold py-1 transition-colors border-b border-[var(--border-subtle)] ${isActive("/services") ? "text-[var(--accent)]" : "text-[var(--text-secondary)] hover:text-[var(--accent)]"}`} data-close aria-current={isActive("/services") ? "page" : undefined}>Services</a>
-      <a href="/projects" class={`text-base font-semibold py-1 transition-colors border-b border-[var(--border-subtle)] ${isActive("/projects") ? "text-[var(--accent)]" : "text-[var(--text-secondary)] hover:text-[var(--accent)]"}`} data-close aria-current={isActive("/projects") ? "page" : undefined}>Projects</a>
-      <a href="/blog" class={`text-base font-semibold py-1 transition-colors border-b border-[var(--border-subtle)] ${isActive("/blog") ? "text-[var(--accent)]" : "text-[var(--text-secondary)] hover:text-[var(--accent)]"}`} data-close aria-current={isActive("/blog") ? "page" : undefined}>Blog</a>
-      <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" class="text-[var(--text-secondary)] hover:text-[var(--accent)] text-base font-semibold py-1 transition-colors border-b border-[var(--border-subtle)]" data-close>View Resume</a>
-      <a href="/resume.pdf" download class="text-[var(--text-secondary)] hover:text-[var(--accent)] text-base font-semibold py-1 transition-colors border-b border-[var(--border-subtle)]" data-close>Download Resume</a>
+    <div class="glass p-6 mt-2 flex flex-col gap-4 shadow-lg border-strong">
+      <a href="/" class={`text-base font-semibold py-1 transition-colors border-b border-subtle ${isActive("/") ? "text-accent" : "text-secondary hover:text-accent"}`} data-close aria-current={isActive("/") ? "page" : undefined}>Home</a>
+      <a href="/about-me" class={`text-base font-semibold py-1 transition-colors border-b border-subtle ${isActive("/about-me") ? "text-accent" : "text-secondary hover:text-accent"}`} data-close aria-current={isActive("/about-me") ? "page" : undefined}>About</a>
+      <a href="/skills" class={`text-base font-semibold py-1 transition-colors border-b border-subtle ${isActive("/skills") ? "text-accent" : "text-secondary hover:text-accent"}`} data-close aria-current={isActive("/skills") ? "page" : undefined}>Skills</a>
+      <a href="/services" class={`text-base font-semibold py-1 transition-colors border-b border-subtle ${isActive("/services") ? "text-accent" : "text-secondary hover:text-accent"}`} data-close aria-current={isActive("/services") ? "page" : undefined}>Services</a>
+      <a href="/projects" class={`text-base font-semibold py-1 transition-colors border-b border-subtle ${isActive("/projects") ? "text-accent" : "text-secondary hover:text-accent"}`} data-close aria-current={isActive("/projects") ? "page" : undefined}>Projects</a>
+      <a href="/blog" class={`text-base font-semibold py-1 transition-colors border-b border-subtle ${isActive("/blog") ? "text-accent" : "text-secondary hover:text-accent"}`} data-close aria-current={isActive("/blog") ? "page" : undefined}>Blog</a>
+      <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" class="text-secondary hover:text-accent text-base font-semibold py-1 transition-colors border-b border-subtle" data-close>View Resume</a>
+      <a href="/resume.pdf" download class="text-secondary hover:text-accent text-base font-semibold py-1 transition-colors border-b border-subtle" data-close>Download Resume</a>
       <a href="/contact" class="b b-primary w-full text-center py-2.5 mt-2" data-close aria-current={isActive("/contact") ? "page" : undefined}>Contact</a>
     </div>
   </div>

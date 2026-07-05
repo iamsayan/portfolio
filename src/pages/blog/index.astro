@@ -14,7 +14,7 @@ posts.sort((a, b) => b.pubDate.getTime() - a.pubDate.getTime());
     <!-- Header Hero -->
     <section class="pt-32 pb-12 relative">
       <div class="mx">
-        <p class="t-mono text-[var(--accent)]">Developer Feed</p>
+        <p class="t-mono text-accent">Developer Feed</p>
         <h1 class="t-heading mt-4 reveal r1">Writing on <span class="t-accent">the web.</span></h1>
         <p class="t-body mt-4 max-w-2xl reveal r2">
           Engineering diaries, system optimizations, and architectural patterns from building high-traffic plugins and backend systems.
@@ -25,12 +25,12 @@ posts.sort((a, b) => b.pubDate.getTime() - a.pubDate.getTime());
     <!-- Cockpit CMS Status Notice Banner -->
     <section class="pb-8 reveal">
       <div class="mx">
-        <div class="glass p-6 bg-[var(--bg-surface)] border-amber-500/20 rounded-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+        <div class="glass p-6 bg-surface border-amber-500/20 rounded-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <div class="flex items-start gap-4">
             <span class="text-xl text-amber-500 p-2 bg-amber-500/10 rounded-lg" aria-hidden="true">⚙</span>
             <div>
-              <h2 class="text-sm font-bold text-[var(--text-primary)]">CMS Connection Pending</h2>
-              <p class="text-xs text-[var(--text-secondary)] mt-1 leading-relaxed">
+              <h2 class="text-sm font-bold text-primary">CMS Connection Pending</h2>
+              <p class="text-xs text-secondary mt-1 leading-relaxed">
                 Full-text articles are currently staged in local collections. This feed will go live immediately following the active Cockpit CMS integration.
               </p>
             </div>
@@ -46,9 +46,9 @@ posts.sort((a, b) => b.pubDate.getTime() - a.pubDate.getTime());
         {posts.length > 0 ? posts.map((p, i) => (
           <a 
             href={`/blog/${p.id}/`} 
-            class={`block glass p-6 bg-[var(--bg-surface)] border-[var(--border-subtle)] hover:border-[var(--accent)] hover:shadow-xl transition-all duration-300 group reveal r${Math.min(i + 1, 5)}`}
+            class={`block glass p-6 bg-surface border-subtle hover:border-accent hover:shadow-xl transition-all duration-300 group reveal r${Math.min(i + 1, 5)}`}
           >
-            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-[var(--border-subtle)] pb-4 mb-4">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-subtle pb-4 mb-4">
               <div class="flex flex-wrap gap-1.5">
                 {p.tags.map((tag) => (
                   <span class="tag">
@@ -56,7 +56,7 @@ posts.sort((a, b) => b.pubDate.getTime() - a.pubDate.getTime());
                   </span>
                 ))}
               </div>
-              <div class="flex items-center gap-3 t-mono text-[10px] text-[var(--text-muted)] flex-shrink-0">
+              <div class="flex items-center gap-3 t-mono text-[10px] text-muted flex-shrink-0">
                 <time datetime={p.pubDate.toISOString()}>
                   {p.pubDate.toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" })}
                 </time>
@@ -70,22 +70,22 @@ posts.sort((a, b) => b.pubDate.getTime() - a.pubDate.getTime());
             </div>
             
             <div class="flex items-start justify-between gap-4">
-              <h3 class="t-title !text-lg font-bold group-hover:text-[var(--accent)] transition-colors duration-300 leading-snug">
+              <h3 class="t-title !text-lg font-bold group-hover:text-accent transition-colors duration-300 leading-snug">
                 {p.title}
               </h3>
-              <span class="text-[9px] font-mono uppercase tracking-widest text-[var(--accent)] bg-[var(--accent-glow)] border border-rose-500/10 px-2 py-0.5 rounded font-bold whitespace-nowrap">Coming Soon</span>
+              <span class="text-[9px] font-mono uppercase tracking-widest text-accent bg-accent-glow border border-rose-500/10 px-2 py-0.5 rounded font-bold whitespace-nowrap">Coming Soon</span>
             </div>
-            <p class="text-xs text-[var(--text-secondary)] mt-2.5 leading-relaxed font-sans">
+            <p class="text-xs text-secondary mt-2.5 leading-relaxed font-sans">
               {p.description}
             </p>
             
-            <div class="pt-4 flex items-center gap-1.5 text-xs text-[var(--accent)] font-semibold opacity-0 group-hover:opacity-100 transition-opacity">
+            <div class="pt-4 flex items-center gap-1.5 text-xs text-accent font-semibold opacity-0 group-hover:opacity-100 transition-opacity">
               <span>View details &amp; abstract</span>
               <span aria-hidden="true">&rarr;</span>
             </div>
           </a>
         )) : (
-          <div class="py-24 text-center glass border-[var(--border-subtle)] bg-[var(--bg-surface)]">
+          <div class="py-24 text-center glass border-subtle bg-surface">
             <p class="t-mono text-sm">No articles published yet. Check back soon.</p>
           </div>
         )}

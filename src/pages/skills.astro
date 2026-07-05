@@ -22,7 +22,7 @@ const skillSections = [
     <!-- Header Hero -->
     <section class="pt-32 pb-20 relative">
       <div class="mx">
-        <p class="t-mono text-[var(--accent)]">Tech stack</p>
+        <p class="t-mono text-accent">Tech stack</p>
         <h1 class="t-heading mt-4 reveal r1">Skills &amp; Toolkit.</h1>
         <p class="t-body mt-6 max-w-2xl reveal r2">
           A detailed catalog of the technologies, languages, and architectures I work with on daily production builds, categorized by domain proficiency.
@@ -36,20 +36,20 @@ const skillSections = [
         {skillSections.map((sec, idx) => (
           <div class="reveal">
             <!-- Category Header -->
-            <div class="mb-8 border-b border-[var(--border-subtle)] pb-4">
-              <span class="text-xs font-mono text-[var(--accent)] font-bold">0{idx + 1} &mdash; {sec.name.toUpperCase()}</span>
-              <p class="text-sm text-[var(--text-secondary)] mt-1">{sec.desc}</p>
+            <div class="mb-8 border-b border-subtle pb-4">
+              <span class="text-xs font-mono text-accent font-bold">0{idx + 1} &mdash; {sec.name.toUpperCase()}</span>
+              <p class="text-sm text-secondary mt-1">{sec.desc}</p>
             </div>
 
             <!-- Skills Cards Grid -->
             <div class="grid sm:grid-cols-2 gap-6">
               {sec.skills && sec.skills.map(s => (
-                <div class="glass p-6 bg-[var(--bg-surface)] border-[var(--border-subtle)] hover:border-[var(--accent-glow-strong)] transition-all">
+                <div class="glass p-6 bg-surface border-subtle hover:border-accent/25 transition-all">
                   <div class="flex justify-between items-baseline mb-3">
-                    <h3 class="text-sm font-bold text-[var(--text-primary)]">{s.name}</h3>
-                    <span class="text-[9px] px-2 py-0.5 rounded font-mono text-[var(--accent)] bg-[var(--accent-glow)] border border-rose-500/10 font-bold">{s.level}</span>
+                    <h3 class="text-sm font-bold text-primary">{s.name}</h3>
+                    <span class="text-[9px] px-2 py-0.5 rounded font-mono text-accent bg-accent-glow border border-rose-500/10 font-bold">{s.level}</span>
                   </div>
-                  <p class="text-xs text-[var(--text-secondary)] mt-4 leading-relaxed font-sans">{s.context}</p>
+                  <p class="text-xs text-secondary mt-4 leading-relaxed font-sans">{s.context}</p>
                 </div>
               ))}
             </div>
