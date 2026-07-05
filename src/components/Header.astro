@@ -314,11 +314,11 @@ const isActive = (path: string) => {
   }
 
   // Mobile Menu Logic with accessibility support
-  var tg = document.getElementById("menu-btn"),
-    mn = document.getElementById("mob-menu"),
-    l1 = document.getElementById("l1"),
-    l2 = document.getElementById("l2"),
-    o = false;
+  const tg = document.getElementById("menu-btn");
+  const mn = document.getElementById("mob-menu");
+  const l1 = document.getElementById("l1");
+  const l2 = document.getElementById("l2");
+  let o = false;
 
   if (tg && mn && l1 && l2) {
     tg.addEventListener("click", () => {
@@ -343,7 +343,7 @@ const isActive = (path: string) => {
   }
 
   // Scroll Behavior
-  var h = document.getElementById("site-header");
+  const h = document.getElementById("site-header");
   if (h) {
     addEventListener(
       "scroll",

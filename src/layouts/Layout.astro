@@ -5,12 +5,19 @@ export interface Props {
   title?: string;
   description?: string;
   image?: string;
+  type?: "website" | "article";
+  articleData?: {
+    pubDate: Date;
+    tags?: string[];
+  };
 }
 
 const {
   title = "Sayan Datta — Senior Full Stack Developer & Open Source Engineer",
   description = "Senior Full Stack Developer specializing in high-performance WooCommerce systems, custom payment gateways, Laravel backends, and modern TypeScript (Astro, Next.js). 8+ years experience.",
   image = "https://sayandatta.co.in/favicon.png",
+  type = "website",
+  articleData,
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://sayandatta.co.in");
@@ -25,7 +32,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://sayandat
     <meta name="description" content={description} />
 
     <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={type} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalURL.href} />
@@ -76,6 +83,36 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://sayandat
         "description": "Senior Full Stack Developer specializing in high-performance WooCommerce systems, custom payment gateways, Laravel backends, and modern TypeScript (Astro, Next.js)."
       }
     </script>
+
+    {
+      type === "article" && articleData && (
+        <script
+          type="application/ld+json"
+          set:html={JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            headline: title,
+            description: description,
+            image: image,
+            datePublished: articleData.pubDate.toISOString(),
+            author: {
+              "@type": "Person",
+              name: "Sayan Datta",
+              url: "https://sayandatta.co.in",
+            },
+            publisher: {
+              "@type": "Person",
+              name: "Sayan Datta",
+              url: "https://sayandatta.co.in",
+            },
+            mainEntityOfPage: {
+              "@type": "WebPage",
+              "@id": canonicalURL.href,
+            },
+          })}
+        />
+      )
+    }
   </head>
   <body class="min-h-screen relative">
     <a

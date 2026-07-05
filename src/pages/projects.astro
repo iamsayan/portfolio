@@ -239,7 +239,8 @@ const rest = allProjects.filter((p) => !p.featured);
         let visibleSecondaryCount = 0;
 
         // Filter project cards
-        cards.forEach((card) => {
+        cards.forEach((cardNode) => {
+          const card = cardNode as HTMLElement;
           var cardCat = card.getAttribute("data-cat");
           if (filterVal === "all" || cardCat === filterVal) {
             card.classList.remove("filtered-out");
@@ -248,7 +249,7 @@ const rest = allProjects.filter((p) => !p.featured);
               card.style.opacity = "1";
             }, 50);
 
-            if (card.parentElement.id === "secondary-grid") {
+            if (card.parentElement?.id === "secondary-grid") {
               visibleSecondaryCount++;
             }
           } else {

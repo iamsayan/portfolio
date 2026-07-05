@@ -15,7 +15,15 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 ---
 
-<Layout title={`${post.title} — Sayan Datta`} description={post.description}>
+<Layout
+  title={`${post.title} — Sayan Datta`}
+  description={post.description}
+  type="article"
+  articleData={{
+    pubDate: post.pubDate,
+    tags: post.tags,
+  }}
+>
   <Header />
   <main id="main-content" class="py-24 relative overflow-hidden">
     <article class="pt-16 pb-28 relative z-10">
