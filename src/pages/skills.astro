@@ -3,40 +3,11 @@ import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 
-const categories = [
-  {
-    name: "Frontend Stack",
-    desc: "Crafting modular, high-speed user interfaces that are fast, accessible, and structured.",
-    skills: [
-      { name: "Next.js / React", pct: "95%", context: "Primary production framework. React Server Components, App Router, middleware routing, and dynamic data streaming." },
-      { name: "TypeScript", pct: "90%", context: "Type safety across the stack. Generics, utility type mapping, strict configurations." },
-      { name: "Tailwind CSS", pct: "92%", context: "Styling layout designs, utility structures, theme definitions, and custom Vite configs." },
-      { name: "Vue.js", pct: "70%", context: "Single File Components, Vue Router, Pinia client state management." },
-    ],
-  },
-  {
-    name: "Backend Architecture",
-    desc: "Designing secure, maintainable server environments that scale to real workloads.",
-    skills: [
-      { name: "PHP / WordPress", pct: "95%", context: "Custom plugins, database actions, headless WordPress API feeds. 8+ years deep." },
-      { name: "Node.js", pct: "80%", context: "Vite dev servers, Express APIs, custom route handlers, request validation scripts." },
-      { name: "Laravel", pct: "78%", context: "Eloquent ORM, artisan script command pipelines, database seed configurations." },
-      { name: "Python", pct: "65%", context: "Script automation, JSON data processing modules, API endpoints." },
-    ],
-  },
-  {
-    name: "DevOps & Databases",
-    desc: "Infrastructure pipelines, version controls, and query indexing setups.",
-    skills: [
-      { name: "MySQL / PostgreSQL", pct: "82%", context: "Schema optimization, indexing, foreign keys, complex transaction management." },
-      { name: "REST API / GraphQL", pct: "88%", context: "Secure API design pattern structures, WPGraphQL integrations, Apollo client feeds." },
-      { name: "Git / CI-CD", pct: "85%", context: "GitHub Actions runner workflows, automated unit checking, zero-downtime Vercel/Docker deploys." },
-      { name: "Docker / Linux", pct: "75%", context: "Multi-stage Dockerfile configurations, Docker Compose orchestration, Nginx reverse proxy routes." },
-    ],
-  },
-];
+import { getSkills } from "@/lib/data";
 
-const additional = "JavaScript HTML5 CSS3 jQuery AJAX Bootstrap WooCommerce Redis Nginx Vercel Gutenberg".split(" ");
+const skillsData = await getSkills();
+const categories = skillsData.categories;
+const additional = skillsData.additional;
 ---
 
 <Layout title="Skills — Sayan Datta" description="Comprehensive overview of Sayan Datta's development stack, tools, languages, and technical competencies.">

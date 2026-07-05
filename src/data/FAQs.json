@@ -1,0 +1,14 @@
+[
+  {
+    "q": "What is your main programming focus?",
+    "a": "I specialize in backend architecture and full-stack integration: building REST/GraphQL APIs, custom WooCommerce payment systems, and linking them to modern headless frontends like Astro or Next.js."
+  },
+  {
+    "q": "How can you help scale WooCommerce sites?",
+    "a": "I optimize slow database queries, integrate robust transaction-safe payment options (UPI, Razorpay, Stripe), offload content to headless CMS setups, and configure solid object caching."
+  },
+  {
+    "q": "Are you available for contract or full-time roles?",
+    "a": "Yes! I am available for contract consulting, full-time engineering roles, payment integration projects, or headless CMS migrations. Reach out via email: hello@sayandatta.dev."
+  }
+]

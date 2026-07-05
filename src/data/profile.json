@@ -1,0 +1,17 @@
+{
+  "name": "Sayan Datta",
+  "title": "Senior Full Stack Developer",
+  "location": "India",
+  "email": "hello@sayandatta.dev",
+  "backupEmail": "iamsayan@pm.me",
+  "socials": {
+    "github": "https://github.com/iamsayan",
+    "linkedin": "https://linkedin.com/in/meetsayan",
+    "twitter": "https://twitter.com/im_sayaan"
+  },
+  "bios": {
+    "short": "Senior Full Stack Developer & Open Source Engineer specializing in WooCommerce core systems, Laravel backends, and modern TypeScript products.",
+    "medium": "I am a Senior Full Stack Developer and open-source maintainer with over 8 years of experience building products that scale. While my foundation is in PHP, WordPress, and WooCommerce—where I have built plugins used by over a million active sites—my day-to-day focuses on modern JavaScript/TypeScript (Astro, Next.js) and optimized Laravel applications.",
+    "long": "Hello, I'm Sayan Datta. Over the past 8+ years, I have worked as a product engineer, architect, and open-source maintainer, building software that millions of developers and users rely on daily. My engineering career started in the WordPress ecosystem, where I led the technical architecture of popular commercial plugins, built licensing systems, and contributed to WordPress core. Since then, my focus has expanded into modern JavaScript frameworks and API-first architectures. I operate at the intersection of product engineering, performance optimization, and developer experience. Whether it's developing robust WooCommerce payment integrations (some of which I scaled and successfully got acquired), building high-performance static websites with Astro, or architecting backend services with Laravel, my focus remains on clean, maintainable code and measurable business impact."
+  }
+}

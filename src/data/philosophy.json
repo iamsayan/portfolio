@@ -1,0 +1,18 @@
+[
+  {
+    "title": "Clean Code & Scalability",
+    "description": "Writing readable, well-commented, and decoupled code. Architecting applications so they remain maintainable under increasing traffic and data loads."
+  },
+  {
+    "title": "Developer Experience (DX)",
+    "description": "Building tools, plugins, and helper libraries that improve onboarding, testing, and deployment speeds for other engineers."
+  },
+  {
+    "title": "Performance First",
+    "description": "Minimizing bundle sizes, optimizing database indexes, offloading heavy processing to asynchronous tasks, and aiming for sub-second load times."
+  },
+  {
+    "title": "Open Source Advocacy",
+    "description": "Contributing back to public projects like WordPress core, maintaining extensions, and supporting community development workflows."
+  }
+]

@@ -2,16 +2,20 @@
 import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
+import { getProfile, getStatistics } from "@/lib/data";
+
+const profile = await getProfile();
+const statsData = await getStatistics();
 
 const stats = [
-  { value: "7+", label: "Years experience building across the stack" },
-  { value: "50+", label: "Projects delivered for global clients" },
-  { value: "1M+", label: "Plugin downloads across WP ecosystem" },
-  { value: "20+", label: "Open source repositories on GitHub" },
+  { value: statsData.experience + "Y", label: "Years experience building across the stack" },
+  { value: statsData.projects, label: "Projects delivered for global clients" },
+  { value: statsData.downloads, label: "Plugin downloads across WP ecosystem" },
+  { value: statsData.repositories, label: "Open source repositories on GitHub" },
 ];
 ---
 
-<Layout>
+<Layout title={`${profile.name} | ${profile.title} & Open Source Engineer`} description={`${profile.title} specializing in high-performance WooCommerce systems, custom payment gateways, Laravel backends, and modern TypeScript (Astro, Next.js).`}>
   <Header />
   <main>
     <!-- ── Hero — Split Screen Workbench ── -->
@@ -37,7 +41,7 @@ const stats = [
             </h1>
             
             <p class="t-body max-w-xl text-lg leading-relaxed">
-              Hey, I'm <strong class="text-[var(--text-primary)] font-semibold">Sayan Datta</strong> — a Senior Software Engineer, Full Stack Developer, and WordPress Expert from India. I build custom plugins, scalable SaaS products, and performant web experiences.
+              Hey, I'm <strong class="text-[var(--text-primary)] font-semibold">{profile.name}</strong> — a {profile.title} from {profile.location}. {profile.bios.short}
             </p>
             
             <div class="flex flex-wrap gap-4 pt-4">

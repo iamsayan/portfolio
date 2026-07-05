@@ -2,15 +2,19 @@
 import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
+import { getProfile, getFAQs } from "@/lib/data";
+
+const profile = await getProfile();
+const faqs = await getFAQs();
 ---
 
-<Layout title="Contact | Sayan Datta" description="Start a project conversation with Sayan Datta. Get in touch for custom WordPress plugins, API architectures, or contract roles.">
+<Layout title="Contact | Let's Build Digital Experiences" description="Get in touch for contract consulting, full-time engineering roles, payment integration projects, or headless CMS migrations.">
   <Header />
-  <main class="py-24 relative overflow-hidden">
+  <main class="py-24 relative overflow-hidden" data-email={profile.email}>
     <!-- Background overlay grid -->
     <div class="absolute inset-0 opacity-[0.08] pointer-events-none" style="background:radial-gradient(circle at 80% 30%, var(--accent), transparent 50%)"></div>
 
-    <section class="pt-16 pb-24 relative z-10">
+    <section class="pt-16 pb-12 relative z-10">
       <div class="mx">
         <div class="grid lg:grid-cols-12 gap-12 lg:gap-20">
           
@@ -30,7 +34,7 @@ import Footer from "@/components/Footer.astro";
                 <span class="w-8 h-8 rounded bg-[var(--accent-glow)] text-[var(--accent)] flex items-center justify-center flex-shrink-0 font-mono text-sm">✉</span>
                 <div>
                   <p class="text-[10px] font-mono text-[var(--text-muted)] uppercase tracking-wider">Direct Channels</p>
-                  <a href="mailto:hello@sayandatta.dev" class="text-sm font-semibold text-[var(--accent)] hover:text-[var(--accent-bright)] transition-colors mt-1 block">hello@sayandatta.dev</a>
+                  <a href={`mailto:${profile.email}`} class="text-sm font-semibold text-[var(--accent)] hover:text-[var(--accent-bright)] transition-colors mt-1 block">{profile.email}</a>
                 </div>
               </div>
 
@@ -38,7 +42,7 @@ import Footer from "@/components/Footer.astro";
                 <span class="w-8 h-8 rounded bg-[var(--accent-glow)] text-[var(--accent)] flex items-center justify-center flex-shrink-0 font-mono text-sm">𖡡</span>
                 <div>
                   <p class="text-[10px] font-mono text-[var(--text-muted)] uppercase tracking-wider">Operational Location</p>
-                  <p class="text-sm text-[var(--text-secondary)] mt-1 font-semibold">India &middot; Remote operations globally</p>
+                  <p class="text-sm text-[var(--text-secondary)] mt-1 font-semibold">{profile.location} &middot; Remote operations globally</p>
                 </div>
               </div>
 
@@ -52,9 +56,9 @@ import Footer from "@/components/Footer.astro";
             </div>
 
             <div class="flex items-center gap-6 pt-4 reveal r4">
-              <a href="https://github.com/iamsayan" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors">&lt; GitHub &gt;</a>
-              <a href="https://www.linkedin.com/in/meetsayan/" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors">&lt; LinkedIn &gt;</a>
-              <a href="https://x.com/im_sayaan" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors">&lt; Twitter &gt;</a>
+              <a href={profile.socials.github} target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors">&lt; GitHub &gt;</a>
+              <a href={profile.socials.linkedin} target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors">&lt; LinkedIn &gt;</a>
+              <a href={profile.socials.twitter} target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors">&lt; Twitter &gt;</a>
             </div>
           </div>
 
@@ -110,7 +114,7 @@ import Footer from "@/components/Footer.astro";
 
               <!-- Success window overlay -->
               <div id="success-state" class="hidden py-8 text-center space-y-6">
-                <div class="w-12 h-12 rounded-full bg-[var(--success-glow)] text-[var(--success)] flex items-center justify-center mx-auto text-xl font-bold border border-[rgba(16,185,129,0.2)]">✓</div>
+                <div class="w-12 h-12 rounded-full bg-[var(--success-glow)] text-[var(--success)] flex items-center justify-center mx-auto text-xl font-bold border border border-[rgba(16,185,129,0.2)]">✓</div>
                 <div>
                   <h3 class="text-md font-bold text-[var(--text-primary)]">Transmission Successful</h3>
                   <p class="text-xs text-[var(--text-secondary)] mt-2 max-w-sm mx-auto">Your details have been validated. Fallback email client is prepped. Opening composer...</p>
@@ -120,6 +124,29 @@ import Footer from "@/components/Footer.astro";
 
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQs Section -->
+    <section class="pb-24 border-t border-[var(--border-subtle)] pt-20 relative z-10 reveal">
+      <div class="mx-narrow">
+        <div class="text-center mb-12">
+          <p class="t-mono text-[var(--accent)] uppercase">Frequently Asked Questions</p>
+          <h2 class="t-title text-2xl font-bold mt-2">Common developer queries.</h2>
+        </div>
+        <div class="space-y-4">
+          {faqs.map((faq, fi) => (
+            <div class="glass p-6 bg-[var(--bg-surface)] border-[var(--border-subtle)] cursor-pointer group transition-all" data-faq={fi}>
+              <div class="flex items-center justify-between">
+                <h3 class="font-bold text-sm text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors">{faq.q}</h3>
+                <span class="text-xs text-[var(--text-muted)] font-mono transition-transform duration-300 select-none faq-plus">+</span>
+              </div>
+              <div class="max-h-0 opacity-0 overflow-hidden transition-all duration-300 faq-answer">
+                <p class="text-xs text-[var(--text-secondary)] mt-4 leading-relaxed">{faq.a}</p>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
@@ -139,6 +166,8 @@ import Footer from "@/components/Footer.astro";
   
   var successState = document.getElementById("success-state");
   var resetBtn = document.getElementById("reset-btn");
+  
+  var emailAddr = document.querySelector("main").getAttribute("data-email") || "hello@sayandatta.dev";
   
   var logs = [
     { text: "Establishing secure handshake...", val: 20 },
@@ -176,7 +205,7 @@ import Footer from "@/components/Footer.astro";
           
           // Trigger fallback action
           var body = `Hello Sayan,\n\nMy name is ${nameVal} (${emailVal}). I am writing to discuss a ${scopeVal} project.\n\nDetails:\n${msgVal}\n\nBest regards,\n${nameVal}`;
-          var mailtoUrl = `mailto:hello@sayandatta.dev?subject=Project Scope: ${encodeURIComponent(scopeVal)}&body=${encodeURIComponent(body)}`;
+          var mailtoUrl = `mailto:${emailAddr}?subject=Project Scope: ${encodeURIComponent(scopeVal)}&body=${encodeURIComponent(body)}`;
           
           // Small delay before opening mailto client
           setTimeout(() => {
@@ -198,10 +227,31 @@ import Footer from "@/components/Footer.astro";
       var msgVal = (document.getElementById("message") as HTMLTextAreaElement).value;
       
       var body = `Hello Sayan,\n\nMy name is ${nameVal} (${emailVal}). I am writing to discuss a ${scopeVal} project.\n\nDetails:\n${msgVal}\n\nBest regards,\n${nameVal}`;
-      var mailtoUrl = `mailto:hello@sayandatta.dev?subject=Project Scope: ${encodeURIComponent(scopeVal)}&body=${encodeURIComponent(body)}`;
+      var mailtoUrl = `mailto:${emailAddr}?subject=Project Scope: ${encodeURIComponent(scopeVal)}&body=${encodeURIComponent(body)}`;
       window.location.href = mailtoUrl;
     });
   }
+
+  // FAQ Toggling logic
+  document.querySelectorAll("[data-faq]").forEach(el => {
+    el.addEventListener("click", () => {
+      const answer = el.querySelector(".faq-answer") as HTMLElement;
+      const plus = el.querySelector(".faq-plus") as HTMLElement;
+      const isOpen = el.classList.toggle("faq-open");
+      
+      if (isOpen) {
+        answer.style.maxHeight = answer.scrollHeight + "px";
+        answer.style.opacity = "1";
+        plus.style.transform = "rotate(45deg)";
+        plus.textContent = "×";
+      } else {
+        answer.style.maxHeight = "0";
+        answer.style.opacity = "0";
+        plus.style.transform = "none";
+        plus.textContent = "+";
+      }
+    });
+  });
 
   // IntersectionObserver reveal animations
   var observer = new IntersectionObserver(entries => {

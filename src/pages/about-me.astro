@@ -2,9 +2,13 @@
 import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
+import { getProfile, getExperience } from "@/lib/data";
+
+const profile = await getProfile();
+const experience = await getExperience();
 ---
 
-<Layout title="About | Sayan Datta">
+<Layout title="About | Sayan Datta — Senior Developer" description="8+ years of engineering experience. From core WordPress plugin architecture to modern full-stack JavaScript. Learn about my journey and work history.">
   <Header />
   <main class="py-24 relative overflow-hidden">
     <!-- Grid overlay and spotlights -->
@@ -20,7 +24,7 @@ import Footer from "@/components/Footer.astro";
         </div>
         <h1 class="t-heading">The person behind the <span class="t-accent">code.</span></h1>
         <p class="t-body mt-6 text-xl leading-snug">
-          I'm Sayan Datta — a software engineer who turns product blueprints into clean, scalable, and performant web solutions.
+          I'm {profile.name} — a software engineer who turns product blueprints into clean, scalable, and performant web solutions.
         </p>
       </div>
 
@@ -28,14 +32,11 @@ import Footer from "@/components/Footer.astro";
       <div class="grid lg:grid-cols-12 gap-12 items-start mb-24 reveal r1">
         <!-- Biography Text -->
         <div class="lg:col-span-8 space-y-6">
-          <p class="t-body">
-            I am a tech enthusiast, a WordPress Developer by passion and a Software Engineer by profession. I invest the majority of my free time and energy writing code. I love Open Source technologies like WordPress and contributing back to the web community.
+          <p class="t-body leading-relaxed">
+            {profile.bios.long}
           </p>
-          <p class="t-body">
-            With 7+ years of experience across the stack, I specialize in custom plugins development, core Gutenberg architectures, and scalable full-stack integrations. Over the years, I have built products downloaded over a million times and contributed patches directly into WordPress core.
-          </p>
-          <p class="t-body">
-            I am highly proficient in PHP, TypeScript, JavaScript, Next.js, Astro, Laravel, and database optimizations. I believe in clean code (strict formatting, linting, and PSR compliance), accessibility, and creating interfaces that deliver exceptional speed.
+          <p class="t-body leading-relaxed">
+            With a focus on performance-first engineering, I ensure that web applications load in milliseconds, backend structures remain clean and linted, and custom plugin architectures map to standard scalable workflows.
           </p>
         </div>
 
@@ -46,11 +47,11 @@ import Footer from "@/components/Footer.astro";
             <div class="space-y-3">
               <div class="flex justify-between items-center text-sm">
                 <span class="text-[var(--text-muted)]">Location:</span>
-                <span class="font-medium text-[var(--text-primary)]">🇮🇳 West Bengal, India</span>
+                <span class="font-medium text-[var(--text-primary)]">🇮🇳 {profile.location}</span>
               </div>
               <div class="flex justify-between items-center text-sm">
                 <span class="text-[var(--text-muted)]">Email:</span>
-                <a href="mailto:hello@sayandatta.dev" class="font-semibold text-[var(--accent)] hover:underline">hello@sayandatta.dev</a>
+                <a href={`mailto:${profile.email}`} class="font-semibold text-[var(--accent)] hover:underline">{profile.email}</a>
               </div>
               <div class="flex justify-between items-center text-sm">
                 <span class="text-[var(--text-muted)]">Website:</span>
@@ -138,95 +139,30 @@ import Footer from "@/components/Footer.astro";
         <h2 class="t-title mb-12">Professional experience.</h2>
 
         <div class="timeline-container space-y-12">
-          <!-- TeamUpdraft -->
-          <div class="relative pl-6">
-            <div class="timeline-node"></div>
-            <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-2">
-              <div>
-                <h3 class="font-bold text-lg text-[var(--text-primary)]">Senior WordPress Developer</h3>
-                <p class="text-xs text-[var(--accent)] font-semibold">TeamUpdraft &mdash; United Kingdom (Remote)</p>
+          {experience.map((exp, idx) => {
+            const colors = ["#f43f5e", "#38bdf8", "#a855f7", "#10b981", "#f59e0b", "#e11d48"];
+            const color = colors[idx % colors.length];
+            return (
+              <div class="relative pl-6">
+                <div class="timeline-node" style={`border-color: ${color}; box-shadow: 0 0 10px ${color}80`}></div>
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-2">
+                  <div>
+                    <h3 class="font-bold text-lg text-[var(--text-primary)]">{exp.position}</h3>
+                    <p class="text-xs font-semibold" style={`color: ${color}`}>{exp.company} &mdash; Remote</p>
+                  </div>
+                  <span class="text-xs bg-[var(--bg-raised)] border border-[var(--border-strong)] px-3 py-1 rounded-full text-[var(--text-secondary)] font-medium">{exp.duration}</span>
+                </div>
+                <p class="text-sm text-[var(--text-secondary)] leading-relaxed mb-3">
+                  {exp.description}
+                </p>
+                <ul class="list-disc pl-4 space-y-1 text-xs text-[var(--text-muted)]">
+                  {exp.bullets.map((b) => (
+                    <li>{b}</li>
+                  ))}
+                </ul>
               </div>
-              <span class="text-xs bg-[var(--bg-raised)] border border-[var(--border-strong)] px-3 py-1 rounded-full text-[var(--text-secondary)] font-medium">Aug 2025 - Present</span>
-            </div>
-            <p class="text-sm text-[var(--text-secondary)] leading-relaxed">
-              Leading the development of UpdraftCentral, an advanced remote site administrator orchestration utility. Overseeing core plugin integrations, scheduling pipelines, and security updates for tens of thousands of active nodes.
-            </p>
-          </div>
-
-          <!-- InstaWP (Full Stack Role) -->
-          <div class="relative pl-6">
-            <div class="timeline-node" style="border-color:#38bdf8; box-shadow:0 0 10px rgba(56,189,248,0.5)"></div>
-            <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-2">
-              <div>
-                <h3 class="font-bold text-lg text-[var(--text-primary)]">Full Stack Developer</h3>
-                <p class="text-xs text-sky-400 font-semibold">InstaWP Inc. &mdash; Wilmington, USA (Remote)</p>
-              </div>
-              <span class="text-xs bg-[var(--bg-raised)] border border-[var(--border-strong)] px-3 py-1 rounded-full text-[var(--text-secondary)] font-medium">Jul 2024 - Jul 2025</span>
-            </div>
-            <p class="text-sm text-[var(--text-secondary)] leading-relaxed">
-              Designed the complex Pay Per User billing matrix, Site Management components, Push Migration architecture, WaaS integration layouts, Connect Helpers Composer packages, and headless CLI remote admin tools.
-            </p>
-          </div>
-
-          <!-- InstaWP (Senior WP Role) -->
-          <div class="relative pl-6">
-            <div class="timeline-node" style="border-color:#a855f7; box-shadow:0 0 10px rgba(168,85,247,0.5)"></div>
-            <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-2">
-              <div>
-                <h3 class="font-bold text-lg text-[var(--text-primary)]">Senior WordPress Developer</h3>
-                <p class="text-xs text-purple-400 font-semibold">InstaWP Inc. &mdash; Wilmington, USA (Remote)</p>
-              </div>
-              <span class="text-xs bg-[var(--bg-raised)] border border-[var(--border-strong)] px-3 py-1 rounded-full text-[var(--text-secondary)] font-medium">Jul 2023 - Jun 2024</span>
-            </div>
-            <p class="text-sm text-[var(--text-secondary)] leading-relaxed">
-              Implemented site monitoring tools, custom Reports generation systems, Configuration Managers, Activity Logger components, and the Vulnerability/Performance scanner inside the core Laravel app and WP helper plugin.
-            </p>
-          </div>
-
-          <!-- ExpressTech Systems -->
-          <div class="relative pl-6">
-            <div class="timeline-node" style="border-color:#10b981; box-shadow:0 0 10px rgba(16,185,129,0.5)"></div>
-            <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-2">
-              <div>
-                <h3 class="font-bold text-lg text-[var(--text-primary)]">Senior Software Engineer</h3>
-                <p class="text-xs text-emerald-400 font-semibold">ExpressTech Systems</p>
-              </div>
-              <span class="text-xs bg-[var(--bg-raised)] border border-[var(--border-strong)] px-3 py-1 rounded-full text-[var(--text-secondary)] font-medium">May 2021 - Jun 2023</span>
-            </div>
-            <p class="text-sm text-[var(--text-secondary)] leading-relaxed">
-              Architected lightweight React-based accordion, tabs, and slider blocks for the Gutena Product Suite block editor. Modernized old monolith products like Quiz &amp; Survey Master, Responsive Menu, and Projectopia into structured configurations.
-            </p>
-          </div>
-
-          <!-- Skynix Web Studio -->
-          <div class="relative pl-6">
-            <div class="timeline-node" style="border-color:#f59e0b; box-shadow:0 0 10px rgba(245,158,11,0.5)"></div>
-            <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-2">
-              <div>
-                <h3 class="font-bold text-lg text-[var(--text-primary)]">Independent Product Developer</h3>
-                <p class="text-xs text-amber-500 font-semibold">Skynix Web Studio</p>
-              </div>
-              <span class="text-xs bg-[var(--bg-raised)] border border-[var(--border-strong)] px-3 py-1 rounded-full text-[var(--text-secondary)] font-medium">Jul 2020 - Apr 2021</span>
-            </div>
-            <p class="text-sm text-[var(--text-secondary)] leading-relaxed">
-              Engineered individual custom utility modules and plugins for client websites. Analyzed database performance, resolved speed degradation issues, and refactored plugin actions for high scalability.
-            </p>
-          </div>
-
-          <!-- BTN Infosolution -->
-          <div class="relative pl-6">
-            <div class="timeline-node" style="border-color:#e11d48; box-shadow:0 0 10px rgba(225,29,72,0.5)"></div>
-            <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-2">
-              <div>
-                <h3 class="font-bold text-lg text-[var(--text-primary)]">Lead WordPress Developer</h3>
-                <p class="text-xs text-rose-500 font-semibold">BTN Infosolution</p>
-              </div>
-              <span class="text-xs bg-[var(--bg-raised)] border border-[var(--border-strong)] px-3 py-1 rounded-full text-[var(--text-secondary)] font-medium">Mar 2019 - Jun 2020</span>
-            </div>
-            <p class="text-sm text-[var(--text-secondary)] leading-relaxed">
-              Maintained client systems, structured Elementor widgets configurations, and developed custom corporate theme layouts using PHP, WordPress hooks, Gulp, and vanilla JavaScript.
-            </p>
-          </div>
+            );
+          })}
         </div>
       </div>
 

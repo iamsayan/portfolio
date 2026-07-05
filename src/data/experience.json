@@ -1,0 +1,71 @@
+[
+  {
+    "company": "TeamUpdraft",
+    "position": "WordPress Developer",
+    "duration": "August 2025 – Present",
+    "description": "Led development and optimization of commercial WordPress plugins and WooCommerce integrations, improving performance and maintainability.",
+    "bullets": [
+      "Architected WooCommerce payment flows and core extension modules to improve user acquisition.",
+      "Conducted detailed performance optimization and refactoring across high-traffic WordPress plugins.",
+      "Established modern JavaScript tooling and automated workflows within legacy PHP codebases."
+    ],
+    "tech": ["PHP", "WordPress", "WooCommerce", "JavaScript", "Webpack"]
+  },
+  {
+    "company": "InstaWP Inc.",
+    "position": "Senior WordPress Developer",
+    "duration": "August 2024 – August 2025",
+    "description": "Maintained high-traffic WordPress plugins, built Laravel microservices, and developed custom Vue.js internal tooling.",
+    "bullets": [
+      "Authored the Connect Helpers Composer package to simplify WooCommerce data sync.",
+      "Maintained and optimized multiple WordPress plugins used in commercial production environments.",
+      "Built internal deployment tools using Laravel and Vue.js, reducing developer onboarding time by 30%."
+    ],
+    "tech": ["PHP", "Laravel", "Vue.js", "WordPress", "Composer", "APIs"]
+  },
+  {
+    "company": "InstaWP Inc.",
+    "position": "WordPress Developer",
+    "duration": "July 2023 – July 2024",
+    "description": "Contributed to WordPress architecture and product engineering across both WordPress and Laravel applications.",
+    "bullets": [
+      "Designed reusable plugin modules and internal developer tools.",
+      "Built WooCommerce extensions and customized billing architectures."
+    ],
+    "tech": ["PHP", "WordPress", "Laravel", "Git"]
+  },
+  {
+    "company": "ExpressTech Systems",
+    "position": "Senior WordPress Developer",
+    "duration": "May 2021 – June 2023",
+    "description": "Owned technical implementation of major commercial themes and Gutenberg-block series.",
+    "bullets": [
+      "Led technical development of the Gutena series, building 10+ custom Gutenberg block plugins and the companion theme.",
+      "Built custom licensing, activation, and automated update systems for commercial plugins.",
+      "Maintained and added features to commercial platforms including Projectopia, Responsive Menu, and Quiz And Survey Master."
+    ],
+    "tech": ["PHP", "React", "Gutenberg Blocks", "WordPress", "Node.js"]
+  },
+  {
+    "company": "Freelance",
+    "position": "Independent Developer",
+    "duration": "July 2020 – April 2021",
+    "description": "Provided consulting, payment integrations, and performance auditing for international clients.",
+    "bullets": [
+      "Customized WooCommerce payment integrations and custom checkout flows for global clients.",
+      "Audited and optimized database queries and assets to achieve sub-second page loads."
+    ],
+    "tech": ["PHP", "WooCommerce", "Payment Gateways", "REST APIs"]
+  },
+  {
+    "company": "BTN Infosolution",
+    "position": "Lead WordPress Developer",
+    "duration": "March 2019 – June 2020",
+    "description": "Developed custom themes and payment gateway modules for e-commerce clients.",
+    "bullets": [
+      "Integrated regional payment gateways and shipping calculators for WooCommerce stores.",
+      "Maintained client sites and built custom themes using standard WordPress templates."
+    ],
+    "tech": ["PHP", "WordPress", "WooCommerce", "jQuery", "CSS"]
+  }
+]

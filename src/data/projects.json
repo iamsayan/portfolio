@@ -1,0 +1,102 @@
+[
+  {
+    "title": "UPI Payment Integration for WooCommerce",
+    "type": "Personal Product",
+    "description": "Direct UPI gateway extension for WooCommerce merchants in India, enabling QR-code based instant checkout.",
+    "outcome": "Acquired by a commercial WordPress product company for ₹150,000 following user adoption.",
+    "category": "wordpress",
+    "tech": ["PHP", "WooCommerce", "UPI API", "JavaScript"],
+    "downloads": "Thousands of active users",
+    "url": "https://sayandatta.co.in"
+  },
+  {
+    "title": "Razorpay Payment Links for WooCommerce",
+    "type": "Personal Product",
+    "description": "Extension that automatically generates and emails Razorpay payment links for WooCommerce orders.",
+    "outcome": "Grew active merchant base and successfully positioned the product for acquisition, selling it for ₹150,000.",
+    "category": "wordpress",
+    "tech": ["PHP", "WooCommerce", "Razorpay API"],
+    "downloads": "Acquired extension",
+    "url": "https://sayandatta.co.in"
+  },
+  {
+    "title": "WP Last Modified Info",
+    "type": "Open Source Product",
+    "description": "WordPress plugin designed to easily display the last modified time/date of posts, pages, and templates.",
+    "outcome": "Over 1,000,000+ lifetime downloads, maintained on WordPress.org with mostly 5-star ratings.",
+    "category": "wordpress",
+    "tech": ["PHP", "WordPress Core", "JavaScript"],
+    "downloads": "1M+ Downloads",
+    "url": "https://wordpress.org/plugins/wp-last-modified-info/"
+  },
+  {
+    "title": "RevivePress",
+    "type": "Open Source Product",
+    "description": "WordPress scheduler helper to automatically republish old content, driving fresh search engine traffic.",
+    "outcome": "Actively maintained on WordPress.org, helping thousands of blogs maintain automated workflows.",
+    "category": "wordpress",
+    "tech": ["PHP", "WordPress API", "Cron Jobs"],
+    "downloads": "Active User Adoption",
+    "url": "https://wordpress.org/plugins/revivepress/"
+  },
+  {
+    "title": "Gutena Blocks & Theme",
+    "type": "Company Product (Expresstech)",
+    "description": "A high-performance modular Gutenberg block layout system and custom block theme.",
+    "outcome": "Acted as lead developer, building 10+ custom blocks and setting up the core layout system.",
+    "category": "packages",
+    "tech": ["React", "Gutenberg API", "PHP", "Tailwind CSS"],
+    "downloads": "Lead Developer",
+    "url": "https://sayandatta.co.in"
+  },
+  {
+    "title": "Projectopia",
+    "type": "Company Product (Expresstech)",
+    "description": "Top-selling project management solution for WordPress clients.",
+    "outcome": "Contributed core modules, refactored backend logic, and resolved payment integration bugs.",
+    "category": "wordpress",
+    "tech": ["PHP", "WordPress Core", "MySQL"],
+    "downloads": "Core Contributor",
+    "url": "https://projectopia.co"
+  },
+  {
+    "title": "Responsive Menu",
+    "type": "Company Product (Expresstech)",
+    "description": "WordPress menu customization plugin with highly responsive layout controls.",
+    "outcome": "Maintained plugin, patched security vulnerabilities, and added modern CSS grids features.",
+    "category": "wordpress",
+    "tech": ["PHP", "CSS Grid", "jQuery"],
+    "downloads": "Maintained Product",
+    "url": "https://responsive.menu"
+  },
+  {
+    "title": "Quiz And Survey Master (QSM)",
+    "type": "Company Product (Expresstech)",
+    "description": "Popular quiz and survey building extension with complex scoring add-ons.",
+    "outcome": "Developed specific add-on modules and stabilized reporting dashboards.",
+    "category": "wordpress",
+    "tech": ["PHP", "React", "Chart.js"],
+    "downloads": "Module Architect",
+    "url": "https://quizandsurveymaster.com"
+  },
+  {
+    "title": "Connect Helpers",
+    "type": "Company Product (InstaWP)",
+    "description": "Reusable PHP package providing streamlined WooCommerce database sync helpers.",
+    "outcome": "Authored and managed package releases in Composer repository.",
+    "category": "packages",
+    "tech": ["PHP", "Composer", "Git"],
+    "downloads": "Package Author",
+    "url": "https://sayandatta.co.in"
+  },
+  {
+    "title": "Ultimate Facebook Comments",
+    "type": "Open Source Product",
+    "description": "Allows integrating Facebook comment moderation threads directly into post layouts.",
+    "outcome": "Successfully maintained with 5-star ratings on official repository.",
+    "category": "wordpress",
+    "tech": ["PHP", "Facebook Graph API"],
+    "downloads": "Open Source",
+    "url": "https://wordpress.org/plugins/ultimate-facebook-comments/"
+  }
+]
