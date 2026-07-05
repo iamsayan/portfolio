@@ -68,8 +68,11 @@ const faqs = await getFAQs();
               
               <!-- Form header -->
               <div class="flex items-center justify-between border-b border-subtle pb-4 mb-6">
-                <span class="text-xs font-mono text-primary">secure-contact-session</span>
-                <span class="w-2.5 h-2.5 rounded-full bg-success animate-pulse" aria-label="Active status indicator"></span>
+                <div class="flex items-center gap-2">
+                  <span class="w-2.5 h-2.5 rounded-full bg-success animate-pulse" aria-hidden="true"></span>
+                  <span class="text-xs font-mono text-primary">secure-contact-session (TLS 1.3)</span>
+                </div>
+                <span class="text-[10px] font-mono text-muted">sayandatta.co.in</span>
               </div>
 
               <!-- Contact Form -->
@@ -77,28 +80,28 @@ const faqs = await getFAQs();
                 <!-- Floating Label Name -->
                 <div class="relative">
                   <input type="text" id="name" name="name" required class="w-full px-4 py-3 bg-deep border border-subtle focus:border-accent focus:outline-none rounded-lg text-sm transition-all peer placeholder-transparent focus-visible:ring-2 focus-visible:ring-accent" placeholder="Name" />
-                  <label for="name" class="absolute left-4 top-3 text-xs text-muted transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:top-3 peer-focus:top-1 peer-focus:text-[10px] peer-focus:text-accent -translate-y-2.5 bg-surface px-1 peer-focus:px-1 pointer-events-none">Your Name</label>
+                  <label for="name" class="absolute left-4 top-0 text-[10px] text-muted -translate-y-2 bg-surface px-1 scale-95 transition-all duration-200 pointer-events-none origin-left peer-placeholder-shown:text-sm peer-placeholder-shown:top-3 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:px-0 peer-focus:top-0 peer-focus:text-[10px] peer-focus:text-accent peer-focus:-translate-y-2 peer-focus:scale-95 peer-focus:px-1">Your Name</label>
                 </div>
 
                 <!-- Floating Label Email -->
                 <div class="relative">
                   <input type="email" id="email" name="email" required class="w-full px-4 py-3 bg-deep border border-subtle focus:border-accent focus:outline-none rounded-lg text-sm transition-all peer placeholder-transparent focus-visible:ring-2 focus-visible:ring-accent" placeholder="Email" />
-                  <label for="email" class="absolute left-4 top-3 text-xs text-muted transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:top-3 peer-focus:top-1 peer-focus:text-[10px] peer-focus:text-accent -translate-y-2.5 bg-surface px-1 peer-focus:px-1 pointer-events-none">Email Address</label>
+                  <label for="email" class="absolute left-4 top-0 text-[10px] text-muted -translate-y-2 bg-surface px-1 scale-95 transition-all duration-200 pointer-events-none origin-left peer-placeholder-shown:text-sm peer-placeholder-shown:top-3 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:px-0 peer-focus:top-0 peer-focus:text-[10px] peer-focus:text-accent peer-focus:-translate-y-2 peer-focus:scale-95 peer-focus:px-1">Email Address</label>
                 </div>
 
                 <!-- Floating Label Scope -->
                 <div class="relative">
                   <input type="text" id="scope" name="scope" required class="w-full px-4 py-3 bg-deep border border-subtle focus:border-accent focus:outline-none rounded-lg text-sm transition-all peer placeholder-transparent focus-visible:ring-2 focus-visible:ring-accent" placeholder="Scope" />
-                  <label for="scope" class="absolute left-4 top-3 text-xs text-muted transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:top-3 peer-focus:top-1 peer-focus:text-[10px] peer-focus:text-accent -translate-y-2.5 bg-surface px-1 peer-focus:px-1 pointer-events-none">Project Scope (e.g. WooCommerce Plugin, Laravel API)</label>
+                  <label for="scope" class="absolute left-4 top-0 text-[10px] text-muted -translate-y-2 bg-surface px-1 scale-95 transition-all duration-200 pointer-events-none origin-left peer-placeholder-shown:text-sm peer-placeholder-shown:top-3 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:px-0 peer-focus:top-0 peer-focus:text-[10px] peer-focus:text-accent peer-focus:-translate-y-2 peer-focus:scale-95 peer-focus:px-1">Project Scope (e.g. WooCommerce Plugin, Laravel API)</label>
                 </div>
 
                 <!-- Message Details -->
                 <div class="relative">
                   <textarea id="message" name="message" rows="4" required class="w-full px-4 py-3 bg-deep border border-subtle focus:border-accent focus:outline-none rounded-lg text-sm transition-all peer placeholder-transparent focus-visible:ring-2 focus-visible:ring-accent" placeholder="Message"></textarea>
-                  <label for="message" class="absolute left-4 top-3 text-xs text-muted transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:top-3 peer-focus:top-1 peer-focus:text-[10px] peer-focus:text-accent -translate-y-2.5 bg-surface px-1 peer-focus:px-1 pointer-events-none">Project Details / Requirements</label>
+                  <label for="message" class="absolute left-4 top-0 text-[10px] text-muted -translate-y-2 bg-surface px-1 scale-95 transition-all duration-200 pointer-events-none origin-left peer-placeholder-shown:text-sm peer-placeholder-shown:top-3 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:px-0 peer-focus:top-0 peer-focus:text-[10px] peer-focus:text-accent peer-focus:-translate-y-2 peer-focus:scale-95 peer-focus:px-1">Project Details / Requirements</label>
                 </div>
 
-                <button type="submit" class="b b-primary w-full py-3 shadow-md mt-2 relative overflow-hidden transition-all focus-visible:ring-2 focus-visible:ring-accent cursor-pointer" id="submit-btn">
+                <button type="submit" class="b b-primary w-full py-3 shadow-md mt-2 relative overflow-hidden transition-all focus-visible:ring-2 focus-visible:ring-accent cursor-pointer animate-glow" id="submit-btn">
                   <span id="btn-text">Transmit Request</span>
                 </button>
               </form>
@@ -132,6 +135,18 @@ const faqs = await getFAQs();
                 <div class="space-y-2">
                   <button id="fallback-email-btn" class="b b-primary w-full py-2.5 text-xs shadow-md">Open Fallback Email Draft</button>
                   <button id="retry-btn" class="b b-ghost text-xs py-2 px-4 w-full text-center">Return to Form</button>
+                </div>
+              </div>
+
+              <!-- Live Interactive Status Terminal Footer -->
+              <div class="mt-6 border border-subtle rounded-lg bg-deep p-4 font-mono text-[10px] text-secondary">
+                <div class="flex items-center justify-between text-muted border-b border-subtle pb-2 mb-2 select-none">
+                  <span>LIVE COMPILER DEPLOY SHELL</span>
+                  <span>v1.2.0-stable</span>
+                </div>
+                <div id="terminal-feed" class="space-y-1 min-h-[90px] text-muted">
+                  <div class="text-success">&gt; session_init: listening on inputs...</div>
+                  <div class="text-muted">&gt; waiting_for_user_handshake...</div>
                 </div>
               </div>
 
@@ -188,12 +203,71 @@ const faqs = await getFAQs();
   const emailAddr = mainEl?.getAttribute("data-email") || "hello@sayandatta.dev";
   const formspreeId = mainEl?.getAttribute("data-formspree") || "";
 
+  const terminalFeed = document.getElementById("terminal-feed");
+
+  // Terminal Logging Helper
+  function logTerminal(message: string, type: 'info' | 'success' | 'warn' | 'muted' = 'info') {
+    if (!terminalFeed) return;
+    const line = document.createElement("div");
+    let colorClass = "text-secondary";
+    if (type === 'success') colorClass = "text-success";
+    if (type === 'warn') colorClass = "text-amber-500";
+    if (type === 'muted') colorClass = "text-muted";
+    
+    line.className = `${colorClass}`;
+    line.innerHTML = `&gt; ${message}`;
+    
+    terminalFeed.appendChild(line);
+    
+    // Keep logs neat and scroll to bottom
+    while (terminalFeed.children.length > 5) {
+      terminalFeed.removeChild(terminalFeed.firstChild!);
+    }
+    terminalFeed.scrollTop = terminalFeed.scrollHeight;
+  }
+
+  // Monitor form input changes for live compilation logs
+  const nameInput = document.getElementById("name") as HTMLInputElement;
+  const emailInput = document.getElementById("email") as HTMLInputElement;
+  const scopeInput = document.getElementById("scope") as HTMLInputElement;
+  const messageInput = document.getElementById("message") as HTMLTextAreaElement;
+
+  nameInput?.addEventListener("input", () => {
+    const val = nameInput.value.trim();
+    if (val) {
+      logTerminal(`name_buffer_bind: "${val.substring(0, 15)}${val.length > 15 ? '...' : ''}"`, 'info');
+    }
+  });
+
+  emailInput?.addEventListener("input", () => {
+    const val = emailInput.value.trim();
+    if (val && val.includes("@")) {
+      logTerminal(`socket_verify: email syntax mapped.`, 'success');
+    } else if (val) {
+      logTerminal(`socket_check: parsing routing host...`, 'muted');
+    }
+  });
+
+  scopeInput?.addEventListener("input", () => {
+    const val = scopeInput.value.trim();
+    if (val) {
+      logTerminal(`route_scope_bind: /pay/${val.toLowerCase().replace(/[^a-z0-9]/g, '-')}`, 'info');
+    }
+  });
+
+  messageInput?.addEventListener("input", () => {
+    const val = messageInput.value.trim();
+    if (val.length % 20 === 0 && val.length > 0) {
+      logTerminal(`payload_size_calc: ${val.length} bytes loaded`, 'muted');
+    }
+  });
+
   function getFormValues() {
     return {
-      name: (document.getElementById("name") as HTMLInputElement).value.trim(),
-      email: (document.getElementById("email") as HTMLInputElement).value.trim(),
-      scope: (document.getElementById("scope") as HTMLInputElement).value.trim(),
-      message: (document.getElementById("message") as HTMLTextAreaElement).value.trim(),
+      name: nameInput.value.trim(),
+      email: emailInput.value.trim(),
+      scope: scopeInput.value.trim(),
+      message: messageInput.value.trim(),
     };
   }
 
@@ -201,6 +275,7 @@ const faqs = await getFAQs();
     const { name, email, scope, message } = getFormValues();
     const body = `Hello Sayan,\n\nMy name is ${name} (${email}). I am writing to discuss a project regarding "${scope}".\n\nDetails:\n${message}\n\nBest regards,\n${name}`;
     const mailtoUrl = `mailto:${emailAddr}?subject=Project Consultation: ${encodeURIComponent(scope)}&body=${encodeURIComponent(body)}`;
+    logTerminal(`mailto_fallback: launching client email client.`, 'warn');
     window.location.href = mailtoUrl;
   }
 
@@ -211,6 +286,8 @@ const faqs = await getFAQs();
       const { name, email, scope, message } = getFormValues();
       if (!name || !email || !scope || !message) return;
 
+      logTerminal(`payload_handshake: resolving DNS route host...`, 'warn');
+
       // Swap view to loading screen
       contactForm.classList.add("hidden");
       loadingState?.classList.remove("hidden");
@@ -219,12 +296,14 @@ const faqs = await getFAQs();
 
       // If Formspree endpoint is not set, skip AJAX and jump straight to error mailto fallback panel
       if (!formspreeId) {
+        logTerminal(`config_alert: missing integration ID.`, 'warn');
         setTimeout(() => {
           loadingState?.classList.add("hidden");
           errorState?.classList.remove("hidden");
           if (errorMessage) {
             errorMessage.textContent = "Formspree integration ID is not configured. Direct local email fallback is ready.";
           }
+          logTerminal(`compilation_failed: fallback enabled.`, 'warn');
         }, 1000);
         return;
       }
@@ -232,6 +311,7 @@ const faqs = await getFAQs();
       try {
         if (loadingBar) loadingBar.style.width = "40%";
         if (loadingLog) loadingLog.textContent = "Packaging payload data...";
+        logTerminal(`assembler: building JSON packaging schema...`, 'info');
 
         const response = await fetch(`https://formspree.io/f/${formspreeId}`, {
           method: "POST",
@@ -244,8 +324,10 @@ const faqs = await getFAQs();
 
         if (loadingBar) loadingBar.style.width = "80%";
         if (loadingLog) loadingLog.textContent = "Negotiating handshake response...";
+        logTerminal(`negotiator: transmitting packet (TLS 1.3)...`, 'info');
 
         if (response.ok) {
+          logTerminal(`transmitter: 200 OK successfully acknowledged.`, 'success');
           if (loadingBar) loadingBar.style.width = "100%";
           setTimeout(() => {
             loadingState?.classList.add("hidden");
@@ -256,6 +338,7 @@ const faqs = await getFAQs();
           throw new Error("Formspree response not OK");
         }
       } catch (err) {
+        logTerminal(`transmitter_error: connection interrupted.`, 'warn');
         setTimeout(() => {
           loadingState?.classList.add("hidden");
           errorState?.classList.remove("hidden");
@@ -271,6 +354,7 @@ const faqs = await getFAQs();
   closeSuccessBtn?.addEventListener("click", () => {
     successState?.classList.add("hidden");
     contactForm?.classList.remove("hidden");
+    logTerminal(`session_reset: listening on inputs...`, 'success');
   });
 
   // Fallback direct email mailto triggers
@@ -280,11 +364,12 @@ const faqs = await getFAQs();
   retryBtn?.addEventListener("click", () => {
     errorState?.classList.add("hidden");
     contactForm?.classList.remove("hidden");
+    logTerminal(`session_retry: listening on inputs...`, 'success');
   });
 
   // FAQ Interactive & Keyboard Accessibility
-  const faqs = document.querySelectorAll("[data-faq]");
-  faqs.forEach(el => {
+  const faqsList = document.querySelectorAll("[data-faq]");
+  faqsList.forEach(el => {
     const toggle = () => {
       const answer = el.querySelector(".faq-answer") as HTMLElement;
       const plus = el.querySelector(".faq-plus") as HTMLElement;
