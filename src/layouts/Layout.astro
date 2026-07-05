@@ -78,6 +78,12 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://sayandat
     </script>
   </head>
   <body class="min-h-screen relative">
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-accent focus:text-deep focus:rounded-lg focus:font-bold focus:shadow-lg focus:outline-none"
+    >
+      Skip to main content
+    </a>
     <div class="bg-grid" aria-hidden="true"></div>
     <div class="relative z-10 flex flex-col min-h-screen">
       <slot />
