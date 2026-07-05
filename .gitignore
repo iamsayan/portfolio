@@ -22,3 +22,10 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# AI Agent / CLI Tool configurations & logs
+AGENTS.md
+OFFSITE_COPY.md
+.commandcode/
+.agents/
+
