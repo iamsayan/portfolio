@@ -236,44 +236,44 @@ const isActive = (path: string) => {
 
 <script>
   function initTheme() {
-    var tb = document.getElementById("theme-toggle"),
-      s = document.getElementById("sun-icon"),
-      m = document.getElementById("moon-icon");
+    const tb = document.getElementById("theme-toggle");
+    const s = document.getElementById("sun-icon");
+    const m = document.getElementById("moon-icon");
 
     if (!tb || !s || !m) return;
 
     function getTheme() {
-      var t = localStorage.getItem("theme");
+      const t = localStorage.getItem("theme");
       if (!t) {
         return matchMedia("(prefers-color-scheme:light)").matches ? "light" : "dark";
       }
       return t;
     }
 
-    function st(v) {
-      var isLight = v === "light";
+    function st(v: string | null) {
+      const isLight = v === "light";
       document.documentElement.classList.toggle("light", isLight);
       document.documentElement.classList.toggle("light-scrollbar", isLight);
-      s.classList.toggle("hidden", isLight);
-      m.classList.toggle("hidden", !isLight);
+      s!.classList.toggle("hidden", isLight);
+      m!.classList.toggle("hidden", !isLight);
     }
 
     st(getTheme());
 
     tb.addEventListener("click", (e) => {
-      var c = getTheme();
-      var n = c === "light" ? "dark" : "light";
+      const c = getTheme();
+      const n = c === "light" ? "dark" : "light";
       localStorage.setItem("theme", n);
 
       if ((document as any).startViewTransition && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
-        var x = e.clientX || window.innerWidth / 2;
-        var y = e.clientY || window.innerHeight / 2;
-        var endRadius = Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y));
+        const x = e.clientX || window.innerWidth / 2;
+        const y = e.clientY || window.innerHeight / 2;
+        const endRadius = Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y));
 
-        var transition = (document as any).startViewTransition(() => {
+        const transition = (document as any).startViewTransition(() => {
           document.documentElement.classList.toggle("light", n === "light");
-          s.classList.toggle("hidden", n === "light");
-          m.classList.toggle("hidden", n !== "light");
+          s!.classList.toggle("hidden", n === "light");
+          m!.classList.toggle("hidden", n !== "light");
         });
 
         transition.ready.then(() => {
