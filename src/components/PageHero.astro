@@ -1,4 +1,6 @@
 ---
+import { Breadcrumbs } from "astro-breadcrumbs";
+
 export interface Props {
   badge: string;
   title?: string;
@@ -19,7 +21,10 @@ const { badge, title, description } = Astro.props;
 <!-- Header Hero -->
 <section class="pt-16 pb-20 relative z-10">
   <div class="mx">
-    <p class="t-mono text-accent uppercase font-bold">{badge}</p>
+    <Breadcrumbs linkTextFormat="capitalized" customizeLinks={[{ index: "last", text: badge }]}>
+      <Fragment slot="separator">&gt;</Fragment>
+    </Breadcrumbs>
+
     <h1 class="t-heading mt-4 reveal r1">
       <slot name="title">{title}</slot>
     </h1>

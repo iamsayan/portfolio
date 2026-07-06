@@ -1,5 +1,9 @@
 ---
 import "@/styles/global.css";
+import Unfont from "unplugin-fonts/astro/component.astro";
+import { ThemeScript } from "astro-theme-toggle/components";
+import { Seo } from "astro-seo-meta";
+import { Schema } from "astro-seo-schema";
 
 export interface Props {
   title?: string;
@@ -28,67 +32,51 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://sayandat
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <title>{title}</title>
-    <meta name="description" content={description} />
 
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content={type} />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:url" content={canonicalURL.href} />
-    <meta property="og:site_name" content="Sayan Datta Portfolio" />
-    <meta property="og:image" content={image} />
-
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
-    <meta name="twitter:creator" content="@im_sayaan" />
-    <meta name="twitter:image" content={image} />
-
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="canonical" href={canonicalURL.href} />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Sora:wght@300..800&family=Outfit:wght@300..900&family=JetBrains+Mono:wght@400..700&display=swap"
-      rel="stylesheet"
+    <Seo
+      title={title}
+      description={description}
+      icon="/favicon.svg"
+      facebook={{
+        type: type,
+        image: image,
+        url: canonicalURL.href,
+      }}
+      twitter={{
+        card: "summary_large_image",
+        image: image,
+        site: "@im_sayaan",
+      }}
     />
 
-    <script is:inline>
-      (function () {
-        var t = localStorage.getItem("theme");
-        if (!t) {
-          t = matchMedia("(prefers-color-scheme:light)").matches ? "light" : "dark";
-        }
-        if (t === "light") document.documentElement.classList.add("light");
-      })();
-    </script>
+    <link rel="canonical" href={canonicalURL.href} />
+
+    <Unfont />
+    <ThemeScript />
 
     <!-- Structured Data (JSON-LD) for SEO -->
-    <script type="application/ld+json" is:inline>
-      {
+    <Schema
+      item={{
         "@context": "https://schema.org",
         "@type": "Person",
-        "name": "Sayan Datta",
-        "url": "https://sayandatta.co.in",
-        "image": "https://sayandatta.co.in/favicon.png",
-        "sameAs": ["https://github.com/iamsayan", "https://linkedin.com/in/meetsayan", "https://twitter.com/im_sayaan"],
-        "jobTitle": "Senior Full Stack Developer",
-        "worksFor": {
+        name: "Sayan Datta",
+        url: "https://sayandatta.co.in",
+        image: "https://sayandatta.co.in/favicon.png",
+        sameAs: ["https://github.com/iamsayan", "https://linkedin.com/in/meetsayan", "https://twitter.com/im_sayaan"],
+        jobTitle: "Senior Full Stack Developer",
+        worksFor: {
           "@type": "Organization",
-          "name": "TeamUpdraft"
+          name: "TeamUpdraft",
         },
-        "description": "Senior Full Stack Developer specializing in high-performance WooCommerce systems, custom payment gateways, Laravel backends, and modern TypeScript (Astro, Next.js)."
-      }
-    </script>
+        description:
+          "Senior Full Stack Developer specializing in high-performance WooCommerce systems, custom payment gateways, Laravel backends, and modern TypeScript (Astro, Next.js).",
+      }}
+    />
 
     {
       type === "article" && articleData && (
-        <script
-          type="application/ld+json"
-          set:html={JSON.stringify({
+        <Schema
+          item={{
             "@context": "https://schema.org",
             "@type": "BlogPosting",
             headline: title,
@@ -109,7 +97,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://sayandat
               "@type": "WebPage",
               "@id": canonicalURL.href,
             },
-          })}
+          }}
         />
       )
     }
