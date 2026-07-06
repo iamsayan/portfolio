@@ -1,0 +1,101 @@
+---
+// src/components/StaticComments.astro
+import { Icon } from "astro-icon/components";
+---
+
+<div class="mt-20 border-t border-subtle pt-12 reveal r3">
+  <div class="flex items-center gap-2.5 mb-8">
+    <Icon name="ph:chat-centered-text" class="w-5 h-5 text-accent" aria-hidden="true" />
+    <h3 class="font-display font-bold text-lg text-primary">Discussion (3)</h3>
+  </div>
+
+  <div class="space-y-6">
+    <!-- Comment 1: Subir D -->
+    <div class="glass p-6 bg-surface border-subtle rounded-xl relative space-y-4">
+      <div class="flex items-start justify-between gap-4">
+        <div class="flex items-center gap-3">
+          <img
+            src="https://secure.gravatar.com/avatar/07cf80065fcf9126854b1cb3bffbdb528e83a99c2399638922d4219c910fd8e1?s=80&d=mm&r=g"
+            alt="Subir D."
+            class="w-10 h-10 rounded-full border border-strong bg-deep"
+          />
+          <div>
+            <h4 class="text-sm font-bold text-primary">Subir D.</h4>
+            <time class="text-[10px] font-mono text-muted" datetime="2021-01-31T13:27:15+05:30">
+              January 31, 2021 at 1:27 pm
+            </time>
+          </div>
+        </div>
+      </div>
+      <p class="text-sm text-secondary leading-relaxed font-sans pl-1 sm:pl-[3.25rem]">It works great!</p>
+
+      <!-- Reply button decoration -->
+      <div class="pl-1 sm:pl-[3.25rem] pt-1">
+        <span
+          class="inline-flex items-center gap-1.5 text-[10px] font-mono text-muted hover:text-accent cursor-pointer transition-colors"
+        >
+          <Icon name="ph:arrow-bend-up-left" class="w-3.5 h-3.5" aria-hidden="true" />
+          Reply
+        </span>
+      </div>
+
+      <!-- Nested Reply: Sayan Datta -->
+      <div class="ml-4 sm:ml-12 mt-4 pl-4 sm:pl-6 border-l-2 border-accent/20 space-y-4">
+        <div class="glass p-5 bg-deep/40 border-subtle rounded-xl space-y-3">
+          <div class="flex items-center gap-3">
+            <img
+              src="https://secure.gravatar.com/avatar/efa155eb9a8fde8f655229e957c70d97d2a34ba9f61bdf1adcd510107b910d91?s=80&d=mm&r=g"
+              alt="Sayan Datta"
+              class="w-8 h-8 rounded-full border border-strong bg-deep"
+            />
+            <div>
+              <h4 class="text-xs font-bold text-accent flex items-center gap-1">
+                Sayan Datta
+                <span
+                  class="text-[8px] bg-accent/10 border border-accent/20 text-accent font-bold px-1.5 py-0.5 rounded font-mono uppercase"
+                  aria-hidden="true">Author</span
+                >
+              </h4>
+              <time class="text-[9px] font-mono text-muted" datetime="2021-01-31T20:32:38+05:30">
+                January 31, 2021 at 8:32 pm
+              </time>
+            </div>
+          </div>
+          <p class="text-xs text-secondary leading-relaxed font-sans pl-0 sm:pl-[2.5rem]">Thanks 🙂</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Comment 2: Soumyendu -->
+    <div class="glass p-6 bg-surface border-subtle rounded-xl relative space-y-4">
+      <div class="flex items-start justify-between gap-4">
+        <div class="flex items-center gap-3">
+          <img
+            src="https://secure.gravatar.com/avatar/6a609f552574e25ab9952f5658dce05fa469bf971b8090a4a853c525d290c99a?s=80&d=mm&r=g"
+            alt="Soumyendu"
+            class="w-10 h-10 rounded-full border border-strong bg-deep"
+          />
+          <div>
+            <h4 class="text-sm font-bold text-primary">Soumyendu</h4>
+            <time class="text-[10px] font-mono text-muted" datetime="2023-02-22T00:40:05+05:30">
+              February 22, 2023 at 12:40 am
+            </time>
+          </div>
+        </div>
+      </div>
+      <p class="text-sm text-secondary leading-relaxed font-sans pl-1 sm:pl-[3.25rem]">
+        I want to give cash back to customers opted for direct bank transfer; how to do that? Wallet plugins are not
+        having such options. Please help.
+      </p>
+
+      <div class="pl-1 sm:pl-[3.25rem] pt-1">
+        <span
+          class="inline-flex items-center gap-1.5 text-[10px] font-mono text-muted hover:text-accent cursor-pointer transition-colors"
+        >
+          <Icon name="ph:arrow-bend-up-left" class="w-3.5 h-3.5" aria-hidden="true" />
+          Reply
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

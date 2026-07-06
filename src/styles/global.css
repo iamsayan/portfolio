@@ -64,7 +64,7 @@
   --accent-glow-strong: rgba(225, 29, 72, 0.12);
 
   --shadow-glass:
-    0 10px 25px -5px rgba(15, 23, 42, 0.05), 0 1px 3px rgba(15, 23, 42, 0.02), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    0 4px 20px -2px rgba(15, 23, 42, 0.03), 0 1px 3px rgba(15, 23, 42, 0.01), inset 0 1px 0 rgba(255, 255, 255, 0.8);
 
   --gradient-rose-purple: linear-gradient(135deg, #be123c 0%, #7e22ce 50%, #4338ca 100%);
   --gradient-cyan-emerald: linear-gradient(135deg, #0e7490 0%, #047857 100%);
@@ -274,10 +274,9 @@ p {
 @layer components {
   .mx {
     @apply mx-auto px-7 max-w-[78rem];
-
-    &-narrow {
-      @apply mx-auto px-6 max-w-[50rem];
-    }
+  }
+  .mx-narrow {
+    @apply mx-auto px-6 max-w-[50rem];
   }
 }
 
@@ -422,7 +421,7 @@ p {
 }
 
 /* ── Badges and Tags ─────────────────────────────────── */
-.tag {
+.tag:not(.token) {
   @apply inline-flex items-center font-mono text-[0.68rem] font-semibold text-accent bg-accent-glow rounded-[0.3rem] tracking-[0.01em] border border-[rgba(244,63,94,0.15)];
   padding: 0.25rem 0.65rem;
   text-shadow: none !important;
@@ -509,7 +508,7 @@ p {
 
 /* ── Prose (blog markup) ──────────────────────────────── */
 .prose {
-  @apply text-secondary leading-[1.85] text-[1.0625rem] max-w-[65ch] font-sans;
+  @apply text-secondary leading-[1.85] text-[1.0625rem] font-sans;
 
   & h2 {
     @apply font-display text-[1.75rem] text-primary mt-[2.25em] mb-[0.8em] font-bold tracking-tight;
@@ -535,17 +534,77 @@ p {
     @apply font-mono text-[0.88em] text-accent-bright bg-accent-glow px-1.5 py-0.5 rounded border border-[rgba(244,63,94,0.15)];
   }
   & pre {
-    @apply bg-raised border border-subtle p-[1.35em] overflow-x-auto my-[1.75em] rounded-lg shadow-[inset_0_1px_4px_rgba(0,0,0,0.4)];
+    @apply bg-deep border border-strong p-6 overflow-x-auto my-8 rounded-xl relative;
+    padding-top: 3rem;
 
-    [data-theme="light"] & {
-      @apply shadow-[inset_0_1px_3px_rgba(0,0,0,0.15)];
+    /* macOS Window Controls */
+    &::before {
+      content: "";
+      @apply absolute top-4 left-5 w-2.5 h-2.5 rounded-full;
+      background: #ff5f56;
+      box-shadow:
+        18px 0 0 #ffbd2e,
+        36px 0 0 #27c93f;
     }
   }
   & pre code {
-    @apply bg-none p-0 text-[#c9d1d9] text-[0.825rem] border-none;
+    @apply p-0 text-[#c9d1d9] text-[0.85rem] leading-relaxed block font-mono;
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    font-family: var(--font-mono);
 
     [data-theme="light"] & {
       @apply text-[#24292e];
+    }
+
+    /* Custom token color styling matching Sayan's theme */
+    & .token {
+      &.comment,
+      &.prolog,
+      &.doctype,
+      &.cdata {
+        @apply text-muted italic;
+      }
+      &.punctuation {
+        @apply text-secondary;
+      }
+      &.property,
+      &.tag,
+      &.boolean,
+      &.number,
+      &.constant,
+      &.symbol {
+        @apply text-purple-400;
+      }
+      &.selector,
+      &.attr-name,
+      &.string,
+      &.char,
+      &.builtin {
+        @apply text-success;
+      }
+      &.operator,
+      &.entity,
+      &.url {
+        @apply text-[#38bdf8];
+      }
+      &.atrule,
+      &.attr-value,
+      &.keyword {
+        @apply text-accent;
+      }
+      &.function {
+        @apply text-[#38bdf8];
+      }
+      &.class-name {
+        @apply text-amber-500;
+      }
+      &.regex,
+      &.important,
+      &.variable {
+        @apply text-amber-500;
+      }
     }
   }
   & ul,

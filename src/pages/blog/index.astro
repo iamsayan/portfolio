@@ -23,28 +23,31 @@ posts.sort((a, b) => b.pubDate.getTime() - a.pubDate.getTime());
     </PageHero>
 
     <!-- Cockpit CMS Status Notice Banner -->
-    <section class="pb-8 reveal">
-      <div class="mx">
-        <div
-          class="glass p-6 bg-surface border-amber-500/20 rounded-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-4"
-        >
-          <div class="flex items-start gap-4">
-            <span class="text-xl text-amber-500 p-2 bg-amber-500/10 rounded-lg" aria-hidden="true">⚙</span>
-            <div>
-              <h2 class="text-sm font-bold text-primary">CMS Connection Pending</h2>
-              <p class="text-xs text-secondary mt-1 leading-relaxed">
-                Full-text articles are currently staged in local collections. This feed will go live immediately
-                following the active Cockpit CMS integration.
-              </p>
+    {
+      posts.some((p) => p.comingSoon) && (
+        <section class="pb-8 reveal">
+          <div class="mx">
+            <div class="glass p-6 bg-surface border-amber-500/20 rounded-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+              <div class="flex items-start gap-4">
+                <span class="text-xl text-amber-500 p-2 bg-amber-500/10 rounded-lg" aria-hidden="true">
+                  ⚙
+                </span>
+                <div>
+                  <h2 class="text-sm font-bold text-primary">CMS Connection Pending</h2>
+                  <p class="text-xs text-secondary mt-1 leading-relaxed">
+                    Full-text articles are currently staged in local collections. This feed will go live immediately
+                    following the active Cockpit CMS integration.
+                  </p>
+                </div>
+              </div>
+              <span class="text-[9px] font-mono uppercase tracking-widest text-amber-500 bg-amber-500/10 border border-amber-500/20 px-2 py-0.5 rounded font-bold whitespace-nowrap">
+                Staged Drafts
+              </span>
             </div>
           </div>
-          <span
-            class="text-[9px] font-mono uppercase tracking-widest text-amber-500 bg-amber-500/10 border border-amber-500/20 px-2 py-0.5 rounded font-bold whitespace-nowrap"
-            >Staged Drafts</span
-          >
-        </div>
-      </div>
-    </section>
+        </section>
+      )
+    }
 
     <!-- Post Feed Grid -->
     <section class="pb-28">
@@ -79,14 +82,20 @@ posts.sort((a, b) => b.pubDate.getTime() - a.pubDate.getTime());
                   <h3 class="t-title !text-lg font-bold group-hover:text-accent transition-colors duration-300 leading-snug">
                     {p.title}
                   </h3>
-                  <span class="text-[9px] font-mono uppercase tracking-widest text-accent bg-accent-glow border border-rose-500/10 px-2 py-0.5 rounded font-bold whitespace-nowrap">
-                    Coming Soon
-                  </span>
+                  {p.comingSoon ? (
+                    <span class="text-[9px] font-mono uppercase tracking-widest text-accent bg-accent-glow border border-rose-500/10 px-2 py-0.5 rounded font-bold whitespace-nowrap">
+                      Coming Soon
+                    </span>
+                  ) : (
+                    <span class="text-[9px] font-mono uppercase tracking-widest text-success bg-success-glow border border-emerald-500/10 px-2 py-0.5 rounded font-bold whitespace-nowrap">
+                      Tutorial
+                    </span>
+                  )}
                 </div>
                 <p class="text-xs text-secondary mt-2.5 leading-relaxed font-sans">{p.description}</p>
 
                 <div class="pt-4 flex items-center gap-1.5 text-xs text-accent font-semibold opacity-0 group-hover:opacity-100 transition-opacity">
-                  <span>View details &amp; abstract</span>
+                  <span>{p.comingSoon ? "View details & abstract" : "Read article"}</span>
                   <span aria-hidden="true">&rarr;</span>
                 </div>
               </a>

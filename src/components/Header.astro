@@ -72,18 +72,11 @@ const isActive = (path: string) => {
             class={`nav-link text-sm font-medium transition-colors relative py-1 ${isActive("/projects") ? "text-accent font-semibold active-nav" : "text-secondary hover:text-accent"}`}
             aria-current={isActive("/projects") ? "page" : undefined}>Projects</a
           >
-          <!-- <a
+          <a
             href="/blog"
             class={`nav-link text-sm font-medium transition-colors relative py-1 ${isActive("/blog") ? "text-accent font-semibold active-nav" : "text-secondary hover:text-accent"}`}
             aria-current={isActive("/blog") ? "page" : undefined}>Blog</a
           >
-          <a
-            href="/resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="nav-link text-sm font-medium text-secondary hover:text-accent transition-colors relative py-1"
-            >Resume</a
-          > -->
           <a
             href="/contact"
             class={`b b-primary !text-xs !py-2 !px-4 shadow-sm ${isActive("/contact") ? "ring-2 ring-accent" : ""}`}

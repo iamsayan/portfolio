@@ -3,6 +3,8 @@ import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import { getBlogPosts } from "@/lib/blog";
+import { Breadcrumbs } from "astro-breadcrumbs";
+import StaticComments from "@/components/StaticComments.astro";
 
 export async function getStaticPaths() {
   const posts = await getBlogPosts();
@@ -35,15 +37,22 @@ const { post } = Astro.props;
       >
       </div>
 
-      <div class="mx-narrow relative z-10">
-        <!-- Back Button -->
-        <a
-          href="/blog"
-          class="back-link t-mono hover:text-accent transition-colors inline-flex items-center gap-1.5 mb-8 group text-[10px] cursor-pointer"
-        >
-          <span class="group-hover:-translate-x-1 transition-transform" aria-hidden="true">&larr;</span>
-          <span>Back to Feed</span>
-        </a>
+      <div class="mx relative z-10">
+        <!-- Breadcrumbs & Back to Feed parallel -->
+        <div class="flex items-center justify-between flex-wrap gap-4 mb-8">
+          <Breadcrumbs linkTextFormat="capitalized" customizeLinks={[{ index: "last", text: post.title }]}>
+            <Fragment slot="separator">&gt;</Fragment>
+          </Breadcrumbs>
+
+          <!-- Back Button -->
+          <a
+            href="/blog"
+            class="back-link t-mono hover:text-accent transition-colors inline-flex items-center gap-1.5 group text-[10px] cursor-pointer"
+          >
+            <span class="group-hover:-translate-x-1 transition-transform" aria-hidden="true">&larr;</span>
+            <span>Back to Feed</span>
+          </a>
+        </div>
 
         <!-- Tags -->
         <div class="flex flex-wrap gap-2 mb-6">
@@ -63,35 +72,53 @@ const { post } = Astro.props;
           {post.readingTime && <span>{post.readingTime} min read</span>}
         </div>
 
-        <!-- Abstract & Coming Soon block -->
-        <div class="mt-12 space-y-8">
-          <div>
-            <h2 class="text-xs font-mono uppercase tracking-wider text-muted font-bold mb-3">Article Abstract</h2>
-            <p class="text-sm text-secondary leading-relaxed font-sans">{post.description}</p>
-          </div>
+        {
+          post.comingSoon ? (
+            <div class="mt-12 space-y-8">
+              <div>
+                <h2 class="text-xs font-mono uppercase tracking-wider text-muted font-bold mb-3">Article Abstract</h2>
+                <p class="text-sm text-secondary leading-relaxed font-sans">{post.description}</p>
+              </div>
 
-          <div class="glass p-8 bg-surface border-amber-500/20 rounded-xl space-y-4">
-            <div class="flex items-center gap-3">
-              <span class="text-xl text-amber-500" aria-hidden="true">⚙</span>
-              <h3 class="text-sm font-bold text-primary">Staged Draft — Integration in Progress</h3>
+              <div class="glass p-8 bg-surface border-amber-500/20 rounded-xl space-y-4">
+                <div class="flex items-center gap-3">
+                  <span class="text-xl text-amber-500" aria-hidden="true">
+                    ⚙
+                  </span>
+                  <h3 class="text-sm font-bold text-primary">Staged Draft — Integration in Progress</h3>
+                </div>
+                <p class="text-xs text-secondary leading-relaxed font-sans">
+                  The full publication text is currently staged as a draft. Once Sayan configures the primary API
+                  collection endpoints inside{" "}
+                  <code class="px-1 py-0.5 rounded bg-deep border border-subtle font-mono text-[10px]">
+                    src/lib/blog.ts
+                  </code>
+                  , this route will automatically sync and stream content directly from Cockpit CMS.
+                </p>
+                <p class="text-xs text-secondary leading-relaxed font-sans">
+                  Stay tuned for in-depth insights into headless platforms, database query latency reductions, and
+                  modern JavaScript static pre-rendering pipelines.
+                </p>
+              </div>
             </div>
-            <p class="text-xs text-secondary leading-relaxed font-sans">
-              The full publication text is currently staged as a draft. Once Sayan configures the primary API collection
-              endpoints inside <code class="px-1 py-0.5 rounded bg-deep border border-subtle font-mono text-[10px]"
-                >src/lib/blog.ts</code
-              >, this route will automatically sync and stream content directly from Cockpit CMS.
-            </p>
-            <p class="text-xs text-secondary leading-relaxed font-sans">
-              Stay tuned for in-depth insights into headless platforms, database query latency reductions, and modern
-              JavaScript static pre-rendering pipelines.
-            </p>
-          </div>
-        </div>
+          ) : (
+            <div class="prose prose-invert mt-12 text-secondary font-sans leading-relaxed">
+              <div set:html={post.content} />
+            </div>
+          )
+        }
+
+        <StaticComments />
       </div>
     </article>
   </main>
   <Footer />
 </Layout>
+
+<!-- Prism.js client-side syntax highlighter -->
+<script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+<script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"
+></script>
 
 <style>
   /* Back link micro-interaction */
