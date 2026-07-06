@@ -285,7 +285,6 @@ p {
   .glass {
     background: var(--bg-glass);
     backdrop-filter: blur(28px);
-    -webkit-backdrop-filter: blur(28px);
     box-shadow: var(--shadow-glass);
     @apply border border-subtle rounded-(--radius);
 
@@ -484,6 +483,36 @@ p {
   to {
     visibility: hidden;
   }
+}
+
+/* ── Scroll reveal ────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(25px);
+  transition:
+    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+
+  &.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.r1 {
+  transition-delay: 0.08s;
+}
+.r2 {
+  transition-delay: 0.16s;
+}
+.r3 {
+  transition-delay: 0.24s;
+}
+.r4 {
+  transition-delay: 0.32s;
+}
+.r5 {
+  transition-delay: 0.4s;
 }
 
 /* ── Vertical Timeline Styles ─────────────────────────── */
