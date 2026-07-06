@@ -10,7 +10,7 @@ import PageHero from "@/components/PageHero.astro";
   description="Expert full-stack development consulting. Specializing in WooCommerce checkout scaling, payment gateway integrations, custom APIs, and headless site architecture."
 >
   <Header />
-  <main id="main-content" class="py-24 relative overflow-hidden">
+  <main id="main-content" class="py-24 relative overflow-x-clip">
     <PageHero
       badge="Engineering Capabilities"
       description="Providing full-cycle code implementation — from systems design and database structures to responsive layouts and accessibility audits. Every system is build-tested and documented."
@@ -25,13 +25,14 @@ import PageHero from "@/components/PageHero.astro";
         <div class="grid lg:grid-cols-12 gap-12 items-start reveal">
           <div class="lg:col-span-5 lg:sticky lg:top-24 space-y-5">
             <span
-              class="text-xs font-mono text-blue-500 uppercase tracking-wider bg-blue-500/10 px-3 py-1 rounded-md border border-blue-500/10"
-              >01 &mdash; FRONTEND</span
+              class="inline-block text-xs font-mono text-blue-500 uppercase tracking-wider bg-blue-500/10 px-3 py-1 rounded-md border border-blue-500/10"
+              >01 &mdash; NEXT.JS &amp; REACT</span
             >
-            <h2 class="t-title text-2xl font-bold">Frontend Development</h2>
+            <h2 class="t-title text-2xl font-bold">React &amp; Next.js Engineering</h2>
             <p class="t-body">
-              Building fluid, responsive, and fully accessible digital layouts. Structured using React, Next.js, and
-              Astro. Focus on layout stability, image loading optimization, and low bundle size.
+              Building dynamic, decoupled, and high-performance applications using React, Next.js, and state-of-the-art
+              tooling. Focused on React Server Components, serverless actions, layout stability, and zero-JS static
+              sites with Astro.
             </p>
 
             <div class="grid grid-cols-2 gap-4 pt-3">
@@ -59,7 +60,7 @@ import PageHero from "@/components/PageHero.astro";
                     <h4 class="text-sm font-bold text-primary">Render Optimization</h4>
                     <p class="text-xs text-secondary mt-1">
                       Utilizing static generation (SSG) and server-side rendering (SSR) appropriately. Optimizing First
-                      Contentful Paint (FCP) and Cumulative Layout Shift (CLS).
+                      Contentful Paint (FCP) and Cumulative Layout Shift (CLS) web vitals parameters.
                     </p>
                   </div>
                 </div>
@@ -89,25 +90,56 @@ import PageHero from "@/components/PageHero.astro";
                     </p>
                   </div>
                 </div>
+                <div class="flex gap-3">
+                  <span
+                    class="w-5 h-5 rounded-full bg-blue-500/10 text-blue-500 flex items-center justify-center font-mono text-[10px] flex-shrink-0 mt-0.5"
+                    >✓</span
+                  >
+                  <div>
+                    <h4 class="text-sm font-bold text-primary">Semantic HTML &amp; WCAG Compliance</h4>
+                    <p class="text-xs text-secondary mt-1">
+                      Structuring markup with valid ARIA roles, logical keyboard focus tab rings, proper layout
+                      landmarks, and verifying screen-reader readability.
+                    </p>
+                  </div>
+                </div>
               </div>
 
               <!-- Blueprint Mock Widget -->
-              <div class="mt-8 border border-subtle rounded-lg bg-deep p-5">
-                <p class="text-[10px] font-mono text-muted mb-3">FRONTEND LAYOUT BLUEPRINT</p>
+              <div class="mt-8 border border-subtle rounded-lg bg-deep p-5 space-y-4">
+                <p class="text-[10px] font-mono text-muted">NEXT.JS ROUTING BLUEPRINT</p>
                 <div
                   class="border border-dashed border-strong rounded p-4 flex flex-col md:flex-row gap-4 items-center justify-between"
                 >
                   <div class="flex items-center gap-3">
                     <span class="w-2.5 h-2.5 rounded-full bg-blue-500"></span>
-                    <span class="text-xs font-mono text-primary">Header.astro &gt; .glass-glow</span>
+                    <span class="text-xs font-mono text-primary">app/page.tsx &gt; Server Component</span>
                   </div>
                   <div class="flex gap-2">
                     <span class="px-2 py-0.5 border border-strong text-[9px] font-mono rounded text-secondary"
-                      >padding: 1.5rem</span
+                      >async/await fetch</span
                     >
                     <span
                       class="px-2 py-0.5 border border-blue-500 text-[9px] font-mono rounded text-blue-400 bg-blue-500/10"
-                      >flex justify-between</span
+                      >NextJS App Router</span
+                    >
+                  </div>
+                </div>
+
+                <div
+                  class="border border-dashed border-strong rounded p-4 flex flex-col md:flex-row gap-4 items-center justify-between"
+                >
+                  <div class="flex items-center gap-3">
+                    <span class="w-2.5 h-2.5 rounded-full bg-blue-500"></span>
+                    <span class="text-xs font-mono text-primary">hooks/useUPIGateway.ts &gt; Custom Hook</span>
+                  </div>
+                  <div class="flex gap-2">
+                    <span class="px-2 py-0.5 border border-strong text-[9px] font-mono rounded text-secondary"
+                      >useState / useEffect</span
+                    >
+                    <span
+                      class="px-2 py-0.5 border border-blue-500 text-[9px] font-mono rounded text-blue-400 bg-blue-500/10"
+                      >React state hooks</span
                     >
                   </div>
                 </div>
@@ -120,7 +152,7 @@ import PageHero from "@/components/PageHero.astro";
         <div class="grid lg:grid-cols-12 gap-12 items-start reveal">
           <div class="lg:col-span-5 lg:sticky lg:top-24 space-y-5">
             <span
-              class="text-xs font-mono text-emerald-500 uppercase tracking-wider bg-emerald-500/10 px-3 py-1 rounded-md border border-emerald-500/10"
+              class="inline-block text-xs font-mono text-emerald-500 uppercase tracking-wider bg-emerald-500/10 px-3 py-1 rounded-md border border-emerald-500/10"
               >02 &mdash; BACKEND</span
             >
             <h2 class="t-title text-2xl font-bold">Backend Architecture</h2>
@@ -154,7 +186,7 @@ import PageHero from "@/components/PageHero.astro";
                     <h4 class="text-sm font-bold text-primary">REST &amp; GraphQL Schema Design</h4>
                     <p class="text-xs text-secondary mt-1">
                       Building modular schema structures with secure query authorization, payload validations, and
-                      structured error responses.
+                      structured JSON/GraphQL responses.
                     </p>
                   </div>
                 </div>
@@ -177,10 +209,23 @@ import PageHero from "@/components/PageHero.astro";
                     >✓</span
                   >
                   <div>
-                    <h4 class="text-sm font-bold text-primary">Security hardening</h4>
+                    <h4 class="text-sm font-bold text-primary">Security Hardening</h4>
                     <p class="text-xs text-secondary mt-1">
                       Configuring CORS rules, rate limit parameters, JWT/API token encryptions, and sanitizing SQL/NoSQL
                       inputs to block vulnerability risks.
+                    </p>
+                  </div>
+                </div>
+                <div class="flex gap-3">
+                  <span
+                    class="w-5 h-5 rounded-full bg-emerald-500/10 text-emerald-500 flex items-center justify-center font-mono text-[10px] flex-shrink-0 mt-0.5"
+                    >✓</span
+                  >
+                  <div>
+                    <h4 class="text-sm font-bold text-primary">Background Pipelines &amp; Queue Handlers</h4>
+                    <p class="text-xs text-secondary mt-1">
+                      Designing asynchronous queue structures to process heavy background workloads, send webhooks,
+                      execute third-party synchronizations, and prevent API blockages.
                     </p>
                   </div>
                 </div>
@@ -189,14 +234,22 @@ import PageHero from "@/components/PageHero.astro";
               <!-- Schematic Architecture Flowchart -->
               <div class="mt-8 border border-subtle rounded-lg bg-deep p-5">
                 <p class="text-[10px] font-mono text-muted mb-4">SYSTEM REQUEST ARCHITECTURE</p>
-                <div class="flex flex-col md:flex-row items-center justify-center gap-4 text-xs font-mono text-center">
-                  <div class="p-2 border border-strong rounded bg-surface w-full md:w-32">Client Req</div>
+                <div
+                  class="flex flex-col md:flex-row items-center justify-center gap-3 text-[11px] font-mono text-center"
+                >
+                  <div class="p-2 border border-strong rounded bg-surface w-full md:w-28 text-secondary">
+                    Client Req
+                  </div>
                   <div class="text-emerald-500 hidden md:block">➔</div>
-                  <div class="p-2 border border-emerald-500 rounded bg-emerald-500/10 text-emerald-400 w-full md:w-32">
+                  <div class="p-2 border border-emerald-500 rounded bg-emerald-500/10 text-emerald-400 w-full md:w-28">
                     API Gateway
                   </div>
                   <div class="text-emerald-500 hidden md:block">➔</div>
-                  <div class="p-2 border border-strong rounded bg-surface w-full md:w-32">DB Cache (Redis)</div>
+                  <div class="p-2 border border-strong rounded bg-surface w-full md:w-28 text-secondary">
+                    Redis Cache
+                  </div>
+                  <div class="text-emerald-500 hidden md:block">➔</div>
+                  <div class="p-2 border border-strong rounded bg-surface w-full md:w-28 text-secondary">DB Core</div>
                 </div>
               </div>
             </div>
@@ -207,7 +260,7 @@ import PageHero from "@/components/PageHero.astro";
         <div class="grid lg:grid-cols-12 gap-12 items-start reveal">
           <div class="lg:col-span-5 lg:sticky lg:top-24 space-y-5">
             <span
-              class="text-xs font-mono text-amber-500 uppercase tracking-wider bg-amber-500/10 px-3 py-1 rounded-md border border-amber-500/10"
+              class="inline-block text-xs font-mono text-amber-500 uppercase tracking-wider bg-amber-500/10 px-3 py-1 rounded-md border border-amber-500/10"
               >03 &mdash; WORDPRESS</span
             >
             <h2 class="t-title text-2xl font-bold">WordPress Engineering</h2>
@@ -271,6 +324,39 @@ import PageHero from "@/components/PageHero.astro";
                     </p>
                   </div>
                 </div>
+                <div class="flex gap-3">
+                  <span
+                    class="w-5 h-5 rounded-full bg-amber-500/10 text-amber-500 flex items-center justify-center font-mono text-[10px] flex-shrink-0 mt-0.5"
+                    >✓</span
+                  >
+                  <div>
+                    <h4 class="text-sm font-bold text-primary">Performance &amp; Database Index Optimizations</h4>
+                    <p class="text-xs text-secondary mt-1">
+                      Auditing database options table sizes, setting custom meta keys indexing schema, and implementing
+                      transient caches to prevent database bottlenecks.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- WooCommerce Hook Pipeline -->
+              <div class="mt-8 border border-subtle rounded-lg bg-deep p-5">
+                <p class="text-[10px] font-mono text-muted mb-4">CHECKOUT TRIGGER PIPELINE</p>
+                <div
+                  class="flex flex-col md:flex-row items-center justify-center gap-3 text-[10px] font-mono text-center"
+                >
+                  <div class="p-2 border border-strong rounded bg-surface w-full md:w-36 text-secondary">
+                    woocommerce_payment_complete
+                  </div>
+                  <div class="text-amber-500 hidden md:block">➔</div>
+                  <div class="p-2 border border-amber-500 rounded bg-amber-500/10 text-amber-400 w-full md:w-32">
+                    Send UPI Webhook
+                  </div>
+                  <div class="text-amber-500 hidden md:block">➔</div>
+                  <div class="p-2 border border-strong rounded bg-surface w-full md:w-28 text-secondary">
+                    Action Scheduler
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -280,7 +366,7 @@ import PageHero from "@/components/PageHero.astro";
         <div class="grid lg:grid-cols-12 gap-12 items-start reveal">
           <div class="lg:col-span-5 lg:sticky lg:top-24 space-y-5">
             <span
-              class="text-xs font-mono text-rose-500 uppercase tracking-wider bg-rose-500/10 px-3 py-1 rounded-md border border-rose-500/10"
+              class="inline-block text-xs font-mono text-rose-500 uppercase tracking-wider bg-rose-500/10 px-3 py-1 rounded-md border border-rose-500/10"
               >04 &mdash; LAYOUT DESIGN</span
             >
             <h2 class="t-title text-2xl font-bold">Mobile-First UI Design</h2>
@@ -324,11 +410,57 @@ import PageHero from "@/components/PageHero.astro";
                     >✓</span
                   >
                   <div>
-                    <h4 class="text-sm font-bold text-primary">Accessibility first (A11y)</h4>
+                    <h4 class="text-sm font-bold text-primary">Accessibility First (A11y)</h4>
                     <p class="text-xs text-secondary mt-1">
                       Ensuring screen reader accessibility, semantic HTML elements, high color contrast levels, and
-                      interactive focus states for screen readers.
+                      interactive focus outlines.
                     </p>
+                  </div>
+                </div>
+                <div class="flex gap-3">
+                  <span
+                    class="w-5 h-5 rounded-full bg-rose-500/10 text-rose-500 flex items-center justify-center font-mono text-[10px] flex-shrink-0 mt-0.5"
+                    >✓</span
+                  >
+                  <div>
+                    <h4 class="text-sm font-bold text-primary">Container Queries &amp; Micro-Breakpoints</h4>
+                    <p class="text-xs text-secondary mt-1">
+                      Replacing viewport media queries with container queries (`@container`) to allow component layouts
+                      to adjust responsively based on parent boundaries.
+                    </p>
+                  </div>
+                </div>
+                <div class="flex gap-3">
+                  <span
+                    class="w-5 h-5 rounded-full bg-rose-500/10 text-rose-500 flex items-center justify-center font-mono text-[10px] flex-shrink-0 mt-0.5"
+                    >✓</span
+                  >
+                  <div>
+                    <h4 class="text-sm font-bold text-primary">Cross-Browser Engine Audits</h4>
+                    <p class="text-xs text-secondary mt-1">
+                      Rigorous visual regression testing across layout render pipelines including Blink (Chrome/Edge),
+                      WebKit (Safari), and Gecko (Firefox) engines.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Container Query Blueprint -->
+              <div class="mt-8 border border-subtle rounded-lg bg-deep p-5">
+                <p class="text-[10px] font-mono text-muted mb-4">CONTAINER REFLOW BLUEPRINT</p>
+                <div class="flex flex-col md:flex-row items-center justify-center gap-4 text-xs font-mono text-center">
+                  <div
+                    class="p-2.5 border border-dashed border-strong rounded bg-surface w-full md:w-44 text-secondary"
+                  >
+                    @container (min-width: 600px)
+                    <span class="block text-[9px] text-rose-400 mt-1">➔ 2-Column Grid Flow</span>
+                  </div>
+                  <div class="text-rose-500 hidden md:block">⬌</div>
+                  <div
+                    class="p-2.5 border border-dashed border-strong rounded bg-surface w-full md:w-44 text-secondary"
+                  >
+                    @container (max-width: 599px)
+                    <span class="block text-[9px] text-rose-400 mt-1">➔ Block Stacked Flow</span>
                   </div>
                 </div>
               </div>

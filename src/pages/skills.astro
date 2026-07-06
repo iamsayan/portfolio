@@ -3,6 +3,7 @@ import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import { getSkills } from "@/lib/data";
+import { Icon } from "astro-icon/components";
 import PageHero from "@/components/PageHero.astro";
 
 const skillsData = await getSkills();
@@ -12,36 +13,42 @@ const skillSections = [
     id: "core",
     name: "Core Expertise",
     desc: "My primary domains of product engineering and platform architecture.",
+    icon: "ph:cpu",
     skills: skillsData.core,
   },
   {
     id: "modern",
     name: "Modern Stack",
     desc: "JavaScript & TypeScript frameworks utilized for creating responsive applications.",
+    icon: "ph:code",
     skills: skillsData.modern,
   },
   {
     id: "backend",
     name: "Backend Architecture",
     desc: "Server environments, data design schemas, and relational database managers.",
+    icon: "ph:database",
     skills: skillsData.backend,
   },
   {
     id: "cms",
     name: "CMS Platforms",
     desc: "Extending core content pipelines, custom plugins, and headless CMS integrations.",
+    icon: "ph:layout",
     skills: skillsData.cms,
   },
   {
     id: "infra",
     name: "Infrastructure & DevOps",
     desc: "Source control, automation pipelines, site hosting, and virtualization setups.",
+    icon: "ph:globe",
     skills: skillsData.infra,
   },
   {
     id: "legacy",
     name: "Legacy Experience",
     desc: "Older technologies and legacy frontend libraries maintained on client portals.",
+    icon: "ph:clock-counter-clockwise",
     skills: skillsData.legacy,
   },
 ];
@@ -60,6 +67,143 @@ const skillSections = [
       <Fragment slot="title">Skills &amp; <span class="t-accent">toolkit.</span></Fragment>
     </PageHero>
 
+    <!-- Domain Mastery Overview Dashboard -->
+    <section class="pb-16 relative z-10 reveal r2">
+      <div class="mx">
+        <div class="flex items-center gap-3 mb-6">
+          <span class="w-1.5 h-1.5 rounded-full bg-accent" aria-hidden="true"></span>
+          <span class="text-[10px] font-mono tracking-wider text-accent uppercase font-bold">Domain Analytics</span>
+        </div>
+        <h2 class="t-title mb-10">Core Competency Matrix.</h2>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {/* Commerce Card */}
+          <div class="glass hover-glow-rose p-6 bg-surface flex flex-col justify-between relative group">
+            <Icon
+              name="ph:shopping-cart"
+              class="absolute top-6 right-6 w-8 h-8 text-rose-500/10 group-hover:text-rose-500/25 transition-colors"
+              aria-hidden="true"
+            />
+            <div>
+              <p class="text-[10px] font-mono font-bold text-rose-500 tracking-wider uppercase mb-1">E-Commerce</p>
+              <h3 class="font-bold text-lg text-primary">Commerce Architecture</h3>
+              <p class="text-xs text-secondary mt-2 leading-relaxed">
+                Custom checkout loops, payment gateways, webhook listeners, and transaction scaling.
+              </p>
+            </div>
+            <div class="mt-6 space-y-2">
+              <div class="flex justify-between text-xs font-mono">
+                <span class="text-muted">Domain Mastery</span>
+                <span class="text-rose-500 font-bold">98%</span>
+              </div>
+              <div class="h-1.5 w-full bg-strong rounded-full overflow-hidden flex gap-0.5" aria-hidden="true">
+                {
+                  [...Array(10)].map((_, i) => (
+                    <div
+                      class={`h-full flex-1 rounded-sm ${i < 10 ? "bg-rose-500 shadow-[0_0_8px_rgba(244,63,94,0.6)]" : "bg-strong"}`}
+                    />
+                  ))
+                }
+              </div>
+            </div>
+          </div>
+
+          {/* Backend Card */}
+          <div class="glass hover-glow-blue p-6 bg-surface flex flex-col justify-between relative group">
+            <Icon
+              name="ph:database"
+              class="absolute top-6 right-6 w-8 h-8 text-blue-500/10 group-hover:text-blue-500/25 transition-colors"
+              aria-hidden="true"
+            />
+            <div>
+              <p class="text-[10px] font-mono font-bold text-blue-500 tracking-wider uppercase mb-1">Backend</p>
+              <h3 class="font-bold text-lg text-primary">API & Database Engineering</h3>
+              <p class="text-xs text-secondary mt-2 leading-relaxed">
+                Laravel REST/GraphQL service APIs, SQL query index tunings, and background queue jobs systems.
+              </p>
+            </div>
+            <div class="mt-6 space-y-2">
+              <div class="flex justify-between text-xs font-mono">
+                <span class="text-muted">Domain Mastery</span>
+                <span class="text-blue-500 font-bold">95%</span>
+              </div>
+              <div class="h-1.5 w-full bg-strong rounded-full overflow-hidden flex gap-0.5" aria-hidden="true">
+                {
+                  [...Array(10)].map((_, i) => (
+                    <div
+                      class={`h-full flex-1 rounded-sm ${i < 9 ? "bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.6)]" : "bg-strong"}`}
+                    />
+                  ))
+                }
+              </div>
+            </div>
+          </div>
+
+          {/* Frontend Card */}
+          <div class="glass hover-glow-emerald p-6 bg-surface flex flex-col justify-between relative group">
+            <Icon
+              name="ph:devices"
+              class="absolute top-6 right-6 w-8 h-8 text-emerald-500/10 group-hover:text-emerald-500/25 transition-colors"
+              aria-hidden="true"
+            />
+            <div>
+              <p class="text-[10px] font-mono font-bold text-emerald-500 tracking-wider uppercase mb-1">Frontend</p>
+              <h3 class="font-bold text-lg text-primary">Interactive Product Design</h3>
+              <p class="text-xs text-secondary mt-2 leading-relaxed">
+                React RSC/NextJS pipelines, static site compile paths (Astro), and micro-state stores.
+              </p>
+            </div>
+            <div class="mt-6 space-y-2">
+              <div class="flex justify-between text-xs font-mono">
+                <span class="text-muted">Domain Mastery</span>
+                <span class="text-emerald-500 font-bold">92%</span>
+              </div>
+              <div class="h-1.5 w-full bg-strong rounded-full overflow-hidden flex gap-0.5" aria-hidden="true">
+                {
+                  [...Array(10)].map((_, i) => (
+                    <div
+                      class={`h-full flex-1 rounded-sm ${i < 9 ? "bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.6)]" : "bg-strong"}`}
+                    />
+                  ))
+                }
+              </div>
+            </div>
+          </div>
+
+          {/* DevOps Card */}
+          <div class="glass hover-glow-amber p-6 bg-surface flex flex-col justify-between relative group">
+            <Icon
+              name="ph:cloud-arrow-up"
+              class="absolute top-6 right-6 w-8 h-8 text-amber-500/10 group-hover:text-amber-500/25 transition-colors"
+              aria-hidden="true"
+            />
+            <div>
+              <p class="text-[10px] font-mono font-bold text-amber-500 tracking-wider uppercase mb-1">Cloud / DevOps</p>
+              <h3 class="font-bold text-lg text-primary">Operations & Automation</h3>
+              <p class="text-xs text-secondary mt-2 leading-relaxed">
+                GitHub Actions pipelines, Docker multi-stage compose, Nginx, and cloud virtualizations.
+              </p>
+            </div>
+            <div class="mt-6 space-y-2">
+              <div class="flex justify-between text-xs font-mono">
+                <span class="text-muted">Domain Mastery</span>
+                <span class="text-amber-500 font-bold">88%</span>
+              </div>
+              <div class="h-1.5 w-full bg-strong rounded-full overflow-hidden flex gap-0.5" aria-hidden="true">
+                {
+                  [...Array(10)].map((_, i) => (
+                    <div
+                      class={`h-full flex-1 rounded-sm ${i < 8 ? "bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.6)]" : "bg-strong"}`}
+                    />
+                  ))
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Skills Dashboard Grid -->
     <section class="pb-28">
       <div class="mx space-y-20">
@@ -67,27 +211,61 @@ const skillSections = [
           skillSections.map((sec, idx) => (
             <div class="reveal">
               {/* Category Header */}
-              <div class="mb-8 border-b border-subtle pb-4">
-                <span class="text-xs font-mono text-accent font-bold">
-                  0{idx + 1} &mdash; {sec.name.toUpperCase()}
-                </span>
-                <p class="text-sm text-secondary mt-1">{sec.desc}</p>
+              <div class="mb-8 border-b border-subtle pb-4 flex flex-col md:flex-row md:items-end justify-between gap-4">
+                <div>
+                  <span class="text-xs font-mono text-accent font-bold flex items-center gap-1.5">
+                    0{idx + 1} &mdash; {sec.name.toUpperCase()}
+                  </span>
+                  <p class="text-sm text-secondary mt-1">{sec.desc}</p>
+                </div>
+                <Icon name={sec.icon} class="w-8 h-8 text-accent/20 flex-shrink-0" />
               </div>
 
               {/* Skills Cards Grid */}
               <div class="grid sm:grid-cols-2 gap-6">
                 {sec.skills &&
-                  sec.skills.map((s) => (
-                    <div class="glass p-6 bg-surface border-subtle hover:border-accent/25 transition-all">
-                      <div class="flex justify-between items-baseline mb-3">
-                        <h3 class="text-sm font-bold text-primary">{s.name}</h3>
-                        <span class="text-[9px] px-2 py-0.5 rounded font-mono text-accent bg-accent-glow border border-rose-500/10 font-bold">
-                          {s.level}
-                        </span>
+                  sec.skills.map((s) => {
+                    const getLevelDots = (level: string) => {
+                      const l = level.toLowerCase();
+                      if (l.includes("expert")) return 5;
+                      if (l.includes("advanced")) return 4;
+                      if (l.includes("proficient")) return 3;
+                      return 2;
+                    };
+                    const activeDots = getLevelDots(s.level);
+
+                    return (
+                      <div class="glass p-6 bg-surface border-subtle hover:border-accent/25 transition-all flex flex-col justify-between group">
+                        <div>
+                          <div class="flex justify-between items-baseline mb-4">
+                            <h3 class="text-sm font-bold text-primary">{s.name}</h3>
+                            <div class="flex flex-col items-end gap-1 flex-shrink-0 ml-4">
+                              <span class="text-[9px] px-2 py-0.5 rounded font-mono text-accent bg-accent-glow border border-rose-500/10 font-bold">
+                                {s.level}
+                              </span>
+                              {/* Visual Dot Meter */}
+                              <div class="flex gap-1 mt-1" aria-hidden="true">
+                                {[...Array(5)].map((_, i) => (
+                                  <span class={`w-1 h-1 rounded-full ${i < activeDots ? "bg-accent" : "bg-strong"}`} />
+                                ))}
+                              </div>
+                            </div>
+                          </div>
+                          <p class="text-xs text-secondary leading-relaxed font-sans">{s.context}</p>
+                        </div>
+                        {/* Sub-Technology Tags */}
+                        {s.tags && s.tags.length > 0 && (
+                          <div class="flex flex-wrap gap-1.5 mt-6 border-t border-subtle pt-4">
+                            {s.tags.map((t) => (
+                              <span class="text-[9px] font-mono font-medium px-2 py-0.5 rounded bg-raised border border-strong text-muted group-hover:text-primary transition-colors">
+                                {t}
+                              </span>
+                            ))}
+                          </div>
+                        )}
                       </div>
-                      <p class="text-xs text-secondary mt-4 leading-relaxed font-sans">{s.context}</p>
-                    </div>
-                  ))}
+                    );
+                  })}
               </div>
             </div>
           ))

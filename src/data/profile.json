@@ -1,7 +1,10 @@
 {
   "name": "Sayan Datta",
   "title": "Senior Full Stack Developer",
-  "location": "India",
+  "location": "Kolkata, India",
+  "experience": "8+ Years",
+  "timezone": "UTC+5:30 (IST)",
+  "specialty": "WooCommerce & Full Stack APIs",
   "email": "hello@sayandatta.dev",
   "backupEmail": "iamsayan@pm.me",
   "socials": {

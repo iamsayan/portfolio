@@ -72,7 +72,7 @@ const stats = [
             <h1
               class="t-display text-balance text-5xl md:text-7xl font-extrabold tracking-tight leading-none text-primary"
             >
-              Product engineering from <span class="t-accent">WordPress to Next.js &amp; Astro.</span>
+              Product engineering from <span class="t-accent">Next.js &amp; React to WordPress &amp; Astro.</span>
             </h1>
 
             <p class="t-body max-w-xl text-lg leading-relaxed">
@@ -101,7 +101,7 @@ const stats = [
               {
                 stats.map((s) => (
                   <div>
-                    <p class="text-3xl md:text-4xl font-black t-accent font-[var(--font-display)]">{s.value}</p>
+                    <p class="text-3xl md:text-4xl font-black t-accent">{s.value}</p>
                     <p class="text-xs text-secondary mt-1">{s.label}</p>
                   </div>
                 ))
@@ -112,7 +112,7 @@ const stats = [
           <!-- Right: Interactive Developer IDE Mockup -->
           <div class="lg:col-span-5 relative">
             <div
-              class="absolute -inset-1.5 bg-gradient-to-r from-rose-500 to-purple-600 rounded-2xl blur-lg opacity-25"
+              class="absolute -inset-1.5 bg-linear-to-r from-rose-500 to-purple-600 rounded-2xl blur-lg opacity-25"
               aria-hidden="true"
             >
             </div>
@@ -134,14 +134,14 @@ const stats = [
               <!-- Tab Bar -->
               <div class="bg-surface flex border-b border-subtle font-mono text-xs">
                 <button
-                  class="ide-tab px-4 py-2 border-r border-subtle bg-deep text-accent border-t border-t-accent flex items-center gap-2 cursor-pointer focus:outline-none"
+                  class="ide-tab px-4 py-2 border-r border-subtle bg-surface text-muted flex items-center gap-2 cursor-pointer focus:outline-none hover:text-primary transition-colors"
                   data-tab="php"
                 >
                   <span class="text-[#21759b]">PHP</span>
                   <span>plugin.php</span>
                 </button>
                 <button
-                  class="ide-tab px-4 py-2 border-r border-subtle bg-surface text-muted flex items-center gap-2 cursor-pointer focus:outline-none hover:text-primary transition-colors"
+                  class="ide-tab px-4 py-2 border-r border-subtle bg-deep text-accent border-t border-t-accent flex items-center gap-2 cursor-pointer focus:outline-none"
                   data-tab="ts"
                 >
                   <span class="text-[#38bdf8]">TS</span>
@@ -162,59 +162,57 @@ const stats = [
                 aria-label="Code Example Workspace"
               >
                 <!-- PHP Panel -->
-                <div id="code-php" class="code-panel space-y-1">
+                <div id="code-php" class="code-panel space-y-1 hidden">
                   <div><span class="text-[#9333ea]">&lt;?php</span></div>
                   <div>
-                    <span class="text-[#3b82f6]">namespace</span>
-                    <span class="text-[#e54b4b]">Sayan\WooUPI</span>;
+                    <span class="text-[#3b82f6]">namespace</span>&nbsp;<span class="text-[#e54b4b]">Sayan\WooUPI</span>;
                   </div>
                   <div class="text-muted">/**</div>
-                  <div class="text-muted">* WooCommerce UPI payment gateway integration.</div>
-                  <div class="text-muted">*/</div>
+                  <div class="text-muted">&nbsp;* WooCommerce UPI payment gateway integration.</div>
+                  <div class="text-muted">&nbsp;*/</div>
                   <div>
-                    <span class="text-[#9333ea]">class</span>
-                    <span class="text-[#10b981]">Gateway</span>
-                    <span class="text-[#9333ea]">extends</span>
-                    <span class="text-[#38bdf8]">\WC_Payment_Gateway</span> &#123;
+                    <span class="text-[#9333ea]">class</span>&nbsp;<span class="text-[#10b981]">Gateway</span
+                    >&nbsp;<span class="text-[#9333ea]">extends</span>&nbsp;<span class="text-[#38bdf8]"
+                      >\WC_Payment_Gateway</span
+                    >&nbsp;&#123;
                   </div>
                   <div class="pl-4">
-                    <span class="text-[#3b82f6]">public</span>
-                    <span class="text-[#9333ea]">function</span>
-                    <span class="text-[#38bdf8]">__construct</span>() &#123;
+                    <span class="text-[#3b82f6]">public</span>&nbsp;<span class="text-[#9333ea]">function</span
+                    >&nbsp;<span class="text-[#38bdf8]">__construct</span>() &#123;
                   </div>
                   <div class="pl-8">
-                    <span class="text-[#38bdf8]">$this</span>-&gt;<span class="text-secondary">id</span> = <span
-                      class="text-[#10b981]">'upi_gateway'</span
-                    >;
+                    <span class="text-[#38bdf8]">$this</span>-&gt;<span class="text-secondary">id</span
+                    >&nbsp;=&nbsp;<span class="text-[#10b981]">'upi_gateway'</span>;
                   </div>
                   <div class="pl-8">
-                    <span class="text-[#38bdf8]">$this</span>-&gt;<span class="text-secondary">method_title</span> = <span
-                      class="text-[#10b981]">'UPI Payments'</span
-                    >;
+                    <span class="text-[#38bdf8]">$this</span>-&gt;<span class="text-secondary">method_title</span
+                    >&nbsp;=&nbsp;<span class="text-[#10b981]">'UPI Payments'</span>;
                   </div>
                   <div class="pl-8">
-                    <span class="text-[#38bdf8]">$this</span>-&gt;<span class="text-secondary">has_fields</span> = <span
-                      class="text-[#3b82f6]">false</span
-                    >;
+                    <span class="text-[#38bdf8]">$this</span>-&gt;<span class="text-secondary">has_fields</span
+                    >&nbsp;=&nbsp;<span class="text-[#3b82f6]">false</span>;
                   </div>
                   <div class="pl-4">&#125;</div>
                   <div class="pl-4 pt-2">
-                    <span class="text-[#3b82f6]">public</span>
-                    <span class="text-[#9333ea]">function</span>
-                    <span class="text-[#38bdf8]">process_payment</span>(<span class="text-[#f59e0b]">$order_id</span>)
-                    &#123;
+                    <span class="text-[#3b82f6]">public</span>&nbsp;<span class="text-[#9333ea]">function</span
+                    >&nbsp;<span class="text-[#38bdf8]">process_payment</span>(<span class="text-[#f59e0b]"
+                      >$order_id</span
+                    >)&nbsp;&#123;
                   </div>
                   <div class="pl-8">
-                    <span class="text-[#f59e0b]">$order</span> = <span class="text-[#38bdf8]">wc_get_order</span>(<span
-                      class="text-[#f59e0b]">$order_id</span
-                    >);
+                    <span class="text-[#f59e0b]">$order</span>&nbsp;=&nbsp;<span class="text-[#38bdf8]"
+                      >wc_get_order</span
+                    >(<span class="text-[#f59e0b]">$order_id</span>);
                   </div>
                   <div class="pl-8"><span class="text-[#9333ea]">return</span> [</div>
                   <div class="pl-12">
-                    <span class="text-[#10b981]">'result'</span> =&gt; <span class="text-[#10b981]">'success'</span>,
+                    <span class="text-[#10b981]">'result'</span>&nbsp;=&gt;&nbsp;<span class="text-[#10b981]"
+                      >'success'</span
+                    >,
                   </div>
                   <div class="pl-12">
-                    <span class="text-[#10b981]">'redirect'</span> =&gt; <span class="text-[#38bdf8]">$order</span
+                    <span class="text-[#10b981]">'redirect'</span>&nbsp;=&gt;&nbsp;<span class="text-[#38bdf8]"
+                      >$order</span
                     >-&gt;<span class="text-[#38bdf8]">get_checkout_payment_url</span>(<span class="text-[#3b82f6]"
                       >true</span
                     >)
@@ -229,51 +227,51 @@ const stats = [
                 </div>
 
                 <!-- TS Panel -->
-                <div id="code-ts" class="code-panel space-y-1 hidden">
+                <div id="code-ts" class="code-panel space-y-1">
                   <div>
-                    <span class="text-[#3b82f6]">import</span> &#123; <span class="text-[#10b981]">useState</span> &#125;
-                    <span class="text-[#3b82f6]">from</span>
-                    <span class="text-[#10b981]">'react'</span>;
+                    <span class="text-[#3b82f6]">import</span>&nbsp;&#123;&nbsp;<span class="text-[#10b981]"
+                      >useState</span
+                    >&nbsp;&#125;&nbsp;<span class="text-[#3b82f6]">from</span>&nbsp;<span class="text-[#10b981]"
+                      >'react'</span
+                    >;
                   </div>
                   <div>
-                    <span class="text-[#3b82f6]">import</span>
-                    <span class="text-[#9333ea]">type</span> &#123; <span class="text-[#10b981]">CheckoutResponse</span> &#125;
-                    <span class="text-[#3b82f6]">from</span>
-                    <span class="text-[#10b981]">'./types'</span>;
+                    <span class="text-[#3b82f6]">import</span>&nbsp;<span class="text-[#9333ea]">type</span
+                    >&nbsp;&#123;&nbsp;<span class="text-[#10b981]">CheckoutResponse</span>&nbsp;&#125;&nbsp;<span
+                      class="text-[#3b82f6]">from</span
+                    >&nbsp;<span class="text-[#10b981]">'./types'</span>;
                   </div>
                   <div class="pt-2">
-                    <span class="text-[#9333ea]">export function</span>
-                    <span class="text-[#38bdf8]">useUPIGateway</span>(<span class="text-[#f59e0b]">orderId</span>:
-                    number) &#123;
+                    <span class="text-[#9333ea]">export function</span>&nbsp;<span class="text-[#38bdf8]"
+                      >useUPIGateway</span
+                    >(<span class="text-[#f59e0b]">orderId</span>:&nbsp;number)&nbsp;&#123;
                   </div>
                   <div class="pl-4">
-                    <span class="text-[#3b82f6]">const</span> [<span class="text-secondary">loading</span>, <span
-                      class="text-[#38bdf8]">setLoading</span
-                    >] = <span class="text-[#38bdf8]">useState</span>(<span class="text-[#3b82f6]">false</span>);
+                    <span class="text-[#3b82f6]">const</span>&nbsp;[<span class="text-secondary">loading</span
+                    >,&nbsp;<span class="text-[#38bdf8]">setLoading</span>]&nbsp;=&nbsp;<span class="text-[#38bdf8]"
+                      >useState</span
+                    >(<span class="text-[#3b82f6]">false</span>);
                   </div>
                   <div class="pt-2 pl-4">
-                    <span class="text-[#3b82f6]">const</span>
-                    <span class="text-[#38bdf8]">triggerPayment</span> = <span class="text-[#3b82f6]">async</span> () =&gt;
-                    &#123;
+                    <span class="text-[#3b82f6]">const</span>&nbsp;<span class="text-[#38bdf8]">triggerPayment</span
+                    >&nbsp;=&nbsp;<span class="text-[#3b82f6]">async</span>&nbsp;()&nbsp;=&gt;&nbsp;&#123;
                   </div>
                   <div class="pl-8">
                     <span class="text-[#38bdf8]">setLoading</span>(<span class="text-[#3b82f6]">true</span>);
                   </div>
                   <div class="pl-8">
-                    <span class="text-[#3b82f6]">const</span>
-                    <span class="text-secondary">res</span> = <span class="text-[#3b82f6]">await</span>
-                    <span class="text-[#38bdf8]">fetch</span>(<span class="text-[#10b981]"
-                      >'/wp-json/woo-upi/v1/pay/'</span
-                    > + orderId, &#123;
+                    <span class="text-[#3b82f6]">const</span>&nbsp;<span class="text-secondary">res</span
+                    >&nbsp;=&nbsp;<span class="text-[#3b82f6]">await</span>&nbsp;<span class="text-[#38bdf8]"
+                      >fetch</span
+                    >(<span class="text-[#10b981]">'/wp-json/woo-upi/v1/pay/'</span>&nbsp;+&nbsp;orderId,&nbsp;&#123;
                   </div>
                   <div class="pl-12">method: <span class="text-[#10b981]">'POST'</span></div>
                   <div class="pl-8">&#125;);</div>
                   <div class="pl-8">
-                    <span class="text-[#3b82f6]">const</span>
-                    <span class="text-secondary">data</span>: CheckoutResponse = <span class="text-[#3b82f6]"
-                      >await</span
-                    >
-                    <span class="text-secondary">res</span>.<span class="text-[#38bdf8]">json</span>();
+                    <span class="text-[#3b82f6]">const</span>&nbsp;<span class="text-secondary">data</span
+                    >:&nbsp;CheckoutResponse&nbsp;=&nbsp;<span class="text-[#3b82f6]">await</span>&nbsp;<span
+                      class="text-secondary">res</span
+                    >.<span class="text-[#38bdf8]">json</span>();
                   </div>
                   <div class="pl-8"><span class="text-[#9333ea]">if</span> (data.redirect_url) &#123;</div>
                   <div class="pl-12">

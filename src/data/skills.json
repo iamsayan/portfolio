@@ -3,92 +3,115 @@
     {
       "name": "WooCommerce Core & Checkout Engineering",
       "level": "Expert",
-      "context": "Architecting custom payment gateways, secure webhooks, transactional email pipelines, and high-performance checkout structures that scale under high concurrency."
+      "context": "Architecting and optimizing enterprise-grade e-commerce checkout loops. Deep experience developing payment gateways, secure webhook listeners under high volume concurrency, customized action schedulers, transactional email pipelines, and cart behaviors built to achieve sub-second page loads under massive server concurrency.",
+      "tags": ["Action Scheduler", "Webhooks API", "REST APIs", "Payment Gateways", "Concurrency Tuning", "PCI-DSS"]
     },
     {
       "name": "WordPress Plugin Architecture",
       "level": "Expert",
-      "context": "Over 8 years building commercial and open-source plugins. Deep expertise in WP Hooks, database tuning, security sanitization, and Gutenberg React block integrations."
+      "context": "Over 8 years building commercial plugins used by over a million active sites. Specialized in hook lifecycle management (actions/filters), robust custom database schema mappings, index tuning, transients caching strategies, Gutenberg custom blocks development using React, and strict codebase security audits.",
+      "tags": [
+        "WP Hooks API",
+        "Database Indexing",
+        "Gutenberg React Blocks",
+        "Security Sanitization",
+        "Composer PSR-4",
+        "Plugin Boilerplate"
+      ]
     }
   ],
   "modern": [
     {
       "name": "React / Next.js",
       "level": "Advanced",
-      "context": "Primary framework suite. Building decoupled frontends using React Server Components, client state stores, and optimized asset delivery."
+      "context": "Primary frontend stack for building responsive, decoupled web applications. Expert with React Server Components, Next.js App Router architectures, server-side rendering (SSR), incremental static regeneration (ISR), clean Zustand/Context state stores, and bundle size reduction optimization.",
+      "tags": ["RSC", "SSR/ISR", "Zustand", "Context API", "Server Actions", "Vercel"]
     },
     {
       "name": "TypeScript",
       "level": "Advanced",
-      "context": "Strict type-safety across client and server modules. Defining interfaces, custom generics, and compilation checks to prevent production crashes."
+      "context": "Enforcing strict type-safety across both frontend client apps and backend server models. Experienced in writing custom generics, complex utility types, template literal types, custom type guards, and configuring compiler options to catch bugs before they reach production.",
+      "tags": ["Generics", "Strict Type Checking", "Utility Types", "TSConfig", "ESLint Rules"]
     },
     {
       "name": "Tailwind CSS v4 & Astro",
       "level": "Expert",
-      "context": "Deploying zero-JS static sites with Astro. Styling modular layouts with Tailwind's fluid systems and theme tokens."
+      "context": "Deploying zero-JS frontend applications utilizing Astro's island architecture. Styling layouts using Tailwind v4 fluid systems, container queries, CSS variables based styling tokens, custom animation transitions, and responsive fluid grids.",
+      "tags": ["Fluid Layouts", "Static Site Generation", "Container Queries", "Utility-First CSS", "Astro Components"]
     }
   ],
   "backend": [
     {
       "name": "PHP & Laravel",
       "level": "Expert",
-      "context": "Building MVC applications, API routes, queue pipelines, Eloquent models, and automated tests."
+      "context": "Building decoupled MVC RESTful APIs and backend services using modern PHP and Laravel. Leveraging Redis caching, asynchronous queue pipelines, background jobs scheduler systems, complex Eloquent query optimizations, and robust automated test suites (PHPUnit) to keep regressions at zero.",
+      "tags": ["Eloquent ORM", "Queues & Jobs", "MVC Architecture", "Blade Templates", "PHPUnit Tests"]
     },
     {
       "name": "Node.js & Express",
       "level": "Proficient",
-      "context": "Creating clean REST API endpoints, routing logic, request validators, and background microservices."
+      "context": "Creating concurrent API servers, real-time event loops, custom express middlewares (for security validations and CORS configurations), request validator configurations, and cron-driven background microservices utilizing modern ES6 JavaScript.",
+      "tags": ["REST endpoints", "Express Middleware", "JSON Web Tokens", "Event Loop", "CORS Configurations"]
     },
     {
       "name": "API Design (REST & Graph)",
       "level": "Advanced",
-      "context": "Structuring predictable resource schemas, custom endpoints, and GraphQL resolvers for headless integrations."
+      "context": "Architecting reliable, self-documenting resource schemas for headless environments. Configuring API version controls, rate limiters, token-based authorizers, custom REST endpoint controllers, and GraphQL resolvers for headless integrations.",
+      "tags": ["API Versioning", "GraphQL Resolvers", "JSON Schema", "CORS Policy", "WP-GraphQL"]
     }
   ],
   "cms": [
     {
       "name": "WordPress",
       "level": "Expert",
-      "context": "Extending themes, core overrides, custom post mappings, and database optimizations."
+      "context": "Overriding core behaviors cleanly using WP Hooks, optimizing WP_Query configurations, custom post mappings, metadata table structures, transients configurations, headless integrations, and configuring multisite networks for massive scalability.",
+      "tags": ["Theme Development", "Custom Post Types", "Transient API", "WP_Query Tuning", "Multisite Configuration"]
     },
     {
       "name": "Headless CMS Platforms",
       "level": "Proficient",
-      "context": "Setting up content collections, API sync hooks, and layouts for Cockpit CMS, Strapi, and PocketBase."
+      "context": "Structuring headless schemas, setting up content collections, managing sync relationships, and creating fast rendering loops using APIs from Strapi, Cockpit CMS, PocketBase, and Contentful.",
+      "tags": ["Cockpit CMS", "Strapi APIs", "PocketBase SDK", "API Webhooks", "Content Schema"]
     }
   ],
   "infra": [
     {
       "name": "MySQL / PostgreSQL",
       "level": "Advanced",
-      "context": "Schema optimizations, indexing strategy, locking issues, and raw query tuning."
+      "context": "Structuring performant relational databases. Specialized in analyzing query execution plans via EXPLAIN, writing composite and covering indexes, tuning joins, debugging database write lock issues, and configuring replica configurations.",
+      "tags": ["Query Indexing", "Join Tuning", "Transaction Locking", "Database Sharding", "EXPLAIN Analysis"]
     },
     {
       "name": "Git & CI/CD Pipelines",
       "level": "Advanced",
-      "context": "Version control branching, GitHub Actions workflow tasks, automated checks, and deployments."
+      "context": "Version control structure management, branching policies, and writing automated checks via GitHub Actions. Automating type checks, format checkers, unit tests, semantic versioning tag releases, and zero-downtime atomic deployments.",
+      "tags": ["GitHub Actions", "Semantic Versioning", "Git Hooks", "Branching Workflows", "Automated Testing"]
     },
     {
       "name": "Docker & Linux Servers",
       "level": "Working Knowledge",
-      "context": "Defining multi-stage Dockerfiles, compose setups, and administering Nginx gateways."
+      "context": "Configuring Docker containerization files (Multi-stage Dockerfiles and Compose), setting up local dev environments, administering Nginx web server blocks, managing SSL security certificate renewals, SSH protocols, and cron tab automation scripts.",
+      "tags": ["Nginx Gateway", "Dockerfile Config", "Docker Compose", "SSH Administration", "SSL Certificates"]
     }
   ],
   "legacy": [
     {
       "name": "jQuery",
       "level": "Proficient",
-      "context": "Maintaining legacy plugin interactions, selector event maps, and browser DOM manipulations."
+      "context": "Refactoring, optimizing, and maintaining legacy plugin interactions. Resolving memory leak event listeners, cleaning up selector chains, managing DOM tree manipulation, and ensuring compatibility on legacy portals.",
+      "tags": ["DOM Events", "AJAX Wrappers", "Legacy Maintenance", "Cross-browser Compatibility"]
     },
     {
       "name": "AJAX",
       "level": "Proficient",
-      "context": "Asynchronous form validation, raw XMLHttpRequests, and partial DOM swaps in legacy systems."
+      "context": "Managing partial page refreshes, asynchronous validations, raw XMLHttpRequests, custom security nonce check integrations, and form submission flows inside older PHP and WordPress installations.",
+      "tags": ["XMLHttpRequests", "JSON Parse", "Partial DOM Updates", "State Retention"]
     },
     {
       "name": "Bootstrap",
       "level": "Proficient",
-      "context": "Maintaining grid templates and styling variables on older client portals."
+      "context": "Maintaining and updating CSS grids, custom Sass color overrides, layout breakpoints, form alignments, and administrative layout templates on older client dashboards and backend portals.",
+      "tags": ["Grid Systems", "Responsive Layouts", "Utility Classes", "Sass Themes"]
     }
   ]
 }

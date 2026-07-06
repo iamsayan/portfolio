@@ -40,8 +40,8 @@
   --radius: 0.85rem;
   --radius-lg: 1.25rem;
 
-  --font-display: "Inter", system-ui, -apple-system, sans-serif;
-  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-display: "Sora", system-ui, -apple-system, sans-serif;
+  --font-sans: "Outfit", system-ui, -apple-system, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
 }
 
@@ -89,9 +89,9 @@
   --color-accent-glow: var(--accent-glow);
   --color-success-glow: var(--success-glow);
 
-  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-sans: "Outfit", system-ui, -apple-system, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
-  --font-display: "Inter", system-ui, -apple-system, sans-serif;
+  --font-display: "Sora", system-ui, -apple-system, sans-serif;
 }
 
 /* ── Base ─────────────────────────────────────────────── */
@@ -228,14 +228,14 @@ body::before {
     font-size: clamp(2.35rem, 5.5vw, 4.15rem);
     line-height: 1.05;
     letter-spacing: -0.03em;
-    font-weight: 750;
+    font-weight: 800;
   }
   .t-title {
     font-family: var(--font-display);
     font-size: clamp(1.4rem, 2.5vw, 1.85rem);
     line-height: 1.25;
     letter-spacing: -0.02em;
-    font-weight: 650;
+    font-weight: 700;
   }
   .t-body {
     font-size: 1.05rem;
@@ -570,7 +570,8 @@ p {
 }
 .reveal.visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
+  will-change: auto;
 }
 .r1 {
   transition-delay: 0.08s;

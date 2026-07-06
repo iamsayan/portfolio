@@ -5,6 +5,9 @@ export interface ProfileData {
   name: string;
   title: string;
   location: string;
+  experience: string;
+  timezone: string;
+  specialty: string;
   email: string;
   backupEmail: string;
   socials: {
@@ -51,6 +54,7 @@ export interface SkillItem {
   name: string;
   level: string;
   context: string;
+  tags: string[];
 }
 
 export interface SkillsData {

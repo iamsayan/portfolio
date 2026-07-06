@@ -2,13 +2,14 @@
 import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
-import { getProfile, getExperience, getTestimonials } from "@/lib/data";
+import { getProfile, getExperience, getTestimonials, getPhilosophy } from "@/lib/data";
 import { Icon } from "astro-icon/components";
 import PageHero from "@/components/PageHero.astro";
 
 const profile = await getProfile();
 const experience = await getExperience();
 const testimonials = await getTestimonials();
+const philosophy = await getPhilosophy();
 ---
 
 <Layout
@@ -46,11 +47,38 @@ const testimonials = await getTestimonials();
             </h3>
             <div class="space-y-3">
               <div class="flex justify-between items-center text-sm">
-                <span class="text-muted">Location:</span>
-                <span class="font-medium text-primary">🇮🇳 {profile.location}</span>
+                <span class="text-muted flex items-center gap-1.5">
+                  <Icon name="ph:map-pin" class="w-4 h-4 text-muted" />
+                  Location:
+                </span>
+                <span class="font-medium text-primary">{profile.location}</span>
               </div>
               <div class="flex justify-between items-center text-sm">
-                <span class="text-muted">Email:</span>
+                <span class="text-muted flex items-center gap-1.5">
+                  <Icon name="ph:briefcase" class="w-4 h-4 text-muted" />
+                  Experience:
+                </span>
+                <span class="font-medium text-primary">{profile.experience}</span>
+              </div>
+              <div class="flex justify-between items-center text-sm">
+                <span class="text-muted flex items-center gap-1.5">
+                  <Icon name="ph:clock" class="w-4 h-4 text-muted" />
+                  Timezone:
+                </span>
+                <span class="font-medium text-primary">{profile.timezone}</span>
+              </div>
+              <div class="flex justify-between items-center text-sm">
+                <span class="text-muted flex items-center gap-1.5">
+                  <Icon name="ph:code" class="w-4 h-4 text-muted" />
+                  Specialty:
+                </span>
+                <span class="font-medium text-primary">{profile.specialty}</span>
+              </div>
+              <div class="flex justify-between items-center text-sm">
+                <span class="text-muted flex items-center gap-1.5">
+                  <Icon name="ph:envelope" class="w-4 h-4 text-muted" />
+                  Email:
+                </span>
                 <div class="flex items-center gap-1.5">
                   <a href={`mailto:${profile.email}`} class="font-semibold text-accent hover:underline"
                     >{profile.email}</a
@@ -65,11 +93,25 @@ const testimonials = await getTestimonials();
                 </div>
               </div>
               <div class="flex justify-between items-center text-sm">
-                <span class="text-muted">Website:</span>
-                <span class="font-medium text-primary">sayandatta.co.in</span>
+                <span class="text-muted flex items-center gap-1.5">
+                  <Icon name="ph:globe" class="w-4 h-4 text-muted" />
+                  Website:
+                </span>
+                <a
+                  href="https://sayandatta.co.in"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="font-medium text-primary hover:text-accent hover:underline flex items-center gap-1"
+                >
+                  sayandatta.co.in
+                  <Icon name="ph:arrow-square-out" class="w-3.5 h-3.5 text-muted" />
+                </a>
               </div>
               <div class="flex justify-between items-center text-sm">
-                <span class="text-muted">Freelance:</span>
+                <span class="text-muted flex items-center gap-1.5">
+                  <Icon name="ph:handshake" class="w-4 h-4 text-muted" />
+                  Freelance:
+                </span>
                 <span class="status-badge !py-0.5 !px-2.5 !text-[11px]"
                   ><span class="pulse-dot" aria-hidden="true"></span>Available</span
                 >
@@ -79,93 +121,37 @@ const testimonials = await getTestimonials();
         </div>
       </div>
 
-      <!-- Setup and Stack Details (Daily Tools) -->
+      <!-- Setup and Stack Details (Daily Tools) -> Now Engineering Philosophy -->
       <div class="mb-24 reveal r2">
         <div class="flex items-center gap-3 mb-6">
           <span class="w-1.5 h-1.5 rounded-full bg-blue-500" aria-hidden="true"></span>
-          <span class="text-[10px] font-mono tracking-wider text-blue-500 uppercase font-bold">My Setup</span>
+          <span class="text-[10px] font-mono tracking-wider text-blue-500 uppercase font-bold">Philosophy</span>
         </div>
-        <h2 class="t-title mb-10">Tools I use daily.</h2>
+        <h2 class="t-title mb-10">Engineering principles.</h2>
 
         <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          <!-- Hardware Card -->
-          <div class="glass hover-glow-blue p-6 bg-surface">
-            <h3 class="font-bold text-base text-primary mb-4 flex items-center gap-2">
-              <Icon name="ph:desktop" class="w-4 h-4 text-blue-500" aria-hidden="true" />
-              Hardware
-            </h3>
-            <ul class="space-y-2 text-xs text-secondary font-sans">
-              <li class="flex items-center gap-2">
-                <span class="w-1 h-1 rounded-full bg-blue-500" aria-hidden="true"></span>Windows Workstation PC
-              </li>
-              <li class="flex items-center gap-2">
-                <span class="w-1 h-1 rounded-full bg-blue-500" aria-hidden="true"></span>Dell UltraSharp 4K display
-              </li>
-              <li class="flex items-center gap-2">
-                <span class="w-1 h-1 rounded-full bg-blue-500" aria-hidden="true"></span>Mechanical MX Brown Keyboard
-              </li>
-            </ul>
-          </div>
+          {
+            philosophy.map((item: any, idx: number) => {
+              const glowClasses = ["hover-glow-blue", "hover-glow-emerald", "hover-glow-rose", "hover-glow-amber"];
+              const textColors = ["text-blue-500", "text-emerald-500", "text-rose-500", "text-amber-500"];
+              const icons = ["ph:code-block", "ph:users-three", "ph:gauge", "ph:git-fork"];
+              const glow = glowClasses[idx % glowClasses.length];
+              const color = textColors[idx % textColors.length];
+              const icon = icons[idx % icons.length];
 
-          <!-- Development Card -->
-          <div class="glass hover-glow-emerald p-6 bg-surface">
-            <h3 class="font-bold text-base text-primary mb-4 flex items-center gap-2">
-              <Icon name="ph:terminal-window" class="w-4 h-4 text-emerald-500" aria-hidden="true" />
-              Development
-            </h3>
-            <ul class="space-y-2 text-xs text-secondary font-sans">
-              <li class="flex items-center gap-2">
-                <span class="w-1 h-1 rounded-full bg-emerald-500" aria-hidden="true"></span>VS Code &amp; Cursor IDEs
-              </li>
-              <li class="flex items-center gap-2">
-                <span class="w-1 h-1 rounded-full bg-emerald-500" aria-hidden="true"></span>Windows Terminal (ZSH)
-              </li>
-              <li class="flex items-center gap-2">
-                <span class="w-1 h-1 rounded-full bg-emerald-500" aria-hidden="true"></span>Git Version Control
-              </li>
-              <li class="flex items-center gap-2">
-                <span class="w-1 h-1 rounded-full bg-emerald-500" aria-hidden="true"></span>Docker Containers
-              </li>
-            </ul>
-          </div>
-
-          <!-- Design Card -->
-          <div class="glass hover-glow-rose p-6 bg-surface">
-            <h3 class="font-bold text-base text-primary mb-4 flex items-center gap-2">
-              <Icon name="ph:palette" class="w-4 h-4 text-rose-500" aria-hidden="true" />
-              UI / UX
-            </h3>
-            <ul class="space-y-2 text-xs text-secondary font-sans">
-              <li class="flex items-center gap-2">
-                <span class="w-1 h-1 rounded-full bg-rose-500" aria-hidden="true"></span>Figma Design Board
-              </li>
-              <li class="flex items-center gap-2">
-                <span class="w-1 h-1 rounded-full bg-rose-500" aria-hidden="true"></span>Adobe XD Prototyping
-              </li>
-              <li class="flex items-center gap-2">
-                <span class="w-1 h-1 rounded-full bg-rose-500" aria-hidden="true"></span>Graph Paper Sketching
-              </li>
-            </ul>
-          </div>
-
-          <!-- Infrastructure Card -->
-          <div class="glass hover-glow-amber p-6 bg-surface">
-            <h3 class="font-bold text-base text-primary mb-4 flex items-center gap-2">
-              <Icon name="ph:hard-drives" class="w-4 h-4 text-amber-500" aria-hidden="true" />
-              Infrastructure
-            </h3>
-            <ul class="space-y-2 text-xs text-secondary font-sans">
-              <li class="flex items-center gap-2">
-                <span class="w-1 h-1 rounded-full bg-amber-500" aria-hidden="true"></span>Vercel Cloud Deploy
-              </li>
-              <li class="flex items-center gap-2">
-                <span class="w-1 h-1 rounded-full bg-amber-500" aria-hidden="true"></span>DigitalOcean VPS Droplets
-              </li>
-              <li class="flex items-center gap-2">
-                <span class="w-1 h-1 rounded-full bg-amber-500" aria-hidden="true"></span>Cloudflare Proxy DNS
-              </li>
-            </ul>
-          </div>
+              return (
+                <div class={`glass ${glow} p-6 bg-surface flex flex-col justify-between`}>
+                  <div>
+                    <h3 class="font-bold text-base text-primary mb-4 flex items-center gap-2">
+                      <Icon name={icon} class={`w-4 h-4 ${color}`} aria-hidden="true" />
+                      {item.title}
+                    </h3>
+                    <p class="text-xs text-secondary leading-relaxed font-sans">{item.description}</p>
+                  </div>
+                </div>
+              );
+            })
+          }
         </div>
       </div>
 
@@ -223,11 +209,16 @@ const testimonials = await getTestimonials();
 
             <div class="grid md:grid-cols-2 gap-8">
               {testimonials.map((t) => (
-                <div class="glass p-8 bg-surface border-subtle hover:border-accent transition-colors relative flex flex-col justify-between">
-                  <blockquote class="text-sm text-secondary leading-relaxed font-sans italic mb-6">
+                <div class="glass p-8 bg-surface border-subtle hover:border-accent transition-colors relative flex flex-col justify-between group">
+                  <Icon
+                    name="ph:quotes"
+                    class="absolute top-6 right-6 w-8 h-8 text-muted/15 group-hover:text-accent/30 transition-colors"
+                    aria-hidden="true"
+                  />
+                  <blockquote class="text-sm text-secondary leading-relaxed font-sans italic mb-6 relative z-10">
                     "{t.text}"
                   </blockquote>
-                  <div class="border-t border-subtle pt-4 flex items-center justify-between">
+                  <div class="border-t border-subtle pt-4 flex items-center justify-between relative z-10">
                     <div>
                       <cite class="text-sm font-bold text-primary not-italic block">{t.name}</cite>
                       <span class="text-[10px] font-mono text-muted block mt-0.5">{t.role}</span>
@@ -248,24 +239,34 @@ const testimonials = await getTestimonials();
 
       <!-- Volunteering and open-source contributions -->
       <div class="grid md:grid-cols-2 gap-8 mb-24 reveal r4">
-        <div class="glass p-8 hover-glow-purple bg-surface">
-          <p class="t-mono text-purple-400 text-[10px] mb-2">COMMUNITY ENGAGEMENT</p>
-          <h3 class="font-bold text-base text-primary">Volunteer Developer</h3>
-          <p class="text-xs text-muted mt-1 mb-4">Jagadhatri Online &mdash; Aug 2020 - Present</p>
-          <p class="text-sm text-secondary leading-relaxed font-sans">
-            Volunteered to build and maintain the event and commerce portal utilizing Next.js, managing API sync
-            frameworks with local WooCommerce catalogs.
-          </p>
+        <div class="glass p-8 hover-glow-purple bg-surface flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <p class="t-mono text-purple-400 text-[10px] tracking-wider font-bold">COMMUNITY ENGAGEMENT</p>
+              <Icon name="ph:users" class="w-5 h-5 text-purple-400" />
+            </div>
+            <h3 class="font-bold text-base text-primary">Volunteer Developer</h3>
+            <p class="text-xs text-muted mt-1 mb-4">Jagadhatri Online &mdash; Aug 2020 - Present</p>
+            <p class="text-sm text-secondary leading-relaxed font-sans">
+              Volunteered to build and maintain the event and commerce portal utilizing Next.js, managing API sync
+              frameworks with local WooCommerce catalogs.
+            </p>
+          </div>
         </div>
 
-        <div class="glass p-8 hover-glow-rose bg-surface">
-          <p class="t-mono text-rose-400 text-[10px] mb-2">OPEN SOURCE ECOSYSTEM</p>
-          <h3 class="font-bold text-base text-primary">Core &amp; Plugin Contributor</h3>
-          <p class="text-xs text-muted mt-1 mb-4">WordPress.org &mdash; Jul 2018 - Present</p>
-          <p class="text-sm text-secondary leading-relaxed font-sans">
-            Submit patches, refactor actions, and provide interface enhancements inside the core WordPress platform,
-            supporting open-source development globally.
-          </p>
+        <div class="glass p-8 hover-glow-rose bg-surface flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <p class="t-mono text-rose-400 text-[10px] tracking-wider font-bold">OPEN SOURCE ECOSYSTEM</p>
+              <Icon name="ph:git-branch" class="w-5 h-5 text-rose-400" />
+            </div>
+            <h3 class="font-bold text-base text-primary">Core &amp; Plugin Contributor</h3>
+            <p class="text-xs text-muted mt-1 mb-4">WordPress.org &mdash; Jul 2018 - Present</p>
+            <p class="text-sm text-secondary leading-relaxed font-sans">
+              Submit patches, refactor actions, and provide interface enhancements inside the core WordPress platform,
+              supporting open-source development globally.
+            </p>
+          </div>
         </div>
       </div>
 
@@ -275,29 +276,41 @@ const testimonials = await getTestimonials();
         <h2 class="t-title mb-6">Outside of writing code.</h2>
         <div class="flex flex-wrap gap-3">
           <span
-            class="px-4 py-2.5 rounded-lg bg-surface border border-strong text-sm font-semibold text-primary hover:border-accent hover:text-accent transition-colors"
-            >🎵 Music</span
+            class="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-surface border border-strong text-sm font-semibold text-primary hover:border-accent hover:text-accent transition-colors"
           >
+            <Icon name="ph:music-notes" class="w-4 h-4 text-accent" />
+            Music
+          </span>
           <span
-            class="px-4 py-2.5 rounded-lg bg-surface border border-strong text-sm font-semibold text-primary hover:border-accent hover:text-accent transition-colors"
-            >📚 Reading Books</span
+            class="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-surface border border-strong text-sm font-semibold text-primary hover:border-accent hover:text-accent transition-colors"
           >
+            <Icon name="ph:book-open" class="w-4 h-4 text-accent" />
+            Reading Books
+          </span>
           <span
-            class="px-4 py-2.5 rounded-lg bg-surface border border-strong text-sm font-semibold text-primary hover:border-accent hover:text-accent transition-colors"
-            >🌍 Travel</span
+            class="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-surface border border-strong text-sm font-semibold text-primary hover:border-accent hover:text-accent transition-colors"
           >
+            <Icon name="ph:compass" class="w-4 h-4 text-accent" />
+            Travel
+          </span>
           <span
-            class="px-4 py-2.5 rounded-lg bg-surface border border-strong text-sm font-semibold text-primary hover:border-accent hover:text-accent transition-colors"
-            >🎮 Gaming</span
+            class="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-surface border border-strong text-sm font-semibold text-primary hover:border-accent hover:text-accent transition-colors"
           >
+            <Icon name="ph:game-controller" class="w-4 h-4 text-accent" />
+            Gaming
+          </span>
           <span
-            class="px-4 py-2.5 rounded-lg bg-surface border border-strong text-sm font-semibold text-primary hover:border-accent hover:text-accent transition-colors"
-            >☕ Coffee</span
+            class="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-surface border border-strong text-sm font-semibold text-primary hover:border-accent hover:text-accent transition-colors"
           >
+            <Icon name="ph:coffee" class="w-4 h-4 text-accent" />
+            Coffee
+          </span>
           <span
-            class="px-4 py-2.5 rounded-lg bg-surface border border-strong text-sm font-semibold text-primary hover:border-accent hover:text-accent transition-colors"
-            >🧘 Mindfulness</span
+            class="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-surface border border-strong text-sm font-semibold text-primary hover:border-accent hover:text-accent transition-colors"
           >
+            <Icon name="ph:brain" class="w-4 h-4 text-accent" />
+            Mindfulness
+          </span>
         </div>
       </div>
     </div>
