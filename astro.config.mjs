@@ -3,9 +3,12 @@ import tailwindcss from "@tailwindcss/vite";
 import icon from "astro-icon";
 import sitemap from "@astrojs/sitemap";
 import Unfonts from "unplugin-fonts/astro";
+import { loadEnv } from "vite";
+
+const env = loadEnv(process.env.NODE_ENV || "development", process.cwd(), "");
 
 export default defineConfig({
-  site: "https://sayandatta.co.in",
+  site: env.SITE_URL || "http://localhost:4321",
   vite: {
     plugins: [tailwindcss()],
   },

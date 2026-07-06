@@ -90,9 +90,9 @@
   --color-success: var(--success);
   --color-success-glow: var(--success-glow);
 
-  --font-sans: "Outfit", system-ui, -apple-system, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, monospace;
-  --font-display: "Sora", system-ui, -apple-system, sans-serif;
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+  --font-display: var(--font-display);
 }
 
 /* ── Base ─────────────────────────────────────────────── */
@@ -121,14 +121,6 @@
 
   /* Unified Transition System for theme switching */
   body,
-  p,
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  span,
   a,
   input,
   textarea,
@@ -142,6 +134,15 @@
       border-color 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
       text-shadow 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
       box-shadow 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  /* Disable transitions during View Transitions to prevent double-transition lag */
+  @supports (view-transition-name: none) {
+    html:active-view-transition *,
+    html:active-view-transition *::before,
+    html:active-view-transition *::after {
+      transition: none !important;
+    }
   }
 
   ::selection {
