@@ -1,5 +1,6 @@
 // Central Data Fetch Layer for Sayan Datta's Portfolio
 // Designed to resolve local JSON structures and allow seamless drop-in Cockpit CMS APIs integration later.
+import cockpit, { type TreeEntity } from "@/lib/client";
 
 export interface ProfileData {
   name: string;
@@ -23,13 +24,19 @@ export interface ProfileData {
   formspreeId?: string;
 }
 
-export interface ExperienceItem {
-  company: string;
+export interface RoleItem {
   position: string;
   duration: string;
   description: string;
-  bullets: string[];
   tech: string[];
+  accomplishments: string[];
+}
+
+export interface ExperienceItem extends TreeEntity {
+  company: string;
+  location: string;
+  type: string;
+  roles: RoleItem[];
 }
 
 export interface ProjectItem {
@@ -77,8 +84,8 @@ export async function getProfile(): Promise<ProfileData> {
 }
 
 export async function getExperience(): Promise<ExperienceItem[]> {
-  const data = await import("../data/experience.json");
-  return data.default as ExperienceItem[];
+  const data = await cockpit.getContentTree<ExperienceItem[]>("experiences", { populate: 1 });
+  return data as ExperienceItem[];
 }
 
 export async function getProjects(): Promise<ProjectItem[]> {
@@ -101,9 +108,16 @@ export async function getFAQs(): Promise<FAQItem[]> {
   return data.default as FAQItem[];
 }
 
-export async function getTestimonials() {
+export interface TestimonialItem {
+  name: string;
+  role: string;
+  text: string;
+  type: "colleague" | "user";
+}
+
+export async function getTestimonials(): Promise<TestimonialItem[]> {
   const data = await import("../data/testimonials.json");
-  return data.default;
+  return data.default as TestimonialItem[];
 }
 
 export async function getStatistics() {

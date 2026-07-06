@@ -2,14 +2,16 @@
 import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
-import { getProfile, getExperience, getTestimonials, getPhilosophy } from "@/lib/data";
+import { getProfile, getExperience, getTestimonials, getPhilosophy, type ExperienceItem } from "@/lib/data";
 import { Icon } from "astro-icon/components";
 import PageHero from "@/components/PageHero.astro";
 
-const profile = await getProfile();
-const experience = await getExperience();
-const testimonials = await getTestimonials();
-const philosophy = await getPhilosophy();
+const [profile, experience, testimonials, philosophy] = await Promise.all([
+  getProfile(),
+  getExperience(),
+  getTestimonials(),
+  getPhilosophy(),
+]);
 ---
 
 <Layout
@@ -163,31 +165,98 @@ const philosophy = await getPhilosophy();
         </div>
         <h2 class="t-title mb-12">Professional experience.</h2>
 
-        <div class="timeline-container space-y-12">
+        <div class="timeline-container space-y-16">
           {
-            experience.map((exp, idx) => {
-              const colors = ["#f43f5e", "#38bdf8", "#a855f7", "#10b981", "#f59e0b", "#e11d48"];
-              const color = colors[idx % colors.length];
+            experience.map((group: ExperienceItem, idx: number) => {
+              const hue = (idx * 137.5) % 360;
+              const color = `hsl(${hue}, 85%, 60%)`;
+
+              // If the company has only one role, render it directly at the root timeline level
+              if (group.roles.length === 1) {
+                const role = group.roles[0];
+                return (
+                  <div class="relative pl-6">
+                    <div class="timeline-node" style={`border-color: ${color}; box-shadow: 0 0 10px ${color}80`} />
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-2">
+                      <div>
+                        <h3 class="font-bold text-lg text-primary flex items-center gap-2">{role.position}</h3>
+                        <div class="flex flex-wrap items-center gap-2 mt-1">
+                          <span class="text-xs font-semibold" style={`color: ${color}`}>
+                            {group.company}
+                          </span>
+                          <span class="text-xs text-muted flex items-center gap-1">
+                            <Icon name="ph:map-pin" class="w-3.5 h-3.5" />
+                            {group.location ?? "Remote"}
+                          </span>
+                          {group.type?.toLowerCase() === "freelance" && (
+                            <span class="inline-flex items-center rounded bg-purple-500/10 px-1.5 py-0.5 text-[9px] font-bold text-purple-400 ring-1 ring-inset ring-purple-500/20">
+                              Freelance
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                      <span class="text-xs bg-raised border border-strong px-3 py-1 rounded-full text-secondary font-medium">
+                        {role.duration}
+                      </span>
+                    </div>
+                    <p class="text-sm text-secondary leading-relaxed mb-3 font-sans">{role.description}</p>
+                    <ul class="list-disc pl-4 space-y-1.5 text-xs sm:text-sm text-muted font-sans">
+                      {(role.accomplishments || []).map((bullet: string) => (
+                        <li>{bullet}</li>
+                      ))}
+                    </ul>
+                  </div>
+                );
+              }
+
+              // If consecutive roles exist for the same company, render the nested group format
               return (
                 <div class="relative pl-6">
+                  {/* Main Company node */}
                   <div class="timeline-node" style={`border-color: ${color}; box-shadow: 0 0 10px ${color}80`} />
-                  <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-2">
-                    <div>
-                      <h3 class="font-bold text-lg text-primary">{exp.position}</h3>
-                      <p class="text-xs font-semibold" style={`color: ${color}`}>
-                        {exp.company} &mdash; Remote
-                      </p>
+
+                  {/* Header: Company Name & Location */}
+                  <div class="mb-4">
+                    <h3 class="font-bold text-lg text-primary">{group.company}</h3>
+                    <div class="flex flex-wrap items-center gap-2 mt-1">
+                      <span class="text-xs text-muted flex items-center gap-1">
+                        <Icon name="ph:map-pin" class="w-3.5 h-3.5" />
+                        {group.location ?? "Remote"}
+                      </span>
+                      {group.type?.toLowerCase() === "freelance" && (
+                        <span class="inline-flex items-center rounded bg-purple-500/10 px-1.5 py-0.5 text-[9px] font-bold text-purple-400 ring-1 ring-inset ring-purple-500/20">
+                          Freelance
+                        </span>
+                      )}
                     </div>
-                    <span class="text-xs bg-raised border border-strong px-3 py-1 rounded-full text-secondary font-medium">
-                      {exp.duration}
-                    </span>
                   </div>
-                  <p class="text-sm text-secondary leading-relaxed mb-3 font-sans">{exp.description}</p>
-                  <ul class="list-disc pl-4 space-y-1 text-xs text-muted font-sans">
-                    {exp.bullets.map((b) => (
-                      <li>{b}</li>
+
+                  {/* Roles Nested inside the company */}
+                  <div class="space-y-8 relative pl-6 border-l border-dashed border-subtle/40 ml-1">
+                    {group.roles.map((role: any) => (
+                      <div class="relative last:pb-0">
+                        {/* Role Node Indicator */}
+                        <div
+                          class="absolute -left-[29px] top-1.5 w-2 h-2 rounded-full bg-surface border"
+                          style={`border-color: ${color}`}
+                        />
+
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-2">
+                          <h4 class="font-bold text-base text-primary">{role.position}</h4>
+                          <span class="text-xs bg-raised border border-strong px-2.5 py-0.5 rounded-full text-secondary font-mono">
+                            {role.duration}
+                          </span>
+                        </div>
+
+                        <p class="text-sm text-secondary leading-relaxed mb-3 font-sans">{role.description}</p>
+                        <ul class="list-disc pl-4 space-y-1.5 text-xs sm:text-sm text-muted font-sans">
+                          {(role.accomplishments || []).map((bullet: string) => (
+                            <li>{bullet}</li>
+                          ))}
+                        </ul>
+                      </div>
                     ))}
-                  </ul>
+                  </div>
                 </div>
               );
             })
@@ -218,17 +287,24 @@ const philosophy = await getPhilosophy();
                   <blockquote class="text-sm text-secondary leading-relaxed font-sans italic mb-6 relative z-10">
                     "{t.text}"
                   </blockquote>
-                  <div class="border-t border-subtle pt-4 flex items-center justify-between relative z-10">
-                    <div>
-                      <cite class="text-sm font-bold text-primary not-italic block">{t.name}</cite>
-                      <span class="text-[10px] font-mono text-muted block mt-0.5">{t.role}</span>
+                  <div class="border-t border-subtle pt-4 relative z-10">
+                    <div class="flex items-start justify-between gap-4">
+                      <div>
+                        <cite class="text-sm font-bold text-primary not-italic block">{t.name}</cite>
+                        <span class="text-[10px] font-mono text-muted block mt-0.5 truncate max-w-[200px] sm:max-w-[320px]" title={t.role}>
+                          {t.role}
+                        </span>
+                      </div>
+                      <span
+                        class={`text-[9px] border px-2 py-0.5 rounded font-semibold tracking-wider font-mono uppercase shrink-0 ${
+                          t.type === "colleague" 
+                            ? "bg-purple-500/10 text-purple-400 border-purple-500/20" 
+                            : "bg-emerald-500/10 text-emerald-400 border-emerald-500/20"
+                        }`}
+                      >
+                        {t.type === "colleague" ? "Colleague" : "WP.org User"}
+                      </span>
                     </div>
-                    <span
-                      class="text-[9px] bg-accent-glow text-accent border border-rose-500/10 px-2 py-0.5 rounded font-semibold tracking-wider font-mono uppercase"
-                      aria-label="Verified testimonial endorsement"
-                    >
-                      Verified Reference
-                    </span>
                   </div>
                 </div>
               ))}

@@ -38,6 +38,12 @@
       "level": "Expert",
       "context": "Deploying zero-JS frontend applications utilizing Astro's island architecture. Styling layouts using Tailwind v4 fluid systems, container queries, CSS variables based styling tokens, custom animation transitions, and responsive fluid grids.",
       "tags": ["Fluid Layouts", "Static Site Generation", "Container Queries", "Utility-First CSS", "Astro Components"]
+    },
+    {
+      "name": "AI Integration & Agentic Systems",
+      "level": "Advanced",
+      "context": "Developing autonomous agent loops and tool-calling systems. Experienced in integrating and orchestrating models like Gemini, Claude, DeepSeek, Cohere Command, and open-source models like Llama, Qwen, and OpenCode tools.",
+      "tags": ["Gemini API", "Claude API", "DeepSeek", "Command API", "OpenCode", "Agentic Loops", "Prompt Design"]
     }
   ],
   "backend": [

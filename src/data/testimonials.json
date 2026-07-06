@@ -1,12 +1,26 @@
 [
   {
-    "name": "Alex Rivier",
-    "role": "Product Lead, Updraft",
-    "text": "Sayan consistently delivers high-quality plugin updates and resolves complex payment issues efficiently. His focus on performance is a major asset to our team."
+    "name": "Jaed Mosharraf",
+    "role": "Senior WordPress Engineer & Core Contributor | 10+ Years Exp. | Specializing in High-Scale Plugin Architecture (UpdraftPlus, InstaWP) | Agency Experiences",
+    "text": "I had the opportunity to work with Sayan Datta on the InstaWP project, and I was consistently impressed by his technical expertise and problem-solving abilities. Sayan brings deep knowledge across a wide range of technologies including Laravel, Vue.js, React.js, Next.js, WordPress, Tailwind, and JavaScript. He’s not only a skilled developer but also a reliable team player who communicates clearly and delivers high-quality results on time. His ability to seamlessly work across both frontend and backend makes him an invaluable asset to any team. I highly recommend Sayan for any project that demands full-stack excellence and attention to detail.",
+    "type": "colleague"
   },
   {
-    "name": "Sarah Jenkins",
-    "role": "Founder, E-com Brands",
-    "text": "Sayan's custom WooCommerce payment extension integration was seamless. He helped optimize our checkout funnel, significantly improving our transaction success rate."
+    "name": "Varun Kumar",
+    "role": "Vice President at ExpressTech Systems",
+    "text": "Sayan is a highly skilled and talented WordPress Developer who has been working with us at ExpressTech for some time. Sayan has consistently demonstrated exceptional coding skills, with the ability to solve almost any problem that is thrown his way. He is a quick learner, a hard worker, and a great team player. Sayan has also shown great attention to detail and an ability to communicate effectively with clients and team members. I would highly recommend Sayan for any WordPress development work. He would be a valuable asset to any organization.",
+    "type": "colleague"
+  },
+  {
+    "name": "gandalf12",
+    "role": "WordPress.org Plugin User",
+    "text": "Excellent plugin! UPI payments work flawlessly and the setup was incredibly simple. Saved me hours of custom coding. Highly recommended!",
+    "type": "user"
+  },
+  {
+    "name": "pixelpress",
+    "role": "Agency Owner & WordPress Administrator",
+    "text": "Clean code and fast execution. We're using Sayan's block plugins across multiple client sites and page load speeds are fantastic. Solid developer who understands performance.",
+    "type": "user"
   }
 ]
