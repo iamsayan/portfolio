@@ -20,9 +20,14 @@ const profile = await getProfile();
         <div>
           <a href="/" class="flex items-center gap-2.5 group w-fit">
             <span
-              class="w-8 h-8 rounded-lg bg-accent flex items-center justify-center text-deep font-bold text-sm shadow-md group-hover:rotate-6 transition-transform"
-              >S</span
+              class="w-8 h-8 rounded-lg bg-accent flex items-center justify-center text-deep font-bold text-sm shadow-md group-hover:rotate-6 transition-transform overflow-hidden"
             >
+              <img
+                src="https://github.com/iamsayan.png"
+                alt="Sayan Datta"
+                class="w-full h-full object-cover"
+              />
+            </span>
             <span class="font-sans font-extrabold tracking-tight text-primary text-md">Sayan Datta</span>
           </a>
           <p class="text-xs text-secondary mt-4 max-w-sm leading-relaxed font-sans">
@@ -161,22 +166,8 @@ const profile = await getProfile();
     <div class="flex flex-col md:flex-row items-center justify-between gap-6 pb-12">
       <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
         <p class="text-[10px] font-mono text-secondary">
-          © {new Date().getFullYear()} Sayan Datta. All rights reserved.
+          Copyright &copy; {new Date().getFullYear()} Sayan Datta. All rights reserved.
         </p>
-        <span class="text-muted hidden md:inline" aria-hidden="true">|</span>
-        <a
-          href="/resume.pdf"
-          class="text-[10px] font-mono text-muted hover:text-accent"
-          target="_blank"
-          rel="noopener noreferrer">print_resume.pdf</a
-        >
-        <span class="text-muted hidden md:inline" aria-hidden="true">|</span>
-        <a
-          href="/robots.txt"
-          class="text-[10px] font-mono text-muted hover:text-accent"
-          target="_blank"
-          rel="noopener noreferrer">robots.txt</a
-        >
       </div>
       <div
         class="flex items-center gap-4 flex-wrap justify-center select-none"

@@ -4,7 +4,6 @@ import { Icon } from "astro-icon/components";
 import { Toggle } from "astro-theme-toggle/components";
 
 const profile = await getProfile();
-const initialLetter = profile.name.charAt(0);
 const pathname = Astro.url.pathname;
 const isActive = (path: string) => {
   if (path === "/") {
@@ -30,9 +29,14 @@ const isActive = (path: string) => {
     >
       <a href="/" class="flex items-center gap-3 group">
         <span
-          class="w-8 h-8 rounded-lg bg-accent flex items-center justify-center text-deep font-bold text-sm shadow-md group-hover:scale-105 transition-transform duration-300"
-          >{initialLetter}</span
+          class="w-8 h-8 rounded-lg bg-accent flex items-center justify-center text-deep font-bold text-sm shadow-md group-hover:scale-105 transition-transform duration-300 overflow-hidden"
         >
+          <img
+            src="https://github.com/iamsayan.png"
+            alt="Sayan Datta"
+            class="w-full h-full object-cover"
+          />
+        </span>
         <div class="flex flex-col">
           <span
             class="font-[var(--font-display)] text-base font-bold tracking-tight text-primary group-hover:text-accent transition-colors duration-300"
@@ -40,7 +44,7 @@ const isActive = (path: string) => {
           >
           <div class="flex items-center gap-1.5 mt-0.5" aria-hidden="true">
             <span class="pulse-dot"></span>
-            <span class="text-[9px] font-mono tracking-widest text-success uppercase">Available for Hire</span>
+            <span class="text-[9px] font-mono tracking-widest text-success uppercase">Senior Developer</span>
           </div>
         </div>
       </a>

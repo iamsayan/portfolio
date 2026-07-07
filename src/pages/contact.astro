@@ -125,7 +125,7 @@ const faqs = await getFAQs();
                   <span class="w-2.5 h-2.5 rounded-full bg-success animate-pulse" aria-hidden="true"></span>
                   <span class="text-xs font-mono text-primary">secure-contact-session (TLS 1.3)</span>
                 </div>
-                <span class="text-[10px] font-mono text-muted">sayandatta.co.in</span>
+                <span class="text-[10px] font-mono text-muted">{Astro.site ? Astro.site.host : "sayandatta.co.in"}</span>
               </div>
 
               <!-- Contact Form -->

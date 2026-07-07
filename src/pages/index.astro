@@ -482,7 +482,7 @@ const categoryGlow: Record<string, string> = {
                   <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-[rgba(16,185,129,0.1)] text-success"
                     >GET</span
                   >
-                  <span class="text-xs font-mono text-secondary">https://api.sayandatta.co.in/v1/health</span>
+                  <span class="text-xs font-mono text-secondary">https://api.{Astro.site ? Astro.site.host : "sayandatta.co.in"}/v1/health</span>
                 </div>
                 <div class="rounded-lg bg-deep p-4 font-mono text-xs text-secondary border border-subtle">
                   <div class="space-y-1">

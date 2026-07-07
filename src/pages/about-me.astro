@@ -69,13 +69,13 @@ const [profile, experience, testimonials, philosophy] = await Promise.all([
                 </span>
                 <span class="font-medium text-primary">{profile.timezone}</span>
               </div>
-              <div class="flex justify-between items-center text-sm">
+              <!-- <div class="flex justify-between items-center text-sm">
                 <span class="text-muted flex items-center gap-1.5">
                   <Icon name="ph:code" class="w-4 h-4 text-muted" />
                   Specialty:
                 </span>
                 <span class="font-medium text-primary">{profile.specialty}</span>
-              </div>
+              </div> -->
               <div class="flex justify-between items-center text-sm">
                 <span class="text-muted flex items-center gap-1.5">
                   <Icon name="ph:envelope" class="w-4 h-4 text-muted" />
@@ -100,12 +100,12 @@ const [profile, experience, testimonials, philosophy] = await Promise.all([
                   Website:
                 </span>
                 <a
-                  href="https://sayandatta.co.in"
+                  href={Astro.site || "https://sayandatta.co.in"}
                   target="_blank"
                   rel="noopener noreferrer"
                   class="font-medium text-primary hover:text-accent hover:underline flex items-center gap-1"
                 >
-                  sayandatta.co.in
+                  {Astro.site ? Astro.site.host : "sayandatta.co.in"}
                   <Icon name="ph:arrow-square-out" class="w-3.5 h-3.5 text-muted" />
                 </a>
               </div>

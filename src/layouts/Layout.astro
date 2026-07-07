@@ -19,12 +19,14 @@ export interface Props {
 const {
   title = "Sayan Datta — Senior Full Stack Developer & Open Source Engineer",
   description = "Senior Full Stack Developer specializing in high-performance WooCommerce systems, custom payment gateways, Laravel backends, and modern TypeScript (Astro, Next.js). 8+ years experience.",
-  image = "https://sayandatta.co.in/favicon.png",
+  image,
   type = "website",
   articleData,
 } = Astro.props;
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://sayandatta.co.in");
+const siteUrl = Astro.site ? Astro.site.origin : "https://sayandatta.co.in";
+const ogImage = image || `${siteUrl}/favicon.png`;
+const canonicalURL = new URL(Astro.url.pathname, siteUrl);
 ---
 
 <!doctype html>
@@ -39,12 +41,12 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://sayandat
       icon="/favicon.svg"
       facebook={{
         type: type,
-        image: image,
+        image: ogImage,
         url: canonicalURL.href,
       }}
       twitter={{
         card: "summary_large_image",
-        image: image,
+        image: ogImage,
         site: "@im_sayaan",
       }}
     />
@@ -60,8 +62,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://sayandat
         "@context": "https://schema.org",
         "@type": "Person",
         name: "Sayan Datta",
-        url: "https://sayandatta.co.in",
-        image: "https://sayandatta.co.in/favicon.png",
+        url: siteUrl,
+        image: `${siteUrl}/favicon.png`,
         sameAs: ["https://github.com/iamsayan", "https://linkedin.com/in/meetsayan", "https://twitter.com/im_sayaan"],
         jobTitle: "Senior Full Stack Developer",
         worksFor: {
@@ -81,17 +83,17 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://sayandat
             "@type": "BlogPosting",
             headline: title,
             description: description,
-            image: image,
+            image: ogImage,
             datePublished: articleData.pubDate.toISOString(),
             author: {
               "@type": "Person",
               name: "Sayan Datta",
-              url: "https://sayandatta.co.in",
+              url: siteUrl,
             },
             publisher: {
               "@type": "Person",
               name: "Sayan Datta",
-              url: "https://sayandatta.co.in",
+              url: siteUrl,
             },
             mainEntityOfPage: {
               "@type": "WebPage",
