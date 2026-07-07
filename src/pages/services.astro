@@ -289,35 +289,74 @@ const glowMap: Record<string, string> = {
 
     <!-- Services Detail Grids -->
     <section class="pb-28 relative z-10">
-      <div class="mx space-y-28">
-        {
-          services.map((svc) => {
-            const c = colorMap[svc.color];
-            const glow = glowMap[svc.color];
-            return (
-              <div class="grid lg:grid-cols-12 gap-12 items-start reveal">
-                {/* Left: Sticky summary */}
-                <div class="lg:col-span-5 space-y-5">
-                  <span
-                    class={`inline-block text-xs font-mono ${c.label} uppercase tracking-wider ${c.pillBg} px-3 py-1 rounded-md border ${c.pillBorder}`}
+      <div class="mx grid lg:grid-cols-12 gap-10 items-start">
+        <!-- Left: Service Selector Tabs (4 cols) -->
+        <div class="lg:col-span-4 lg:sticky lg:top-24 z-20">
+          <div class="flex lg:flex-col overflow-x-auto lg:overflow-x-visible pb-4 lg:pb-0 gap-3.5 scrollbar-none snap-x snap-mandatory">
+            {
+              services.map((svc, idx) => {
+                const c = colorMap[svc.color];
+                return (
+                  <button
+                    data-tab={svc.id}
+                    data-color={svc.color}
+                    class={`tab-btn w-[280px] lg:w-full flex-shrink-0 snap-start text-left glass p-5 bg-surface border-subtle transition-all duration-300 relative group cursor-pointer ${
+                      idx === 0 ? `active active-${svc.color}` : ""
+                    }`}
                   >
-                    {svc.number} &mdash; {svc.label.toUpperCase()}
-                  </span>
-                  <h2 class="t-title text-2xl font-bold">{svc.title}</h2>
-                  <p class="t-body">{svc.summary}</p>
+                    <div class="flex items-center gap-3">
+                      <span class={`w-1.5 h-1.5 rounded-full ${c.dot} opacity-0 group-[.active]:opacity-100 transition-opacity`} />
+                      <span class={`text-[10px] font-mono tracking-wider ${c.label} uppercase font-bold`}>
+                        {svc.number}
+                      </span>
+                    </div>
+                    <h3 class="font-bold text-md text-primary mt-2 group-[.active]:text-accent transition-colors">
+                      {svc.label}
+                    </h3>
+                    <p class="text-[11px] text-secondary mt-1 line-clamp-1 group-[.active]:text-primary transition-colors">
+                      {svc.title}
+                    </p>
+                  </button>
+                );
+              })
+            }
+          </div>
+        </div>
 
-                  <div class="grid grid-cols-2 gap-4 pt-3">
-                    {svc.proof.map((p) => (
-                      <div class="border border-subtle p-4 rounded-lg bg-surface">
-                        <p class="text-[10px] font-mono text-muted uppercase">{p.label}</p>
-                        <p class="text-sm font-bold text-success mt-1">{p.value}</p>
-                      </div>
-                    ))}
+        <!-- Right: Active Service Details Panel (8 cols) -->
+        <div class="lg:col-span-8 relative min-h-[500px]">
+          {
+            services.map((svc, idx) => {
+              const c = colorMap[svc.color];
+              const glow = glowMap[svc.color];
+              return (
+                <div
+                  id={`panel-${svc.id}`}
+                  class={`tab-panel transition-all duration-300 ${
+                    idx === 0 ? "grid gap-6 opacity-100" : "hidden gap-6 opacity-0"
+                  }`}
+                >
+                  {/* Summary Card */}
+                  <div class="glass p-8 bg-surface border-subtle space-y-4">
+                    <span
+                      class={`inline-block text-xs font-mono ${c.label} uppercase tracking-wider ${c.pillBg} px-3 py-1 rounded-md border ${c.pillBorder}`}
+                    >
+                      {svc.number} &mdash; {svc.label.toUpperCase()}
+                    </span>
+                    <h2 class="t-title text-2xl font-bold text-primary">{svc.title}</h2>
+                    <p class="t-body text-secondary leading-relaxed font-sans">{svc.summary}</p>
+
+                    <div class="grid grid-cols-2 gap-4 pt-3">
+                      {svc.proof.map((p) => (
+                        <div class="border border-subtle p-4 rounded-lg bg-surface/50">
+                          <p class="text-[10px] font-mono text-muted uppercase">{p.label}</p>
+                          <p class="text-sm font-bold text-success mt-1">{p.value}</p>
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                </div>
 
-                {/* Right: Capabilities + Blueprint */}
-                <div class="lg:col-span-7 space-y-6">
+                  {/* Capabilities Card */}
                   <div class={`glass ${glow} p-8 bg-surface border-subtle`}>
                     <h3 class="text-md font-bold text-primary mb-4">What I actually do here</h3>
                     <div class="space-y-5">
@@ -363,13 +402,99 @@ const glowMap: Record<string, string> = {
                     </div>
                   </div>
                 </div>
-              </div>
-            );
-          })
-        }
+              );
+            })
+          }
+        </div>
       </div>
     </section>
   </main>
   <Footer />
 </Layout>
+
+<style>
+  /* Tab Button Active Glow Styling */
+  .tab-btn.active-blue {
+    border-color: rgba(59, 130, 246, 0.3) !important;
+    background: rgba(59, 130, 246, 0.05) !important;
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.06) !important;
+  }
+  .tab-btn.active-emerald {
+    border-color: rgba(16, 185, 129, 0.3) !important;
+    background: rgba(16, 185, 129, 0.05) !important;
+    box-shadow: 0 0 15px rgba(16, 185, 129, 0.06) !important;
+  }
+  .tab-btn.active-amber {
+    border-color: rgba(245, 158, 11, 0.3) !important;
+    background: rgba(245, 158, 11, 0.05) !important;
+    box-shadow: 0 0 15px rgba(245, 158, 11, 0.06) !important;
+  }
+  .tab-btn.active-rose {
+    border-color: rgba(244, 63, 94, 0.3) !important;
+    background: rgba(244, 63, 94, 0.05) !important;
+    box-shadow: 0 0 15px rgba(244, 63, 94, 0.06) !important;
+  }
+  .tab-btn.active-purple {
+    border-color: rgba(168, 85, 247, 0.3) !important;
+    background: rgba(168, 85, 247, 0.05) !important;
+    box-shadow: 0 0 15px rgba(168, 85, 247, 0.06) !important;
+  }
+
+  /* Hide scrollbar for WebKit browsers */
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .scrollbar-none {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+</style>
+
+<script>
+  var buttons = document.querySelectorAll(".tab-btn");
+  var panels = document.querySelectorAll(".tab-panel");
+
+  buttons.forEach(function(btn) {
+    btn.addEventListener("click", function() {
+      // Remove active states from all buttons
+      buttons.forEach(function(b) {
+        b.classList.remove("active");
+        var color = b.getAttribute("data-color");
+        if (color) {
+          b.classList.remove("active-" + color);
+        }
+      });
+
+      // Add active state to clicked button
+      btn.classList.add("active");
+      var activeColor = btn.getAttribute("data-color");
+      if (activeColor) {
+        btn.classList.add("active-" + activeColor);
+      }
+
+      // Hide all panels
+      panels.forEach(function(panel) {
+        panel.classList.add("hidden");
+        panel.classList.remove("grid");
+      });
+
+      // Show matching panel
+      var targetId = "panel-" + btn.getAttribute("data-tab");
+      var targetPanel = document.getElementById(targetId);
+      if (targetPanel) {
+        targetPanel.classList.remove("hidden");
+        targetPanel.classList.add("grid");
+
+        // Quick subtle entry animation
+        (targetPanel as HTMLElement).style.opacity = "0";
+        (targetPanel as HTMLElement).style.transform = "translateY(5px)";
+        setTimeout(function() {
+          (targetPanel as HTMLElement).style.opacity = "1";
+          (targetPanel as HTMLElement).style.transform = "translateY(0px)";
+        }, 50);
+      }
+    });
+  });
+</script>
 
