@@ -201,68 +201,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://sayandat
         "color:#94a3b8;font-family:sans-serif;font-size:11px;"
       );
 
-      // 2. Keyboard Navigation Logic
-      (function () {
-        const modal = document.getElementById("shortcuts-modal");
-        const content = document.getElementById("shortcuts-content");
-        const closeBtn = document.getElementById("close-shortcuts");
-
-        function toggleModal(show) {
-          if (!modal || !content) return;
-          if (show === undefined) show = modal.classList.contains("opacity-0");
-          if (show) {
-            modal.classList.remove("opacity-0", "pointer-events-none");
-            content.classList.remove("scale-95");
-            content.classList.add("scale-100");
-          } else {
-            modal.classList.add("opacity-0", "pointer-events-none");
-            content.classList.remove("scale-100");
-            content.classList.add("scale-95");
-          }
-        }
-
-        window.addEventListener("keydown", function (e) {
-          // Ignore key shortcuts if user is typing in forms/inputs/textareas
-          const active = document.activeElement;
-          if (active && (active.tagName === "INPUT" || active.tagName === "TEXTAREA" || active.isContentEditable)) {
-            return;
-          }
-
-          if (e.key === "?") {
-            e.preventDefault();
-            toggleModal();
-          } else if (e.key === "Escape") {
-            toggleModal(false);
-          } else if (e.key === "1") {
-            window.location.href = "/";
-          } else if (e.key === "2") {
-            window.location.href = "/projects";
-          } else if (e.key === "3") {
-            window.location.href = "/skills";
-          } else if (e.key === "4") {
-            window.location.href = "/services";
-          } else if (e.key === "5") {
-            window.location.href = "/blog";
-          } else if (e.key === "6") {
-            window.location.href = "/about-me";
-          } else if (e.key === "7") {
-            window.location.href = "/contact";
-          }
-        });
-
-        if (modal) {
-          modal.addEventListener("click", function (e) {
-            if (e.target === modal) toggleModal(false);
-          });
-        }
-        if (closeBtn) {
-          closeBtn.addEventListener("click", function () {
-            toggleModal(false);
-          });
-        }
-      })();
-
-      // 3. Quick-Copy Email Helper
+      // 2. Quick-Copy Email Helper
       (function () {
         document.addEventListener("click", function (e) {
           const btn = e.target.closest(".copy-email-btn");

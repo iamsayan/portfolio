@@ -2,34 +2,39 @@
 import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
-import { getProfile, getStatistics, getProjects } from "@/lib/data";
+import { getProfile, getHomePage, isTeamContribution } from "@/lib/data";
 import { Icon } from "astro-icon/components";
 
-const profile = await getProfile();
-const statsData = await getStatistics();
-const allProjects = await getProjects();
+const [profile, home] = await Promise.all([getProfile(), getHomePage()]);
 
-// Retrieve top 2 featured open source contributions or plugins
-const featuredProjects = allProjects.filter((p) => p.featured && p.url.includes("wordpress.org/plugins")).slice(0, 2);
+// Homepage main hero: first 2 from the curated home project list
+const mainShowcaseProjects = home.projects.slice(0, 2);
 
-// If there are less than 2, fill with other featured projects
-if (featuredProjects.length < 2) {
-  const others = allProjects.filter((p) => p.featured && !featuredProjects.includes(p));
-  featuredProjects.push(...others);
-}
+// Secondary grid: anything left over after the main showcase
+const secondaryShowcaseProjects = home.projects.slice(2);
 
-// Keep exactly top 2 for the main hero showcase columns
-const mainShowcaseProjects = featuredProjects.slice(0, 2);
+// "Professional Experience" is the first stat in the `home.stats` repeater
+// (canonical ordering: Professional Experience → Downloads → Projects → Repos)
+const experienceStat = home.stats.find((s) => s.title === "Professional Experience");
+const yearsExperience = experienceStat?.value ?? profile.experience;
 
-// Retrieve exactly 3 non-featured projects/packages/repos for the secondary grid
-const secondaryShowcaseProjects = allProjects.filter((p) => !p.featured).slice(0, 3);
-
-const stats = [
-  { value: statsData.experience, label: "Professional Experience" },
-  { value: statsData.downloads, label: "Plugin Downloads" },
-  { value: statsData.projects, label: "Projects Shipped" },
-  { value: statsData.repositories, label: "GitHub Repos" },
-];
+// Visual mapping for project categories — single source of truth so the
+// top-bar pill text color, hover glow, and human label stay in sync.
+const categoryLabel: Record<string, string> = {
+  wordpress: "WordPress",
+  fullstack: "Full-Stack",
+  packages: "Package",
+};
+const categoryText: Record<string, string> = {
+  wordpress: "text-rose-500",
+  fullstack: "text-blue-500",
+  packages: "text-emerald-500",
+};
+const categoryGlow: Record<string, string> = {
+  wordpress: "hover-glow-rose",
+  fullstack: "hover-glow-blue",
+  packages: "hover-glow-emerald",
+};
 ---
 
 <Layout
@@ -72,12 +77,12 @@ const stats = [
             <h1
               class="t-display text-balance text-5xl md:text-7xl font-extrabold tracking-tight leading-none text-primary"
             >
-              Product engineering from <span class="t-accent">Next.js &amp; WordPress to Agentic Systems.</span>
+              Product engineering from <span class="t-accent">Full Stack to Agentic Systems.</span>
             </h1>
 
             <p class="t-body max-w-xl text-lg leading-relaxed">
               I am a <strong class="text-primary font-semibold">Senior Full Stack Developer</strong> with {
-                statsData.experience
+                yearsExperience
               } years of experience. I specialize in scaling e-commerce checkouts, custom payment integrations, robust Laravel
               backends, and modern AI-assisted / Agentic architectures.
             </p>
@@ -99,10 +104,10 @@ const stats = [
             <!-- Stats Bar Below CTA -->
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 pt-10 border-t border-subtle">
               {
-                stats.map((s) => (
+                home.stats.map((s) => (
                   <div>
                     <p class="text-3xl md:text-4xl font-black t-accent">{s.value}</p>
-                    <p class="text-xs text-secondary mt-1">{s.label}</p>
+                    <p class="text-xs text-secondary mt-1">{s.title}</p>
                   </div>
                 ))
               }
@@ -555,63 +560,166 @@ const stats = [
 
         <div class="grid md:grid-cols-2 gap-8 mt-12">
           {
-            mainShowcaseProjects.map((project, index) => (
-              <a
-                href={project.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                class={`glass p-8 group block reveal hover-glow-rose hover:-translate-y-1 r${index + 1}`}
-              >
-                <div class="flex items-start justify-between mb-6">
-                  <div class="flex flex-wrap gap-1.5">
-                    {project.tech.map((t) => (
-                      <span class="tag">{t}</span>
-                    ))}
-                  </div>
-                  {project.downloads && (
-                    <span class="text-xs font-mono text-muted bg-raised px-2.5 py-1 rounded border border-subtle">
-                      {project.downloads}
+            mainShowcaseProjects.map((project, index) => {
+              const Wrapper = project.acquired ? "div" : "a";
+              const wrapperProps = project.acquired
+                ? {}
+                : { href: project.url, target: "_blank", rel: "noopener noreferrer" };
+              const cat = project.category;
+              const glow = categoryGlow[cat] ?? "hover-glow-rose";
+              return (
+                <Wrapper
+                  {...wrapperProps}
+                  class={`glass group block reveal hover:-translate-y-1 r${index + 1} ${glow} ${project.acquired ? "cursor-default" : ""}`}
+                >
+                  {/* Top bar: category label + status badges (Team / Acquired) */}
+                  <div class="flex items-center justify-between gap-2 px-6 pt-6 pb-4 border-b border-subtle">
+                    <span class={`text-[9px] font-mono uppercase tracking-widest font-bold ${categoryText[cat] ?? "text-muted"}`}>
+                      {categoryLabel[cat] ?? project.category}
                     </span>
-                  )}
-                </div>
-                <h3 class="text-xl font-bold group-hover:text-accent transition-colors duration-300 flex items-center gap-2">
-                  {project.title}
-                  <Icon
-                    name="ph:arrow-square-out"
-                    class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity"
-                    aria-hidden="true"
-                  />
-                </h3>
-                <p class="t-body mt-3 text-sm">{project.overview || project.description}</p>
-                <span class="text-xs text-accent mt-6 inline-block font-semibold group-hover:underline">
-                  {project.url.includes("wordpress.org") ? "View in WordPress Directory →" : "View Project Source →"}
-                </span>
-              </a>
-            ))
+                    <div class="flex items-center gap-1.5">
+                      {isTeamContribution(project) && (
+                        <span class="text-[9px] font-mono text-secondary uppercase tracking-widest bg-raised px-2 py-0.5 rounded border border-subtle font-bold">
+                          Team
+                        </span>
+                      )}
+                      {project.acquired && (
+                        <span class="text-[9px] font-mono text-success uppercase tracking-widest bg-success-glow px-2 py-0.5 rounded border border-emerald-500/10 font-bold">
+                          Acquired
+                        </span>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Body: type ribbon → title → subtitle → overview → tech → CTA */}
+                  <div class="p-6 flex flex-col gap-4">
+                    <span class="t-mono text-[9px] text-accent uppercase tracking-widest font-bold">
+                      {project.type}
+                    </span>
+
+                    <h3 class="text-2xl font-bold text-primary group-hover:text-accent transition-colors duration-300 leading-tight flex items-center gap-2">
+                      {project.title}
+                      {!project.acquired && (
+                        <Icon
+                          name="ph:arrow-square-out"
+                          class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity shrink-0"
+                          aria-hidden="true"
+                        />
+                      )}
+                    </h3>
+
+                    {project.subtitle && (
+                      <p class="text-xs font-mono text-secondary flex items-center gap-1.5">
+                        <span class="w-1.5 h-1.5 rounded-full bg-accent" aria-hidden="true" />
+                        {project.subtitle}
+                      </p>
+                    )}
+
+                    <p class="t-body text-sm leading-relaxed text-secondary">
+                      {project.overview}
+                    </p>
+
+                    {project.tech && project.tech.length > 0 && (
+                      <div class="flex flex-wrap gap-1.5 pt-2">
+                        {project.tech.map((t) => (
+                          <span class="tag">{t}</span>
+                        ))}
+                      </div>
+                    )}
+
+                    <div class="pt-2 mt-auto">
+                      <span class="text-xs text-accent font-semibold group-hover:underline">
+                        {project.acquired
+                          ? "Acquired · no longer hosted here"
+                          : "View Project Source →"}
+                      </span>
+                    </div>
+                  </div>
+                </Wrapper>
+              );
+            })
           }
         </div>
 
         <!-- Mini secondary grid layout -->
         <div class="grid md:grid-cols-3 gap-6 mt-8 reveal">
           {
-            secondaryShowcaseProjects.map((project) => (
-              <a
-                href={project.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="glass p-6 bg-surface hover-glow-purple hover:-translate-y-0.5 transition-all block group"
-              >
-                <div class="flex flex-wrap gap-1.5 mb-4">
-                  {project.tech.map((t) => (
-                    <span class="tag">{t}</span>
-                  ))}
-                </div>
-                <h4 class="font-bold text-sm text-primary group-hover:text-accent transition-colors">
-                  {project.title}
-                </h4>
-                <p class="text-xs text-secondary mt-2">{project.description || project.overview}</p>
-              </a>
-            ))
+            secondaryShowcaseProjects.map((project) => {
+              const Wrapper = project.acquired ? "div" : "a";
+              const wrapperProps = project.acquired
+                ? {}
+                : { href: project.url, target: "_blank", rel: "noopener noreferrer" };
+              const cat = project.category;
+              const glow = categoryGlow[cat] ?? "hover-glow-rose";
+              return (
+                <Wrapper
+                  {...wrapperProps}
+                  class={`glass bg-surface hover:-translate-y-0.5 transition-all block group ${glow} ${project.acquired ? "cursor-default" : ""}`}
+                >
+                  {/* Top bar: category + status badges */}
+                  <div class="flex items-center justify-between gap-2 px-5 pt-5 pb-3 border-b border-subtle">
+                    <span class={`text-[9px] font-mono uppercase tracking-widest font-bold ${categoryText[cat] ?? "text-muted"}`}>
+                      {categoryLabel[cat] ?? project.category}
+                    </span>
+                    <div class="flex items-center gap-1.5">
+                      {isTeamContribution(project) && (
+                        <span class="text-[9px] font-mono text-secondary uppercase tracking-widest bg-raised px-2 py-0.5 rounded border border-subtle font-bold">
+                          Team
+                        </span>
+                      )}
+                      {project.acquired && (
+                        <span class="text-[9px] font-mono text-success uppercase tracking-widest bg-success-glow px-2 py-0.5 rounded border border-emerald-500/10 font-bold">
+                          Acquired
+                        </span>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Body: type → title → overview → tech → CTA */}
+                  <div class="p-5 flex flex-col gap-3">
+                    <span class="t-mono text-[9px] text-accent uppercase tracking-widest font-bold">
+                      {project.type}
+                    </span>
+
+                    <h4 class="font-bold text-base text-primary group-hover:text-accent transition-colors leading-tight flex items-center gap-1.5">
+                      {project.title}
+                      {!project.acquired && (
+                        <Icon
+                          name="ph:arrow-square-out"
+                          class="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 transition-opacity shrink-0"
+                          aria-hidden="true"
+                        />
+                      )}
+                    </h4>
+
+                    <p class="text-xs text-secondary leading-relaxed line-clamp-3">
+                      {project.overview}
+                    </p>
+
+                    {project.tech && project.tech.length > 0 && (
+                      <div class="flex flex-wrap gap-1 mt-1">
+                        {project.tech.slice(0, 4).map((t) => (
+                          <span class="tag">{t}</span>
+                        ))}
+                        {project.tech.length > 4 && (
+                          <span class="text-[10px] font-mono text-muted px-1.5 py-0.5">
+                            +{project.tech.length - 4}
+                          </span>
+                        )}
+                      </div>
+                    )}
+
+                    <div class="pt-1 mt-auto">
+                      <span class="text-[11px] text-accent font-semibold group-hover:underline">
+                        {project.acquired
+                          ? "Acquired"
+                          : "View →"}
+                      </span>
+                    </div>
+                  </div>
+                </Wrapper>
+              );
+            })
           }
         </div>
       </div>
@@ -621,47 +729,24 @@ const stats = [
     <section class="py-24 relative bg-surface border-y border-subtle">
       <div class="mx">
         <div class="grid md:grid-cols-3 gap-8 reveal">
-          <div
-            class="glass p-8 bg-deep text-center relative border-subtle flex flex-col justify-between hover-glow-amber"
-          >
-            <div>
-              <p class="t-mono text-accent text-[10px]">CURRENT ROLE</p>
-              <h3 class="t-title mt-2 text-lg font-bold">TeamUpdraft</h3>
-              <p class="text-xs text-muted mt-1">Senior Developer · UK (Remote)</p>
-              <p class="t-body-sm mt-4 text-center leading-relaxed">
-                Developing and maintaining UpdraftCentral, managing remote site backups, core upgrades, and security
-                protocols across hundreds of thousands of active nodes.
-              </p>
-            </div>
-          </div>
-
-          <div
-            class="glass p-8 bg-deep text-center relative border-subtle flex flex-col justify-between hover-glow-purple"
-          >
-            <div>
-              <p class="t-mono text-accent text-[10px]">OPEN SOURCE</p>
-              <h3 class="t-title mt-2 text-lg font-bold">WordPress Core</h3>
-              <p class="text-xs text-muted mt-1">Contributor since 2018</p>
-              <p class="t-body-sm mt-4 text-center leading-relaxed">
-                Active open-source contributor providing code patches, optimization fixes, and layout configurations
-                directly to the core CMS engine.
-              </p>
-            </div>
-          </div>
-
-          <div
-            class="glass p-8 bg-deep text-center relative border-subtle flex flex-col justify-between hover-glow-rose"
-          >
-            <div>
-              <p class="t-mono text-accent text-[10px]">EDUCATION</p>
-              <h3 class="t-title mt-2 text-lg font-bold">MSc Info Security</h3>
-              <p class="text-xs text-muted mt-1">IGNOU · First Class</p>
-              <p class="t-body-sm mt-4 text-center leading-relaxed">
-                Professional training in secure application architectures, data storage models, and encryption patterns,
-                enforcing safety directly in product code.
-              </p>
-            </div>
-          </div>
+          {
+            home.highlights.map((highlight, idx) => {
+              // Cycle through 3 glow colors to match the original visual variety
+              // (rose → amber → purple → rose → ...) — purely decorative, not data-driven
+              const glowPalette = ["hover-glow-amber", "hover-glow-purple", "hover-glow-rose"];
+              const glow = glowPalette[idx % glowPalette.length];
+              return (
+                <div class={`glass p-8 bg-deep text-center relative border-subtle flex flex-col justify-between ${glow}`}>
+                  <div>
+                    <p class="t-mono text-accent text-[10px]">{highlight.pill.toUpperCase()}</p>
+                    <h3 class="t-title mt-2 text-lg font-bold">{highlight.title}</h3>
+                    <p class="text-xs text-muted mt-1">{highlight.subtitle}</p>
+                    <p class="t-body-sm mt-4 text-center leading-relaxed">{highlight.description}</p>
+                  </div>
+                </div>
+              );
+            })
+          }
         </div>
       </div>
     </section>
@@ -691,7 +776,7 @@ const stats = [
             >Start a conversation</a
           >
           <a href="/projects" class="b b-ghost hover:scale-105 transition-transform duration-300"
-            >Browse all 12 projects</a
+            >Browse the project catalog →</a
           >
         </div>
       </div>

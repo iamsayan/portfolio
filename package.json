@@ -8,7 +8,10 @@
     "build": "astro build",
     "preview": "astro preview",
     "lint": "eslint .",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "migrate:projects": "node scripts/migrate-projects-to-cockpit.mjs",
+    "migrate:projects:list": "node scripts/migrate-projects-to-cockpit.mjs --list",
+    "migrate:projects:dry": "node scripts/migrate-projects-to-cockpit.mjs --dry-run"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",

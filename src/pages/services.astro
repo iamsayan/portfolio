@@ -3,17 +3,286 @@ import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import PageHero from "@/components/PageHero.astro";
+
+const services = [
+  {
+    id: "react",
+    number: "01",
+    label: "Next.js & React",
+    title: "React & Next.js Engineering",
+    color: "blue",
+    summary:
+      "Dynamic, decoupled applications using React, Next.js, and Astro. Focused on React Server Components, server actions, layout stability, and zero-JS static sites where they fit.",
+    proof: [
+      { label: "Lighthouse score", value: "98+" },
+      { label: "Accessibility", value: "WCAG AA" },
+    ],
+    capabilities: [
+      {
+        title: "Render Optimization",
+        body:
+          "Choosing static generation, server-side rendering, and React Server Components per route. Optimizing FCP, LCP, and Cumulative Layout Shift against Core Web Vitals thresholds.",
+      },
+      {
+        title: "Type-Safe Client States",
+        body:
+          "Strict TypeScript for every prop, fetch interface, and reducer. Type errors caught at compile time, not in production runtime.",
+      },
+      {
+        title: "Interactive Micro-Animations",
+        body:
+          "Subtle hover feedback, smooth tab transitions, and loading states without pulling in heavy animation libraries or shipping megabytes of JS.",
+      },
+      {
+        title: "Semantic HTML & WCAG Compliance",
+        body:
+          "Valid ARIA roles, logical keyboard focus rings, named landmarks, and verified screen-reader readability on every interactive surface.",
+      },
+    ],
+    blueprint: {
+      heading: "Next.js Routing Blueprint",
+      rows: [
+        { dot: "app/page.tsx", meta: "Server Component", pills: ["async/await fetch", "Next.js App Router"] },
+        { dot: "hooks/useUPIGateway.ts", meta: "Custom Hook", pills: ["useState / useEffect", "React state hooks"] },
+      ],
+    },
+  },
+  {
+    id: "backend",
+    number: "02",
+    label: "Backend",
+    title: "Backend Architecture",
+    color: "emerald",
+    summary:
+      "Secure APIs, relational schemas, and microservice topologies built with PHP/Laravel and Node.js. Query optimization, queue pipelines, and automated deployments included.",
+    proof: [
+      { label: "Primary stack", value: "Laravel · Node" },
+      { label: "Container", value: "Docker-ready" },
+    ],
+    capabilities: [
+      {
+        title: "REST & GraphQL Schema Design",
+        body:
+          "Modular resource schemas with secure query authorization, payload validation, and structured responses for headless consumers.",
+      },
+      {
+        title: "Caching & Query Tuning",
+        body:
+          "Redis cache pipelines for read-heavy endpoints, composite indexes for hot queries, and query plan analysis via EXPLAIN to keep p95 latency predictable.",
+      },
+      {
+        title: "Security Hardening",
+        body:
+          "CORS rules, rate limiting, JWT/API token rotation, and input sanitization to block the OWASP top 10 at the application boundary.",
+      },
+      {
+        title: "Background Pipelines & Queues",
+        body:
+          "Asynchronous job structures for webhooks, third-party sync, and heavy workloads. Action Scheduler for WordPress, Laravel Queues for PHP, BullMQ for Node.",
+      },
+    ],
+    blueprint: {
+      heading: "Request Architecture",
+      rows: [
+        { dot: "Client Req", meta: "Origin", pills: [], highlight: false },
+        { dot: "API Gateway", meta: "Validate", pills: [], highlight: true },
+        { dot: "Redis Cache", meta: "Lookup", pills: [], highlight: false },
+        { dot: "DB Core", meta: "Persist", pills: [], highlight: false },
+      ],
+    },
+  },
+  {
+    id: "wordpress",
+    number: "03",
+    label: "WordPress",
+    title: "WordPress Engineering",
+    color: "amber",
+    summary:
+      "Custom plugins, headless GraphQL setups, and optimization for enterprise traffic. Active maintainer of plugins with 27,000+ combined active installs.",
+    proof: [
+      { label: "Active installs", value: "27,000+" },
+      { label: "Code standard", value: "PHP · PSR-12" },
+    ],
+    capabilities: [
+      {
+        title: "Custom Plugin Architecture",
+        body:
+          "Hook-based plugin structures that avoid slowing admin panels or polluting public database queries. PSR-4 autoloading and strict sanitization at every input boundary.",
+      },
+      {
+        title: "Headless CMS with WPGraphQL",
+        body:
+          "WordPress content exposed through GraphQL and consumed by static builders (Next.js, Astro) for sub-second page loads on the public surface.",
+      },
+      {
+        title: "WooCommerce Integrations",
+        body:
+          "Custom shipping rules, subscription handlers, checkout modifications, and payment gateway extensions that survive the WooCommerce core update cycle.",
+      },
+      {
+        title: "Database & Index Optimizations",
+        body:
+          "Auditing the wp_options table, indexing custom meta keys, and using transients to prevent query fanout on high-traffic admin screens.",
+      },
+    ],
+    blueprint: {
+      heading: "Checkout Trigger Pipeline",
+      rows: [
+        { dot: "woocommerce_payment_complete", meta: "Action Hook", pills: [], highlight: false },
+        { dot: "Send UPI Webhook", meta: "Webhook Out", pills: [], highlight: true },
+        { dot: "Action Scheduler", meta: "Queue", pills: [], highlight: false },
+      ],
+    },
+  },
+  {
+    id: "responsive",
+    number: "04",
+    label: "Layout Design",
+    title: "Mobile-First UI Design",
+    color: "rose",
+    summary:
+      "Responsive grid architectures from 320px up. Logical layout reflows, fluid typography, container queries, and cross-browser visual regression testing.",
+    proof: [
+      { label: "Approach", value: "Container queries" },
+      { label: "Breakpoints", value: "5 tested" },
+    ],
+    capabilities: [
+      {
+        title: "Fluid Typography",
+        body:
+          "CSS variables and clamp() mappings that scale headings from extra-bold desktop displays down to readable phone sizes without breakpoint jumps.",
+      },
+      {
+        title: "Accessibility-First Markup",
+        body:
+          "Screen reader compatibility, semantic HTML, contrast ratios meeting WCAG AA, and visible focus outlines on every interactive element.",
+      },
+      {
+        title: "Container Queries & Micro-Breakpoints",
+        body:
+          "Replacing viewport media queries with @container where it makes sense, so components adapt to their parent rather than the page width.",
+      },
+      {
+        title: "Cross-Browser Visual Regression",
+        body:
+          "Visual diffs across Blink (Chrome/Edge), WebKit (Safari), and Gecko (Firefox) on real devices before shipping a layout change.",
+      },
+    ],
+    blueprint: {
+      heading: "Container Reflow Blueprint",
+      rows: [
+        { dot: "@container (min-width: 600px)", meta: "2-Column Grid Flow", pills: [], highlight: false },
+        { dot: "@container (max-width: 599px)", meta: "Block Stacked Flow", pills: [], highlight: false },
+      ],
+    },
+  },
+  {
+    id: "ai",
+    number: "05",
+    label: "AI & Agentic Systems",
+    title: "AI Integration & Agentic Systems",
+    color: "purple",
+    summary:
+      "Autonomous agent networks, custom LLM integrations, and semantic search pipelines. Orchestrating Gemini, Claude, DeepSeek, Cohere Command, and open-source code models.",
+    proof: [
+      { label: "Primary APIs", value: "Gemini · Claude" },
+      { label: "Local models", value: "DeepSeek · Llama" },
+    ],
+    capabilities: [
+      {
+        title: "Autonomous Agent Workflows",
+        body:
+          "Loop-driven, self-correcting agent chains that orchestrate multi-step actions — API calls, code edits, commits — without manual intervention per step.",
+      },
+      {
+        title: "RAG Pipelines",
+        body:
+          "Connecting Gemini, Claude, DeepSeek, or Cohere Command to custom databases and knowledge bases via vector embeddings and chunked context windows.",
+      },
+      {
+        title: "Streaming UI Token Handlers",
+        body:
+          "Server-Sent Events to render chunked LLM outputs into the DOM as they arrive, so the user sees the first token in under a second instead of waiting on a full response.",
+      },
+      {
+        title: "Semantic Cache Routing",
+        body:
+          "Gateway middleware that checks vector similarity for repeated queries before re-running inference, cutting token spend without changing visible behavior.",
+      },
+    ],
+    blueprint: {
+      heading: "Agent Reasoning Loop",
+      rows: [
+        { dot: "User Query", meta: "Input", pills: [], highlight: false },
+        { dot: "LLM Planner", meta: "Decide", pills: [], highlight: true },
+        { dot: "Tool Execution", meta: "Act", pills: [], highlight: false },
+      ],
+    },
+  },
+];
+
+// Color tokens for each service — uses design-system hover-glow classes
+const colorMap: Record<string, { label: string; dot: string; arrow: string; pill: string; pillBg: string; pillBorder: string }> = {
+  blue: {
+    label: "text-blue-500",
+    dot: "bg-blue-500",
+    arrow: "text-blue-500",
+    pill: "text-blue-400",
+    pillBg: "bg-blue-500/10",
+    pillBorder: "border-blue-500/20",
+  },
+  emerald: {
+    label: "text-emerald-500",
+    dot: "bg-emerald-500",
+    arrow: "text-emerald-500",
+    pill: "text-emerald-400",
+    pillBg: "bg-emerald-500/10",
+    pillBorder: "border-emerald-500/20",
+  },
+  amber: {
+    label: "text-amber-500",
+    dot: "bg-amber-500",
+    arrow: "text-amber-500",
+    pill: "text-amber-400",
+    pillBg: "bg-amber-500/10",
+    pillBorder: "border-amber-500/20",
+  },
+  rose: {
+    label: "text-rose-500",
+    dot: "bg-rose-500",
+    arrow: "text-rose-500",
+    pill: "text-rose-400",
+    pillBg: "bg-rose-500/10",
+    pillBorder: "border-rose-500/20",
+  },
+  purple: {
+    label: "text-purple-500",
+    dot: "bg-purple-500",
+    arrow: "text-purple-500",
+    pill: "text-purple-400",
+    pillBg: "bg-purple-500/10",
+    pillBorder: "border-purple-500/20",
+  },
+};
+
+const glowMap: Record<string, string> = {
+  blue: "hover-glow-blue",
+  emerald: "hover-glow-emerald",
+  amber: "hover-glow-amber",
+  rose: "hover-glow-rose",
+  purple: "hover-glow-purple",
+};
 ---
 
 <Layout
   title="Services | Custom Plugins & WooCommerce Solutions"
-  description="Expert full-stack development consulting. Specializing in WooCommerce checkout scaling, payment gateway integrations, custom APIs, and headless site architecture."
+  description="Full-stack development consulting — WooCommerce checkout scaling, payment gateway integrations, custom APIs, and headless site architecture."
 >
   <Header />
   <main id="main-content" class="py-24 relative overflow-x-clip">
     <PageHero
       badge="Engineering Capabilities"
-      description="Providing full-cycle code implementation — from systems design and database structures to responsive layouts and accessibility audits. Every system is build-tested and documented."
+      description="Five practice areas I take on as a contractor. Each ships with code reviews, automated tests, and documentation. No retainers, no advisory decks."
     >
       <Fragment slot="title">Services &amp; <span class="t-accent">architecture.</span></Fragment>
     </PageHero>
@@ -21,558 +290,88 @@ import PageHero from "@/components/PageHero.astro";
     <!-- Services Detail Grids -->
     <section class="pb-28 relative z-10">
       <div class="mx space-y-28">
-        <!-- Frontend Development -->
-        <div class="grid lg:grid-cols-12 gap-12 items-start reveal">
-          <div class="lg:col-span-5 lg:sticky lg:top-24 space-y-5">
-            <span
-              class="inline-block text-xs font-mono text-blue-500 uppercase tracking-wider bg-blue-500/10 px-3 py-1 rounded-md border border-blue-500/10"
-              >01 &mdash; NEXT.JS &amp; REACT</span
-            >
-            <h2 class="t-title text-2xl font-bold">React &amp; Next.js Engineering</h2>
-            <p class="t-body">
-              Building dynamic, decoupled, and high-performance applications using React, Next.js, and state-of-the-art
-              tooling. Focused on React Server Components, serverless actions, layout stability, and zero-JS static
-              sites with Astro.
-            </p>
+        {
+          services.map((svc) => {
+            const c = colorMap[svc.color];
+            const glow = glowMap[svc.color];
+            return (
+              <div class="grid lg:grid-cols-12 gap-12 items-start reveal">
+                {/* Left: Sticky summary */}
+                <div class="lg:col-span-5 lg:sticky lg:top-24 space-y-5">
+                  <span
+                    class={`inline-block text-xs font-mono ${c.label} uppercase tracking-wider ${c.pillBg} px-3 py-1 rounded-md border ${c.pillBorder}`}
+                  >
+                    {svc.number} &mdash; {svc.label.toUpperCase()}
+                  </span>
+                  <h2 class="t-title text-2xl font-bold">{svc.title}</h2>
+                  <p class="t-body">{svc.summary}</p>
 
-            <div class="grid grid-cols-2 gap-4 pt-3">
-              <div class="border border-subtle p-4 rounded-lg bg-surface">
-                <p class="text-[10px] font-mono text-muted uppercase">Lighthouse Performance</p>
-                <p class="text-lg font-bold text-success mt-1">98+</p>
-              </div>
-              <div class="border border-subtle p-4 rounded-lg bg-surface">
-                <p class="text-[10px] font-mono text-muted uppercase">A11y Standard</p>
-                <p class="text-lg font-bold text-success mt-1">WCAG AA</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="lg:col-span-7 space-y-6">
-            <div class="glass hover-glow-blue p-8 bg-surface border-subtle">
-              <h3 class="text-md font-bold text-primary mb-4">Core Focus Areas</h3>
-              <div class="space-y-4">
-                <div class="flex gap-3">
-                  <span
-                    class="w-5 h-5 rounded-full bg-blue-500/10 text-blue-500 flex items-center justify-center font-mono text-[10px] flex-shrink-0 mt-0.5"
-                    >✓</span
-                  >
-                  <div>
-                    <h4 class="text-sm font-bold text-primary">Render Optimization</h4>
-                    <p class="text-xs text-secondary mt-1">
-                      Utilizing static generation (SSG) and server-side rendering (SSR) appropriately. Optimizing First
-                      Contentful Paint (FCP) and Cumulative Layout Shift (CLS) web vitals parameters.
-                    </p>
-                  </div>
-                </div>
-                <div class="flex gap-3">
-                  <span
-                    class="w-5 h-5 rounded-full bg-blue-500/10 text-blue-500 flex items-center justify-center font-mono text-[10px] flex-shrink-0 mt-0.5"
-                    >✓</span
-                  >
-                  <div>
-                    <h4 class="text-sm font-bold text-primary">Type-Safe Client States</h4>
-                    <p class="text-xs text-secondary mt-1">
-                      Strict type checking in TypeScript for all props, component inputs, and fetch interfaces. Reduced
-                      client runtime crashes.
-                    </p>
-                  </div>
-                </div>
-                <div class="flex gap-3">
-                  <span
-                    class="w-5 h-5 rounded-full bg-blue-500/10 text-blue-500 flex items-center justify-center font-mono text-[10px] flex-shrink-0 mt-0.5"
-                    >✓</span
-                  >
-                  <div>
-                    <h4 class="text-sm font-bold text-primary">Interactive Micro-Animations</h4>
-                    <p class="text-xs text-secondary mt-1">
-                      Adding subtle hover feedbacks, smooth tab selections, transitions, and loading states without
-                      introducing heavy external library scripts.
-                    </p>
-                  </div>
-                </div>
-                <div class="flex gap-3">
-                  <span
-                    class="w-5 h-5 rounded-full bg-blue-500/10 text-blue-500 flex items-center justify-center font-mono text-[10px] flex-shrink-0 mt-0.5"
-                    >✓</span
-                  >
-                  <div>
-                    <h4 class="text-sm font-bold text-primary">Semantic HTML &amp; WCAG Compliance</h4>
-                    <p class="text-xs text-secondary mt-1">
-                      Structuring markup with valid ARIA roles, logical keyboard focus tab rings, proper layout
-                      landmarks, and verifying screen-reader readability.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Blueprint Mock Widget -->
-              <div class="mt-8 border border-subtle rounded-lg bg-deep p-5 space-y-4">
-                <p class="text-[10px] font-mono text-muted">NEXT.JS ROUTING BLUEPRINT</p>
-                <div
-                  class="border border-dashed border-strong rounded p-4 flex flex-col md:flex-row gap-4 items-center justify-between"
-                >
-                  <div class="flex items-center gap-3">
-                    <span class="w-2.5 h-2.5 rounded-full bg-blue-500"></span>
-                    <span class="text-xs font-mono text-primary">app/page.tsx &gt; Server Component</span>
-                  </div>
-                  <div class="flex gap-2">
-                    <span class="px-2 py-0.5 border border-strong text-[9px] font-mono rounded text-secondary"
-                      >async/await fetch</span
-                    >
-                    <span
-                      class="px-2 py-0.5 border border-blue-500 text-[9px] font-mono rounded text-blue-400 bg-blue-500/10"
-                      >NextJS App Router</span
-                    >
+                  <div class="grid grid-cols-2 gap-4 pt-3">
+                    {svc.proof.map((p) => (
+                      <div class="border border-subtle p-4 rounded-lg bg-surface">
+                        <p class="text-[10px] font-mono text-muted uppercase">{p.label}</p>
+                        <p class="text-sm font-bold text-success mt-1">{p.value}</p>
+                      </div>
+                    ))}
                   </div>
                 </div>
 
-                <div
-                  class="border border-dashed border-strong rounded p-4 flex flex-col md:flex-row gap-4 items-center justify-between"
-                >
-                  <div class="flex items-center gap-3">
-                    <span class="w-2.5 h-2.5 rounded-full bg-blue-500"></span>
-                    <span class="text-xs font-mono text-primary">hooks/useUPIGateway.ts &gt; Custom Hook</span>
-                  </div>
-                  <div class="flex gap-2">
-                    <span class="px-2 py-0.5 border border-strong text-[9px] font-mono rounded text-secondary"
-                      >useState / useEffect</span
-                    >
-                    <span
-                      class="px-2 py-0.5 border border-blue-500 text-[9px] font-mono rounded text-blue-400 bg-blue-500/10"
-                      >React state hooks</span
-                    >
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+                {/* Right: Capabilities + Blueprint */}
+                <div class="lg:col-span-7 space-y-6">
+                  <div class={`glass ${glow} p-8 bg-surface border-subtle`}>
+                    <h3 class="text-md font-bold text-primary mb-4">What I actually do here</h3>
+                    <div class="space-y-5">
+                      {svc.capabilities.map((cap) => (
+                        <div class="flex gap-3 border-l-2 border-subtle pl-4 hover:border-accent transition-colors">
+                          <div>
+                            <h4 class="text-sm font-bold text-primary">{cap.title}</h4>
+                            <p class="text-xs text-secondary mt-1.5 leading-relaxed font-sans">{cap.body}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
 
-        <!-- Backend Architecture -->
-        <div class="grid lg:grid-cols-12 gap-12 items-start reveal">
-          <div class="lg:col-span-5 lg:sticky lg:top-24 space-y-5">
-            <span
-              class="inline-block text-xs font-mono text-emerald-500 uppercase tracking-wider bg-emerald-500/10 px-3 py-1 rounded-md border border-emerald-500/10"
-              >02 &mdash; BACKEND</span
-            >
-            <h2 class="t-title text-2xl font-bold">Backend Architecture</h2>
-            <p class="t-body">
-              Designing secure APIs, relational database schemas, and microservice topologies. Built using Node.js,
-              Express, and PHP/Laravel. Optimized queries and automated deployments.
-            </p>
-
-            <div class="grid grid-cols-2 gap-4 pt-3">
-              <div class="border border-subtle p-4 rounded-lg bg-surface">
-                <p class="text-[10px] font-mono text-muted uppercase">Database Indexing</p>
-                <p class="text-lg font-bold text-success mt-1">PostgreSQL / Redis</p>
-              </div>
-              <div class="border border-subtle p-4 rounded-lg bg-surface">
-                <p class="text-[10px] font-mono text-muted uppercase">Docker Orchestration</p>
-                <p class="text-lg font-bold text-success mt-1">Ready</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="lg:col-span-7 space-y-6">
-            <div class="glass hover-glow-emerald p-8 bg-surface border-subtle">
-              <h3 class="text-md font-bold text-primary mb-4">Database &amp; Routing Operations</h3>
-              <div class="space-y-4">
-                <div class="flex gap-3">
-                  <span
-                    class="w-5 h-5 rounded-full bg-emerald-500/10 text-emerald-500 flex items-center justify-center font-mono text-[10px] flex-shrink-0 mt-0.5"
-                    >✓</span
-                  >
-                  <div>
-                    <h4 class="text-sm font-bold text-primary">REST &amp; GraphQL Schema Design</h4>
-                    <p class="text-xs text-secondary mt-1">
-                      Building modular schema structures with secure query authorization, payload validations, and
-                      structured JSON/GraphQL responses.
-                    </p>
-                  </div>
-                </div>
-                <div class="flex gap-3">
-                  <span
-                    class="w-5 h-5 rounded-full bg-emerald-500/10 text-emerald-500 flex items-center justify-center font-mono text-[10px] flex-shrink-0 mt-0.5"
-                    >✓</span
-                  >
-                  <div>
-                    <h4 class="text-sm font-bold text-primary">Caching &amp; Optimization</h4>
-                    <p class="text-xs text-secondary mt-1">
-                      Configuring Redis cache pipelines to speed up read-heavy APIs and reduce database query pressure
-                      on relational databases.
-                    </p>
-                  </div>
-                </div>
-                <div class="flex gap-3">
-                  <span
-                    class="w-5 h-5 rounded-full bg-emerald-500/10 text-emerald-500 flex items-center justify-center font-mono text-[10px] flex-shrink-0 mt-0.5"
-                    >✓</span
-                  >
-                  <div>
-                    <h4 class="text-sm font-bold text-primary">Security Hardening</h4>
-                    <p class="text-xs text-secondary mt-1">
-                      Configuring CORS rules, rate limit parameters, JWT/API token encryptions, and sanitizing SQL/NoSQL
-                      inputs to block vulnerability risks.
-                    </p>
-                  </div>
-                </div>
-                <div class="flex gap-3">
-                  <span
-                    class="w-5 h-5 rounded-full bg-emerald-500/10 text-emerald-500 flex items-center justify-center font-mono text-[10px] flex-shrink-0 mt-0.5"
-                    >✓</span
-                  >
-                  <div>
-                    <h4 class="text-sm font-bold text-primary">Background Pipelines &amp; Queue Handlers</h4>
-                    <p class="text-xs text-secondary mt-1">
-                      Designing asynchronous queue structures to process heavy background workloads, send webhooks,
-                      execute third-party synchronizations, and prevent API blockages.
-                    </p>
+                    {/* Blueprint Mock Widget */}
+                    <div class="mt-8 border border-subtle rounded-lg bg-deep p-5 space-y-3">
+                      <p class="text-[10px] font-mono text-muted">{svc.blueprint.heading.toUpperCase()}</p>
+                      {svc.blueprint.rows.map((row) => (
+                        <div class="border border-dashed border-strong rounded p-3.5 flex flex-col md:flex-row gap-3 items-start md:items-center justify-between">
+                          <div class="flex items-center gap-3 min-w-0">
+                            <span class={`w-2.5 h-2.5 rounded-full ${c.dot} flex-shrink-0`} />
+                            <div class="min-w-0">
+                              <p class="text-xs font-mono text-primary truncate">{row.dot}</p>
+                              <p class={`text-[9px] font-mono ${c.label} mt-0.5`}>{row.meta}</p>
+                            </div>
+                          </div>
+                          {row.pills && row.pills.length > 0 && (
+                            <div class="flex gap-2 flex-wrap">
+                              {row.pills.map((pill, pi) => (
+                                <span
+                                  class={`px-2 py-0.5 border text-[9px] font-mono rounded ${
+                                    pi === row.pills.length - 1
+                                      ? `${c.pillBorder} ${c.pill} ${c.pillBg}`
+                                      : "border-strong text-secondary"
+                                  }`}
+                                >
+                                  {pill}
+                                </span>
+                              ))}
+                            </div>
+                          )}
+                          {row.highlight && (
+                            <span class={`text-[9px] font-mono ${c.label} uppercase tracking-widest font-bold`}>
+                              critical
+                            </span>
+                          )}
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
-
-              <!-- Schematic Architecture Flowchart -->
-              <div class="mt-8 border border-subtle rounded-lg bg-deep p-5">
-                <p class="text-[10px] font-mono text-muted mb-4">SYSTEM REQUEST ARCHITECTURE</p>
-                <div
-                  class="flex flex-col md:flex-row items-center justify-center gap-3 text-[11px] font-mono text-center"
-                >
-                  <div class="p-2 border border-strong rounded bg-surface w-full md:w-28 text-secondary">
-                    Client Req
-                  </div>
-                  <div class="text-emerald-500 hidden md:block">➔</div>
-                  <div class="p-2 border border-emerald-500 rounded bg-emerald-500/10 text-emerald-400 w-full md:w-28">
-                    API Gateway
-                  </div>
-                  <div class="text-emerald-500 hidden md:block">➔</div>
-                  <div class="p-2 border border-strong rounded bg-surface w-full md:w-28 text-secondary">
-                    Redis Cache
-                  </div>
-                  <div class="text-emerald-500 hidden md:block">➔</div>
-                  <div class="p-2 border border-strong rounded bg-surface w-full md:w-28 text-secondary">DB Core</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- WordPress Engineering -->
-        <div class="grid lg:grid-cols-12 gap-12 items-start reveal">
-          <div class="lg:col-span-5 lg:sticky lg:top-24 space-y-5">
-            <span
-              class="inline-block text-xs font-mono text-amber-500 uppercase tracking-wider bg-amber-500/10 px-3 py-1 rounded-md border border-amber-500/10"
-              >03 &mdash; WORDPRESS</span
-            >
-            <h2 class="t-title text-2xl font-bold">WordPress Engineering</h2>
-            <p class="t-body">
-              Custom plug-ins, headless GraphQL setups, and optimization for enterprise traffic. Active maintainer of
-              plugins with 27,000+ active installs. 7+ years experience in WP actions, hooks, and database schemas.
-            </p>
-
-            <div class="grid grid-cols-2 gap-4 pt-3">
-              <div class="border border-subtle p-4 rounded-lg bg-surface">
-                <p class="text-[10px] font-mono text-muted uppercase">Combined active installs</p>
-                <p class="text-lg font-bold text-success mt-1">27,000+</p>
-              </div>
-              <div class="border border-subtle p-4 rounded-lg bg-surface">
-                <p class="text-[10px] font-mono text-muted uppercase">Coding standard</p>
-                <p class="text-lg font-bold text-success mt-1">PHP / PSR-12</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="lg:col-span-7 space-y-6">
-            <div class="glass hover-glow-amber p-8 bg-surface border-subtle">
-              <h3 class="text-md font-bold text-primary mb-4">Plugin &amp; Headless Capabilities</h3>
-              <div class="space-y-4">
-                <div class="flex gap-3">
-                  <span
-                    class="w-5 h-5 rounded-full bg-amber-500/10 text-amber-500 flex items-center justify-center font-mono text-[10px] flex-shrink-0 mt-0.5"
-                    >✓</span
-                  >
-                  <div>
-                    <h4 class="text-sm font-bold text-primary">Custom Plugin Architecture</h4>
-                    <p class="text-xs text-secondary mt-1">
-                      Developing hook-based plugin architectures that run smoothly without slowing down admin panels or
-                      public database queries.
-                    </p>
-                  </div>
-                </div>
-                <div class="flex gap-3">
-                  <span
-                    class="w-5 h-5 rounded-full bg-amber-500/10 text-amber-500 flex items-center justify-center font-mono text-[10px] flex-shrink-0 mt-0.5"
-                    >✓</span
-                  >
-                  <div>
-                    <h4 class="text-sm font-bold text-primary">Headless CMS Setup</h4>
-                    <p class="text-xs text-secondary mt-1">
-                      Unlocking WordPress content using WPGraphQL. Integrated with static builders (like Next.js and
-                      Astro) for lightning-fast page loading speeds.
-                    </p>
-                  </div>
-                </div>
-                <div class="flex gap-3">
-                  <span
-                    class="w-5 h-5 rounded-full bg-amber-500/10 text-amber-500 flex items-center justify-center font-mono text-[10px] flex-shrink-0 mt-0.5"
-                    >✓</span
-                  >
-                  <div>
-                    <h4 class="text-sm font-bold text-primary">WooCommerce Integrations</h4>
-                    <p class="text-xs text-secondary mt-1">
-                      Building custom shipping rules, subscription handlers, and checkout modifications for WooCommerce
-                      platforms.
-                    </p>
-                  </div>
-                </div>
-                <div class="flex gap-3">
-                  <span
-                    class="w-5 h-5 rounded-full bg-amber-500/10 text-amber-500 flex items-center justify-center font-mono text-[10px] flex-shrink-0 mt-0.5"
-                    >✓</span
-                  >
-                  <div>
-                    <h4 class="text-sm font-bold text-primary">Performance &amp; Database Index Optimizations</h4>
-                    <p class="text-xs text-secondary mt-1">
-                      Auditing database options table sizes, setting custom meta keys indexing schema, and implementing
-                      transient caches to prevent database bottlenecks.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <!-- WooCommerce Hook Pipeline -->
-              <div class="mt-8 border border-subtle rounded-lg bg-deep p-5">
-                <p class="text-[10px] font-mono text-muted mb-4">CHECKOUT TRIGGER PIPELINE</p>
-                <div
-                  class="flex flex-col md:flex-row items-center justify-center gap-3 text-[10px] font-mono text-center"
-                >
-                  <div class="p-2 border border-strong rounded bg-surface w-full md:w-36 text-secondary">
-                    woocommerce_payment_complete
-                  </div>
-                  <div class="text-amber-500 hidden md:block">➔</div>
-                  <div class="p-2 border border-amber-500 rounded bg-amber-500/10 text-amber-400 w-full md:w-32">
-                    Send UPI Webhook
-                  </div>
-                  <div class="text-amber-500 hidden md:block">➔</div>
-                  <div class="p-2 border border-strong rounded bg-surface w-full md:w-28 text-secondary">
-                    Action Scheduler
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Mobile-First Responsive Design -->
-        <div class="grid lg:grid-cols-12 gap-12 items-start reveal">
-          <div class="lg:col-span-5 lg:sticky lg:top-24 space-y-5">
-            <span
-              class="inline-block text-xs font-mono text-rose-500 uppercase tracking-wider bg-rose-500/10 px-3 py-1 rounded-md border border-rose-500/10"
-              >04 &mdash; LAYOUT DESIGN</span
-            >
-            <h2 class="t-title text-2xl font-bold">Mobile-First UI Design</h2>
-            <p class="t-body">
-              Designing responsive grid architectures from 320px up. Focused on logical layout reflows, typography
-              scaling, fluid spacing variables, and cross-browser testing.
-            </p>
-
-            <div class="grid grid-cols-2 gap-4 pt-3">
-              <div class="border border-subtle p-4 rounded-lg bg-surface">
-                <p class="text-[10px] font-mono text-muted uppercase">Container Queries</p>
-                <p class="text-lg font-bold text-success mt-1">Fluid scaling</p>
-              </div>
-              <div class="border border-subtle p-4 rounded-lg bg-surface">
-                <p class="text-[10px] font-mono text-muted uppercase">Cross-Device checks</p>
-                <p class="text-lg font-bold text-success mt-1">100% Responsive</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="lg:col-span-7 space-y-6">
-            <div class="glass hover-glow-rose p-8 bg-surface border-subtle">
-              <h3 class="text-md font-bold text-primary mb-4">Responsive Strategy</h3>
-              <div class="space-y-4">
-                <div class="flex gap-3">
-                  <span
-                    class="w-5 h-5 rounded-full bg-rose-500/10 text-rose-500 flex items-center justify-center font-mono text-[10px] flex-shrink-0 mt-0.5"
-                    >✓</span
-                  >
-                  <div>
-                    <h4 class="text-sm font-bold text-primary">Fluid Typography</h4>
-                    <p class="text-xs text-secondary mt-1">
-                      Using CSS variables and clamp mappings to smoothly scale down headings from ultra-bold headers on
-                      desktop to readable typography on phone screens.
-                    </p>
-                  </div>
-                </div>
-                <div class="flex gap-3">
-                  <span
-                    class="w-5 h-5 rounded-full bg-rose-500/10 text-rose-500 flex items-center justify-center font-mono text-[10px] flex-shrink-0 mt-0.5"
-                    >✓</span
-                  >
-                  <div>
-                    <h4 class="text-sm font-bold text-primary">Accessibility First (A11y)</h4>
-                    <p class="text-xs text-secondary mt-1">
-                      Ensuring screen reader accessibility, semantic HTML elements, high color contrast levels, and
-                      interactive focus outlines.
-                    </p>
-                  </div>
-                </div>
-                <div class="flex gap-3">
-                  <span
-                    class="w-5 h-5 rounded-full bg-rose-500/10 text-rose-500 flex items-center justify-center font-mono text-[10px] flex-shrink-0 mt-0.5"
-                    >✓</span
-                  >
-                  <div>
-                    <h4 class="text-sm font-bold text-primary">Container Queries &amp; Micro-Breakpoints</h4>
-                    <p class="text-xs text-secondary mt-1">
-                      Replacing viewport media queries with container queries (`@container`) to allow component layouts
-                      to adjust responsively based on parent boundaries.
-                    </p>
-                  </div>
-                </div>
-                <div class="flex gap-3">
-                  <span
-                    class="w-5 h-5 rounded-full bg-rose-500/10 text-rose-500 flex items-center justify-center font-mono text-[10px] flex-shrink-0 mt-0.5"
-                    >✓</span
-                  >
-                  <div>
-                    <h4 class="text-sm font-bold text-primary">Cross-Browser Engine Audits</h4>
-                    <p class="text-xs text-secondary mt-1">
-                      Rigorous visual regression testing across layout render pipelines including Blink (Chrome/Edge),
-                      WebKit (Safari), and Gecko (Firefox) engines.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Container Query Blueprint -->
-              <div class="mt-8 border border-subtle rounded-lg bg-deep p-5">
-                <p class="text-[10px] font-mono text-muted mb-4">CONTAINER REFLOW BLUEPRINT</p>
-                <div class="flex flex-col md:flex-row items-center justify-center gap-4 text-xs font-mono text-center">
-                  <div
-                    class="p-2.5 border border-dashed border-strong rounded bg-surface w-full md:w-44 text-secondary"
-                  >
-                    @container (min-width: 600px)
-                    <span class="block text-[9px] text-rose-400 mt-1">➔ 2-Column Grid Flow</span>
-                  </div>
-                  <div class="text-rose-500 hidden md:block">⬌</div>
-                  <div
-                    class="p-2.5 border border-dashed border-strong rounded bg-surface w-full md:w-44 text-secondary"
-                  >
-                    @container (max-width: 599px)
-                    <span class="block text-[9px] text-rose-400 mt-1">➔ Block Stacked Flow</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- AI & Agentic Systems -->
-        <div class="grid lg:grid-cols-12 gap-12 items-start reveal">
-          <div class="lg:col-span-5 lg:sticky lg:top-24 space-y-5">
-            <span
-              class="inline-block text-xs font-mono text-purple-500 uppercase tracking-wider bg-purple-500/10 px-3 py-1 rounded-md border border-purple-500/10"
-              >05 &mdash; AI &amp; AGENTIC SYSTEMS</span
-            >
-            <h2 class="t-title text-2xl font-bold">AI Integration &amp; Agentic Systems</h2>
-            <p class="t-body">
-              Architecting autonomous AI agent networks, custom LLM integrations, and semantic search pipelines.
-              Experienced in orchestrating API models like Gemini, Claude, DeepSeek, Cohere Command, and open-source
-              code models.
-            </p>
-
-            <div class="grid grid-cols-2 gap-4 pt-3">
-              <div class="border border-subtle p-4 rounded-lg bg-surface">
-                <p class="text-[10px] font-mono text-muted uppercase">Primary APIs</p>
-                <p class="text-sm font-bold text-success mt-1">Gemini / Claude</p>
-              </div>
-              <div class="border border-subtle p-4 rounded-lg bg-surface">
-                <p class="text-[10px] font-mono text-muted uppercase">Models</p>
-                <p class="text-sm font-bold text-success mt-1">DeepSeek / Llama</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="lg:col-span-7 space-y-6">
-            <div class="glass hover-glow-purple p-8 bg-surface border-subtle">
-              <h3 class="text-md font-bold text-primary mb-4">Core AI Implementations</h3>
-              <div class="space-y-4">
-                <div class="flex gap-3">
-                  <span
-                    class="w-5 h-5 rounded-full bg-purple-500/10 text-purple-500 flex items-center justify-center font-mono text-[10px] flex-shrink-0 mt-0.5"
-                    >✓</span
-                  >
-                  <div>
-                    <h4 class="text-sm font-bold text-primary">Autonomous Agent Workflows</h4>
-                    <p class="text-xs text-secondary mt-1">
-                      Structuring loop-driven, self-correcting agent chains capable of orchestrating multi-step actions
-                      (fetching APIs, editing code, committing changes) autonomously.
-                    </p>
-                  </div>
-                </div>
-                <div class="flex gap-3">
-                  <span
-                    class="w-5 h-5 rounded-full bg-purple-500/10 text-purple-500 flex items-center justify-center font-mono text-[10px] flex-shrink-0 mt-0.5"
-                    >✓</span
-                  >
-                  <div>
-                    <h4 class="text-sm font-bold text-primary">Structured Retrieval Augmented Generation (RAG)</h4>
-                    <p class="text-xs text-secondary mt-1">
-                      Connecting APIs from Gemini, Claude, DeepSeek, or Cohere Command securely to custom databases and
-                      knowledge context sheets using vector embeddings.
-                    </p>
-                  </div>
-                </div>
-                <div class="flex gap-3">
-                  <span
-                    class="w-5 h-5 rounded-full bg-purple-500/10 text-purple-500 flex items-center justify-center font-mono text-[10px] flex-shrink-0 mt-0.5"
-                    >✓</span
-                  >
-                  <div>
-                    <h4 class="text-sm font-bold text-primary">Streaming UI Token Handlers</h4>
-                    <p class="text-xs text-secondary mt-1">
-                      Leveraging Server-Sent Events (SSE) to render chunked LLM outputs dynamically in UI components,
-                      avoiding slow loading spinners.
-                    </p>
-                  </div>
-                </div>
-                <div class="flex gap-3">
-                  <span
-                    class="w-5 h-5 rounded-full bg-purple-500/10 text-purple-500 flex items-center justify-center font-mono text-[10px] flex-shrink-0 mt-0.5"
-                    >✓</span
-                  >
-                  <div>
-                    <h4 class="text-sm font-bold text-primary">Semantic Cache Routing</h4>
-                    <p class="text-xs text-secondary mt-1">
-                      Configuring gateway middleware cache checks to resolve repeated user queries via vector similarity
-                      checks, reducing token consumption costs.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Schematic AI Agent Architecture -->
-              <div class="mt-8 border border-subtle rounded-lg bg-deep p-5">
-                <p class="text-[10px] font-mono text-muted mb-4">AGENT REASONING LOOP</p>
-                <div
-                  class="flex flex-col md:flex-row items-center justify-center gap-3 text-[10px] font-mono text-center"
-                >
-                  <div class="p-2 border border-strong rounded bg-surface w-full md:w-28 text-secondary">
-                    User Query
-                  </div>
-                  <div class="text-purple-500 hidden md:block">➔</div>
-                  <div class="p-2 border border-purple-500 rounded bg-purple-500/10 text-purple-400 w-full md:w-32">
-                    LLM Planner
-                  </div>
-                  <div class="text-purple-500 hidden md:block">➔</div>
-                  <div class="p-2 border border-strong rounded bg-surface w-full md:w-32 text-secondary">
-                    Tool Execution
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+            );
+          })
+        }
       </div>
     </section>
   </main>
@@ -581,15 +380,14 @@ import PageHero from "@/components/PageHero.astro";
 
 <script>
   var observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-        }
+    function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) entry.target.classList.add("visible");
       });
     },
     { threshold: 0.05 }
   );
-
-  document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+  document.querySelectorAll(".reveal").forEach(function(el) {
+    observer.observe(el);
+  });
 </script>

@@ -12,57 +12,101 @@ const skillSections = [
   {
     id: "core",
     name: "Core Expertise",
-    desc: "My primary domains of product engineering and platform architecture.",
+    desc: "WooCommerce checkout loops and WordPress plugin architecture — production code paths shipping to live traffic.",
     icon: "ph:cpu",
+    color: "rose",
     skills: skillsData.core,
   },
   {
     id: "modern",
     name: "Modern Stack",
-    desc: "JavaScript & TypeScript frameworks utilized for creating responsive applications.",
+    desc: "The JavaScript and TypeScript stack I reach for when building a new interface, from static site to RSC app.",
     icon: "ph:code",
+    color: "emerald",
     skills: skillsData.modern,
   },
   {
     id: "backend",
     name: "Backend Architecture",
-    desc: "Server environments, data design schemas, and relational database managers.",
+    desc: "Resolvers, queues, and schemas — everything that turns a request into a durable operation on the server.",
     icon: "ph:database",
+    color: "blue",
     skills: skillsData.backend,
   },
   {
     id: "cms",
     name: "CMS Platforms",
-    desc: "Extending core content pipelines, custom plugins, and headless CMS integrations.",
+    desc: "Hook-heavy legacy systems and modern headless CMS — I've shipped both flavors on real client work.",
     icon: "ph:layout",
+    color: "purple",
     skills: skillsData.cms,
   },
   {
     id: "infra",
     name: "Infrastructure & DevOps",
-    desc: "Source control, automation pipelines, site hosting, and virtualization setups.",
+    desc: "Databases, CI pipelines, and the servers underneath — the work that decides whether the app loads in 200ms or 4s.",
     icon: "ph:globe",
+    color: "amber",
     skills: skillsData.infra,
   },
   {
     id: "legacy",
     name: "Legacy Experience",
-    desc: "Older technologies and legacy frontend libraries maintained on client portals.",
+    desc: "Older codebases I still maintain because clients still ship on them. Comfortable, not enthusiastic.",
     icon: "ph:clock-counter-clockwise",
+    color: "rose",
     skills: skillsData.legacy,
   },
 ];
+
+const colorMap: Record<string, { label: string; text: string; bg: string; bar: string; barShadow: string }> = {
+  rose: {
+    label: "text-rose-500",
+    text: "text-rose-500",
+    bg: "bg-rose-500/10",
+    bar: "bg-rose-500",
+    barShadow: "shadow-[0_0_8px_rgba(244,63,94,0.6)]",
+  },
+  emerald: {
+    label: "text-emerald-500",
+    text: "text-emerald-500",
+    bg: "bg-emerald-500/10",
+    bar: "bg-emerald-500",
+    barShadow: "shadow-[0_0_8px_rgba(16,185,129,0.6)]",
+  },
+  blue: {
+    label: "text-blue-500",
+    text: "text-blue-500",
+    bg: "bg-blue-500/10",
+    bar: "bg-blue-500",
+    barShadow: "shadow-[0_0_8px_rgba(59,130,246,0.6)]",
+  },
+  amber: {
+    label: "text-amber-500",
+    text: "text-amber-500",
+    bg: "bg-amber-500/10",
+    bar: "bg-amber-500",
+    barShadow: "shadow-[0_0_8px_rgba(245,158,11,0.6)]",
+  },
+  purple: {
+    label: "text-purple-500",
+    text: "text-purple-500",
+    bg: "bg-purple-500/10",
+    bar: "bg-purple-500",
+    barShadow: "shadow-[0_0_8px_rgba(168,85,247,0.6)]",
+  },
+};
 ---
 
 <Layout
   title="Skills — Sayan Datta"
-  description="Comprehensive overview of Sayan Datta's development stack, core WooCommerce expertise, backend architecture, and legacies."
+  description="What I actually ship: WooCommerce systems, Laravel backends, modern TypeScript frontends, and the infrastructure underneath."
 >
   <Header />
   <main id="main-content" class="py-24 relative overflow-hidden">
     <PageHero
       badge="Tech Stack"
-      description="A detailed catalog of the technologies, languages, and architectures I work with on daily production builds, categorized by domain proficiency."
+      description="A working catalog of what I ship to production, grouped by where the code actually runs. Mastery levels are honest, not aspirational."
       customCrumbText="Tech Stack"
     >
       <Fragment slot="title">Skills &amp; <span class="t-accent">toolkit.</span></Fragment>
@@ -78,7 +122,7 @@ const skillSections = [
         <h2 class="t-title mb-10">Core Competency Matrix.</h2>
 
         <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {/* Commerce Card */}
+          {/* E-Commerce */}
           <div class="glass hover-glow-rose p-6 bg-surface flex flex-col justify-between relative group">
             <Icon
               name="ph:shopping-cart"
@@ -94,14 +138,16 @@ const skillSections = [
             </div>
             <div class="mt-6 space-y-2">
               <div class="flex justify-between text-xs font-mono">
-                <span class="text-muted">Domain Mastery</span>
-                <span class="text-rose-500 font-bold">98%</span>
+                <span class="text-muted">Expert Skills</span>
+                <span class="text-rose-500 font-bold">
+                  {skillsData.core.filter((s) => s.level.toLowerCase().includes("expert")).length} of {skillsData.core.length}
+                </span>
               </div>
               <div class="h-1.5 w-full bg-strong rounded-full overflow-hidden flex gap-0.5" aria-hidden="true">
                 {
-                  [...Array(10)].map((_, i) => (
+                  [...Array(skillsData.core.length)].map((_, i) => (
                     <div
-                      class={`h-full flex-1 rounded-sm ${i < 10 ? "bg-rose-500 shadow-[0_0_8px_rgba(244,63,94,0.6)]" : "bg-strong"}`}
+                      class={`h-full flex-1 rounded-sm ${i < skillsData.core.filter((s) => s.level.toLowerCase().includes("expert")).length ? "bg-rose-500 shadow-[0_0_8px_rgba(244,63,94,0.6)]" : "bg-strong"}`}
                     />
                   ))
                 }
@@ -109,7 +155,7 @@ const skillSections = [
             </div>
           </div>
 
-          {/* Backend Card */}
+          {/* Backend */}
           <div class="glass hover-glow-blue p-6 bg-surface flex flex-col justify-between relative group">
             <Icon
               name="ph:database"
@@ -125,14 +171,16 @@ const skillSections = [
             </div>
             <div class="mt-6 space-y-2">
               <div class="flex justify-between text-xs font-mono">
-                <span class="text-muted">Domain Mastery</span>
-                <span class="text-blue-500 font-bold">95%</span>
+                <span class="text-muted">Expert Skills</span>
+                <span class="text-blue-500 font-bold">
+                  {skillsData.backend.filter((s) => s.level.toLowerCase().includes("expert")).length} of {skillsData.backend.length}
+                </span>
               </div>
               <div class="h-1.5 w-full bg-strong rounded-full overflow-hidden flex gap-0.5" aria-hidden="true">
                 {
-                  [...Array(10)].map((_, i) => (
+                  [...Array(skillsData.backend.length)].map((_, i) => (
                     <div
-                      class={`h-full flex-1 rounded-sm ${i < 9 ? "bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.6)]" : "bg-strong"}`}
+                      class={`h-full flex-1 rounded-sm ${i < skillsData.backend.filter((s) => s.level.toLowerCase().includes("expert")).length ? "bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.6)]" : "bg-strong"}`}
                     />
                   ))
                 }
@@ -140,7 +188,7 @@ const skillSections = [
             </div>
           </div>
 
-          {/* Frontend Card */}
+          {/* Frontend (Modern + CMS combined — both touch UI) */}
           <div class="glass hover-glow-emerald p-6 bg-surface flex flex-col justify-between relative group">
             <Icon
               name="ph:devices"
@@ -156,14 +204,16 @@ const skillSections = [
             </div>
             <div class="mt-6 space-y-2">
               <div class="flex justify-between text-xs font-mono">
-                <span class="text-muted">Domain Mastery</span>
-                <span class="text-emerald-500 font-bold">92%</span>
+                <span class="text-muted">Expert Skills</span>
+                <span class="text-emerald-500 font-bold">
+                  {[...skillsData.modern, ...skillsData.cms].filter((s) => s.level.toLowerCase().includes("expert")).length} of {[...skillsData.modern, ...skillsData.cms].length}
+                </span>
               </div>
               <div class="h-1.5 w-full bg-strong rounded-full overflow-hidden flex gap-0.5" aria-hidden="true">
                 {
-                  [...Array(10)].map((_, i) => (
+                  [...Array([...skillsData.modern, ...skillsData.cms].length)].map((_, i) => (
                     <div
-                      class={`h-full flex-1 rounded-sm ${i < 9 ? "bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.6)]" : "bg-strong"}`}
+                      class={`h-full flex-1 rounded-sm ${i < [...skillsData.modern, ...skillsData.cms].filter((s) => s.level.toLowerCase().includes("expert")).length ? "bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.6)]" : "bg-strong"}`}
                     />
                   ))
                 }
@@ -171,7 +221,7 @@ const skillSections = [
             </div>
           </div>
 
-          {/* DevOps Card */}
+          {/* Infra */}
           <div class="glass hover-glow-amber p-6 bg-surface flex flex-col justify-between relative group">
             <Icon
               name="ph:cloud-arrow-up"
@@ -187,14 +237,16 @@ const skillSections = [
             </div>
             <div class="mt-6 space-y-2">
               <div class="flex justify-between text-xs font-mono">
-                <span class="text-muted">Domain Mastery</span>
-                <span class="text-amber-500 font-bold">88%</span>
+                <span class="text-muted">Advanced+ Skills</span>
+                <span class="text-amber-500 font-bold">
+                  {skillsData.infra.filter((s) => s.level.toLowerCase().includes("advanced")).length} of {skillsData.infra.length}
+                </span>
               </div>
               <div class="h-1.5 w-full bg-strong rounded-full overflow-hidden flex gap-0.5" aria-hidden="true">
                 {
-                  [...Array(10)].map((_, i) => (
+                  [...Array(skillsData.infra.length)].map((_, i) => (
                     <div
-                      class={`h-full flex-1 rounded-sm ${i < 8 ? "bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.6)]" : "bg-strong"}`}
+                      class={`h-full flex-1 rounded-sm ${i < skillsData.infra.filter((s) => s.level.toLowerCase().includes("advanced")).length ? "bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.6)]" : "bg-strong"}`}
                     />
                   ))
                 }
@@ -209,48 +261,38 @@ const skillSections = [
     <section class="pb-28">
       <div class="mx space-y-20">
         {
-          skillSections.map((sec, idx) => (
-            <div class="reveal">
-              {/* Category Header */}
-              <div class="mb-8 border-b border-subtle pb-4 flex flex-col md:flex-row md:items-end justify-between gap-4">
-                <div>
-                  <span class="text-xs font-mono text-accent font-bold flex items-center gap-1.5">
-                    0{idx + 1} &mdash; {sec.name.toUpperCase()}
-                  </span>
-                  <p class="text-sm text-secondary mt-1">{sec.desc}</p>
+          skillSections.map((sec, idx) => {
+            const c = colorMap[sec.color];
+            const expertCount = sec.skills.filter((s) => s.level.toLowerCase().includes("expert")).length;
+            return (
+              <div class="reveal">
+                {/* Category Header */}
+                <div class="mb-8 border-b border-subtle pb-4 flex flex-col md:flex-row md:items-end justify-between gap-4">
+                  <div>
+                    <span class={`text-xs font-mono ${c.label} font-bold flex items-center gap-1.5`}>
+                      0{idx + 1} &mdash; {sec.name.toUpperCase()}
+                    </span>
+                    <p class="text-sm text-secondary mt-1">{sec.desc}</p>
+                  </div>
+                  <div class="flex items-center gap-3">
+                    <span class="text-[10px] font-mono text-muted uppercase tracking-wider">
+                      {expertCount} expert · {sec.skills.length} total
+                    </span>
+                    <Icon name={sec.icon} class={`w-8 h-8 ${c.text}/20 flex-shrink-0`} />
+                  </div>
                 </div>
-                <Icon name={sec.icon} class="w-8 h-8 text-accent/20 flex-shrink-0" />
-              </div>
 
-              {/* Skills Cards Grid */}
-              <div class="grid sm:grid-cols-2 gap-6">
-                {sec.skills &&
-                  sec.skills.map((s) => {
-                    const getLevelDots = (level: string) => {
-                      const l = level.toLowerCase();
-                      if (l.includes("expert")) return 5;
-                      if (l.includes("advanced")) return 4;
-                      if (l.includes("proficient")) return 3;
-                      return 2;
-                    };
-                    const activeDots = getLevelDots(s.level);
-
-                    return (
-                      <div class="glass p-6 bg-surface border-subtle hover:border-accent/25 transition-all flex flex-col justify-between group">
+                {/* Skills Cards Grid */}
+                <div class="grid sm:grid-cols-2 gap-6">
+                  {sec.skills &&
+                    sec.skills.map((s) => (
+                      <div class={`glass p-6 bg-surface border-subtle hover:border-${sec.color}-500/25 transition-all flex flex-col justify-between group`}>
                         <div>
                           <div class="flex justify-between items-baseline mb-4">
                             <h3 class="text-sm font-bold text-primary">{s.name}</h3>
-                            <div class="flex flex-col items-end gap-1 flex-shrink-0 ml-4">
-                              <span class="text-[9px] px-2 py-0.5 rounded font-mono text-accent bg-accent-glow border border-rose-500/10 font-bold">
-                                {s.level}
-                              </span>
-                              {/* Visual Dot Meter */}
-                              <div class="flex gap-1 mt-1" aria-hidden="true">
-                                {[...Array(5)].map((_, i) => (
-                                  <span class={`w-1 h-1 rounded-full ${i < activeDots ? "bg-accent" : "bg-strong"}`} />
-                                ))}
-                              </div>
-                            </div>
+                            <span class={`text-[9px] px-2 py-0.5 rounded font-mono ${c.text} ${c.bg} border border-current/10 font-bold`}>
+                              {s.level}
+                            </span>
                           </div>
                           <p class="text-xs text-secondary leading-relaxed font-sans">{s.context}</p>
                         </div>
@@ -258,18 +300,16 @@ const skillSections = [
                         {s.tags && s.tags.length > 0 && (
                           <div class="flex flex-wrap gap-1.5 mt-6 border-t border-subtle pt-4">
                             {s.tags.map((t) => (
-                              <span class="text-[9px] font-mono font-medium px-2 py-0.5 rounded bg-raised border border-strong text-muted group-hover:text-primary transition-colors">
-                                {t}
-                              </span>
+                              <span class="tag">{t}</span>
                             ))}
                           </div>
                         )}
                       </div>
-                    );
-                  })}
+                    ))}
+                </div>
               </div>
-            </div>
-          ))
+            );
+          })
         }
       </div>
     </section>

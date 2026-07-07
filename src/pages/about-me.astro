@@ -2,13 +2,13 @@
 import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
-import { getProfile, getExperience, getTestimonials, getPhilosophy, type ExperienceItem } from "@/lib/data";
+import { getProfile, getExperiences, getTestimonials, getPhilosophy, type ExperienceItem } from "@/lib/data";
 import { Icon } from "astro-icon/components";
 import PageHero from "@/components/PageHero.astro";
 
 const [profile, experience, testimonials, philosophy] = await Promise.all([
   getProfile(),
-  getExperience(),
+  getExperiences(),
   getTestimonials(),
   getPhilosophy(),
 ]);
