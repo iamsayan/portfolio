@@ -21,5 +21,5 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
-  integrations: [icon(), sitemap(), robotsTxt(), compressor(), purgecss(), og()],
+  integrations: [icon(), sitemap(), robotsTxt(), compressor(), og()],
 });
