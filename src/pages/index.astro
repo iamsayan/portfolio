@@ -394,38 +394,37 @@ const categoryGlow: Record<string, string> = {
 
             <div class="lg:col-span-7 relative">
               <div
-                class="absolute -inset-1 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-2xl blur-md opacity-20"
+                class="absolute -inset-1 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-2xl blur-md opacity-15"
                 aria-hidden="true"
               >
               </div>
               <div
-                class="glass glass-glow rounded-xl overflow-hidden shadow-2xl relative z-10 border-strong p-6 bg-surface"
+                class="glass glass-glow rounded-xl overflow-hidden shadow-xl relative z-10 border-strong p-6 bg-surface"
               >
                 <!-- Mock Dashboard Component -->
-                <div class="flex items-center justify-between border-b border-subtle pb-4 mb-6">
-                  <span class="text-xs font-mono text-primary">lighthouse-performance-audit</span>
-                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-success-glow text-success">Score: 100%</span
-                  >
+                <div class="flex items-center justify-between border-b border-subtle pb-4 mb-6 gap-2">
+                  <span class="text-[10px] sm:text-xs font-mono text-primary truncate">lighthouse-performance-audit</span>
+                  <span class="text-[9px] sm:text-[10px] font-mono px-2 py-0.5 rounded bg-success-glow text-success flex-shrink-0 whitespace-nowrap">Score: 100%</span>
                 </div>
-                <div class="grid grid-cols-3 gap-4 mb-6">
-                  <div class="p-4 rounded-lg bg-deep border border-subtle">
-                    <p class="text-[10px] font-mono text-muted uppercase">FCP</p>
-                    <p class="text-lg font-bold text-success mt-1">0.2s</p>
+                <div class="grid grid-cols-3 gap-2.5 sm:gap-4 mb-6">
+                  <div class="p-2.5 sm:p-4 rounded-xl bg-deep border border-subtle text-center">
+                    <p class="text-[9px] sm:text-[10px] font-mono text-muted uppercase">FCP</p>
+                    <p class="text-sm sm:text-lg font-bold text-success mt-1">0.2s</p>
                   </div>
-                  <div class="p-4 rounded-lg bg-deep border border-subtle">
-                    <p class="text-[10px] font-mono text-muted uppercase">LCP</p>
-                    <p class="text-lg font-bold text-success mt-1">0.5s</p>
+                  <div class="p-2.5 sm:p-4 rounded-xl bg-deep border border-subtle text-center">
+                    <p class="text-[9px] sm:text-[10px] font-mono text-muted uppercase">LCP</p>
+                    <p class="text-sm sm:text-lg font-bold text-success mt-1">0.5s</p>
                   </div>
-                  <div class="p-4 rounded-lg bg-deep border border-subtle">
-                    <p class="text-[10px] font-mono text-muted uppercase">CLS</p>
-                    <p class="text-lg font-bold text-success mt-1">0.00</p>
+                  <div class="p-2.5 sm:p-4 rounded-xl bg-deep border border-subtle text-center">
+                    <p class="text-[9px] sm:text-[10px] font-mono text-muted uppercase">CLS</p>
+                    <p class="text-sm sm:text-lg font-bold text-success mt-1">0.00</p>
                   </div>
                 </div>
                 <!-- glowing line chart -->
-                <div class="h-28 rounded-lg bg-deep border border-subtle p-4 flex flex-col justify-between">
-                  <div class="flex justify-between items-center text-[9px] font-mono text-muted">
-                    <span>Astro Core Vitals load speed (ms)</span>
-                    <span class="text-blue-500">Perfect Score</span>
+                <div class="h-28 rounded-lg bg-deep border border-subtle p-3 sm:p-4 flex flex-col justify-between">
+                  <div class="flex justify-between items-center text-[8px] sm:text-[9px] font-mono text-muted gap-2">
+                    <span class="truncate">Astro Core Vitals load speed</span>
+                    <span class="text-blue-500 flex-shrink-0 whitespace-nowrap">Perfect Score</span>
                   </div>
                   <svg class="w-full h-16 mt-2" viewBox="0 0 400 60" fill="none">
                     <path
@@ -470,12 +469,12 @@ const categoryGlow: Record<string, string> = {
 
             <div class="lg:col-span-7 lg:order-1 relative">
               <div
-                class="absolute -inset-1 bg-gradient-to-r from-emerald-500 to-teal-600 rounded-2xl blur-md opacity-20"
+                class="absolute -inset-1 bg-gradient-to-r from-emerald-500 to-teal-600 rounded-2xl blur-md opacity-15"
                 aria-hidden="true"
               >
               </div>
               <div
-                class="glass glass-glow rounded-xl overflow-hidden shadow-2xl relative z-10 border-strong p-4 sm:p-6 bg-surface"
+                class="glass glass-glow rounded-xl overflow-hidden shadow-xl relative z-10 border-strong p-4 sm:p-6 bg-surface"
               >
                 <!-- Mock API Client -->
                 <div class="flex items-center gap-2 border-b border-subtle pb-4 mb-4 overflow-x-auto scrollbar-none whitespace-nowrap">
@@ -530,36 +529,36 @@ const categoryGlow: Record<string, string> = {
 
             <div class="lg:col-span-7 relative">
               <div
-                class="absolute -inset-1 bg-gradient-to-r from-amber-500 to-orange-600 rounded-2xl blur-md opacity-20"
+                class="absolute -inset-1 bg-gradient-to-r from-amber-500 to-orange-600 rounded-2xl blur-md opacity-15"
                 aria-hidden="true"
               >
               </div>
               <div
-                class="glass glass-glow rounded-xl overflow-hidden shadow-2xl relative z-10 border-strong p-6 bg-surface"
+                class="glass glass-glow rounded-xl overflow-hidden shadow-xl relative z-10 border-strong p-6 bg-surface"
               >
                 <!-- WordPress Plugin Card Mockup -->
-                <div class="flex justify-between items-start border-b border-subtle pb-4 mb-4">
-                  <div class="flex items-center gap-3">
+                <div class="flex justify-between items-center border-b border-subtle pb-4 mb-4 gap-2">
+                  <div class="flex items-center gap-2 sm:gap-3 min-w-0">
                     <div
-                      class="w-9 h-9 rounded bg-[#21759b] text-white flex items-center justify-center font-bold text-lg"
+                      class="w-8 h-8 sm:w-9 sm:h-9 rounded bg-[#21759b] text-white flex items-center justify-center font-bold text-base sm:text-lg flex-shrink-0"
                     >
                       W
                     </div>
-                    <div>
-                      <h4 class="text-sm font-bold text-primary">WP Last Modified Info</h4>
-                      <p class="text-[10px] font-mono text-muted">Official Plugin Directory</p>
+                    <div class="min-w-0">
+                      <h4 class="text-xs sm:text-sm font-bold text-primary truncate">WP Last Modified Info</h4>
+                      <p class="text-[9px] sm:text-[10px] font-mono text-muted truncate">Official Plugin Directory</p>
                     </div>
                   </div>
-                  <span class="text-xs font-mono text-accent font-bold">★ ★ ★ ★ ★</span>
+                  <span class="text-[10px] sm:text-xs font-mono text-accent font-bold flex-shrink-0 whitespace-nowrap">★ ★ ★ ★ ★</span>
                 </div>
-                <div class="grid grid-cols-2 gap-4">
-                  <div class="p-4 rounded-lg bg-deep border border-subtle">
-                    <p class="text-[10px] font-mono text-muted uppercase">Active Installs</p>
-                    <p class="text-xl font-bold text-primary mt-1">20,000+</p>
+                <div class="grid grid-cols-2 gap-2.5 sm:gap-4">
+                  <div class="p-3 sm:p-4 rounded-xl bg-deep border border-subtle">
+                    <p class="text-[9px] sm:text-[10px] font-mono text-muted uppercase">Active Installs</p>
+                    <p class="text-base sm:text-xl font-bold text-primary mt-1">20,000+</p>
                   </div>
-                  <div class="p-4 rounded-lg bg-deep border border-subtle">
-                    <p class="text-[10px] font-mono text-muted uppercase">Total Downloads</p>
-                    <p class="text-xl font-bold text-primary mt-1">1,000,000+</p>
+                  <div class="p-3 sm:p-4 rounded-xl bg-deep border border-subtle">
+                    <p class="text-[9px] sm:text-[10px] font-mono text-muted uppercase">Total Downloads</p>
+                    <p class="text-base sm:text-xl font-bold text-primary mt-1">1,000,000+</p>
                   </div>
                 </div>
               </div>
