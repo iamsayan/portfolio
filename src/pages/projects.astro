@@ -8,7 +8,9 @@ import PageHero from "@/components/PageHero.astro";
 
 const projectsPage = await getProjectsPage();
 const featured = projectsPage.featuredProjects;
-const rest = projectsPage.projects;
+const rest = projectsPage.projects.filter(
+  (p) => !featured.some((f) => f._id === p._id)
+);
 const allProjects = [...featured, ...rest];
 
 // Filter tabs reflect actual data categories, not invented buckets
@@ -46,7 +48,7 @@ const categoryLabel: Record<string, string> = {
 };
 
 const categoryText: Record<string, string> = {
-  wordpress: "text-rose-500",
+  wordpress: "text-violet-500",
   fullstack: "text-blue-500",
   packages: "text-emerald-500",
 };
@@ -145,8 +147,8 @@ const wpPluginCount = allProjects.filter((p) => p.category === "wordpress").leng
                         {p.subtitle}
                       </p>
                     )}
-                    {/* Metadata & Links */}
-                    <div class="mt-3 flex flex-wrap items-center gap-3">
+                    <!-- Metadata & Links -->
+                    <div class="mt-3 flex flex-col gap-2 items-start">
                       {p.url && (
                         <a
                           href={p.url}

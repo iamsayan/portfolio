@@ -10,8 +10,10 @@ const [profile, home] = await Promise.all([getProfile(), getHomePage()]);
 // Homepage main hero: first 2 from the curated home project list
 const mainShowcaseProjects = home.projects.slice(0, 2);
 
-// Secondary grid: anything left over after the main showcase
-const secondaryShowcaseProjects = home.projects.slice(2);
+// Secondary grid: anything left over after the main showcase, excluding main showcase projects to prevent duplication
+const secondaryShowcaseProjects = home.projects.slice(2).filter(
+  (p) => !mainShowcaseProjects.some((m) => m._id === p._id)
+);
 
 // "Professional Experience" is the first stat in the `home.stats` repeater
 // (canonical ordering: Professional Experience → Downloads → Projects → Repos)
