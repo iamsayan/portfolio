@@ -111,7 +111,9 @@ const canonicalURL = new URL(Astro.url.pathname, siteUrl);
       )
     }
   </head>
-  <body class="min-h-screen relative">
+  <body class="min-h-screen relative overflow-x-hidden">
+    <!-- Top Progress Bar for ClientRouter navigation -->
+    <div id="progress-bar" aria-hidden="true"></div>
     <a
       href="#main-content"
       class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-accent focus:text-deep focus:rounded-lg focus:font-bold focus:shadow-lg focus:outline-none"
@@ -178,5 +180,70 @@ const canonicalURL = new URL(Astro.url.pathname, siteUrl);
       // Run on first load and on every subsequent ClientRouter navigation
       document.addEventListener("astro:page-load", initReveal);
     </script>
+    <script is:inline>
+      // Top progress bar — hooks into Astro ClientRouter transition lifecycle
+      (function () {
+        const bar = document.getElementById('progress-bar');
+        if (!bar) return;
+
+        let timer = null;
+        let width = 0;
+
+        function setWidth(w) {
+          width = w;
+          bar.style.width = w + '%';
+        }
+
+        function startProgress() {
+          clearInterval(timer);
+          setWidth(0);
+          bar.style.opacity = '1';
+          bar.style.transition = 'width 0.15s ease';
+          setWidth(30);
+          // Trickle slowly toward 85%
+          timer = setInterval(function () {
+            if (width < 85) {
+              const inc = (85 - width) * 0.08;
+              setWidth(Math.min(width + inc, 85));
+            }
+          }, 150);
+        }
+
+        function finishProgress() {
+          clearInterval(timer);
+          bar.style.transition = 'width 0.2s ease, opacity 0.4s ease 0.2s';
+          setWidth(100);
+          setTimeout(function () {
+            bar.style.opacity = '0';
+            setTimeout(function () { setWidth(0); }, 400);
+          }, 200);
+        }
+
+        document.addEventListener('astro:before-preparation', startProgress);
+        document.addEventListener('astro:page-load', finishProgress);
+      })();
+    </script>
+
+    <style is:inline>
+      #progress-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 9999;
+        height: 2.5px;
+        width: 0%;
+        opacity: 0;
+        background: linear-gradient(to right, #f43f5e, #e879f9, #f43f5e);
+        background-size: 200% 100%;
+        animation: progress-shimmer 1.4s linear infinite;
+        pointer-events: none;
+        border-radius: 0 2px 2px 0;
+      }
+
+      @keyframes progress-shimmer {
+        0%   { background-position: 200% center; }
+        100% { background-position: -200% center; }
+      }
+    </style>
   </body>
 </html>

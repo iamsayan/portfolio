@@ -12,6 +12,8 @@ import compressor from "astro-compressor";
 
 import purgecss from "astro-purgecss";
 
+import og from "astro-og";
+
 const env = loadEnv(process.env.NODE_ENV || "development", process.cwd(), "");
 
 export default defineConfig({
@@ -39,5 +41,5 @@ export default defineConfig({
       display: "swap",
       injectTo: "head-prepend",
     },
-  }), robotsTxt(), compressor(), purgecss()],
+  }), robotsTxt(), compressor(), purgecss(), og()],
 });
