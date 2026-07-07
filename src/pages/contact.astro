@@ -31,7 +31,7 @@ const faqs = await getFAQs();
       <div class="mx">
         <div class="grid lg:grid-cols-12 gap-12 lg:gap-20">
           <!-- Left Panel: Context & Details -->
-          <div class="lg:col-span-5 self-stretch">
+          <div class="lg:col-span-5 self-stretch order-2 lg:order-1">
             <div class="lg:sticky lg:top-28 space-y-8">
               <!-- Context Info blocks -->
               <div class="space-y-4 reveal r3">
@@ -117,15 +117,15 @@ const faqs = await getFAQs();
           </div>
 
           <!-- Right Panel: Interactive Form Console -->
-          <div class="lg:col-span-7 relative">
+          <div class="lg:col-span-7 relative order-1 lg:order-2">
             <div class="glass hover-glow-rose p-8 bg-surface border-subtle reveal r2" id="contact-console">
               <!-- Form header -->
-              <div class="flex items-center justify-between border-b border-subtle pb-4 mb-6">
-                <div class="flex items-center gap-2">
-                  <span class="w-2.5 h-2.5 rounded-full bg-success animate-pulse" aria-hidden="true"></span>
+              <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between border-b border-subtle pb-4 mb-6">
+                <div class="flex items-center gap-2 min-w-0">
+                  <span class="w-2.5 h-2.5 rounded-full bg-success animate-pulse flex-shrink-0" aria-hidden="true"></span>
                   <span class="text-xs font-mono text-primary">secure-contact-session (TLS 1.3)</span>
                 </div>
-                <span class="text-[10px] font-mono text-muted">{Astro.site ? Astro.site.host : "sayandatta.co.in"}</span>
+                <span class="text-[10px] font-mono text-muted flex-shrink-0">{Astro.site ? Astro.site.host : "sayandatta.co.in"}</span>
               </div>
 
               <!-- Contact Form -->

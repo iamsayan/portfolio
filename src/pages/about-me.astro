@@ -195,7 +195,8 @@ const [profile, experience, testimonials, philosophy] = await Promise.all([
                           )}
                         </div>
                       </div>
-                      <span class="text-xs bg-raised border border-strong px-3 py-1 rounded-full text-secondary font-medium">
+                      <span class="inline-flex items-center gap-1.5 text-xs bg-raised border border-strong px-3 py-1 rounded-full text-secondary font-sans font-medium flex-shrink-0 w-fit">
+                        <Icon name="ph:calendar-blank" class="w-3.5 h-3.5 text-accent" />
                         {role.duration}
                       </span>
                     </div>
@@ -241,9 +242,10 @@ const [profile, experience, testimonials, philosophy] = await Promise.all([
                           style={`border-color: ${color}`}
                         />
 
-                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-2">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
                           <h4 class="font-bold text-base text-primary">{role.position}</h4>
-                          <span class="text-xs bg-raised border border-strong px-2.5 py-0.5 rounded-full text-secondary font-mono">
+                          <span class="inline-flex items-center gap-1.5 text-xs bg-raised border border-strong px-2.5 py-0.5 rounded-full text-secondary font-sans font-medium flex-shrink-0 w-fit">
+                            <Icon name="ph:calendar-blank" class="w-3 h-3 text-accent" />
                             {role.duration}
                           </span>
                         </div>
