@@ -4,13 +4,8 @@ import icon from "astro-icon";
 import sitemap from "@astrojs/sitemap";
 import vercel from "@astrojs/vercel";
 import { loadEnv } from "vite";
-
 import robotsTxt from "astro-robots-txt";
-
 import compressor from "astro-compressor";
-
-import purgecss from "astro-purgecss";
-
 import og from "astro-og";
 
 const env = loadEnv(process.env.NODE_ENV || "development", process.cwd(), "");
