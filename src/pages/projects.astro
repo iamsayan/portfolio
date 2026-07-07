@@ -285,7 +285,7 @@ const wpPluginCount = allProjects.filter((p) => p.category === "wordpress").leng
             <span class="t-mono text-xs text-muted tracking-wider uppercase font-bold"
               >Secondary implementations &amp; integrations</span
             >
-            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8" id="secondary-grid">
+            <div class="grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-6 mt-8" id="secondary-grid">
               {
               rest.map((p) => {
               const activeLinks = p.links?.filter((link) => link.active) || [];
