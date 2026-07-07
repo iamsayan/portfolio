@@ -85,29 +85,31 @@ const isActive = (path: string) => {
         </nav>
 
         <div class="flex items-center gap-2.5">
-          <Toggle
-            class="w-9 h-9 rounded-lg flex items-center justify-center border border-subtle hover:border-accent transition-colors bg-raised"
-            aria-label="Toggle theme"
-          >
-            <Fragment slot="icon-light">
-              <Icon
-                name="ph:moon"
-                class="w-4 h-4 text-secondary transition-transform duration-300 hover:-rotate-12"
-                aria-hidden="true"
-              />
-            </Fragment>
-            <Fragment slot="icon-dark">
-              <Icon
-                name="ph:sun"
-                class="w-4 h-4 text-secondary transition-transform duration-300 hover:rotate-45"
-                aria-hidden="true"
-              />
-            </Fragment>
-          </Toggle>
+          <div class="w-9 h-9 flex-shrink-0">
+            <Toggle
+              class="w-full h-full rounded-lg flex items-center justify-center border border-subtle hover:border-accent transition-colors bg-raised"
+              aria-label="Toggle theme"
+            >
+              <Fragment slot="icon-light">
+                <Icon
+                  name="ph:moon"
+                  class="w-4 h-4 text-secondary transition-transform duration-300 hover:-rotate-12 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+                  aria-hidden="true"
+                />
+              </Fragment>
+              <Fragment slot="icon-dark">
+                <Icon
+                  name="ph:sun"
+                  class="w-4 h-4 text-secondary transition-transform duration-300 hover:rotate-45 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+                  aria-hidden="true"
+                />
+              </Fragment>
+            </Toggle>
+          </div>
 
           <button
             id="menu-btn"
-            class="md:hidden w-9 h-9 rounded-lg border border-subtle flex flex-col items-center justify-center gap-1.5 bg-raised cursor-pointer"
+            class="md:hidden w-9 h-9 flex-shrink-0 aspect-square rounded-lg border border-subtle flex flex-col items-center justify-center gap-1.5 bg-raised cursor-pointer"
             aria-label="Toggle Mobile Menu"
             aria-expanded="false"
             aria-controls="mob-menu"
@@ -132,7 +134,7 @@ const isActive = (path: string) => {
     class="md:hidden overflow-hidden transition-all duration-400 ease-out px-4 max-h-0 opacity-0"
     aria-label="Mobile Navigation"
   >
-    <div class="glass p-6 mt-2 flex flex-col gap-4 shadow-lg border-strong">
+    <div class="bg-raised border border-subtle rounded-2xl p-6 mt-2 flex flex-col gap-4 shadow-lg">
       <a
         href="/"
         class={`text-base font-semibold py-1 transition-colors border-b border-subtle ${isActive("/") ? "text-accent" : "text-secondary hover:text-accent"}`}
@@ -168,19 +170,6 @@ const isActive = (path: string) => {
         class={`text-base font-semibold py-1 transition-colors border-b border-subtle ${isActive("/blog") ? "text-accent" : "text-secondary hover:text-accent"}`}
         data-close
         aria-current={isActive("/blog") ? "page" : undefined}>Blog</a
-      >
-      <a
-        href="/resume.pdf"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="text-secondary hover:text-accent text-base font-semibold py-1 transition-colors border-b border-subtle"
-        data-close>View Resume</a
-      >
-      <a
-        href="/resume.pdf"
-        download
-        class="text-secondary hover:text-accent text-base font-semibold py-1 transition-colors border-b border-subtle"
-        data-close>Download Resume</a
       >
       <a
         href="/contact"
@@ -223,6 +212,14 @@ const isActive = (path: string) => {
   .active-nav::after {
     transform: scaleX(1) !important;
     transform-origin: bottom left;
+  }
+
+  /* Center the inner icons of astro-theme-toggle */
+  :global(astro-theme-toggle .astro-theme-toggle-icon-light),
+  :global(astro-theme-toggle .astro-theme-toggle-icon-dark) {
+    position: relative;
+    width: 100%;
+    height: 100%;
   }
 </style>
 

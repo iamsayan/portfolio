@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",
+    "@astrojs/vercel": "^11.0.2",
     "@iconify-json/circle-flags": "^1.2.10",
     "@iconify-json/logos": "^1.2.11",
     "@iconify-json/ph": "^1.2.2",

@@ -4,6 +4,7 @@ import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import { getProfile, getFAQs } from "@/lib/data";
 import { Icon } from "astro-icon/components";
+import PageHero from "@/components/PageHero.astro";
 
 const profile = await getProfile();
 const faqs = await getFAQs();
@@ -15,112 +16,103 @@ const faqs = await getFAQs();
 >
   <Header />
   <main
-    class="py-24 relative overflow-hidden"
+    class="py-24 relative overflow-x-clip"
     id="main-content"
     data-email={profile.email}
-    data-api-url={import.meta.env.API_URL || "https://web.sayandatta.co.in"}
   >
-    <!-- Background overlay grid -->
-    <div
-      class="absolute inset-0 opacity-[0.08] pointer-events-none"
-      style="background:radial-gradient(circle at 80% 30%, var(--accent), transparent 50%)"
-      aria-hidden="true"
+    <PageHero
+      badge="Project Handshake"
+      description="Have a plugin concept, API architecture requirement, or technical bottleneck you need resolved? Send a message and let's coordinate."
     >
-    </div>
+      <Fragment slot="title">Let's build <span class="t-accent">together.</span></Fragment>
+    </PageHero>
 
-    <section class="pt-16 pb-12 relative z-10">
+    <section class="pb-24 relative z-10">
       <div class="mx">
         <div class="grid lg:grid-cols-12 gap-12 lg:gap-20">
           <!-- Left Panel: Context & Details -->
-          <div class="lg:col-span-5 space-y-8">
-            <div>
-              <p class="t-mono text-accent uppercase font-bold">Project Handshake</p>
-              <h1 class="t-heading mt-4 reveal r1">Let's build together.</h1>
-              <p class="t-body mt-4 leading-relaxed reveal r2">
-                Have a plugin concept, API architecture requirement, or technical bottleneck you need resolved? Send a
-                message and let's coordinate.
-              </p>
-            </div>
+          <div class="lg:col-span-5 self-stretch">
+            <div class="lg:sticky lg:top-28 space-y-8">
+              <!-- Context Info blocks -->
+              <div class="space-y-4 reveal r3">
+                <div class="glass p-5 bg-surface border-subtle flex items-start gap-4">
+                  <span
+                    class="w-8 h-8 rounded bg-accent-glow text-accent flex items-center justify-center flex-shrink-0"
+                    aria-hidden="true"
+                  >
+                    <Icon name="ph:envelope" class="w-4 h-4" />
+                  </span>
+                  <div>
+                    <p class="text-[10px] font-mono text-muted uppercase tracking-wider">Direct Channels</p>
+                    <div class="flex items-center gap-2 mt-1">
+                      <a
+                        href={`mailto:${profile.email}`}
+                        class="text-sm font-semibold text-accent hover:text-accent-bright transition-colors block"
+                        >{profile.email}</a
+                      >
+                      <button
+                        class="copy-email-btn text-muted hover:text-accent transition-colors cursor-pointer flex items-center justify-center p-0.5 rounded"
+                        data-email={profile.email}
+                        aria-label="Copy email to clipboard"
+                      >
+                        <Icon name="ph:copy" class="w-3.5 h-3.5" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
 
-            <!-- Context Info blocks -->
-            <div class="space-y-4 reveal r3">
-              <div class="glass p-5 bg-surface border-subtle flex items-start gap-4">
-                <span
-                  class="w-8 h-8 rounded bg-accent-glow text-accent flex items-center justify-center flex-shrink-0"
-                  aria-hidden="true"
-                >
-                  <Icon name="ph:envelope" class="w-4 h-4" />
-                </span>
-                <div>
-                  <p class="text-[10px] font-mono text-muted uppercase tracking-wider">Direct Channels</p>
-                  <div class="flex items-center gap-2 mt-1">
-                    <a
-                      href={`mailto:${profile.email}`}
-                      class="text-sm font-semibold text-accent hover:text-accent-bright transition-colors block"
-                      >{profile.email}</a
-                    >
-                    <button
-                      class="copy-email-btn text-muted hover:text-accent transition-colors cursor-pointer flex items-center justify-center p-0.5 rounded"
-                      data-email={profile.email}
-                      aria-label="Copy email to clipboard"
-                    >
-                      <Icon name="ph:copy" class="w-3.5 h-3.5" />
-                    </button>
+                <div class="glass p-5 bg-surface border-subtle flex items-start gap-4">
+                  <span
+                    class="w-8 h-8 rounded bg-accent-glow text-accent flex items-center justify-center flex-shrink-0"
+                    aria-hidden="true"
+                  >
+                    <Icon name="ph:map-pin" class="w-4 h-4" />
+                  </span>
+                  <div>
+                    <p class="text-[10px] font-mono text-muted uppercase tracking-wider">Operational Location</p>
+                    <p class="text-sm text-secondary mt-1 font-semibold">
+                      {profile.location} &middot; Remote operations globally
+                    </p>
+                  </div>
+                </div>
+
+                <div class="glass p-5 bg-surface border-subtle flex items-start gap-4">
+                  <span
+                    class="w-8 h-8 rounded bg-success-glow text-success flex items-center justify-center flex-shrink-0 animate-pulse"
+                    aria-hidden="true"
+                  >
+                    <Icon name="ph:circle-fill" class="w-2.5 h-2.5" />
+                  </span>
+                  <div>
+                    <p class="text-[10px] font-mono text-muted uppercase tracking-wider">Work Availability</p>
+                    <p class="text-sm text-secondary mt-1 font-semibold">Open for Freelance and Contract roles</p>
                   </div>
                 </div>
               </div>
 
-              <div class="glass p-5 bg-surface border-subtle flex items-start gap-4">
-                <span
-                  class="w-8 h-8 rounded bg-accent-glow text-accent flex items-center justify-center flex-shrink-0"
-                  aria-hidden="true"
+              <div class="flex items-center gap-6 pt-4 reveal r4">
+                <a
+                  href={profile.socials.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-xs font-mono text-secondary hover:text-accent transition-colors"
+                  aria-label="Github Profile">&lt; GitHub &gt;</a
                 >
-                  <Icon name="ph:map-pin" class="w-4 h-4" />
-                </span>
-                <div>
-                  <p class="text-[10px] font-mono text-muted uppercase tracking-wider">Operational Location</p>
-                  <p class="text-sm text-secondary mt-1 font-semibold">
-                    {profile.location} &middot; Remote operations globally
-                  </p>
-                </div>
-              </div>
-
-              <div class="glass p-5 bg-surface border-subtle flex items-start gap-4">
-                <span
-                  class="w-8 h-8 rounded bg-success-glow text-success flex items-center justify-center flex-shrink-0 animate-pulse"
-                  aria-hidden="true"
+                <a
+                  href={profile.socials.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-xs font-mono text-secondary hover:text-accent transition-colors"
+                  aria-label="LinkedIn Profile">&lt; LinkedIn &gt;</a
                 >
-                  <Icon name="ph:circle-fill" class="w-2.5 h-2.5" />
-                </span>
-                <div>
-                  <p class="text-[10px] font-mono text-muted uppercase tracking-wider">Work Availability</p>
-                  <p class="text-sm text-secondary mt-1 font-semibold">Open for Freelance and Contract roles</p>
-                </div>
+                <a
+                  href={profile.socials.twitter}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-xs font-mono text-secondary hover:text-accent transition-colors"
+                  aria-label="Twitter Profile">&lt; Twitter &gt;</a
+                >
               </div>
-            </div>
-
-            <div class="flex items-center gap-6 pt-4 reveal r4">
-              <a
-                href={profile.socials.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="text-xs font-mono text-secondary hover:text-accent transition-colors"
-                aria-label="Github Profile">&lt; GitHub &gt;</a
-              >
-              <a
-                href={profile.socials.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="text-xs font-mono text-secondary hover:text-accent transition-colors"
-                aria-label="LinkedIn Profile">&lt; LinkedIn &gt;</a
-              >
-              <a
-                href={profile.socials.twitter}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="text-xs font-mono text-secondary hover:text-accent transition-colors"
-                aria-label="Twitter Profile">&lt; Twitter &gt;</a
-              >
             </div>
           </div>
 
@@ -150,9 +142,21 @@ const faqs = await getFAQs();
                   />
                   <label
                     for="name"
-                    class="absolute left-4 top-0 text-[10px] text-muted -translate-y-2 bg-surface px-1 scale-95 transition-all duration-200 pointer-events-none origin-left peer-placeholder-shown:text-sm peer-placeholder-shown:top-3 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:px-0 peer-focus:top-0 peer-focus:text-[10px] peer-focus:text-accent peer-focus:-translate-y-2 peer-focus:scale-95 peer-focus:px-1"
+                    class="absolute left-4 top-0 text-[10px] text-muted -translate-y-2 bg-deep px-1 scale-95 transition-all duration-200 pointer-events-none origin-left peer-placeholder-shown:text-sm peer-placeholder-shown:top-3 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:px-0 peer-focus:top-0 peer-focus:text-[10px] peer-focus:text-accent peer-focus:-translate-y-2 peer-focus:scale-95 peer-focus:px-1"
                     >Your Name</label
                   >
+                </div>
+
+                <!-- Honeypot (Spam mitigation) -->
+                <div class="hidden" aria-hidden="true">
+                  <input
+                    type="text"
+                    id="_honeypot"
+                    name="_honeypot"
+                    tabindex="-1"
+                    autocomplete="off"
+                    class="hidden"
+                  />
                 </div>
 
                 <!-- Floating Label Email -->
@@ -167,7 +171,7 @@ const faqs = await getFAQs();
                   />
                   <label
                     for="email"
-                    class="absolute left-4 top-0 text-[10px] text-muted -translate-y-2 bg-surface px-1 scale-95 transition-all duration-200 pointer-events-none origin-left peer-placeholder-shown:text-sm peer-placeholder-shown:top-3 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:px-0 peer-focus:top-0 peer-focus:text-[10px] peer-focus:text-accent peer-focus:-translate-y-2 peer-focus:scale-95 peer-focus:px-1"
+                    class="absolute left-4 top-0 text-[10px] text-muted -translate-y-2 bg-deep px-1 scale-95 transition-all duration-200 pointer-events-none origin-left peer-placeholder-shown:text-sm peer-placeholder-shown:top-3 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:px-0 peer-focus:top-0 peer-focus:text-[10px] peer-focus:text-accent peer-focus:-translate-y-2 peer-focus:scale-95 peer-focus:px-1"
                     >Email Address</label
                   >
                 </div>
@@ -184,8 +188,8 @@ const faqs = await getFAQs();
                   />
                   <label
                     for="scope"
-                    class="absolute left-4 top-0 text-[10px] text-muted -translate-y-2 bg-surface px-1 scale-95 transition-all duration-200 pointer-events-none origin-left peer-placeholder-shown:text-sm peer-placeholder-shown:top-3 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:px-0 peer-focus:top-0 peer-focus:text-[10px] peer-focus:text-accent peer-focus:-translate-y-2 peer-focus:scale-95 peer-focus:px-1"
-                    >Project Scope (e.g. WooCommerce Plugin, Laravel API)</label
+                    class="absolute left-4 top-0 text-[10px] text-muted -translate-y-2 bg-deep px-1 scale-95 transition-all duration-200 pointer-events-none origin-left peer-placeholder-shown:text-sm peer-placeholder-shown:top-3 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:px-0 peer-focus:top-0 peer-focus:text-[10px] peer-focus:text-accent peer-focus:-translate-y-2 peer-focus:scale-95 peer-focus:px-1"
+                    >Project Scope</label
                   >
                 </div>
 
@@ -200,7 +204,7 @@ const faqs = await getFAQs();
                     placeholder="Message"></textarea>
                   <label
                     for="message"
-                    class="absolute left-4 top-0 text-[10px] text-muted -translate-y-2 bg-surface px-1 scale-95 transition-all duration-200 pointer-events-none origin-left peer-placeholder-shown:text-sm peer-placeholder-shown:top-3 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:px-0 peer-focus:top-0 peer-focus:text-[10px] peer-focus:text-accent peer-focus:-translate-y-2 peer-focus:scale-95 peer-focus:px-1"
+                    class="absolute left-4 top-0 text-[10px] text-muted -translate-y-2 bg-deep px-1 scale-95 transition-all duration-200 pointer-events-none origin-left peer-placeholder-shown:text-sm peer-placeholder-shown:top-3 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:px-0 peer-focus:top-0 peer-focus:text-[10px] peer-focus:text-accent peer-focus:-translate-y-2 peer-focus:scale-95 peer-focus:px-1"
                     >Project Details / Requirements</label
                   >
                 </div>
@@ -326,6 +330,8 @@ const faqs = await getFAQs();
 </Layout>
 
 <script>
+  import { actions } from "astro:actions";
+
   const contactForm = document.getElementById("contact-form") as HTMLFormElement;
   const contactConsole = document.getElementById("contact-console");
   const submitBtn = document.getElementById("submit-btn") as HTMLButtonElement;
@@ -344,8 +350,6 @@ const faqs = await getFAQs();
 
   const mainEl = document.getElementById("main-content");
   const emailAddr = mainEl?.getAttribute("data-email") || "hello@sayandatta.co.in";
-  const apiUrl = mainEl?.getAttribute("data-api-url") || "https://web.sayandatta.co.in";
-  const inboxToken = "6b6d1f494564711c1a332d7d33aa27531a090d22";
 
   const terminalFeed = document.getElementById("terminal-feed");
 
@@ -375,6 +379,7 @@ const faqs = await getFAQs();
   const emailInput = document.getElementById("email") as HTMLInputElement;
   const scopeInput = document.getElementById("scope") as HTMLInputElement;
   const messageInput = document.getElementById("message") as HTMLTextAreaElement;
+  const honeypotInput = document.getElementById("_honeypot") as HTMLInputElement;
 
   nameInput?.addEventListener("input", () => {
     const val = nameInput.value.trim();
@@ -395,7 +400,7 @@ const faqs = await getFAQs();
   scopeInput?.addEventListener("input", () => {
     const val = scopeInput.value.trim();
     if (val) {
-      logTerminal(`route_scope_bind: /pay/${val.toLowerCase().replace(/[^a-z0-9]/g, "-")}`, "info");
+      logTerminal(`route_scope_bind: /project/${val.toLowerCase().replace(/[^a-z0-9]/g, "-")}`, "info");
     }
   });
 
@@ -412,6 +417,7 @@ const faqs = await getFAQs();
       email: emailInput.value.trim(),
       scope: scopeInput.value.trim(),
       message: messageInput.value.trim(),
+      _honeypot: honeypotInput ? honeypotInput.value : "",
     };
   }
 
@@ -427,7 +433,7 @@ const faqs = await getFAQs();
     contactForm.addEventListener("submit", async (e) => {
       e.preventDefault();
 
-      const { name, email, scope, message } = getFormValues();
+      const { name, email, scope, message, _honeypot } = getFormValues();
       if (!name || !email || !scope || !message) return;
 
       logTerminal(`payload_handshake: resolving DNS route host...`, "warn");
@@ -438,53 +444,28 @@ const faqs = await getFAQs();
       if (loadingBar) loadingBar.style.width = "10%";
       if (loadingLog) loadingLog.textContent = "Resolving DNS routing...";
 
-      // If Cockpit host or inbox token is not set, skip AJAX and jump straight to error mailto fallback panel
-      if (!apiUrl || !inboxToken) {
-        logTerminal(`config_alert: missing integration ID.`, "warn");
-        setTimeout(() => {
-          loadingState?.classList.add("hidden");
-          errorState?.classList.remove("hidden");
-          if (errorMessage) {
-            errorMessage.textContent =
-              "Cockpit integration is not configured. Direct local email fallback is ready.";
-          }
-          logTerminal(`compilation_failed: fallback enabled.`, "warn");
-        }, 1000);
-        return;
-      }
-
       try {
         if (loadingBar) loadingBar.style.width = "40%";
         if (loadingLog) loadingLog.textContent = "Packaging payload data...";
         logTerminal(`assembler: building JSON packaging schema...`, "info");
 
-        const response = await fetch(`${apiUrl}/api/inbox/submit/${inboxToken}`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ data: { name, email, scope, message } }),
-        });
+        // Invoke type-safe server action
+        const { data, error } = await actions.submitContact({ name, email, scope, message, _honeypot });
 
         if (loadingBar) loadingBar.style.width = "80%";
         if (loadingLog) loadingLog.textContent = "Negotiating handshake response...";
         logTerminal(`negotiator: transmitting packet (TLS 1.3)...`, "info");
 
-        if (response.ok) {
-          const resData = await response.json();
-          if (resData && resData.success) {
-            logTerminal(`transmitter: 200 OK successfully acknowledged.`, "success");
-            if (loadingBar) loadingBar.style.width = "100%";
-            setTimeout(() => {
-              loadingState?.classList.add("hidden");
-              successState?.classList.remove("hidden");
-              contactForm.reset();
-            }, 400);
-          } else {
-            throw new Error("Cockpit submit returned success: false");
-          }
+        if (!error && data && data.success) {
+          logTerminal(`transmitter: 200 OK successfully acknowledged.`, "success");
+          if (loadingBar) loadingBar.style.width = "100%";
+          setTimeout(() => {
+            loadingState?.classList.add("hidden");
+            successState?.classList.remove("hidden");
+            contactForm.reset();
+          }, 400);
         } else {
-          throw new Error("Cockpit API response not OK");
+          throw new Error(error?.message || "Cockpit submit returned success: false");
         }
       } catch (err) {
         logTerminal(`transmitter_error: connection interrupted.`, "warn");
