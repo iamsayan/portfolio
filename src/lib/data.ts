@@ -22,7 +22,6 @@ export interface ProfileData {
   backupEmail: string;
   socials: { github: string; linkedin: string; twitter: string };
   bios: { short: string; medium: string; long: string };
-  formspreeId?: string;
 }
 
 export async function getProfile(): Promise<ProfileData> {

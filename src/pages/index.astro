@@ -137,27 +137,39 @@ const categoryGlow: Record<string, string> = {
               </div>
 
               <!-- Tab Bar -->
-              <div class="bg-surface flex border-b border-subtle font-mono text-xs">
+              <div class="bg-surface flex overflow-x-auto scrollbar-none border-b border-subtle font-mono text-xs">
                 <button
-                  class="ide-tab px-4 py-2 border-r border-subtle bg-surface text-muted flex items-center gap-2 cursor-pointer focus:outline-none hover:text-primary transition-colors"
+                  class="ide-tab px-4 py-2 border-r border-subtle bg-surface text-muted flex items-center gap-2 cursor-pointer focus:outline-none hover:text-primary transition-colors flex-shrink-0"
                   data-tab="php"
                 >
                   <span class="text-[#21759b]">PHP</span>
                   <span>plugin.php</span>
                 </button>
                 <button
-                  class="ide-tab px-4 py-2 border-r border-subtle bg-deep text-accent border-t border-t-accent flex items-center gap-2 cursor-pointer focus:outline-none"
+                  class="ide-tab px-4 py-2 border-r border-subtle bg-deep text-accent border-t border-t-accent flex items-center gap-2 cursor-pointer focus:outline-none flex-shrink-0"
                   data-tab="ts"
                 >
                   <span class="text-[#38bdf8]">TS</span>
                   <span>gateway.ts</span>
                 </button>
                 <button
-                  class="ide-tab px-4 py-2 bg-surface text-muted flex items-center gap-2 cursor-pointer focus:outline-none hover:text-primary transition-colors border-r border-strong"
+                  class="ide-tab px-4 py-2 border-r border-subtle bg-surface text-muted flex items-center gap-2 cursor-pointer focus:outline-none hover:text-primary transition-colors flex-shrink-0"
                   data-tab="json"
                 >
                   <span class="text-[#f59e0b]">JSON</span>
                   <span>composer.json</span>
+                </button>
+                <button
+                  class="ide-tab px-4 py-2 bg-surface text-muted flex items-center gap-2 cursor-pointer focus:outline-none hover:text-primary transition-colors border-r border-strong relative flex items-center flex-shrink-0"
+                  data-tab="git"
+                  id="git-tab-btn"
+                >
+                  <span class="relative flex h-1.5 w-1.5 mr-1" aria-hidden="true">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-500 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-rose-500"></span>
+                  </span>
+                  <span class="text-rose-500 font-bold mr-1">GIT</span>
+                  <span>github.log</span>
                 </button>
               </div>
 
@@ -317,6 +329,20 @@ const categoryGlow: Record<string, string> = {
                   <div>&#125;</div>
                   <div class="pt-4 text-muted">$ <span class="text-secondary">composer validate</span></div>
                   <div class="text-success">&gt; composer.json is valid.</div>
+                </div>
+
+                <!-- GIT Panel -->
+                <div id="code-git" class="code-panel space-y-3 hidden text-[11px] font-mono leading-relaxed max-w-full overflow-x-auto select-text">
+                  <div class="text-muted flex items-center gap-1.5 select-none">
+                    <span class="text-secondary font-bold">$</span> git log --oneline -n 4
+                  </div>
+                  
+                  <div id="git-log-content" class="space-y-4 pt-1">
+                    <div class="text-secondary animate-pulse flex items-center gap-2 select-none">
+                      <span class="w-1.5 h-1.5 rounded-full bg-rose-500 animate-ping"></span>
+                      Fetching Sayan's live public events from api.github.com...
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -594,9 +620,9 @@ const categoryGlow: Record<string, string> = {
                     </span>
 
                     <h3 class="text-2xl font-bold text-primary leading-tight">
-                      {activeLink ? (
+                      {project.url ? (
                         <a
-                          href={activeLink.url}
+                          href={project.url}
                           target="_blank"
                           rel="noopener noreferrer"
                           class="hover:text-accent transition-colors duration-300"
@@ -667,7 +693,7 @@ const categoryGlow: Record<string, string> = {
         <div class="grid md:grid-cols-3 gap-6 mt-8 reveal">
           {
             secondaryShowcaseProjects.map((project) => {
-              const activeLink = project.links?.find((link) => link.active);
+              const activeLinks = project.links?.filter((link) => link.active) || [];
               const cat = project.category;
               const glow = categoryGlow[cat] ?? "hover-glow-rose";
               return (
@@ -700,9 +726,9 @@ const categoryGlow: Record<string, string> = {
                     </span>
 
                     <h4 class="font-bold text-base text-primary leading-tight">
-                      {activeLink ? (
+                      {project.url ? (
                         <a
-                          href={activeLink.url}
+                          href={project.url}
                           target="_blank"
                           rel="noopener noreferrer"
                           class="hover:text-accent transition-colors"
@@ -748,16 +774,36 @@ const categoryGlow: Record<string, string> = {
                       </div>
                     )}
 
-                    {activeLink && (
-                      <div class="pt-1 mt-auto">
-                        <a
-                          href={activeLink.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          class="text-[11px] text-accent font-semibold hover:underline"
-                        >
-                          {activeLink.title} &rarr;
-                        </a>
+                    {activeLinks.length > 0 && (
+                      <div class="pt-2.5 mt-auto flex flex-wrap gap-2">
+                        {activeLinks.map((link) => {
+                          // Determine icon based on link title/url
+                          let iconName = "ph:arrow-up-right-bold";
+                          const lowerTitle = link.title.toLowerCase();
+                          const lowerUrl = link.url.toLowerCase();
+                          if (lowerTitle.includes("github") || lowerTitle.includes("source") || lowerTitle.includes("code")) {
+                            iconName = "ph:code-bold";
+                          } else if (lowerTitle.includes("wordpress") || lowerUrl.includes("wordpress.org")) {
+                            iconName = "ph:wordpress-logo-bold";
+                          } else if (lowerTitle.includes("site") || lowerTitle.includes("demo") || lowerTitle.includes("live") || lowerTitle.includes("visit")) {
+                            iconName = "ph:globe-bold";
+                          } else if (lowerTitle.includes("download") || lowerTitle.includes("install")) {
+                            iconName = "ph:download-simple-bold";
+                          }
+
+                          return (
+                            <a
+                              href={link.url}
+                              target={link.target || '_blank'}
+                              rel="noopener noreferrer"
+                              class="inline-flex items-center gap-1.5 text-[9px] font-mono font-bold tracking-wide uppercase px-2.5 py-1 rounded-md border border-subtle bg-strong/10 text-secondary hover:text-accent hover:border-accent/40 hover:bg-accent-glow transition-all duration-300 group leading-none"
+                            >
+                              <Icon name={iconName} class="w-3 h-3 text-muted group-hover:text-accent transition-colors flex-shrink-0" />
+                              <span class="leading-none mt-[0.5px]">{link.title}</span>
+                              <span class="inline-block transition-transform duration-300 group-hover:translate-x-0.5 leading-none" aria-hidden="true">&rarr;</span>
+                            </a>
+                          );
+                        })}
                       </div>
                     )}
                   </div>
@@ -907,4 +953,167 @@ const categoryGlow: Record<string, string> = {
       });
     });
   });
+
+  // GitHub telemetry fetching logic
+  let gitFetched = false;
+  const gitTabBtn = document.getElementById("git-tab-btn");
+  if (gitTabBtn) {
+    gitTabBtn.addEventListener("click", () => {
+      if (!gitFetched) {
+        gitFetched = true;
+        fetchGitHubEvents();
+      }
+    });
+  }
+
+  async function fetchGitHubEvents() {
+    const container = document.getElementById("git-log-content");
+    if (!container) return;
+
+    try {
+      const res = await fetch("https://api.github.com/users/iamsayan/events/public");
+      if (!res.ok) {
+        throw new Error(`Failed to fetch events: ${res.status}`);
+      }
+      const data = await res.json();
+      
+      // Filter for interactive events
+      const validEvents = data.filter((e: any) => 
+        e.type === "PushEvent" || 
+        e.type === "CreateEvent" || 
+        e.type === "PullRequestEvent" || 
+        e.type === "IssuesEvent"
+      ).slice(0, 4);
+
+      if (validEvents.length === 0) {
+        renderFallbackLogs(container);
+        return;
+      }
+
+      container.innerHTML = "";
+      validEvents.forEach((event: any) => {
+        const commitCard = createGitLogCard(event);
+        container.appendChild(commitCard);
+      });
+    } catch (err) {
+      console.warn("GitHub fetch failed or rate-limited. Falling back to cached logs...", err);
+      renderFallbackLogs(container);
+    }
+  }
+
+  function createGitLogCard(event: any) {
+    const card = document.createElement("div");
+    card.className = "border-l-2 border-subtle pl-3 py-1 space-y-1 hover:border-accent transition-colors";
+
+    // Extract event details
+    let sha = "commit " + (event.id ? event.id.slice(0, 7) : "abcdefg");
+    let branch = " (main)";
+    let repoName = event.repo.name;
+    let repoUrl = `https://github.com/${repoName}`;
+    let timeAgo = formatTimeAgo(new Date(event.created_at));
+    let message = "";
+    
+    if (event.type === "PushEvent" && event.payload.commits && event.payload.commits.length > 0) {
+      sha = "commit " + event.payload.commits[0].sha.slice(0, 7);
+      const branchRef = event.payload.ref || "refs/heads/main";
+      branch = ` (${branchRef.replace("refs/heads/", "")})`;
+      message = event.payload.commits[0].message;
+    } else if (event.type === "CreateEvent") {
+      message = `Created repository ${repoName} (${event.payload.description || "No description"})`;
+    } else if (event.type === "PullRequestEvent") {
+      message = `${event.payload.action} Pull Request #${event.payload.number}: ${event.payload.pull_request.title}`;
+    } else {
+      message = `Activity on ${repoName}`;
+    }
+
+    card.innerHTML = `
+      <div class="flex items-center gap-1.5 flex-wrap select-none">
+        <span class="text-[#f59e0b] font-bold">${sha}</span>
+        <span class="text-[#38bdf8] font-mono text-[10px]">${branch}</span>
+      </div>
+      <div class="text-muted text-[10px] select-none">
+        Author: Sayan Datta &lt;iamsayan&gt; | ${timeAgo}
+      </div>
+      <div class="text-primary font-medium mt-1 font-sans pl-1">
+        ${escapeHtml(message)}
+      </div>
+      <div class="text-[9px] font-mono text-muted select-none">
+        repo: <a href="${repoUrl}" target="_blank" rel="noopener noreferrer" class="text-[#10b981] hover:underline">${repoName}</a>
+      </div>
+    `;
+
+    return card;
+  }
+
+  function formatTimeAgo(date: Date) {
+    const now = new Date();
+    const seconds = Math.floor((now.getTime() - date.getTime()) / 1000);
+    if (seconds < 60) return "Just now";
+    const minutes = Math.floor(seconds / 60);
+    if (minutes < 60) return `${minutes}m ago`;
+    const hours = Math.floor(minutes / 60);
+    if (hours < 24) return `${hours}h ago`;
+    const days = Math.floor(hours / 24);
+    if (days === 1) return "Yesterday";
+    return `${days}d ago`;
+  }
+
+  function escapeHtml(unsafe: string) {
+    return unsafe
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
+  function renderFallbackLogs(container: HTMLElement) {
+    container.innerHTML = `
+      <div class="text-muted text-[10px] select-none italic pb-2 border-b border-subtle/30">
+        API limit exceeded or offline. Showing recent cached logs from git history:
+      </div>
+      
+      <div class="border-l-2 border-accent pl-3 py-1 space-y-1">
+        <div class="flex items-center gap-1.5 flex-wrap select-none">
+          <span class="text-[#f59e0b] font-bold">commit 9c2a7f1</span>
+          <span class="text-[#38bdf8] font-mono text-[10px]"> (main)</span>
+        </div>
+        <div class="text-muted text-[10px] select-none">Author: Sayan Datta &lt;iamsayan&gt; | 2d ago</div>
+        <div class="text-primary font-medium mt-1 font-sans pl-1">
+          perf: optimize sticky sidebar layout constraints
+        </div>
+        <div class="text-[9px] font-mono text-muted select-none">
+          repo: <a href="https://github.com/iamsayan/portfolio" target="_blank" rel="noopener noreferrer" class="text-[#10b981] hover:underline">iamsayan/portfolio</a>
+        </div>
+      </div>
+
+      <div class="border-l-2 border-subtle pl-3 py-1 space-y-1">
+        <div class="flex items-center gap-1.5 flex-wrap select-none">
+          <span class="text-[#f59e0b] font-bold">commit b82f4d1</span>
+          <span class="text-[#38bdf8] font-mono text-[10px]"> (main)</span>
+        </div>
+        <div class="text-muted text-[10px] select-none">Author: Sayan Datta &lt;iamsayan&gt; | 2d ago</div>
+        <div class="text-primary font-medium mt-1 font-sans pl-1">
+          fix: typescript Element style compilation check
+        </div>
+        <div class="text-[9px] font-mono text-muted select-none">
+          repo: <a href="https://github.com/iamsayan/portfolio" target="_blank" rel="noopener noreferrer" class="text-[#10b981] hover:underline">iamsayan/portfolio</a>
+        </div>
+      </div>
+
+      <div class="border-l-2 border-subtle pl-3 py-1 space-y-1">
+        <div class="flex items-center gap-1.5 flex-wrap select-none">
+          <span class="text-[#f59e0b] font-bold">commit f28a9b3</span>
+          <span class="text-[#38bdf8] font-mono text-[10px]"> (main)</span>
+        </div>
+        <div class="text-muted text-[10px] select-none">Author: Sayan Datta &lt;iamsayan&gt; | 3d ago</div>
+        <div class="text-primary font-medium mt-1 font-sans pl-1">
+          feat: add interactive service detail explorer panels
+        </div>
+        <div class="text-[9px] font-mono text-muted select-none">
+          repo: <a href="https://github.com/iamsayan/portfolio" target="_blank" rel="noopener noreferrer" class="text-[#10b981] hover:underline">iamsayan/portfolio</a>
+        </div>
+      </div>
+    `;
+  }
 </script>

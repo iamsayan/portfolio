@@ -71,7 +71,7 @@ const wpPluginCount = allProjects.filter((p) => p.category === "wordpress").leng
     <!-- Honest summary strip -->
     <section class="pb-10 relative z-10">
       <div class="mx">
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-px bg-strong border border-subtle rounded-2xl overflow-hidden">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-px bg-strong border border-subtle rounded-2xl overflow-hidden reveal">
           <div class="bg-surface p-5">
             <p class="t-mono text-[10px] text-muted">Featured projects</p>
             <p class="text-2xl font-display font-extrabold text-primary mt-1.5">{featured.length}</p>
@@ -117,7 +117,7 @@ const wpPluginCount = allProjects.filter((p) => p.category === "wordpress").leng
         <div class="space-y-16" id="projects-list">
           {
             featured.map((p, idx) => {
-              const activeLink = p.links?.find((link) => link.active);
+              const activeLinks = p.links?.filter((link) => link.active) || [];
               return (
                 <article class="project-card reveal" data-cat={p.category}>
                 <div class="grid lg:grid-cols-12 gap-8 items-start">
@@ -147,15 +147,15 @@ const wpPluginCount = allProjects.filter((p) => p.category === "wordpress").leng
                     )}
                     {/* Metadata & Links */}
                     <div class="mt-3 flex flex-wrap items-center gap-3">
-                      {activeLink && (
+                      {p.url && (
                         <a
-                          href={activeLink.url}
+                          href={p.url}
                           target="_blank"
                           rel="noopener noreferrer"
                           class="inline-flex items-center gap-1 text-[11px] font-mono text-secondary hover:text-accent transition-colors"
                         >
                           <Icon name="ph:link" class="w-3.5 h-3.5" aria-hidden="true" />
-                          {activeLink.url.replace(/^https?:\/\//, "").replace(/\/$/, "")}
+                          {p.url.replace(/^https?:\/\//, "").replace(/\/$/, "")}
                         </a>
                       )}
                       
@@ -241,31 +241,34 @@ const wpPluginCount = allProjects.filter((p) => p.category === "wordpress").leng
                               <span set:html={p.impact} />
                             </div>
                           )}
+                        </div>
 
-                          {/* Direct Links */}
-                          {activeLink && (
-                            <div class="flex flex-wrap gap-4 mt-6">
-                              <a
-                                href={activeLink.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class={`b ${activeLink.data?.type === "primary" ? "b-primary" : "b-ghost"} text-xs flex items-center gap-1`}
-                              >
-                                {activeLink.title}
-                                <span aria-hidden="true">&rarr;</span>
-                              </a>
+                        {/* Action CTA Buttons Block (always visible) */}
+                        <div class="flex flex-wrap items-center justify-between gap-4 mt-6 pt-5 border-t border-subtle">
+                          <button
+                            class="case-study-toggle inline-flex items-center gap-2 text-[10px] font-mono font-bold uppercase tracking-wider px-4 py-2 rounded-lg border border-subtle bg-strong text-secondary hover:text-accent hover:border-accent/40 hover:bg-accent-glow transition-all duration-300 cursor-pointer focus:outline-none"
+                            aria-expanded={idx === 0 ? "true" : "false"}
+                          >
+                            <span class="toggle-text">{idx === 0 ? "Collapse Case Study" : "Read Case Study"}</span>
+                            <Icon name="ph:caret-down" class="w-3.5 h-3.5 caret-icon transition-transform duration-300" style={idx === 0 ? "transform: rotate(180deg);" : ""} aria-hidden="true" />
+                          </button>
+
+                          {activeLinks.length > 0 && (
+                            <div class="flex flex-wrap gap-3">
+                              {activeLinks.map((link) => (
+                                <a
+                                  href={link.url}
+                                  target={link.target || "_blank"} 
+                                  rel="noopener noreferrer"
+                                  class={`b b-ghost ${link.data?.type === "primary" ? "!border-accent !text-accent hover:!bg-accent-glow" : ""} text-xs flex items-center gap-1.5`}
+                                >
+                                  {link.title}
+                                  <span aria-hidden="true">&rarr;</span>
+                                </a>
+                              ))}
                             </div>
                           )}
                         </div>
-
-                        {/* Case Study Toggle */}
-                        <button
-                          class="case-study-toggle mt-4 inline-flex items-center gap-2 text-[10px] font-mono font-bold uppercase tracking-wider px-4 py-2 rounded-lg border border-subtle bg-strong text-secondary hover:text-accent hover:border-accent/40 hover:bg-accent-glow transition-all duration-300 cursor-pointer focus:outline-none"
-                          aria-expanded={idx === 0 ? "true" : "false"}
-                        >
-                          <span class="toggle-text">{idx === 0 ? "Collapse Case Study" : "Read Case Study"}</span>
-                          <Icon name="ph:caret-down" class="w-3.5 h-3.5 caret-icon transition-transform duration-300" style={idx === 0 ? "transform: rotate(180deg);" : ""} aria-hidden="true" />
-                        </button>
                       </div>
                     </div>
                   </div>
@@ -282,43 +285,44 @@ const wpPluginCount = allProjects.filter((p) => p.category === "wordpress").leng
             >
             <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8" id="secondary-grid">
               {
-                rest.map((p) => {
-                  const activeLink = p.links?.find((link) => link.active);
-                  return (
-                    <div
-                      class={`project-card glass bg-surface hover:-translate-y-0.5 transition-all flex flex-col justify-between group ${glowClass[p.category] ?? "hover-glow-rose"}`}
-                      data-cat={p.category}
-                    >
-                      {/* Top bar: category + status badges */}
-                      <div class="flex items-center justify-between gap-2 px-5 pt-5 pb-3 border-b border-subtle">
-                        <span class={`text-[9px] font-mono uppercase tracking-widest font-bold ${categoryText[p.category] ?? "text-muted"}`}>
-                          {categoryLabel[p.category] ?? p.category}
+              rest.map((p) => {
+              const activeLinks = p.links?.filter((link) => link.active) || [];
+              const primaryLink = activeLinks.find((link) => link.data?.type === "primary") || activeLinks[0];
+              return (
+                <div
+                  class={`project-card glass bg-surface hover:-translate-y-0.5 transition-all flex flex-col justify-between group ${glowClass[p.category] ?? "hover-glow-rose"}`}
+                  data-cat={p.category}
+                >
+                  {/* Top bar: category + status badges */}
+                  <div class="flex items-center justify-between gap-2 px-5 pt-5 pb-3 border-b border-subtle">
+                    <span class={`text-[9px] font-mono uppercase tracking-widest font-bold ${categoryText[p.category] ?? "text-muted"}`}>
+                      {categoryLabel[p.category] ?? p.category}
+                    </span>
+                    <div class="flex items-center gap-1.5">
+                      {isTeamContribution(p) && (
+                        <span class="text-[9px] font-mono text-secondary uppercase tracking-widest bg-raised px-2 py-0.5 rounded border border-subtle font-bold">
+                          Team
                         </span>
-                        <div class="flex items-center gap-1.5">
-                          {isTeamContribution(p) && (
-                            <span class="text-[9px] font-mono text-secondary uppercase tracking-widest bg-raised px-2 py-0.5 rounded border border-subtle font-bold">
-                              Team
-                            </span>
-                          )}
-                          {p.acquired && (
-                            <span class="text-[9px] font-mono text-success uppercase tracking-widest bg-success-glow px-2 py-0.5 rounded border border-emerald-500/10 font-bold">
-                              Acquired
-                            </span>
-                          )}
-                        </div>
-                      </div>
+                      )}
+                      {p.acquired && (
+                        <span class="text-[9px] font-mono text-success uppercase tracking-widest bg-success-glow px-2 py-0.5 rounded border border-emerald-500/10 font-bold">
+                          Acquired
+                        </span>
+                      )}
+                    </div>
+                  </div>
 
-                      {/* Body: type → title → overview → tech → CTA */}
-                      <div class="p-5 flex flex-col gap-3 flex-grow justify-between">
-                        <div class="flex flex-col gap-3">
-                          <span class="t-mono text-[9px] text-accent uppercase tracking-widest font-bold">
-                            {p.type}
-                          </span>
+                  {/* Body: type → title → overview → tech → CTA */}
+                  <div class="p-5 flex flex-col gap-3 grow">
+                    <div class="flex flex-col gap-3">
+                      <span class="t-mono text-[9px] text-accent uppercase tracking-widest font-bold">
+                        {p.type}
+                      </span>
 
-                          <h4 class="font-bold text-base text-primary leading-tight">
-                            {activeLink ? (
-                              <a
-                                href={activeLink.url}
+                      <h4 class="font-bold text-base text-primary leading-tight">
+                        {primaryLink ? (
+                          <a
+                            href={primaryLink.url}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 class="hover:text-accent transition-colors"
@@ -359,7 +363,7 @@ const wpPluginCount = allProjects.filter((p) => p.category === "wordpress").leng
                           </p>
                         </div>
 
-                        <div class="flex flex-col gap-3 mt-auto">
+                        <div class="flex flex-col gap-3">
                           {p.tech && p.tech.length > 0 && (
                             <div class="flex items-center gap-1 mt-1 overflow-hidden flex-nowrap">
                               {p.tech.slice(0, 3).map((t) => (
@@ -373,16 +377,36 @@ const wpPluginCount = allProjects.filter((p) => p.category === "wordpress").leng
                             </div>
                           )}
 
-                          {activeLink && (
-                            <div class="pt-1">
-                              <a
-                                href={activeLink.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="text-[11px] text-accent font-semibold hover:underline"
-                              >
-                                {activeLink.title} &rarr;
-                              </a>
+                          {activeLinks.length > 0 && (
+                            <div class="pt-2.5 flex flex-wrap gap-2">
+                              {activeLinks.map((link) => {
+                                // Determine icon based on link title/url
+                                let iconName = "ph:arrow-up-right-bold";
+                                const lowerTitle = link.title.toLowerCase();
+                                const lowerUrl = link.url.toLowerCase();
+                                if (lowerTitle.includes("github") || lowerTitle.includes("source") || lowerTitle.includes("code")) {
+                                  iconName = "ph:code-bold";
+                                } else if (lowerTitle.includes("wordpress") || lowerUrl.includes("wordpress.org")) {
+                                  iconName = "ph:wordpress-logo-bold";
+                                } else if (lowerTitle.includes("site") || lowerTitle.includes("demo") || lowerTitle.includes("live") || lowerTitle.includes("visit")) {
+                                  iconName = "ph:globe-bold";
+                                } else if (lowerTitle.includes("download") || lowerTitle.includes("install")) {
+                                  iconName = "ph:download-simple-bold";
+                                }
+
+                                return (
+                                  <a
+                                    href={link.url}
+                                    target={link.target || '_blank'}
+                                    rel="noopener noreferrer"
+                                    class="inline-flex items-center gap-1.5 text-[9px] font-mono font-bold tracking-wide uppercase px-2.5 py-1 rounded-md border border-subtle bg-strong/10 text-secondary hover:text-accent hover:border-accent/40 hover:bg-accent-glow transition-all duration-300 group leading-none"
+                                  >
+                                    <Icon name={iconName} class="w-3 h-3 text-muted group-hover:text-accent transition-colors flex-shrink-0" />
+                                    <span class="leading-none mt-[0.5px]">{link.title}</span>
+                                    <span class="inline-block transition-transform duration-300 group-hover:translate-x-0.5 leading-none" aria-hidden="true">&rarr;</span>
+                                  </a>
+                                );
+                              })}
                             </div>
                           )}
                         </div>
@@ -467,7 +491,9 @@ const wpPluginCount = allProjects.filter((p) => p.category === "wordpress").leng
   var toggles = document.querySelectorAll(".case-study-toggle");
   toggles.forEach(function(toggle) {
     toggle.addEventListener("click", function() {
-      var container = toggle.previousElementSibling as HTMLElement;
+      var parent = toggle.closest(".glass") || toggle.parentElement;
+      if (!parent) return;
+      var container = parent.querySelector(".case-study-details") as HTMLElement;
       if (!container) return;
       var isExpanded = toggle.getAttribute("aria-expanded") === "true";
       var textNode = toggle.querySelector(".toggle-text");

@@ -11,7 +11,8 @@ A premium, high-performance developer portfolio built with **Astro v7**, **React
 - **Preconfigured Linter & Formatter**: Uses modern ESLint v10 flat configs (`eslint.config.js`) and Prettier formatting configs (`.prettierrc.mjs`) to enforce strict codebase consistency and syntax parsing.
 - **Reusable Page Banners**: Centralizes page hero banners, background ambient spotlights, and scroll-entry animations using the reusable `<PageHero />` component.
 - **Unified Phosphor Icon Pack**: Purges inline raw SVG path code in favor of the lightweight `<Icon />` component imported from the `astro-icon` library.
-- **Interactive Code Playground**: Features an interactive mockup IDE on the homepage showcasing a real-world WooCommerce UPI payment gateway architecture across cohesive files (`plugin.php`, `gateway.ts`, `composer.json`).
+- **Interactive IDE Mockup with GitHub Telemetry**: Features an interactive mockup IDE on the homepage. Users can browse real-world WooCommerce UPI payment gateway architecture across PHP, TS, and JSON files, or click the `github.log` (`GIT`) tab to pull Sayan's real-time public commits and repository creation logs via a client-side on-demand GitHub API fetcher with graceful rate-limit fallbacks.
+- **Responsive Services Explorer**: Includes an interactive vertical sidebar panel (desktop) / horizontal swipe-snapping buttons (mobile) tab layout that dynamically reveals service capabilities, code architectures, and proof points with smooth themed active-glow transitions.
 - **Real Contact Form Routing**: Integrates directly with **Formspree AJAX API** with built-in loading states, visual validation logs, and a clean fallback email action if routing gets blocked.
 - **SEO & Crawl Engine Optimization**:
   - Full structured schema data (`application/ld+json`).
@@ -26,6 +27,8 @@ A premium, high-performance developer portfolio built with **Astro v7**, **React
 
 ```text
 /
+├── .agents/                 # AI coding assistant customizations
+│   └── AGENTS.md            # Project-scoped codebase guidelines & standards
 ├── .prettierrc.mjs          # Prettier formatting configurations
 ├── eslint.config.js         # ESLint flat config with Astro & TypeScript rules
 ├── public/                  # Static assets
@@ -90,7 +93,7 @@ Manage locations, email addresses, bios, social channels, and Formspree credenti
 {
   "name": "Sayan Datta",
   "title": "Senior Full Stack Developer",
-  "email": "hello@sayandatta.dev",
+  "email": "hello@sayandatta.co.in",
   "formspreeId": "xwpveyob",
   "location": "Kolkata, India",
   "socials": {
