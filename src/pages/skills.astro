@@ -54,7 +54,7 @@ const skillSections = [
     name: "Legacy Experience",
     desc: "Older codebases I still maintain because clients still ship on them. Comfortable, not enthusiastic.",
     icon: "ph:clock-counter-clockwise",
-    color: "rose",
+    color: "zinc",
     skills: skillsData.legacy,
   },
 ];
@@ -95,6 +95,22 @@ const colorMap: Record<string, { label: string; text: string; bg: string; bar: s
     bar: "bg-purple-500",
     barShadow: "shadow-[0_0_8px_rgba(168,85,247,0.6)]",
   },
+  zinc: {
+    label: "text-zinc-500",
+    text: "text-zinc-500",
+    bg: "bg-zinc-500/10",
+    bar: "bg-zinc-500",
+    barShadow: "shadow-[0_0_8px_rgba(113,113,122,0.4)]",
+  },
+};
+
+const borderTopClass: Record<string, string> = {
+  rose: "border-t-rose-500",
+  emerald: "border-t-emerald-500",
+  blue: "border-t-blue-500",
+  purple: "border-t-purple-500",
+  amber: "border-t-amber-500",
+  zinc: "border-t-zinc-500",
 };
 ---
 
@@ -286,7 +302,7 @@ const colorMap: Record<string, { label: string; text: string; bg: string; bar: s
                 <div class="grid sm:grid-cols-2 gap-6">
                   {sec.skills &&
                     sec.skills.map((s) => (
-                      <div class={`glass p-6 bg-surface border-subtle hover:border-${sec.color}-500/25 transition-all flex flex-col justify-between group`}>
+                      <div class={`glass p-6 bg-surface border-subtle border-t-2 ${borderTopClass[sec.color] ?? "border-t-rose-500"} hover:border-${sec.color}-500/25 transition-all flex flex-col justify-between group`}>
                         <div>
                           <div class="flex justify-between items-baseline mb-4">
                             <h3 class="text-sm font-bold text-primary">{s.name}</h3>
@@ -317,18 +333,3 @@ const colorMap: Record<string, { label: string; text: string; bg: string; bar: s
   <Footer />
 </Layout>
 
-<script>
-  // Consolidated single IntersectionObserver for page elements
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-        }
-      });
-    },
-    { threshold: 0.05 }
-  );
-
-  document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
-</script>

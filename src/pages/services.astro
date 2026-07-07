@@ -297,7 +297,7 @@ const glowMap: Record<string, string> = {
             return (
               <div class="grid lg:grid-cols-12 gap-12 items-start reveal">
                 {/* Left: Sticky summary */}
-                <div class="lg:col-span-5 lg:sticky lg:top-24 space-y-5">
+                <div class="lg:col-span-5 space-y-5">
                   <span
                     class={`inline-block text-xs font-mono ${c.label} uppercase tracking-wider ${c.pillBg} px-3 py-1 rounded-md border ${c.pillBorder}`}
                   >
@@ -358,11 +358,6 @@ const glowMap: Record<string, string> = {
                               ))}
                             </div>
                           )}
-                          {row.highlight && (
-                            <span class={`text-[9px] font-mono ${c.label} uppercase tracking-widest font-bold`}>
-                              critical
-                            </span>
-                          )}
                         </div>
                       ))}
                     </div>
@@ -378,16 +373,3 @@ const glowMap: Record<string, string> = {
   <Footer />
 </Layout>
 
-<script>
-  var observer = new IntersectionObserver(
-    function(entries) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) entry.target.classList.add("visible");
-      });
-    },
-    { threshold: 0.05 }
-  );
-  document.querySelectorAll(".reveal").forEach(function(el) {
-    observer.observe(el);
-  });
-</script>

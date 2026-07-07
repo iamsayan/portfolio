@@ -561,16 +561,12 @@ const categoryGlow: Record<string, string> = {
         <div class="grid md:grid-cols-2 gap-8 mt-12">
           {
             mainShowcaseProjects.map((project, index) => {
-              const Wrapper = project.acquired ? "div" : "a";
-              const wrapperProps = project.acquired
-                ? {}
-                : { href: project.url, target: "_blank", rel: "noopener noreferrer" };
+              const activeLink = project.links?.find((link) => link.active);
               const cat = project.category;
               const glow = categoryGlow[cat] ?? "hover-glow-rose";
               return (
-                <Wrapper
-                  {...wrapperProps}
-                  class={`glass group block reveal hover:-translate-y-1 r${index + 1} ${glow} ${project.acquired ? "cursor-default" : ""}`}
+                <div
+                  class={`glass group block reveal hover:-translate-y-1 r${index + 1} ${glow}`}
                 >
                   {/* Top bar: category label + status badges (Team / Acquired) */}
                   <div class="flex items-center justify-between gap-2 px-6 pt-6 pb-4 border-b border-subtle">
@@ -597,14 +593,35 @@ const categoryGlow: Record<string, string> = {
                       {project.type}
                     </span>
 
-                    <h3 class="text-2xl font-bold text-primary group-hover:text-accent transition-colors duration-300 leading-tight flex items-center gap-2">
-                      {project.title}
-                      {!project.acquired && (
-                        <Icon
-                          name="ph:arrow-square-out"
-                          class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity shrink-0"
-                          aria-hidden="true"
-                        />
+                    <h3 class="text-2xl font-bold text-primary leading-tight">
+                      {activeLink ? (
+                        <a
+                          href={activeLink.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="hover:text-accent transition-colors duration-300"
+                        >
+                          {(() => {
+                            const words = project.title.split(" ");
+                            const last = words.pop();
+                            const prefix = words.join(" ");
+                            return (
+                              <>
+                                {prefix ? prefix + " " : ""}
+                                <span class="whitespace-nowrap">
+                                  {last}
+                                  <Icon
+                                    name="ph:arrow-square-out"
+                                    class="inline-block w-4 h-4 ml-1.5 opacity-70 group-hover:opacity-100 transition-opacity align-middle relative -top-0.5"
+                                    aria-hidden="true"
+                                  />
+                                </span>
+                              </>
+                            );
+                          })()}
+                        </a>
+                      ) : (
+                        project.title
                       )}
                     </h3>
 
@@ -627,15 +644,20 @@ const categoryGlow: Record<string, string> = {
                       </div>
                     )}
 
-                    <div class="pt-2 mt-auto">
-                      <span class="text-xs text-accent font-semibold group-hover:underline">
-                        {project.acquired
-                          ? "Acquired · no longer hosted here"
-                          : "View Project Source →"}
-                      </span>
-                    </div>
+                    {activeLink && (
+                      <div class="pt-2 mt-auto">
+                        <a
+                          href={activeLink.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="text-xs text-accent font-semibold hover:underline"
+                        >
+                          {activeLink.title} &rarr;
+                        </a>
+                      </div>
+                    )}
                   </div>
-                </Wrapper>
+                </div>
               );
             })
           }
@@ -645,16 +667,12 @@ const categoryGlow: Record<string, string> = {
         <div class="grid md:grid-cols-3 gap-6 mt-8 reveal">
           {
             secondaryShowcaseProjects.map((project) => {
-              const Wrapper = project.acquired ? "div" : "a";
-              const wrapperProps = project.acquired
-                ? {}
-                : { href: project.url, target: "_blank", rel: "noopener noreferrer" };
+              const activeLink = project.links?.find((link) => link.active);
               const cat = project.category;
               const glow = categoryGlow[cat] ?? "hover-glow-rose";
               return (
-                <Wrapper
-                  {...wrapperProps}
-                  class={`glass bg-surface hover:-translate-y-0.5 transition-all block group ${glow} ${project.acquired ? "cursor-default" : ""}`}
+                <div
+                  class={`glass bg-surface hover:-translate-y-0.5 transition-all block group ${glow}`}
                 >
                   {/* Top bar: category + status badges */}
                   <div class="flex items-center justify-between gap-2 px-5 pt-5 pb-3 border-b border-subtle">
@@ -681,14 +699,35 @@ const categoryGlow: Record<string, string> = {
                       {project.type}
                     </span>
 
-                    <h4 class="font-bold text-base text-primary group-hover:text-accent transition-colors leading-tight flex items-center gap-1.5">
-                      {project.title}
-                      {!project.acquired && (
-                        <Icon
-                          name="ph:arrow-square-out"
-                          class="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 transition-opacity shrink-0"
-                          aria-hidden="true"
-                        />
+                    <h4 class="font-bold text-base text-primary leading-tight">
+                      {activeLink ? (
+                        <a
+                          href={activeLink.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="hover:text-accent transition-colors"
+                        >
+                          {(() => {
+                            const words = project.title.split(" ");
+                            const last = words.pop();
+                            const prefix = words.join(" ");
+                            return (
+                              <>
+                                {prefix ? prefix + " " : ""}
+                                <span class="whitespace-nowrap">
+                                  {last}
+                                  <Icon
+                                    name="ph:arrow-square-out"
+                                    class="inline-block w-3.5 h-3.5 ml-1 opacity-70 group-hover:opacity-100 transition-opacity align-middle relative -top-0.5"
+                                    aria-hidden="true"
+                                  />
+                                </span>
+                              </>
+                            );
+                          })()}
+                        </a>
+                      ) : (
+                        project.title
                       )}
                     </h4>
 
@@ -697,27 +736,32 @@ const categoryGlow: Record<string, string> = {
                     </p>
 
                     {project.tech && project.tech.length > 0 && (
-                      <div class="flex flex-wrap gap-1 mt-1">
-                        {project.tech.slice(0, 4).map((t) => (
-                          <span class="tag">{t}</span>
+                      <div class="flex items-center gap-1 mt-1 overflow-hidden flex-nowrap">
+                        {project.tech.slice(0, 3).map((t) => (
+                          <span class="tag shrink-0">{t}</span>
                         ))}
-                        {project.tech.length > 4 && (
-                          <span class="text-[10px] font-mono text-muted px-1.5 py-0.5">
-                            +{project.tech.length - 4}
+                        {project.tech.length > 3 && (
+                          <span class="text-[10px] font-mono text-muted px-1.5 py-0.5 shrink-0">
+                            +{project.tech.length - 3}
                           </span>
                         )}
                       </div>
                     )}
 
-                    <div class="pt-1 mt-auto">
-                      <span class="text-[11px] text-accent font-semibold group-hover:underline">
-                        {project.acquired
-                          ? "Acquired"
-                          : "View →"}
-                      </span>
-                    </div>
+                    {activeLink && (
+                      <div class="pt-1 mt-auto">
+                        <a
+                          href={activeLink.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="text-[11px] text-accent font-semibold hover:underline"
+                        >
+                          {activeLink.title} &rarr;
+                        </a>
+                      </div>
+                    )}
                   </div>
-                </Wrapper>
+                </div>
               );
             })
           }
@@ -726,22 +770,73 @@ const categoryGlow: Record<string, string> = {
     </section>
 
     <!-- ── Credibility & Background ── -->
-    <section class="py-24 relative bg-surface border-y border-subtle">
+    <section class="py-24 relative bg-surface border-y border-subtle overflow-hidden">
+      <!-- Background Ambient Glow Spotlights -->
+      <div
+        class="absolute inset-0 opacity-[0.03] pointer-events-none"
+        style="background:radial-gradient(circle at 10% 20%, var(--accent), transparent 40%), radial-gradient(circle at 90% 80%, #6366f1, transparent 40%)"
+      >
+      </div>
+
       <div class="mx">
         <div class="grid md:grid-cols-3 gap-8 reveal">
           {
             home.highlights.map((highlight, idx) => {
-              // Cycle through 3 glow colors to match the original visual variety
-              // (rose → amber → purple → rose → ...) — purely decorative, not data-driven
-              const glowPalette = ["hover-glow-amber", "hover-glow-purple", "hover-glow-rose"];
-              const glow = glowPalette[idx % glowPalette.length];
+              // Custom design settings for each card type to make it premium
+              const cardStyles = [
+                {
+                  glow: "hover-glow-blue",
+                  icon: "ph:briefcase",
+                  badgeBg: "bg-blue-500/10 text-blue-400 border-blue-500/20",
+                  iconColor: "text-blue-400",
+                },
+                {
+                  glow: "hover-glow-emerald",
+                  icon: "ph:globe",
+                  badgeBg: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20",
+                  iconColor: "text-emerald-400",
+                },
+                {
+                  glow: "hover-glow-purple",
+                  icon: "ph:shield-check",
+                  badgeBg: "bg-purple-500/10 text-purple-400 border-purple-500/20",
+                  iconColor: "text-purple-400",
+                },
+              ];
+              const styles = cardStyles[idx % cardStyles.length];
+
               return (
-                <div class={`glass p-8 bg-deep text-center relative border-subtle flex flex-col justify-between ${glow}`}>
-                  <div>
-                    <p class="t-mono text-accent text-[10px]">{highlight.pill.toUpperCase()}</p>
-                    <h3 class="t-title mt-2 text-lg font-bold">{highlight.title}</h3>
-                    <p class="text-xs text-muted mt-1">{highlight.subtitle}</p>
-                    <p class="t-body-sm mt-4 text-center leading-relaxed">{highlight.description}</p>
+                <div
+                  class={`glass p-8 bg-deep relative border-subtle flex flex-col justify-between group transition-all duration-300 hover:-translate-y-1.5 ${styles.glow}`}
+                >
+                  <div class="space-y-4">
+                    {/* Header Row: Icon + Pill */}
+                    <div class="flex items-center justify-between gap-4">
+                      <div
+                        class={`w-10 h-10 rounded-xl bg-surface border border-subtle flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:border-strong`}
+                      >
+                        <Icon name={styles.icon} class={`w-5 h-5 ${styles.iconColor}`} />
+                      </div>
+                      <span
+                        class={`text-[9px] font-mono uppercase tracking-widest font-bold px-2.5 py-1 rounded border ${styles.badgeBg}`}
+                      >
+                        {highlight.pill}
+                      </span>
+                    </div>
+
+                    {/* Content */}
+                    <div class="pt-2">
+                      <h3 class="t-title text-xl font-bold text-primary group-hover:text-accent transition-colors duration-300">
+                        {highlight.title}
+                      </h3>
+                      <p class="text-xs font-mono text-secondary mt-1.5 flex items-center gap-1.5">
+                        <span class="w-1.5 h-1.5 rounded-full bg-accent" aria-hidden="true" />
+                        {highlight.subtitle}
+                      </p>
+                      <p class="t-body-sm text-sm text-secondary leading-relaxed mt-4">
+                        {highlight.description}
+                      </p>
+                    </div>
                   </div>
                 </div>
               );
@@ -786,19 +881,6 @@ const categoryGlow: Record<string, string> = {
 </Layout>
 
 <script>
-  // Simple IntersectionObserver reveal animation script
-  var observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-        }
-      });
-    },
-    { threshold: 0.05 }
-  );
-
-  document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
 
   // IDE Mockup Tab Switcher Logic
   const tabs = document.querySelectorAll(".ide-tab");

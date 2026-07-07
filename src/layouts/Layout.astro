@@ -114,81 +114,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://sayandat
       <slot />
     </div>
 
-    <!-- Keyboard Shortcuts Modal Overlay -->
-    <div
-      id="shortcuts-modal"
-      class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-deep/80 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300"
-      aria-hidden="true"
-      role="dialog"
-      aria-labelledby="shortcuts-title"
-    >
-      <div
-        class="glass max-w-sm w-full bg-surface border-strong p-6 rounded-2xl shadow-2xl relative transform scale-95 transition-all duration-300"
-        id="shortcuts-content"
-      >
-        <button
-          id="close-shortcuts"
-          class="absolute top-4 right-4 text-muted hover:text-primary transition-colors cursor-pointer text-xs font-mono"
-          aria-label="Close shortcuts help modal"
-        >
-          &times; ESC
-        </button>
-        <h3 id="shortcuts-title" class="text-sm font-bold text-primary font-display mb-4 flex items-center gap-2">
-          <span>⌨️</span> KEYBOARD SHORTCUTS
-        </h3>
-        <div class="space-y-3 font-sans">
-          <div class="flex justify-between items-center text-xs border-b border-subtle pb-2">
-            <span class="text-secondary">Go to Home</span>
-            <kbd class="px-2 py-0.5 rounded bg-raised border border-strong font-mono text-[10px] text-accent font-bold"
-              >1</kbd
-            >
-          </div>
-          <div class="flex justify-between items-center text-xs border-b border-subtle pb-2">
-            <span class="text-secondary">Go to Projects</span>
-            <kbd class="px-2 py-0.5 rounded bg-raised border border-strong font-mono text-[10px] text-accent font-bold"
-              >2</kbd
-            >
-          </div>
-          <div class="flex justify-between items-center text-xs border-b border-subtle pb-2">
-            <span class="text-secondary">Go to Skills</span>
-            <kbd class="px-2 py-0.5 rounded bg-raised border border-strong font-mono text-[10px] text-accent font-bold"
-              >3</kbd
-            >
-          </div>
-          <div class="flex justify-between items-center text-xs border-b border-subtle pb-2">
-            <span class="text-secondary">Go to Services</span>
-            <kbd class="px-2 py-0.5 rounded bg-raised border border-strong font-mono text-[10px] text-accent font-bold"
-              >4</kbd
-            >
-          </div>
-          <div class="flex justify-between items-center text-xs border-b border-subtle pb-2">
-            <span class="text-secondary">Go to Blog</span>
-            <kbd class="px-2 py-0.5 rounded bg-raised border border-strong font-mono text-[10px] text-accent font-bold"
-              >5</kbd
-            >
-          </div>
-          <div class="flex justify-between items-center text-xs border-b border-subtle pb-2">
-            <span class="text-secondary">Go to About</span>
-            <kbd class="px-2 py-0.5 rounded bg-raised border border-strong font-mono text-[10px] text-accent font-bold"
-              >6</kbd
-            >
-          </div>
-          <div class="flex justify-between items-center text-xs border-b border-subtle pb-2">
-            <span class="text-secondary">Go to Contact</span>
-            <kbd class="px-2 py-0.5 rounded bg-raised border border-strong font-mono text-[10px] text-accent font-bold"
-              >7</kbd
-            >
-          </div>
-          <div class="flex justify-between items-center text-xs pt-1">
-            <span class="text-muted">Toggle Shortcuts Help</span>
-            <kbd class="px-2 py-0.5 rounded bg-raised border border-strong font-mono text-[10px] text-primary font-bold"
-              >?</kbd
-            >
-          </div>
-        </div>
-      </div>
-    </div>
-
     <script is:inline>
       // 1. Console Easter Egg
       console.log(
@@ -222,6 +147,22 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://sayandat
           });
         });
       })();
+    </script>
+
+    <script>
+      // Centralized IntersectionObserver for page reveal animations
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+            }
+          });
+        },
+        { threshold: 0.05 }
+      );
+
+      document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
     </script>
   </body>
 </html>

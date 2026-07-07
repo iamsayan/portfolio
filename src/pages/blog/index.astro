@@ -112,18 +112,3 @@ posts.sort((a, b) => b.pubDate.getTime() - a.pubDate.getTime());
   <Footer />
 </Layout>
 
-<script>
-  // Unified single IntersectionObserver for page elements
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-        }
-      });
-    },
-    { threshold: 0.05 }
-  );
-
-  document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
-</script>

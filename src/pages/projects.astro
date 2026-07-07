@@ -45,6 +45,12 @@ const categoryLabel: Record<string, string> = {
   fullstack: "Full-Stack",
 };
 
+const categoryText: Record<string, string> = {
+  wordpress: "text-rose-500",
+  fullstack: "text-blue-500",
+  packages: "text-emerald-500",
+};
+
 const acquiredCount = allProjects.filter((p) => p.acquired).length;
 const wpPluginCount = allProjects.filter((p) => p.category === "wordpress").length;
 ---
@@ -74,12 +80,12 @@ const wpPluginCount = allProjects.filter((p) => p.category === "wordpress").leng
           <div class="bg-surface p-5">
             <p class="t-mono text-[10px] text-muted">Acquired products</p>
             <p class="text-2xl font-display font-extrabold t-accent mt-1.5">{acquiredCount}</p>
-            <p class="text-[11px] text-secondary mt-1">WooCommerce gateways</p>
+            <p class="text-[11px] text-secondary mt-1">Successful exits</p>
           </div>
           <div class="bg-surface p-5">
             <p class="t-mono text-[10px] text-muted">WP.org plugins</p>
             <p class="text-2xl font-display font-extrabold text-primary mt-1.5">{wpPluginCount}+</p>
-            <p class="text-[11px] text-secondary mt-1">138K+ active installs</p>
+            <p class="text-[11px] text-secondary mt-1">Official directory</p>
           </div>
           <div class="bg-surface p-5">
             <p class="t-mono text-[10px] text-muted">Total in catalog</p>
@@ -110,11 +116,13 @@ const wpPluginCount = allProjects.filter((p) => p.category === "wordpress").leng
         <!-- Featured Projects List -->
         <div class="space-y-16" id="projects-list">
           {
-            featured.map((p) => (
-              <article class="project-card reveal" data-cat={p.category}>
+            featured.map((p) => {
+              const activeLink = p.links?.find((link) => link.active);
+              return (
+                <article class="project-card reveal" data-cat={p.category}>
                 <div class="grid lg:grid-cols-12 gap-8 items-start">
                   {/* Side Panel Info */}
-                  <div class="lg:col-span-4 lg:sticky lg:top-24">
+                  <div class="lg:col-span-4">
                     <div class="flex flex-wrap items-center gap-2">
                       <span class="text-[9px] font-mono text-accent uppercase tracking-widest bg-accent-glow px-2.5 py-1 rounded border border-rose-500/10 font-bold">
                         {p.type}
@@ -122,6 +130,11 @@ const wpPluginCount = allProjects.filter((p) => p.category === "wordpress").leng
                       {isTeamContribution(p) && (
                         <span class="text-[9px] font-mono text-secondary uppercase tracking-widest bg-raised px-2.5 py-1 rounded border border-subtle font-bold">
                           Team Contribution
+                        </span>
+                      )}
+                      {p.acquired && (
+                        <span class="text-[9px] font-mono text-success uppercase tracking-widest bg-success-glow px-2.5 py-1 rounded border border-emerald-500/10 font-bold">
+                          Acquired
                         </span>
                       )}
                       <span class="text-[9px] font-mono text-muted uppercase tracking-widest font-bold">
@@ -135,15 +148,15 @@ const wpPluginCount = allProjects.filter((p) => p.category === "wordpress").leng
                         {p.subtitle}
                       </p>
                     )}
-                    {p.url && !p.acquired && (
+                    {activeLink && (
                       <a
-                        href={p.url}
+                        href={activeLink.url}
                         target="_blank"
                         rel="noopener noreferrer"
                         class="mt-3 inline-flex items-center gap-1 text-[11px] font-mono text-secondary hover:text-accent transition-colors"
                       >
-                        <Icon name="ph:link" class="w-3 h-3" aria-hidden="true" />
-                        {p.url.replace(/^https?:\/\//, "").replace(/\/$/, "")}
+                        <Icon name="ph:link" class="w-3.5 h-3.5" aria-hidden="true" />
+                        {activeLink.url.replace(/^https?:\/\//, "").replace(/\/$/, "")}
                       </a>
                     )}
                   </div>
@@ -221,42 +234,25 @@ const wpPluginCount = allProjects.filter((p) => p.category === "wordpress").leng
                       </div>
 
                       {/* Direct Links */}
-                      <div class="flex flex-wrap gap-4 mt-8 pt-6 border-t border-subtle">
-                        {p.url && !p.acquired && (
+                      {activeLink && (
+                        <div class="flex flex-wrap gap-4 mt-8 pt-6 border-t border-subtle">
                           <a
-                            href={p.url}
+                            href={activeLink.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            class="b b-primary text-xs flex items-center gap-1.5 shadow-md"
+                            class={`b ${activeLink.data?.type === "primary" ? "b-primary" : "b-ghost"} text-xs flex items-center gap-1`}
                           >
-                            View Live
-                            <Icon name="ph:arrow-square-out" class="w-3.5 h-3.5" aria-hidden="true" />
+                            {activeLink.title}
+                            <span aria-hidden="true">&rarr;</span>
                           </a>
-                        )}
-                        {p.acquired && (
-                          <span class="b b-ghost text-xs flex items-center gap-1.5 opacity-70 cursor-not-allowed">
-                            <Icon name="ph:check-circle" class="w-3.5 h-3.5 text-success" aria-hidden="true" />
-                            Acquired · no longer hosted here
-                          </span>
-                        )}
-                        {p.links &&
-                          p.links.map((link) => (
-                            <a
-                              href={link.url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              class="b b-ghost text-xs flex items-center gap-1"
-                            >
-                              {link.title}
-                              <span aria-hidden="true">&rarr;</span>
-                            </a>
-                          ))}
-                      </div>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
               </article>
-            ))
+            );
+          })
           }
 
           <!-- Rest Secondary Grid -->
@@ -266,49 +262,114 @@ const wpPluginCount = allProjects.filter((p) => p.category === "wordpress").leng
             >
             <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8" id="secondary-grid">
               {
-                rest.map((p) => (
-                  <div
-                    class={`project-card glass ${glowClass[p.category] ?? "hover-glow-rose"} p-6 bg-surface border-subtle hover:-translate-y-1 transition-all flex flex-col justify-between`}
-                    data-cat={p.category}
-                  >
-                    <div>
-                      <div class="flex flex-wrap items-center gap-1.5 mb-4">
-                        <span class="text-[9px] font-mono text-muted uppercase tracking-wider font-bold">
+                rest.map((p) => {
+                  const activeLink = p.links?.find((link) => link.active);
+                  return (
+                    <div
+                      class={`project-card glass bg-surface hover:-translate-y-0.5 transition-all flex flex-col justify-between group ${glowClass[p.category] ?? "hover-glow-rose"}`}
+                      data-cat={p.category}
+                    >
+                      {/* Top bar: category + status badges */}
+                      <div class="flex items-center justify-between gap-2 px-5 pt-5 pb-3 border-b border-subtle">
+                        <span class={`text-[9px] font-mono uppercase tracking-widest font-bold ${categoryText[p.category] ?? "text-muted"}`}>
                           {categoryLabel[p.category] ?? p.category}
                         </span>
-                        {isTeamContribution(p) && (
-                          <span class="text-[9px] font-mono text-secondary uppercase tracking-wider bg-raised px-2 py-0.5 rounded border border-subtle font-bold">
-                            Team Contribution
-                          </span>
-                        )}
-                        {p.subtitle && (
-                          <span class="text-[9px] font-mono text-accent uppercase tracking-wider font-bold">
-                            · {p.subtitle}
-                          </span>
-                        )}
+                        <div class="flex items-center gap-1.5">
+                          {isTeamContribution(p) && (
+                            <span class="text-[9px] font-mono text-secondary uppercase tracking-widest bg-raised px-2 py-0.5 rounded border border-subtle font-bold">
+                              Team
+                            </span>
+                          )}
+                          {p.acquired && (
+                            <span class="text-[9px] font-mono text-success uppercase tracking-widest bg-success-glow px-2 py-0.5 rounded border border-emerald-500/10 font-bold">
+                              Acquired
+                            </span>
+                          )}
+                        </div>
                       </div>
-                      <div class="flex flex-wrap gap-1.5 mb-3">
-                        {p.tech.map((t) => (
-                          <span class="tag">{t}</span>
-                        ))}
-                      </div>
-                      <h3 class="text-md font-bold text-primary">{p.title}</h3>
-                      <p class="text-xs text-secondary mt-3 leading-relaxed font-sans">{p.overview}</p>
-                    </div>
 
-                    {p.url && !p.acquired && (
-                      <a
-                        href={p.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="pt-4 flex items-center gap-1.5 text-xs text-accent font-semibold mt-4 hover:underline"
-                      >
-                        <span>Source / Website</span>
-                        <span aria-hidden="true">&rarr;</span>
-                      </a>
-                    )}
-                  </div>
-                ))
+                      {/* Body: type → title → overview → tech → CTA */}
+                      <div class="p-5 flex flex-col gap-3 flex-grow justify-between">
+                        <div class="flex flex-col gap-3">
+                          <span class="t-mono text-[9px] text-accent uppercase tracking-widest font-bold">
+                            {p.type}
+                          </span>
+
+                          <h4 class="font-bold text-base text-primary leading-tight">
+                            {activeLink ? (
+                              <a
+                                href={activeLink.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="hover:text-accent transition-colors"
+                              >
+                                {(() => {
+                                  const words = p.title.split(" ");
+                                  const last = words.pop();
+                                  const prefix = words.join(" ");
+                                  return (
+                                    <>
+                                      {prefix ? prefix + " " : ""}
+                                      <span class="whitespace-nowrap">
+                                        {last}
+                                        <Icon
+                                          name="ph:arrow-square-out"
+                                          class="inline-block w-3.5 h-3.5 ml-1 opacity-70 group-hover:opacity-100 transition-opacity align-middle relative -top-0.5"
+                                          aria-hidden="true"
+                                        />
+                                      </span>
+                                    </>
+                                  );
+                                })()}
+                              </a>
+                            ) : (
+                              p.title
+                            )}
+                          </h4>
+
+                          {p.subtitle && (
+                            <p class="text-xs font-mono text-secondary flex items-center gap-1.5">
+                              <span class="w-1.5 h-1.5 rounded-full bg-accent" aria-hidden="true" />
+                              {p.subtitle}
+                            </p>
+                          )}
+
+                          <p class="text-xs text-secondary leading-relaxed line-clamp-3">
+                            {p.overview}
+                          </p>
+                        </div>
+
+                        <div class="flex flex-col gap-3 mt-auto">
+                          {p.tech && p.tech.length > 0 && (
+                            <div class="flex items-center gap-1 mt-1 overflow-hidden flex-nowrap">
+                              {p.tech.slice(0, 3).map((t) => (
+                                <span class="tag shrink-0">{t}</span>
+                              ))}
+                              {p.tech.length > 3 && (
+                                <span class="text-[10px] font-mono text-muted px-1.5 py-0.5 shrink-0">
+                                  +{p.tech.length - 3}
+                                </span>
+                              )}
+                            </div>
+                          )}
+
+                          {activeLink && (
+                            <div class="pt-1">
+                              <a
+                                href={activeLink.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="text-[11px] text-accent font-semibold hover:underline"
+                              >
+                                {activeLink.title} &rarr;
+                              </a>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })
               }
             </div>
           </div>
@@ -382,16 +443,4 @@ const wpPluginCount = allProjects.filter((p) => p.category === "wordpress").leng
     });
   }
 
-  // Unified single IntersectionObserver for page animate triggers
-  var observer = new IntersectionObserver(
-    function(entries) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) entry.target.classList.add("visible");
-      });
-    },
-    { threshold: 0.05 }
-  );
-  document.querySelectorAll(".reveal").forEach(function(el) {
-    observer.observe(el);
-  });
 </script>
