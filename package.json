@@ -16,6 +16,9 @@
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",
     "@astrojs/vercel": "^11.0.2",
+    "@fontsource/jetbrains-mono": "^5.2.8",
+    "@fontsource/outfit": "^5.2.8",
+    "@fontsource/sora": "^5.2.8",
     "@iconify-json/circle-flags": "^1.2.10",
     "@iconify-json/logos": "^1.2.11",
     "@iconify-json/ph": "^1.2.2",
@@ -41,8 +44,7 @@
     "eslint": "^10.6.0",
     "eslint-plugin-astro": "^1.7.0",
     "prettier": "^3.9.4",
-    "prettier-plugin-astro": "^0.14.1",
-    "unplugin-fonts": "^2.0.0"
+    "prettier-plugin-astro": "^0.14.1"
   },
   "browserslist": [
     "> 0.5%",

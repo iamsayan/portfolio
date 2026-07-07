@@ -6,6 +6,8 @@ import { getBlogPosts } from "@/lib/blog";
 import { Breadcrumbs } from "astro-breadcrumbs";
 import StaticComments from "@/components/StaticComments.astro";
 
+import { Schema } from "astro-seo-schema";
+
 export async function getStaticPaths() {
   const posts = await getBlogPosts();
   return posts.map((post) => ({
@@ -15,6 +17,8 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props;
+const siteUrl = Astro.site ? Astro.site.origin : "https://sayandatta.co.in";
+const canonicalURL = new URL(Astro.url.pathname, siteUrl);
 ---
 
 <Layout
@@ -26,6 +30,33 @@ const { post } = Astro.props;
     tags: post.tags,
   }}
 >
+  <!-- Breadcrumb JSON-LD Schema -->
+  <Schema
+    item={{
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": siteUrl
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": `${siteUrl}/blog`
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": post.title,
+          "item": canonicalURL.href
+        }
+      ]
+    }}
+  />
   <Header />
   <main id="main-content" class="py-24 relative overflow-hidden">
     <article class="pt-16 pb-28 relative z-10">

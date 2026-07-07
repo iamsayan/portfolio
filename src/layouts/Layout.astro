@@ -1,6 +1,5 @@
 ---
 import "@/styles/global.css";
-import Unfont from "unplugin-fonts/astro/component.astro";
 import { ThemeScript } from "astro-theme-toggle/components";
 import { Seo } from "astro-seo-meta";
 import { Schema } from "astro-seo-schema";
@@ -59,7 +58,6 @@ const canonicalURL = new URL(Astro.url.pathname, siteUrl);
 
     <link rel="canonical" href={canonicalURL.href} />
 
-    <Unfont />
     <ThemeScript />
     <ClientRouter />
 

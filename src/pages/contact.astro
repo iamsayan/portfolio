@@ -315,9 +315,11 @@ const faqs = await getFAQs();
                 </div>
                 <div
                   id={`faq-ans-${fi}`}
-                  class="max-h-0 opacity-0 overflow-hidden transition-all duration-300 faq-answer"
+                  class="faq-answer-grid faq-answer"
                 >
-                  <p class="text-xs text-secondary mt-4 leading-relaxed font-sans">{faq.a}</p>
+                  <div class="overflow-hidden">
+                    <p class="text-xs text-secondary mt-4 leading-relaxed font-sans">{faq.a}</p>
+                  </div>
                 </div>
               </div>
             ))
@@ -329,116 +331,121 @@ const faqs = await getFAQs();
   <Footer />
 </Layout>
 
+<style>
+  /* CSS Grid based FAQ Accordion Transition */
+  .faq-answer-grid {
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    transition: grid-template-rows 300ms cubic-bezier(0.4, 0, 0.2, 1), opacity 250ms ease;
+  }
+  .faq-open .faq-answer-grid {
+    grid-template-rows: 1fr;
+    opacity: 1;
+  }
+</style>
+
 <script>
   import { actions } from "astro:actions";
 
-  const contactForm = document.getElementById("contact-form") as HTMLFormElement;
-  const contactConsole = document.getElementById("contact-console");
-  const submitBtn = document.getElementById("submit-btn") as HTMLButtonElement;
+  function initContactForm() {
+    const contactForm = document.getElementById("contact-form") as HTMLFormElement;
+    if (!contactForm) return;
 
-  const loadingState = document.getElementById("loading-state");
-  const loadingLog = document.getElementById("loading-log");
-  const loadingBar = document.getElementById("loading-bar");
+    const submitBtn = document.getElementById("submit-btn") as HTMLButtonElement;
+    const loadingState = document.getElementById("loading-state");
+    const loadingLog = document.getElementById("loading-log");
+    const loadingBar = document.getElementById("loading-bar");
+    const successState = document.getElementById("success-state");
+    const closeSuccessBtn = document.getElementById("close-success-btn");
+    const errorState = document.getElementById("error-state");
+    const errorMessage = document.getElementById("error-message");
+    const fallbackEmailBtn = document.getElementById("fallback-email-btn");
+    const retryBtn = document.getElementById("retry-btn");
+    const mainEl = document.getElementById("main-content");
+    const emailAddr = mainEl?.getAttribute("data-email") || "hello@sayandatta.co.in";
+    const terminalFeed = document.getElementById("terminal-feed");
 
-  const successState = document.getElementById("success-state");
-  const closeSuccessBtn = document.getElementById("close-success-btn");
+    // Inputs
+    const nameInput = document.getElementById("name") as HTMLInputElement;
+    const emailInput = document.getElementById("email") as HTMLInputElement;
+    const scopeInput = document.getElementById("scope") as HTMLInputElement;
+    const messageInput = document.getElementById("message") as HTMLTextAreaElement;
+    const honeypotInput = document.getElementById("_honeypot") as HTMLInputElement;
 
-  const errorState = document.getElementById("error-state");
-  const errorMessage = document.getElementById("error-message");
-  const fallbackEmailBtn = document.getElementById("fallback-email-btn");
-  const retryBtn = document.getElementById("retry-btn");
+    // Terminal Logging Helper
+    function logTerminal(message: string, type: "info" | "success" | "warn" | "muted" = "info") {
+      if (!terminalFeed) return;
+      const line = document.createElement("div");
+      let colorClass = "text-secondary";
+      if (type === "success") colorClass = "text-success";
+      if (type === "warn") colorClass = "text-amber-500";
+      if (type === "muted") colorClass = "text-muted";
 
-  const mainEl = document.getElementById("main-content");
-  const emailAddr = mainEl?.getAttribute("data-email") || "hello@sayandatta.co.in";
+      line.className = `${colorClass}`;
+      line.innerHTML = `&gt; ${message}`;
+      terminalFeed.appendChild(line);
 
-  const terminalFeed = document.getElementById("terminal-feed");
-
-  // Terminal Logging Helper
-  function logTerminal(message: string, type: "info" | "success" | "warn" | "muted" = "info") {
-    if (!terminalFeed) return;
-    const line = document.createElement("div");
-    let colorClass = "text-secondary";
-    if (type === "success") colorClass = "text-success";
-    if (type === "warn") colorClass = "text-amber-500";
-    if (type === "muted") colorClass = "text-muted";
-
-    line.className = `${colorClass}`;
-    line.innerHTML = `&gt; ${message}`;
-
-    terminalFeed.appendChild(line);
-
-    // Keep logs neat and scroll to bottom
-    while (terminalFeed.children.length > 5) {
-      terminalFeed.removeChild(terminalFeed.firstChild!);
+      while (terminalFeed.children.length > 5) {
+        terminalFeed.removeChild(terminalFeed.firstChild!);
+      }
+      terminalFeed.scrollTop = terminalFeed.scrollHeight;
     }
-    terminalFeed.scrollTop = terminalFeed.scrollHeight;
-  }
 
-  // Monitor form input changes for live compilation logs
-  const nameInput = document.getElementById("name") as HTMLInputElement;
-  const emailInput = document.getElementById("email") as HTMLInputElement;
-  const scopeInput = document.getElementById("scope") as HTMLInputElement;
-  const messageInput = document.getElementById("message") as HTMLTextAreaElement;
-  const honeypotInput = document.getElementById("_honeypot") as HTMLInputElement;
+    nameInput?.addEventListener("input", () => {
+      const val = nameInput.value.trim();
+      if (val) {
+        logTerminal(`name_buffer_bind: "${val.substring(0, 15)}${val.length > 15 ? "..." : ""}"`, "info");
+      }
+    });
 
-  nameInput?.addEventListener("input", () => {
-    const val = nameInput.value.trim();
-    if (val) {
-      logTerminal(`name_buffer_bind: "${val.substring(0, 15)}${val.length > 15 ? "..." : ""}"`, "info");
+    emailInput?.addEventListener("input", () => {
+      const val = emailInput.value.trim();
+      if (val && val.includes("@")) {
+        logTerminal(`socket_verify: email syntax mapped.`, "success");
+      } else if (val) {
+        logTerminal(`socket_check: parsing routing host...`, "muted");
+      }
+    });
+
+    scopeInput?.addEventListener("input", () => {
+      const val = scopeInput.value.trim();
+      if (val) {
+        logTerminal(`route_scope_bind: /project/${val.toLowerCase().replace(/[^a-z0-9]/g, "-")}`, "info");
+      }
+    });
+
+    messageInput?.addEventListener("input", () => {
+      const val = messageInput.value.trim();
+      if (val.length % 20 === 0 && val.length > 0) {
+        logTerminal(`payload_size_calc: ${val.length} bytes loaded`, "muted");
+      }
+    });
+
+    function getFormValues() {
+      return {
+        name: nameInput?.value.trim() || "",
+        email: emailInput?.value.trim() || "",
+        scope: scopeInput?.value.trim() || "",
+        message: messageInput?.value.trim() || "",
+        _honeypot: honeypotInput ? honeypotInput.value : "",
+      };
     }
-  });
 
-  emailInput?.addEventListener("input", () => {
-    const val = emailInput.value.trim();
-    if (val && val.includes("@")) {
-      logTerminal(`socket_verify: email syntax mapped.`, "success");
-    } else if (val) {
-      logTerminal(`socket_check: parsing routing host...`, "muted");
+    function triggerMailtoFallback() {
+      const { name, email, scope, message } = getFormValues();
+      const body = `Hello Sayan,\n\nMy name is ${name} (${email}). I am writing to discuss a project regarding "${scope}".\n\nDetails:\n${message}\n\nBest regards,\n${name}`;
+      const mailtoUrl = `mailto:${emailAddr}?subject=Project Consultation: ${encodeURIComponent(scope)}&body=${encodeURIComponent(body)}`;
+      logTerminal(`mailto_fallback: launching client email client.`, "warn");
+      window.location.href = mailtoUrl;
     }
-  });
 
-  scopeInput?.addEventListener("input", () => {
-    const val = scopeInput.value.trim();
-    if (val) {
-      logTerminal(`route_scope_bind: /project/${val.toLowerCase().replace(/[^a-z0-9]/g, "-")}`, "info");
-    }
-  });
-
-  messageInput?.addEventListener("input", () => {
-    const val = messageInput.value.trim();
-    if (val.length % 20 === 0 && val.length > 0) {
-      logTerminal(`payload_size_calc: ${val.length} bytes loaded`, "muted");
-    }
-  });
-
-  function getFormValues() {
-    return {
-      name: nameInput.value.trim(),
-      email: emailInput.value.trim(),
-      scope: scopeInput.value.trim(),
-      message: messageInput.value.trim(),
-      _honeypot: honeypotInput ? honeypotInput.value : "",
-    };
-  }
-
-  function triggerMailtoFallback() {
-    const { name, email, scope, message } = getFormValues();
-    const body = `Hello Sayan,\n\nMy name is ${name} (${email}). I am writing to discuss a project regarding "${scope}".\n\nDetails:\n${message}\n\nBest regards,\n${name}`;
-    const mailtoUrl = `mailto:${emailAddr}?subject=Project Consultation: ${encodeURIComponent(scope)}&body=${encodeURIComponent(body)}`;
-    logTerminal(`mailto_fallback: launching client email client.`, "warn");
-    window.location.href = mailtoUrl;
-  }
-
-  if (contactForm) {
     contactForm.addEventListener("submit", async (e) => {
       e.preventDefault();
-
       const { name, email, scope, message, _honeypot } = getFormValues();
       if (!name || !email || !scope || !message) return;
 
       logTerminal(`payload_handshake: resolving DNS route host...`, "warn");
-
-      // Swap view to loading screen
       contactForm.classList.add("hidden");
       loadingState?.classList.remove("hidden");
       if (loadingBar) loadingBar.style.width = "10%";
@@ -449,7 +456,6 @@ const faqs = await getFAQs();
         if (loadingLog) loadingLog.textContent = "Packaging payload data...";
         logTerminal(`assembler: building JSON packaging schema...`, "info");
 
-        // Invoke type-safe server action
         const { data, error } = await actions.submitContact({ name, email, scope, message, _honeypot });
 
         if (loadingBar) loadingBar.style.width = "80%";
@@ -479,55 +485,55 @@ const faqs = await getFAQs();
         }, 800);
       }
     });
+
+    closeSuccessBtn?.addEventListener("click", () => {
+      successState?.classList.add("hidden");
+      contactForm?.classList.remove("hidden");
+      logTerminal(`session_reset: listening on inputs...`, "success");
+    });
+
+    fallbackEmailBtn?.addEventListener("click", triggerMailtoFallback);
+
+    retryBtn?.addEventListener("click", () => {
+      errorState?.classList.add("hidden");
+      contactForm?.classList.remove("hidden");
+      logTerminal(`session_retry: listening on inputs...`, "success");
+    });
   }
 
-  // Success button reset
-  closeSuccessBtn?.addEventListener("click", () => {
-    successState?.classList.add("hidden");
-    contactForm?.classList.remove("hidden");
-    logTerminal(`session_reset: listening on inputs...`, "success");
-  });
+  function initFaqs() {
+    const faqsList = document.querySelectorAll("[data-faq]");
+    faqsList.forEach((el) => {
+      const toggle = () => {
+        const plus = el.querySelector(".faq-plus") as HTMLElement;
+        const isOpen = el.classList.toggle("faq-open");
+        el.setAttribute("aria-expanded", isOpen ? "true" : "false");
 
-  // Fallback direct email mailto triggers
-  fallbackEmailBtn?.addEventListener("click", triggerMailtoFallback);
+        if (isOpen) {
+          if (plus) {
+            plus.style.transform = "rotate(45deg)";
+            plus.textContent = "×";
+          }
+        } else {
+          if (plus) {
+            plus.style.transform = "none";
+            plus.textContent = "+";
+          }
+        }
+      };
 
-  // Return to Form from Error view
-  retryBtn?.addEventListener("click", () => {
-    errorState?.classList.add("hidden");
-    contactForm?.classList.remove("hidden");
-    logTerminal(`session_retry: listening on inputs...`, "success");
-  });
-
-  // FAQ Interactive & Keyboard Accessibility
-  const faqsList = document.querySelectorAll("[data-faq]");
-  faqsList.forEach((el) => {
-    const toggle = () => {
-      const answer = el.querySelector(".faq-answer") as HTMLElement;
-      const plus = el.querySelector(".faq-plus") as HTMLElement;
-      const isOpen = el.classList.toggle("faq-open");
-
-      el.setAttribute("aria-expanded", isOpen ? "true" : "false");
-
-      if (isOpen) {
-        answer.style.maxHeight = answer.scrollHeight + "px";
-        answer.style.opacity = "1";
-        plus.style.transform = "rotate(45deg)";
-        plus.textContent = "×";
-      } else {
-        answer.style.maxHeight = "0";
-        answer.style.opacity = "0";
-        plus.style.transform = "none";
-        plus.textContent = "+";
-      }
-    };
-
-    el.addEventListener("click", toggle);
-    el.addEventListener("keydown", (e) => {
-      if ((e as KeyboardEvent).key === "Enter" || (e as KeyboardEvent).key === " ") {
-        e.preventDefault();
-        toggle();
-      }
+      el.addEventListener("click", toggle);
+      el.addEventListener("keydown", (e) => {
+        if ((e as KeyboardEvent).key === "Enter" || (e as KeyboardEvent).key === " ") {
+          e.preventDefault();
+          toggle();
+        }
+      });
     });
-  });
+  }
 
+  document.addEventListener("astro:page-load", () => {
+    initContactForm();
+    initFaqs();
+  });
 </script>

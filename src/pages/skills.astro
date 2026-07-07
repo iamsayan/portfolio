@@ -312,26 +312,26 @@ const hoverGlowClass: Record<string, string> = {
       <div class="mx">
         <div class="grid md:grid-cols-12 gap-8 items-start">
           <!-- Left: Tab Selectors (md:col-span-4) -->
-          <div class="md:col-span-4 flex flex-col sm:grid sm:grid-cols-2 md:flex md:flex-col gap-3 md:sticky md:top-24 reveal">
+          <div class="md:col-span-4 flex flex-row md:flex-col gap-3 overflow-x-auto scrollbar-none w-full max-w-full pb-2 md:pb-0 md:sticky md:top-24 reveal">
             {
               skillSections.map((sec, idx) => {
                 const c = colorMap[sec.color];
                 return (
                   <button
-                    class={`tab-btn w-full text-left p-4 rounded-xl border border-subtle bg-surface hover:border-accent transition-all duration-300 cursor-pointer flex items-center justify-between group focus:outline-none ${idx === 0 ? `active active-${sec.color}` : ""}`}
+                    class={`tab-btn flex-shrink-0 w-auto md:w-full text-left p-3.5 md:p-4 rounded-xl border border-subtle bg-surface hover:border-accent transition-all duration-300 cursor-pointer flex items-center justify-between gap-3 group focus:outline-none ${idx === 0 ? `active active-${sec.color}` : ""}`}
                     data-tab={sec.id}
                     data-color={sec.color}
                   >
                     <div class="flex items-center gap-3">
-                      <div class={`w-8 h-8 rounded-lg bg-deep border border-subtle flex items-center justify-center`}>
+                      <div class={`w-8 h-8 rounded-lg bg-deep border border-subtle flex items-center justify-center flex-shrink-0`}>
                         <Icon name={sec.icon} class={`w-4 h-4 ${c.text}`} />
                       </div>
                       <div>
                         <p class="text-xs font-bold text-primary">{sec.name}</p>
-                        <p class="text-[10px] text-muted font-mono uppercase tracking-wider mt-0.5">{sec.skills.length} skills</p>
+                        <p class="text-[9px] md:text-[10px] text-muted font-mono uppercase tracking-wider mt-0.5">{sec.skills.length} skills</p>
                       </div>
                     </div>
-                    <Icon name="ph:caret-right" class="w-4 h-4 text-muted opacity-40 group-hover:opacity-100 transition-opacity" />
+                    <Icon name="ph:caret-right" class="w-4 h-4 text-muted opacity-40 group-hover:opacity-100 transition-opacity hidden md:block" />
                   </button>
                 );
               })
@@ -473,6 +473,11 @@ const hoverGlowClass: Record<string, string> = {
     background: rgba(244, 63, 94, 0.05) !important;
     box-shadow: 0 0 15px rgba(244, 63, 94, 0.06) !important;
   }
+  .tab-btn.active-indigo {
+    border-color: rgba(99, 102, 241, 0.3) !important;
+    background: rgba(99, 102, 241, 0.05) !important;
+    box-shadow: 0 0 15px rgba(99, 102, 241, 0.06) !important;
+  }
   .tab-btn.active-cyan {
     border-color: rgba(6, 182, 212, 0.3) !important;
     background: rgba(6, 182, 212, 0.05) !important;
@@ -506,45 +511,49 @@ const hoverGlowClass: Record<string, string> = {
 </style>
 
 <script>
-  var buttons = document.querySelectorAll(".tab-btn");
-  var panels = document.querySelectorAll(".tab-panel");
+  function initSkillsWorkbench() {
+    var buttons = document.querySelectorAll(".tab-btn");
+    var panels = document.querySelectorAll(".tab-panel");
 
-  buttons.forEach(function(btn) {
-    btn.addEventListener("click", function() {
-      // Remove active states from all buttons
-      buttons.forEach(function(b) {
-        b.classList.remove("active");
-        var color = b.getAttribute("data-color");
-        b.classList.remove("active-" + color);
+    buttons.forEach(function(btn) {
+      btn.addEventListener("click", function() {
+        // Remove active states from all buttons
+        buttons.forEach(function(b) {
+          b.classList.remove("active");
+          var color = b.getAttribute("data-color");
+          b.classList.remove("active-" + color);
+        });
+
+        // Add active state to clicked button
+        btn.classList.add("active");
+        var activeColor = btn.getAttribute("data-color");
+        btn.classList.add("active-" + activeColor);
+
+        // Hide all panels
+        panels.forEach(function(panel) {
+          panel.classList.add("hidden");
+          panel.classList.remove("grid");
+        });
+
+        // Show matching panel
+        var targetId = "panel-" + btn.getAttribute("data-tab");
+        var targetPanel = document.getElementById(targetId);
+        if (targetPanel) {
+          targetPanel.classList.remove("hidden");
+          targetPanel.classList.add("grid");
+
+          // Quick subtle entry animation
+          (targetPanel as HTMLElement).style.opacity = "0";
+          (targetPanel as HTMLElement).style.transform = "translateY(5px)";
+          setTimeout(function() {
+            (targetPanel as HTMLElement).style.opacity = "1";
+            (targetPanel as HTMLElement).style.transform = "translateY(0px)";
+          }, 50);
+        }
       });
-
-      // Add active state to clicked button
-      btn.classList.add("active");
-      var activeColor = btn.getAttribute("data-color");
-      btn.classList.add("active-" + activeColor);
-
-      // Hide all panels
-      panels.forEach(function(panel) {
-        panel.classList.add("hidden");
-        panel.classList.remove("grid");
-      });
-
-      // Show matching panel
-      var targetId = "panel-" + btn.getAttribute("data-tab");
-      var targetPanel = document.getElementById(targetId);
-      if (targetPanel) {
-        targetPanel.classList.remove("hidden");
-        targetPanel.classList.add("grid");
-
-        // Quick subtle entry animation
-        (targetPanel as HTMLElement).style.opacity = "0";
-        (targetPanel as HTMLElement).style.transform = "translateY(5px)";
-        setTimeout(function() {
-          (targetPanel as HTMLElement).style.opacity = "1";
-          (targetPanel as HTMLElement).style.transform = "translateY(0px)";
-        }, 50);
-      }
     });
-  });
+  }
+
+  document.addEventListener("astro:page-load", initSkillsWorkbench);
 </script>
 

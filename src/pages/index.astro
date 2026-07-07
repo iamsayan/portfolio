@@ -353,7 +353,7 @@ const categoryGlow: Record<string, string> = {
       </div>
 
       <!-- Scroll Indicator -->
-      <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50">
+      <div class="absolute bottom-4 lg:bottom-8 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2 opacity-50">
         <span class="t-mono text-[9px] tracking-widest text-muted">Scroll Down</span>
         <Icon name="ph:caret-double-down" class="w-4 h-4 animate-bounce text-accent" aria-hidden="true" />
       </div>
@@ -475,16 +475,16 @@ const categoryGlow: Record<string, string> = {
               >
               </div>
               <div
-                class="glass glass-glow rounded-xl overflow-hidden shadow-2xl relative z-10 border-strong p-6 bg-surface"
+                class="glass glass-glow rounded-xl overflow-hidden shadow-2xl relative z-10 border-strong p-4 sm:p-6 bg-surface"
               >
                 <!-- Mock API Client -->
-                <div class="flex items-center gap-2 border-b border-subtle pb-4 mb-4">
-                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-[rgba(16,185,129,0.1)] text-success"
+                <div class="flex items-center gap-2 border-b border-subtle pb-4 mb-4 overflow-x-auto scrollbar-none whitespace-nowrap">
+                  <span class="text-[9px] font-mono px-2 py-0.5 rounded bg-[rgba(16,185,129,0.1)] text-success flex-shrink-0"
                     >GET</span
                   >
-                  <span class="text-xs font-mono text-secondary">https://api.{Astro.site ? Astro.site.host : "sayandatta.co.in"}/v1/health</span>
+                  <span class="text-[10px] sm:text-xs font-mono text-secondary flex-shrink-0 select-all">https://api.{Astro.site ? Astro.site.host : "sayandatta.co.in"}/v1/health</span>
                 </div>
-                <div class="rounded-lg bg-deep p-4 font-mono text-xs text-secondary border border-subtle">
+                <div class="rounded-lg bg-deep p-3 sm:p-4 font-mono text-[10px] sm:text-xs text-secondary border border-subtle">
                   <div class="space-y-1">
                     <div>&#123;</div>
                     <div class="pl-4">
