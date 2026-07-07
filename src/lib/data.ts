@@ -110,16 +110,6 @@ export interface ProjectsPage extends SingletonEntity {
 }
 
 /**
- * Whether a project is a team contribution. Derived from the `type` field:
- * the user signals team work by setting `type` to a value containing
- * "Company" (e.g. "Company Product (Expresstech)") or "Team".
- */
-export function isTeamContribution(p: Project): boolean {
-  const t = (p.type ?? "").toLowerCase();
-  return t.includes("company") || t.includes("team");
-}
-
-/**
  * Fetch the `projectsPage` singleton from Cockpit. This is the raw API
  * response — no local fallback. If the API is unreachable or the env vars
  * are missing, the build will fail with a clear Cockpit error.

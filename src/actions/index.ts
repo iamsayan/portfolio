@@ -1,4 +1,4 @@
-import { defineAction } from "astro:actions";
+import { ActionError, defineAction } from "astro:actions";
 import { z } from "astro/zod";
 import cockpit from "@/lib/client";
 
@@ -15,16 +15,27 @@ export const server = {
     handler: async (input) => {
       const token = import.meta.env.INBOX_TOKEN;
       if (!token) {
-        throw new Error("INBOX_TOKEN not set");
+        throw new ActionError({
+          code: "BAD_REQUEST",
+          message: "TOKEN not set",
+        });
       }
-      const response = await cockpit.submitInbox(token, {
-        name: input.name,
-        email: input.email,
-        scope: input.scope,
-        message: input.message,
-        _honeypot: input._honeypot,
-      });
-      return response;
+      try {
+        const response = await cockpit.submitInbox(token, {
+          name: input.name,
+          email: input.email,
+          scope: input.scope,
+          message: input.message,
+          _honeypot: input._honeypot,
+        });
+
+        return response;
+      } catch (error) {
+        throw new ActionError({
+          code: "BAD_REQUEST",
+          message: "Failed to submit contact",
+        });
+      }
     },
   }),
 };

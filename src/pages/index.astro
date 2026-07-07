@@ -2,8 +2,15 @@
 import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
-import { getProfile, getHomePage, isTeamContribution } from "@/lib/data";
+import { getProfile, getHomePage } from "@/lib/data";
 import { Icon } from "astro-icon/components";
+
+if (Astro.cache.enabled) {
+  Astro.cache.set({
+    swr: 60,
+    tags: ['projects', 'home'],
+  });
+}
 
 const [profile, home] = await Promise.all([getProfile(), getHomePage()]);
 
@@ -601,11 +608,11 @@ const categoryGlow: Record<string, string> = {
                       {categoryLabel[cat] ?? project.category}
                     </span>
                     <div class="flex items-center gap-1.5">
-                      {isTeamContribution(project) && (
+                      {/* {isTeamContribution(project) && (
                         <span class="text-[9px] font-mono text-secondary uppercase tracking-widest bg-raised px-2 py-0.5 rounded border border-subtle font-bold">
                           Team
                         </span>
-                      )}
+                      )} */}
                       {project.acquired && (
                         <span class="text-[9px] font-mono text-success uppercase tracking-widest bg-success-glow px-2 py-0.5 rounded border border-emerald-500/10 font-bold">
                           Acquired
@@ -707,11 +714,11 @@ const categoryGlow: Record<string, string> = {
                       {categoryLabel[cat] ?? project.category}
                     </span>
                     <div class="flex items-center gap-1.5">
-                      {isTeamContribution(project) && (
+                      {/* {isTeamContribution(project) && (
                         <span class="text-[9px] font-mono text-secondary uppercase tracking-widest bg-raised px-2 py-0.5 rounded border border-subtle font-bold">
                           Team
                         </span>
-                      )}
+                      )} */}
                       {project.acquired && (
                         <span class="text-[9px] font-mono text-success uppercase tracking-widest bg-success-glow px-2 py-0.5 rounded border border-emerald-500/10 font-bold">
                           Acquired

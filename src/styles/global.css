@@ -1,26 +1,5 @@
 @import "tailwindcss";
-
-/* ── Local Self-Hosted Fonts (Fontsource) ── */
-@import "@fontsource/sora/300.css";
-@import "@fontsource/sora/400.css";
-@import "@fontsource/sora/500.css";
-@import "@fontsource/sora/600.css";
-@import "@fontsource/sora/700.css";
-@import "@fontsource/sora/800.css";
-
-@import "@fontsource/outfit/300.css";
-@import "@fontsource/outfit/400.css";
-@import "@fontsource/outfit/500.css";
-@import "@fontsource/outfit/600.css";
-@import "@fontsource/outfit/700.css";
-@import "@fontsource/outfit/800.css";
-@import "@fontsource/outfit/900.css";
-
-@import "@fontsource/jetbrains-mono/400.css";
-@import "@fontsource/jetbrains-mono/500.css";
-@import "@fontsource/jetbrains-mono/600.css";
-@import "@fontsource/jetbrains-mono/700.css";
-
+@plugin '@tailwindcss/typography';
 
 /* ── Colorful UI Design Tokens ───────────────────────── */
 :root {
@@ -61,10 +40,6 @@
   --radius-sm: 0.5rem;
   --radius: 0.85rem;
   --radius-lg: 1.25rem;
-
-  --font-display: "Sora", system-ui, -apple-system, sans-serif;
-  --font-sans: "Outfit", system-ui, -apple-system, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, monospace;
 }
 
 :root[data-theme="light"] {
@@ -97,7 +72,7 @@
   --success-glow: rgba(4, 120, 87, 0.08);
 }
 
-@theme {
+@theme inline {
   --color-deep: var(--bg-deep);
   --color-surface: var(--bg-surface);
   --color-raised: var(--bg-raised);
@@ -112,9 +87,9 @@
   --color-success: var(--success);
   --color-success-glow: var(--success-glow);
 
-  --font-sans: var(--font-sans);
-  --font-mono: var(--font-mono);
-  --font-display: var(--font-display);
+  --font-display: var(--font-sora);
+  --font-sans: var(--font-outfit);
+  --font-mono: var(--font-jetbrains-mono);
 }
 
 /* ── Base ─────────────────────────────────────────────── */

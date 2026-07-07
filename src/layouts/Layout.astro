@@ -1,8 +1,8 @@
 ---
 import "@/styles/global.css";
+import { Font } from "astro:assets";
 import { ThemeScript } from "astro-theme-toggle/components";
-import { Seo } from "astro-seo-meta";
-import { Schema } from "astro-seo-schema";
+import { AstroSeo } from "@lexingtonthemes/seo";
 import { ClientRouter } from "astro:transitions";
 
 export interface Props {
@@ -10,10 +10,6 @@ export interface Props {
   description?: string;
   image?: string;
   type?: "website" | "article";
-  articleData?: {
-    pubDate: Date;
-    tags?: string[];
-  };
 }
 
 const {
@@ -21,11 +17,10 @@ const {
   description = "Senior Full Stack Developer specializing in high-performance WooCommerce systems, custom payment gateways, Laravel backends, and modern TypeScript (Astro, Next.js). 8+ years experience.",
   image,
   type = "website",
-  articleData,
 } = Astro.props;
 
 const siteUrl = Astro.site ? Astro.site.origin : "https://sayandatta.co.in";
-const ogImage = image || `${siteUrl}/favicon.png`;
+const ogImage = image || `${siteUrl}/avatar.jpg`;
 const canonicalURL = new URL(Astro.url.pathname, siteUrl);
 ---
 
@@ -34,80 +29,46 @@ const canonicalURL = new URL(Astro.url.pathname, siteUrl);
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    
+    <Font cssVariable="--font-sora" />
+    <Font cssVariable="--font-outfit" />
+    <Font cssVariable="--font-jetbrains-mono" />
 
-    <Seo
+    <AstroSeo
       title={title}
+      titleTemplate="%s - Sayan Datta"
       description={description}
-      facebook={{
-        type: type,
-        image: ogImage,
-        url: canonicalURL.href,
-      }}
+      canonical={canonicalURL.href}
       twitter={{
-        card: "summary_large_image",
-        image: ogImage,
+        cardType: "summary_large_image",
         site: "@im_sayaan",
+        handle: "@im_sayaan",
       }}
+      openGraph={{
+        url: canonicalURL.href,
+        title: title,
+        description: description,
+        type: type,
+        site_name: "Sayan Datta",
+        images: [
+          {
+            url: ogImage
+          },
+        ],
+      }}
+      additionalMetaTags={[
+        { name: "google-site-verification", content: "OAGSiMkoyQF8x7rjjN3h-udf1gsyiUZo9lXrvUPAa10" },
+        { name: "theme-color", content: "#f43f5e" },
+      ]}
     />
 
     <!-- Favicons -->
     <link rel="icon" type="image/jpeg" href="/avatar.jpg" />
     <link rel="shortcut icon" type="image/jpeg" href="/avatar.jpg" />
     <link rel="apple-touch-icon" href="/avatar.jpg" />
-    <meta name="theme-color" content="#f43f5e" />
-
-    <link rel="canonical" href={canonicalURL.href} />
 
     <ThemeScript />
     <ClientRouter />
-
-    <!-- Structured Data (JSON-LD) for SEO -->
-    <Schema
-      item={{
-        "@context": "https://schema.org",
-        "@type": "Person",
-        name: "Sayan Datta",
-        url: siteUrl,
-        image: `${siteUrl}/favicon.png`,
-        sameAs: ["https://github.com/iamsayan", "https://linkedin.com/in/meetsayan", "https://twitter.com/im_sayaan"],
-        jobTitle: "Senior Full Stack Developer",
-        worksFor: {
-          "@type": "Organization",
-          name: "TeamUpdraft",
-        },
-        description:
-          "Senior Full Stack Developer specializing in high-performance WooCommerce systems, custom payment gateways, Laravel backends, and modern TypeScript (Astro, Next.js).",
-      }}
-    />
-
-    {
-      type === "article" && articleData && (
-        <Schema
-          item={{
-            "@context": "https://schema.org",
-            "@type": "BlogPosting",
-            headline: title,
-            description: description,
-            image: ogImage,
-            datePublished: articleData.pubDate.toISOString(),
-            author: {
-              "@type": "Person",
-              name: "Sayan Datta",
-              url: siteUrl,
-            },
-            publisher: {
-              "@type": "Person",
-              name: "Sayan Datta",
-              url: siteUrl,
-            },
-            mainEntityOfPage: {
-              "@type": "WebPage",
-              "@id": canonicalURL.href,
-            },
-          }}
-        />
-      )
-    }
   </head>
   <body class="min-h-screen relative overflow-x-hidden">
     <!-- Top Progress Bar for ClientRouter navigation -->
@@ -146,7 +107,6 @@ const canonicalURL = new URL(Astro.url.pathname, siteUrl);
           navigator.clipboard.writeText(email).then(function () {
             const icon = btn.querySelector("svg");
             if (icon) {
-              const originalHtml = icon.innerHTML;
               btn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 256 256" fill="currentColor" class="text-emerald-500"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></svg>`;
               setTimeout(function () {
                 btn.innerHTML = "";

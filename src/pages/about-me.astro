@@ -6,6 +6,13 @@ import { getProfile, getExperiences, getTestimonials, getPhilosophy, type Experi
 import { Icon } from "astro-icon/components";
 import PageHero from "@/components/PageHero.astro";
 
+if (Astro.cache.enabled) {
+  Astro.cache.set({
+    swr: 60,
+    tags: ['experiences'],
+  });
+}
+
 const [profile, experience, testimonials, philosophy] = await Promise.all([
   getProfile(),
   getExperiences(),

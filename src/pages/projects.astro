@@ -2,9 +2,16 @@
 import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
-import { getProjectsPage, isTeamContribution } from "@/lib/data";
+import { getProjectsPage } from "@/lib/data";
 import { Icon } from "astro-icon/components";
 import PageHero from "@/components/PageHero.astro";
+
+if (Astro.cache.enabled) {
+  Astro.cache.set({
+    swr: 60,
+    tags: ['projects', 'projectsPage'],
+  });
+}
 
 const projectsPage = await getProjectsPage();
 const featured = projectsPage.featuredProjects;
@@ -129,11 +136,11 @@ const wpPluginCount = allProjects.filter((p) => p.category === "wordpress").leng
                       <span class="text-[9px] font-mono text-accent uppercase tracking-widest bg-accent-glow px-2.5 py-1 rounded border border-rose-500/10 font-bold">
                         {p.type}
                       </span>
-                      {isTeamContribution(p) && (
+                      {/* {isTeamContribution(p) && (
                         <span class="text-[9px] font-mono text-secondary uppercase tracking-widest bg-raised px-2.5 py-1 rounded border border-subtle font-bold">
                           Team Contribution
                         </span>
-                      )}
+                      )} */}
                       {p.acquired && (
                         <span class="text-[9px] font-mono text-success uppercase tracking-widest bg-success-glow px-2.5 py-1 rounded border border-emerald-500/10 font-bold">
                           Acquired
@@ -301,11 +308,11 @@ const wpPluginCount = allProjects.filter((p) => p.category === "wordpress").leng
                       {categoryLabel[p.category] ?? p.category}
                     </span>
                     <div class="flex items-center gap-1.5">
-                      {isTeamContribution(p) && (
+                      {/* {isTeamContribution(p) && (
                         <span class="text-[9px] font-mono text-secondary uppercase tracking-widest bg-raised px-2 py-0.5 rounded border border-subtle font-bold">
                           Team
                         </span>
-                      )}
+                      )} */}
                       {p.acquired && (
                         <span class="text-[9px] font-mono text-success uppercase tracking-widest bg-success-glow px-2 py-0.5 rounded border border-emerald-500/10 font-bold">
                           Acquired

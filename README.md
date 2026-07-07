@@ -32,7 +32,6 @@ A premium, high-performance developer portfolio built with **Astro v7**, **React
 ├── .prettierrc.mjs          # Prettier formatting configurations
 ├── eslint.config.js         # ESLint flat config with Astro & TypeScript rules
 ├── public/                  # Static assets
-│   ├── resume.pdf           # Sayan's professional printable resume
 │   └── favicon.svg          # Portfolio favicon logo
 ├── src/
 ├── src/
