@@ -188,11 +188,13 @@ export async function getHomePage(): Promise<HomePage> {
 export interface SkillItem {
   name: string;
   level: string;
-  context: string;
+  desc?: string;
+  icon?: string;
   tags: string[];
 }
 
 export interface SkillsData {
+  languages: SkillItem[];
   core: SkillItem[];
   modern: SkillItem[];
   backend: SkillItem[];

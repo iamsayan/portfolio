@@ -116,7 +116,7 @@ const wpPluginCount = allProjects.filter((p) => p.category === "wordpress").leng
         <!-- Featured Projects List -->
         <div class="space-y-16" id="projects-list">
           {
-            featured.map((p) => {
+            featured.map((p, idx) => {
               const activeLink = p.links?.find((link) => link.active);
               return (
                 <article class="project-card reveal" data-cat={p.category}>
@@ -137,9 +137,6 @@ const wpPluginCount = allProjects.filter((p) => p.category === "wordpress").leng
                           Acquired
                         </span>
                       )}
-                      <span class="text-[9px] font-mono text-muted uppercase tracking-widest font-bold">
-                        {categoryLabel[p.category] ?? p.category}
-                      </span>
                     </div>
                     <h2 class="t-title text-2xl font-bold mt-4 text-primary">{p.title}</h2>
                     {p.subtitle && (
@@ -148,22 +145,30 @@ const wpPluginCount = allProjects.filter((p) => p.category === "wordpress").leng
                         {p.subtitle}
                       </p>
                     )}
-                    {activeLink && (
-                      <a
-                        href={activeLink.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="mt-3 inline-flex items-center gap-1 text-[11px] font-mono text-secondary hover:text-accent transition-colors"
-                      >
-                        <Icon name="ph:link" class="w-3.5 h-3.5" aria-hidden="true" />
-                        {activeLink.url.replace(/^https?:\/\//, "").replace(/\/$/, "")}
-                      </a>
-                    )}
+                    {/* Metadata & Links */}
+                    <div class="mt-3 flex flex-wrap items-center gap-3">
+                      {activeLink && (
+                        <a
+                          href={activeLink.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="inline-flex items-center gap-1 text-[11px] font-mono text-secondary hover:text-accent transition-colors"
+                        >
+                          <Icon name="ph:link" class="w-3.5 h-3.5" aria-hidden="true" />
+                          {activeLink.url.replace(/^https?:\/\//, "").replace(/\/$/, "")}
+                        </a>
+                      )}
+                      
+                      <span class={`inline-flex items-center gap-1.5 text-[9px] font-mono font-bold tracking-wider uppercase px-2 py-0.5 rounded bg-strong border border-subtle ${categoryText[p.category] ?? "text-muted"}`}>
+                        <span class="w-1.5 h-1.5 rounded-full bg-current animate-pulse" aria-hidden="true" />
+                        {categoryLabel[p.category] ?? p.category}
+                      </span>
+                    </div>
                   </div>
 
                   {/* Expanded Detail Card */}
                   <div class="lg:col-span-8">
-                    <div class={`glass ${glowClass[p.category] ?? "hover-glow-rose"} p-8 bg-surface border-subtle flex flex-col justify-between min-h-[220px]`}>
+                    <div class={`glass ${glowClass[p.category] ?? "hover-glow-rose"} p-8 bg-surface border-subtle flex flex-col justify-between`}>
                       <div>
                         <div class="flex flex-wrap gap-1.5 mb-6">
                           {p.tech.map((t) => (
@@ -188,65 +193,80 @@ const wpPluginCount = allProjects.filter((p) => p.category === "wordpress").leng
                         )}
 
                         {/* Overview */}
-                        <p class="text-sm text-primary leading-relaxed font-sans mb-6 font-medium">{p.overview}</p>
+                        <p class="text-sm text-primary leading-relaxed font-sans mb-3 font-medium">{p.overview}</p>
 
-                        {/* Problem & Solution Block */}
-                        <div class="grid sm:grid-cols-2 gap-6 mt-6 border-t border-subtle pt-6">
-                          <div>
-                            <h4 class="text-[10px] font-mono uppercase tracking-wider text-accent font-bold mb-2">
-                              The Problem
-                            </h4>
-                            <p class="text-xs text-secondary leading-relaxed font-sans">{p.problem}</p>
+                        {/* Collapsible Case Study Details */}
+                        <div
+                          class="case-study-details overflow-hidden transition-all duration-500 ease-in-out mt-2"
+                          style={idx === 0 ? "max-height: none; opacity: 1;" : "max-height: 0px; opacity: 0;"}
+                        >
+                          {/* Problem & Solution Block */}
+                          <div class="grid sm:grid-cols-2 gap-6 mt-4">
+                            <div>
+                              <h4 class="text-[10px] font-mono uppercase tracking-wider text-accent font-bold mb-2">
+                                The Problem
+                              </h4>
+                              <p class="text-xs text-secondary leading-relaxed font-sans">{p.problem}</p>
+                            </div>
+                            <div>
+                              <h4 class="text-[10px] font-mono uppercase tracking-wider text-success font-bold mb-2">
+                                The Solution
+                              </h4>
+                              <p class="text-xs text-secondary leading-relaxed font-sans">{p.solution}</p>
+                            </div>
                           </div>
-                          <div>
-                            <h4 class="text-[10px] font-mono uppercase tracking-wider text-success font-bold mb-2">
-                              The Solution
-                            </h4>
-                            <p class="text-xs text-secondary leading-relaxed font-sans">{p.solution}</p>
+
+                          {/* Role & Challenges */}
+                          <div class="grid sm:grid-cols-2 gap-6 mt-6">
+                            <div>
+                              <h4 class="text-[10px] font-mono uppercase tracking-wider text-muted font-bold mb-1">
+                                My Role
+                              </h4>
+                              <p class="text-xs text-primary font-semibold font-sans">{p.role}</p>
+                            </div>
+                            <div>
+                              <h4 class="text-[10px] font-mono uppercase tracking-wider text-muted font-bold mb-1">
+                                Key Challenges
+                              </h4>
+                              <p class="text-xs text-secondary leading-relaxed font-sans">{p.challenges}</p>
+                            </div>
                           </div>
+
+                          {/* Impact Block */}
+                          {p.impact && (
+                            <div class="t-body text-xs mt-6 text-secondary font-medium bg-raised p-4 rounded-lg border border-subtle">
+                              <strong class="text-accent-bright font-mono uppercase text-[9px] tracking-widest block mb-1">
+                                Measurable Impact
+                              </strong>
+                              <span set:html={p.impact} />
+                            </div>
+                          )}
+
+                          {/* Direct Links */}
+                          {activeLink && (
+                            <div class="flex flex-wrap gap-4 mt-6">
+                              <a
+                                href={activeLink.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class={`b ${activeLink.data?.type === "primary" ? "b-primary" : "b-ghost"} text-xs flex items-center gap-1`}
+                              >
+                                {activeLink.title}
+                                <span aria-hidden="true">&rarr;</span>
+                              </a>
+                            </div>
+                          )}
                         </div>
 
-                        {/* Role & Challenges */}
-                        <div class="grid sm:grid-cols-2 gap-6 mt-6 border-t border-subtle pt-6">
-                          <div>
-                            <h4 class="text-[10px] font-mono uppercase tracking-wider text-muted font-bold mb-1">
-                              My Role
-                            </h4>
-                            <p class="text-xs text-primary font-semibold font-sans">{p.role}</p>
-                          </div>
-                          <div>
-                            <h4 class="text-[10px] font-mono uppercase tracking-wider text-muted font-bold mb-1">
-                              Key Challenges
-                            </h4>
-                            <p class="text-xs text-secondary leading-relaxed font-sans">{p.challenges}</p>
-                          </div>
-                        </div>
-
-                        {/* Impact Block */}
-                        {p.impact && (
-                          <div class="t-body text-xs mt-6 text-secondary font-medium bg-raised p-4 rounded-lg border border-subtle">
-                            <strong class="text-accent-bright font-mono uppercase text-[9px] tracking-widest block mb-1">
-                              Measurable Impact
-                            </strong>
-                            <span set:html={p.impact} />
-                          </div>
-                        )}
+                        {/* Case Study Toggle */}
+                        <button
+                          class="case-study-toggle mt-4 inline-flex items-center gap-2 text-[10px] font-mono font-bold uppercase tracking-wider px-4 py-2 rounded-lg border border-subtle bg-strong text-secondary hover:text-accent hover:border-accent/40 hover:bg-accent-glow transition-all duration-300 cursor-pointer focus:outline-none"
+                          aria-expanded={idx === 0 ? "true" : "false"}
+                        >
+                          <span class="toggle-text">{idx === 0 ? "Collapse Case Study" : "Read Case Study"}</span>
+                          <Icon name="ph:caret-down" class="w-3.5 h-3.5 caret-icon transition-transform duration-300" style={idx === 0 ? "transform: rotate(180deg);" : ""} aria-hidden="true" />
+                        </button>
                       </div>
-
-                      {/* Direct Links */}
-                      {activeLink && (
-                        <div class="flex flex-wrap gap-4 mt-8 pt-6 border-t border-subtle">
-                          <a
-                            href={activeLink.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class={`b ${activeLink.data?.type === "primary" ? "b-primary" : "b-ghost"} text-xs flex items-center gap-1`}
-                          >
-                            {activeLink.title}
-                            <span aria-hidden="true">&rarr;</span>
-                          </a>
-                        </div>
-                      )}
                     </div>
                   </div>
                 </div>
@@ -402,7 +422,7 @@ const wpPluginCount = allProjects.filter((p) => p.category === "wordpress").leng
 <script>
   // Client-side project filter logic
   var buttons = document.querySelectorAll(".filter-btn");
-  var cards = document.querySelectorAll(".project-card");
+  var cards = document.querySelectorAll(".project-card") as NodeListOf<HTMLElement>;
   var secondaryHeader = document.getElementById("secondary-grid-header");
   var secondaryGrid = document.getElementById("secondary-grid");
 
@@ -443,4 +463,29 @@ const wpPluginCount = allProjects.filter((p) => p.category === "wordpress").leng
     });
   }
 
+  // Interactive Case Study Accordion Toggler
+  var toggles = document.querySelectorAll(".case-study-toggle");
+  toggles.forEach(function(toggle) {
+    toggle.addEventListener("click", function() {
+      var container = toggle.previousElementSibling as HTMLElement;
+      if (!container) return;
+      var isExpanded = toggle.getAttribute("aria-expanded") === "true";
+      var textNode = toggle.querySelector(".toggle-text");
+      var caretIcon = toggle.querySelector(".caret-icon") as HTMLElement;
+
+      if (isExpanded) {
+        container.style.maxHeight = "0px";
+        container.style.opacity = "0";
+        toggle.setAttribute("aria-expanded", "false");
+        if (textNode) textNode.textContent = "Read Case Study";
+        if (caretIcon) caretIcon.style.transform = "rotate(0deg)";
+      } else {
+        container.style.maxHeight = container.scrollHeight + "px";
+        container.style.opacity = "1";
+        toggle.setAttribute("aria-expanded", "true");
+        if (textNode) textNode.textContent = "Collapse Case Study";
+        if (caretIcon) caretIcon.style.transform = "rotate(180deg)";
+      }
+    });
+  });
 </script>

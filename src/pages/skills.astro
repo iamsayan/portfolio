@@ -10,11 +10,19 @@ const skillsData = await getSkills();
 
 const skillSections = [
   {
+    id: "languages",
+    name: "Languages",
+    desc: "Programming languages and syntaxes I use daily to write software.",
+    icon: "ph:code-block",
+    color: "cyan",
+    skills: skillsData.languages,
+  },
+  {
     id: "core",
     name: "Core Expertise",
     desc: "WooCommerce checkout loops and WordPress plugin architecture — production code paths shipping to live traffic.",
     icon: "ph:cpu",
-    color: "rose",
+    color: "indigo",
     skills: skillsData.core,
   },
   {
@@ -67,6 +75,20 @@ const colorMap: Record<string, { label: string; text: string; bg: string; bar: s
     bar: "bg-rose-500",
     barShadow: "shadow-[0_0_8px_rgba(244,63,94,0.6)]",
   },
+  indigo: {
+    label: "text-indigo-500",
+    text: "text-indigo-500",
+    bg: "bg-indigo-500/10",
+    bar: "bg-indigo-500",
+    barShadow: "shadow-[0_0_8px_rgba(99,102,241,0.6)]",
+  },
+  cyan: {
+    label: "text-cyan-500",
+    text: "text-cyan-500",
+    bg: "bg-cyan-500/10",
+    bar: "bg-cyan-500",
+    barShadow: "shadow-[0_0_8px_rgba(6,182,212,0.6)]",
+  },
   emerald: {
     label: "text-emerald-500",
     text: "text-emerald-500",
@@ -106,11 +128,24 @@ const colorMap: Record<string, { label: string; text: string; bg: string; bar: s
 
 const borderTopClass: Record<string, string> = {
   rose: "border-t-rose-500",
+  indigo: "border-t-indigo-500",
+  cyan: "border-t-cyan-500",
   emerald: "border-t-emerald-500",
   blue: "border-t-blue-500",
   purple: "border-t-purple-500",
   amber: "border-t-amber-500",
   zinc: "border-t-zinc-500",
+};
+
+const hoverGlowClass: Record<string, string> = {
+  rose: "hover:border-rose-500/40 hover-glow-rose",
+  indigo: "hover:border-indigo-500/40 hover-glow-indigo",
+  cyan: "hover:border-cyan-500/40 hover-glow-cyan",
+  emerald: "hover:border-emerald-500/40 hover-glow-emerald",
+  blue: "hover:border-blue-500/40 hover-glow-blue",
+  amber: "hover:border-amber-500/40 hover-glow-amber",
+  purple: "hover:border-purple-500/40 hover-glow-purple",
+  zinc: "hover:border-zinc-500/40 hover-glow-zinc",
 };
 ---
 
@@ -119,11 +154,10 @@ const borderTopClass: Record<string, string> = {
   description="What I actually ship: WooCommerce systems, Laravel backends, modern TypeScript frontends, and the infrastructure underneath."
 >
   <Header />
-  <main id="main-content" class="py-24 relative overflow-hidden">
+  <main id="main-content" class="py-24 relative">
     <PageHero
       badge="Tech Stack"
       description="A working catalog of what I ship to production, grouped by where the code actually runs. Mastery levels are honest, not aspirational."
-      customCrumbText="Tech Stack"
     >
       <Fragment slot="title">Skills &amp; <span class="t-accent">toolkit.</span></Fragment>
     </PageHero>
@@ -139,14 +173,14 @@ const borderTopClass: Record<string, string> = {
 
         <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {/* E-Commerce */}
-          <div class="glass hover-glow-rose p-6 bg-surface flex flex-col justify-between relative group">
+          <div class="glass hover-glow-amber p-6 bg-surface border-t-2 border-t-amber-500/80 shadow-[inset_0_1px_0_rgba(255,255,255,0.02)] flex flex-col justify-between relative group">
             <Icon
               name="ph:shopping-cart"
-              class="absolute top-6 right-6 w-8 h-8 text-rose-500/10 group-hover:text-rose-500/25 transition-colors"
+              class="absolute top-6 right-6 w-8 h-8 text-amber-500/10 group-hover:text-amber-500/25 transition-colors"
               aria-hidden="true"
             />
             <div>
-              <p class="text-[10px] font-mono font-bold text-rose-500 tracking-wider uppercase mb-1">E-Commerce</p>
+              <p class="text-[10px] font-mono font-bold text-amber-500 tracking-wider uppercase mb-1">E-Commerce</p>
               <h3 class="font-bold text-lg text-primary">Commerce Architecture</h3>
               <p class="text-xs text-secondary mt-2 leading-relaxed">
                 Custom checkout loops, payment gateways, webhook listeners, and transaction scaling.
@@ -155,7 +189,7 @@ const borderTopClass: Record<string, string> = {
             <div class="mt-6 space-y-2">
               <div class="flex justify-between text-xs font-mono">
                 <span class="text-muted">Expert Skills</span>
-                <span class="text-rose-500 font-bold">
+                <span class="text-amber-500 font-bold">
                   {skillsData.core.filter((s) => s.level.toLowerCase().includes("expert")).length} of {skillsData.core.length}
                 </span>
               </div>
@@ -163,7 +197,7 @@ const borderTopClass: Record<string, string> = {
                 {
                   [...Array(skillsData.core.length)].map((_, i) => (
                     <div
-                      class={`h-full flex-1 rounded-sm ${i < skillsData.core.filter((s) => s.level.toLowerCase().includes("expert")).length ? "bg-rose-500 shadow-[0_0_8px_rgba(244,63,94,0.6)]" : "bg-strong"}`}
+                      class={`h-full flex-1 rounded-sm ${i < skillsData.core.filter((s) => s.level.toLowerCase().includes("expert")).length ? "bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.6)]" : "bg-strong"}`}
                     />
                   ))
                 }
@@ -172,7 +206,7 @@ const borderTopClass: Record<string, string> = {
           </div>
 
           {/* Backend */}
-          <div class="glass hover-glow-blue p-6 bg-surface flex flex-col justify-between relative group">
+          <div class="glass hover-glow-blue p-6 bg-surface border-t-2 border-t-blue-500/80 shadow-[inset_0_1px_0_rgba(255,255,255,0.02)] flex flex-col justify-between relative group">
             <Icon
               name="ph:database"
               class="absolute top-6 right-6 w-8 h-8 text-blue-500/10 group-hover:text-blue-500/25 transition-colors"
@@ -205,7 +239,7 @@ const borderTopClass: Record<string, string> = {
           </div>
 
           {/* Frontend (Modern + CMS combined — both touch UI) */}
-          <div class="glass hover-glow-emerald p-6 bg-surface flex flex-col justify-between relative group">
+          <div class="glass hover-glow-emerald p-6 bg-surface border-t-2 border-t-emerald-500/80 shadow-[inset_0_1px_0_rgba(255,255,255,0.02)] flex flex-col justify-between relative group">
             <Icon
               name="ph:devices"
               class="absolute top-6 right-6 w-8 h-8 text-emerald-500/10 group-hover:text-emerald-500/25 transition-colors"
@@ -238,14 +272,14 @@ const borderTopClass: Record<string, string> = {
           </div>
 
           {/* Infra */}
-          <div class="glass hover-glow-amber p-6 bg-surface flex flex-col justify-between relative group">
+          <div class="glass hover-glow-purple p-6 bg-surface border-t-2 border-t-purple-500/80 shadow-[inset_0_1px_0_rgba(255,255,255,0.02)] flex flex-col justify-between relative group">
             <Icon
               name="ph:cloud-arrow-up"
-              class="absolute top-6 right-6 w-8 h-8 text-amber-500/10 group-hover:text-amber-500/25 transition-colors"
+              class="absolute top-6 right-6 w-8 h-8 text-purple-500/10 group-hover:text-purple-500/25 transition-colors"
               aria-hidden="true"
             />
             <div>
-              <p class="text-[10px] font-mono font-bold text-amber-500 tracking-wider uppercase mb-1">Cloud / DevOps</p>
+              <p class="text-[10px] font-mono font-bold text-purple-500 tracking-wider uppercase mb-1">Cloud / DevOps</p>
               <h3 class="font-bold text-lg text-primary">Operations & Automation</h3>
               <p class="text-xs text-secondary mt-2 leading-relaxed">
                 GitHub Actions pipelines, Docker multi-stage compose, Nginx, and cloud virtualizations.
@@ -254,7 +288,7 @@ const borderTopClass: Record<string, string> = {
             <div class="mt-6 space-y-2">
               <div class="flex justify-between text-xs font-mono">
                 <span class="text-muted">Advanced+ Skills</span>
-                <span class="text-amber-500 font-bold">
+                <span class="text-purple-500 font-bold">
                   {skillsData.infra.filter((s) => s.level.toLowerCase().includes("advanced")).length} of {skillsData.infra.length}
                 </span>
               </div>
@@ -262,7 +296,7 @@ const borderTopClass: Record<string, string> = {
                 {
                   [...Array(skillsData.infra.length)].map((_, i) => (
                     <div
-                      class={`h-full flex-1 rounded-sm ${i < skillsData.infra.filter((s) => s.level.toLowerCase().includes("advanced")).length ? "bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.6)]" : "bg-strong"}`}
+                      class={`h-full flex-1 rounded-sm ${i < skillsData.infra.filter((s) => s.level.toLowerCase().includes("advanced")).length ? "bg-purple-500 shadow-[0_0_8px_rgba(168,85,247,0.6)]" : "bg-strong"}`}
                     />
                   ))
                 }
@@ -273,63 +307,244 @@ const borderTopClass: Record<string, string> = {
       </div>
     </section>
 
-    <!-- Skills Dashboard Grid -->
-    <section class="pb-28">
-      <div class="mx space-y-20">
-        {
-          skillSections.map((sec, idx) => {
-            const c = colorMap[sec.color];
-            const expertCount = sec.skills.filter((s) => s.level.toLowerCase().includes("expert")).length;
-            return (
-              <div class="reveal">
-                {/* Category Header */}
-                <div class="mb-8 border-b border-subtle pb-4 flex flex-col md:flex-row md:items-end justify-between gap-4">
-                  <div>
-                    <span class={`text-xs font-mono ${c.label} font-bold flex items-center gap-1.5`}>
-                      0{idx + 1} &mdash; {sec.name.toUpperCase()}
-                    </span>
-                    <p class="text-sm text-secondary mt-1">{sec.desc}</p>
-                  </div>
-                  <div class="flex items-center gap-3">
-                    <span class="text-[10px] font-mono text-muted uppercase tracking-wider">
-                      {expertCount} expert · {sec.skills.length} total
-                    </span>
-                    <Icon name={sec.icon} class={`w-8 h-8 ${c.text}/20 flex-shrink-0`} />
-                  </div>
-                </div>
+    <!-- Interactive Skills Workbench -->
+    <section class="pb-28 relative z-10">
+      <div class="mx">
+        <div class="grid md:grid-cols-12 gap-8 items-start">
+          <!-- Left: Tab Selectors (md:col-span-4) -->
+          <div class="md:col-span-4 flex flex-col sm:grid sm:grid-cols-2 md:flex md:flex-col gap-3 md:sticky md:top-24">
+            {
+              skillSections.map((sec, idx) => {
+                const c = colorMap[sec.color];
+                return (
+                  <button
+                    class={`tab-btn w-full text-left p-4 rounded-xl border border-subtle bg-surface hover:border-accent transition-all duration-300 cursor-pointer flex items-center justify-between group focus:outline-none ${idx === 0 ? `active active-${sec.color}` : ""}`}
+                    data-tab={sec.id}
+                    data-color={sec.color}
+                  >
+                    <div class="flex items-center gap-3">
+                      <div class={`w-8 h-8 rounded-lg bg-deep border border-subtle flex items-center justify-center`}>
+                        <Icon name={sec.icon} class={`w-4 h-4 ${c.text}`} />
+                      </div>
+                      <div>
+                        <p class="text-xs font-bold text-primary">{sec.name}</p>
+                        <p class="text-[10px] text-muted font-mono uppercase tracking-wider mt-0.5">{sec.skills.length} skills</p>
+                      </div>
+                    </div>
+                    <Icon name="ph:caret-right" class="w-4 h-4 text-muted opacity-40 group-hover:opacity-100 transition-opacity" />
+                  </button>
+                );
+              })
+            }
+          </div>
 
-                {/* Skills Cards Grid */}
-                <div class="grid sm:grid-cols-2 gap-6">
-                  {sec.skills &&
-                    sec.skills.map((s) => (
-                      <div class={`glass p-6 bg-surface border-subtle border-t-2 ${borderTopClass[sec.color] ?? "border-t-rose-500"} hover:border-${sec.color}-500/25 transition-all flex flex-col justify-between group`}>
+          {/* Right: Workbench Content Area (md:col-span-8) */}
+          <div class="md:col-span-8 relative min-h-[300px]">
+            {
+              skillSections.map((sec, idx) => {
+                const c = colorMap[sec.color];
+                const hoverGlow = hoverGlowClass[sec.color];
+                const borderTop = borderTopClass[sec.color];
+                return (
+                  <div
+                    id={`panel-${sec.id}`}
+                    class={`tab-panel grid sm:grid-cols-2 gap-6 transition-all duration-300 ${idx === 0 ? "active" : "hidden"}`}
+                  >
+                    {sec.skills.map((s) => (
+                      <div class={`glass p-6 bg-surface border-subtle border-t-2 ${borderTop} ${hoverGlow} flex flex-col justify-between group reveal`}>
                         <div>
-                          <div class="flex justify-between items-baseline mb-4">
-                            <h3 class="text-sm font-bold text-primary">{s.name}</h3>
-                            <span class={`text-[9px] px-2 py-0.5 rounded font-mono ${c.text} ${c.bg} border border-current/10 font-bold`}>
+                          <div class="flex justify-between items-center gap-4 mb-3">
+                            <div class="flex items-center gap-2.5">
+                              {s.icon && (
+                                <Icon name={s.icon} class="w-4 h-4 shrink-0" />
+                              )}
+                              <h4 class="text-sm font-bold text-primary group-hover:text-accent transition-colors leading-normal">{s.name}</h4>
+                            </div>
+                            <span class={`text-[9px] px-2 py-0.5 rounded font-mono ${c.text} ${c.bg} border border-current/10 font-bold shrink-0`}>
                               {s.level}
                             </span>
                           </div>
-                          <p class="text-xs text-secondary leading-relaxed font-sans">{s.context}</p>
+                          <p class="text-xs text-secondary leading-relaxed font-sans mb-4">{s.desc}</p>
+                          {/* Tags */}
+                          {s.tags && s.tags.length > 0 && (
+                            <div class="flex flex-wrap gap-1.5 mt-4 pt-3 border-t border-subtle/30">
+                              {s.tags.map((t) => (
+                                <span class="tag">{t}</span>
+                              ))}
+                            </div>
+                          )}
                         </div>
-                        {/* Sub-Technology Tags */}
-                        {s.tags && s.tags.length > 0 && (
-                          <div class="flex flex-wrap gap-1.5 mt-6 border-t border-subtle pt-4">
-                            {s.tags.map((t) => (
-                              <span class="tag">{t}</span>
-                            ))}
-                          </div>
-                        )}
                       </div>
                     ))}
+                  </div>
+                );
+              })
+            }
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Human Communication & Localization -->
+    <section class="pb-28 relative z-10 reveal">
+      <div class="mx">
+        <div class="grid md:grid-cols-2 gap-8">
+          {/* Languages */}
+          <div class="glass p-8 bg-surface border-subtle relative flex flex-col justify-between hover-glow-blue transition-all duration-300">
+            <div>
+              <div class="flex items-center gap-3 mb-6">
+                <span class="w-1.5 h-1.5 rounded-full bg-blue-500" aria-hidden="true"></span>
+                <span class="text-[10px] font-mono tracking-wider text-blue-500 uppercase font-bold">Languages</span>
+              </div>
+              <h3 class="font-bold text-lg text-primary mb-4">Human Languages</h3>
+              <p class="text-xs text-secondary leading-relaxed font-sans mb-6">
+                Clear communication is the core of successful remote development. Here is how I collaborate across international bounds:
+              </p>
+              
+              <div class="space-y-4">
+                <div class="flex items-center justify-between border-b border-subtle/30 pb-3">
+                  <div class="flex items-center gap-2.5">
+                    <Icon name="circle-flags:in" class="w-5.5 h-5.5 rounded-full shadow-[0_0_8px_rgba(255,255,255,0.05)]" />
+                    <span class="text-xs font-bold text-primary font-sans">Bengali</span>
+                  </div>
+                  <span class="text-[9px] px-2 py-0.5 rounded font-mono text-blue-500 bg-blue-500/10 border border-blue-500/10 font-bold">Native / L1</span>
+                </div>
+                
+                <div class="flex items-center justify-between border-b border-subtle/30 pb-3">
+                  <div class="flex items-center gap-2.5">
+                    <Icon name="circle-flags:in" class="w-5.5 h-5.5 rounded-full shadow-[0_0_8px_rgba(255,255,255,0.05)]" />
+                    <span class="text-xs font-bold text-primary font-sans">Hindi</span>
+                  </div>
+                  <span class="text-[9px] px-2 py-0.5 rounded font-mono text-blue-500 bg-blue-500/10 border border-blue-500/10 font-bold">Bilingual / Conversational</span>
+                </div>
+                
+                <div class="flex items-center justify-between pb-1">
+                  <div class="flex items-center gap-2.5">
+                    <Icon name="circle-flags:gb" class="w-5.5 h-5.5 rounded-full shadow-[0_0_8px_rgba(255,255,255,0.05)]" />
+                    <span class="text-xs font-bold text-primary font-sans">English</span>
+                  </div>
+                  <span class="text-[9px] px-2 py-0.5 rounded font-mono text-blue-500 bg-blue-500/10 border border-blue-500/10 font-bold">Professional Written & Technical</span>
                 </div>
               </div>
-            );
-          })
-        }
+            </div>
+          </div>
+
+          {/* Location & Async Collaboration */}
+          <div class="glass p-8 bg-surface border-subtle relative flex flex-col justify-between hover-glow-amber transition-all duration-300">
+            <div>
+              <div class="flex items-center gap-3 mb-6">
+                <span class="w-1.5 h-1.5 rounded-full bg-amber-500" aria-hidden="true"></span>
+                <span class="text-[10px] font-mono tracking-wider text-amber-500 uppercase font-bold">Collaboration</span>
+              </div>
+              <h3 class="font-bold text-lg text-primary mb-4">Remote Setup & Async Focus</h3>
+              <p class="text-xs text-secondary leading-relaxed font-sans mb-6">
+                Because international work runs across different hours, I prioritize robust written handoffs and timezone syncs:
+              </p>
+              
+              <div class="space-y-4">
+                <div class="flex items-center justify-between border-b border-subtle/30 pb-3">
+                  <span class="text-xs font-bold text-primary font-sans">Time Zone & Location</span>
+                  <span class="text-xs font-mono text-secondary">Kolkata, India (GMT +5:30)</span>
+                </div>
+                
+                <div class="flex items-center justify-between border-b border-subtle/30 pb-3">
+                  <span class="text-xs font-bold text-primary font-sans">Documentation Style</span>
+                  <span class="text-xs font-mono text-secondary">Markdown logs, detail audits</span>
+                </div>
+                
+                <div class="flex items-center justify-between pb-1">
+                  <span class="text-xs font-bold text-primary font-sans">Async Work Tools</span>
+                  <span class="text-xs font-mono text-secondary">Slack, Discord, GitHub Project Boards</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   </main>
   <Footer />
 </Layout>
+
+<style>
+  /* Tab Button Active Glow Styling */
+  .tab-btn.active-rose {
+    border-color: rgba(244, 63, 94, 0.3) !important;
+    background: rgba(244, 63, 94, 0.05) !important;
+    box-shadow: 0 0 15px rgba(244, 63, 94, 0.06) !important;
+  }
+  .tab-btn.active-cyan {
+    border-color: rgba(6, 182, 212, 0.3) !important;
+    background: rgba(6, 182, 212, 0.05) !important;
+    box-shadow: 0 0 15px rgba(6, 182, 212, 0.06) !important;
+  }
+  .tab-btn.active-emerald {
+    border-color: rgba(16, 185, 129, 0.3) !important;
+    background: rgba(16, 185, 129, 0.05) !important;
+    box-shadow: 0 0 15px rgba(16, 185, 129, 0.06) !important;
+  }
+  .tab-btn.active-blue {
+    border-color: rgba(59, 130, 246, 0.3) !important;
+    background: rgba(59, 130, 246, 0.05) !important;
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.06) !important;
+  }
+  .tab-btn.active-amber {
+    border-color: rgba(245, 158, 11, 0.3) !important;
+    background: rgba(245, 158, 11, 0.05) !important;
+    box-shadow: 0 0 15px rgba(245, 158, 11, 0.06) !important;
+  }
+  .tab-btn.active-purple {
+    border-color: rgba(168, 85, 247, 0.3) !important;
+    background: rgba(168, 85, 247, 0.05) !important;
+    box-shadow: 0 0 15px rgba(168, 85, 247, 0.06) !important;
+  }
+  .tab-btn.active-zinc {
+    border-color: rgba(113, 113, 122, 0.3) !important;
+    background: rgba(113, 113, 122, 0.05) !important;
+    box-shadow: 0 0 15px rgba(113, 113, 122, 0.04) !important;
+  }
+</style>
+
+<script>
+  var buttons = document.querySelectorAll(".tab-btn");
+  var panels = document.querySelectorAll(".tab-panel");
+
+  buttons.forEach(function(btn) {
+    btn.addEventListener("click", function() {
+      // Remove active states from all buttons
+      buttons.forEach(function(b) {
+        b.classList.remove("active");
+        var color = b.getAttribute("data-color");
+        b.classList.remove("active-" + color);
+      });
+
+      // Add active state to clicked button
+      btn.classList.add("active");
+      var activeColor = btn.getAttribute("data-color");
+      btn.classList.add("active-" + activeColor);
+
+      // Hide all panels
+      panels.forEach(function(panel) {
+        panel.classList.add("hidden");
+        panel.classList.remove("grid");
+      });
+
+      // Show matching panel
+      var targetId = "panel-" + btn.getAttribute("data-tab");
+      var targetPanel = document.getElementById(targetId);
+      if (targetPanel) {
+        targetPanel.classList.remove("hidden");
+        targetPanel.classList.add("grid");
+
+        // Quick subtle entry animation
+        (targetPanel as HTMLElement).style.opacity = "0";
+        (targetPanel as HTMLElement).style.transform = "translateY(5px)";
+        setTimeout(function() {
+          (targetPanel as HTMLElement).style.opacity = "1";
+          (targetPanel as HTMLElement).style.transform = "translateY(0px)";
+        }, 50);
+      }
+    });
+  });
+</script>
 
