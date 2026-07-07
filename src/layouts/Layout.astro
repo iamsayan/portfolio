@@ -222,6 +222,66 @@ const canonicalURL = new URL(Astro.url.pathname, siteUrl);
       })();
     </script>
 
+    <script is:inline>
+      // Global Drag-to-Scroll UX enhancer for overflow-x containers
+      (function () {
+        function initDragScroll() {
+          const sliders = document.querySelectorAll('.overflow-x-auto');
+          sliders.forEach((slider) => {
+            // Skip code editor if text selection is highly preferred, but since it's a mockup read-only code display, drag-scroll works great
+            let isDown = false;
+            let startX;
+            let scrollLeft;
+            let hasDragged = false;
+
+            slider.style.cursor = 'grab';
+
+            const preventClick = (e) => {
+              if (hasDragged) {
+                e.preventDefault();
+                e.stopImmediatePropagation();
+              }
+            };
+
+            slider.addEventListener('mousedown', (e) => {
+              isDown = true;
+              hasDragged = false;
+              slider.style.cursor = 'grabbing';
+              startX = e.pageX - slider.offsetLeft;
+              scrollLeft = slider.scrollLeft;
+              slider.addEventListener('click', preventClick, true);
+            });
+
+            slider.addEventListener('mouseleave', () => {
+              isDown = false;
+              slider.style.cursor = 'grab';
+            });
+
+            slider.addEventListener('mouseup', () => {
+              isDown = false;
+              slider.style.cursor = 'grab';
+              setTimeout(() => {
+                slider.removeEventListener('click', preventClick, true);
+                hasDragged = false;
+              }, 50);
+            });
+
+            slider.addEventListener('mousemove', (e) => {
+              if (!isDown) return;
+              const x = e.pageX - slider.offsetLeft;
+              const walk = (x - startX) * 1.8;
+              if (Math.abs(walk) > 6) {
+                hasDragged = true;
+              }
+              slider.scrollLeft = scrollLeft - walk;
+            });
+          });
+        }
+
+        document.addEventListener('astro:page-load', initDragScroll);
+      })();
+    </script>
+
     <style is:inline>
       #progress-bar {
         position: fixed;

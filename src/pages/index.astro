@@ -950,6 +950,9 @@ const categoryGlow: Record<string, string> = {
         panels.forEach((p) => {
           if (p.id === `code-${target}`) {
             p.classList.remove("hidden");
+            if (p.parentElement) {
+              p.parentElement.scrollLeft = 0;
+            }
           } else {
             p.classList.add("hidden");
           }
