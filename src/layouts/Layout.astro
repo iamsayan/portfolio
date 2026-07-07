@@ -38,7 +38,6 @@ const canonicalURL = new URL(Astro.url.pathname, siteUrl);
     <Seo
       title={title}
       description={description}
-      icon="/favicon.svg"
       facebook={{
         type: type,
         image: ogImage,
@@ -50,6 +49,12 @@ const canonicalURL = new URL(Astro.url.pathname, siteUrl);
         site: "@im_sayaan",
       }}
     />
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/jpeg" href="/avatar.jpg" />
+    <link rel="shortcut icon" type="image/jpeg" href="/avatar.jpg" />
+    <link rel="apple-touch-icon" href="/avatar.jpg" />
+    <meta name="theme-color" content="#f43f5e" />
 
     <link rel="canonical" href={canonicalURL.href} />
 
