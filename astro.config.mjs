@@ -6,6 +6,12 @@ import Unfonts from "unplugin-fonts/astro";
 import vercel from "@astrojs/vercel";
 import { loadEnv } from "vite";
 
+import robotsTxt from "astro-robots-txt";
+
+import compressor from "astro-compressor";
+
+import purgecss from "astro-purgecss";
+
 const env = loadEnv(process.env.NODE_ENV || "development", process.cwd(), "");
 
 export default defineConfig({
@@ -14,28 +20,24 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
-  integrations: [
-    icon(),
-    sitemap(),
-    Unfonts({
-      google: {
-        families: [
-          {
-            name: "Sora",
-            styles: "wght@300;400;500;600;700;800",
-          },
-          {
-            name: "Outfit",
-            styles: "wght@300;400;500;600;700;800;900",
-          },
-          {
-            name: "JetBrains Mono",
-            styles: "wght@400;500;600;700",
-          },
-        ],
-        display: "swap",
-        injectTo: "head-prepend",
-      },
-    }),
-  ],
+  integrations: [icon(), sitemap(), Unfonts({
+    google: {
+      families: [
+        {
+          name: "Sora",
+          styles: "wght@300;400;500;600;700;800",
+        },
+        {
+          name: "Outfit",
+          styles: "wght@300;400;500;600;700;800;900",
+        },
+        {
+          name: "JetBrains Mono",
+          styles: "wght@400;500;600;700",
+        },
+      ],
+      display: "swap",
+      injectTo: "head-prepend",
+    },
+  }), robotsTxt(), compressor(), purgecss()],
 });

@@ -930,43 +930,46 @@ const categoryGlow: Record<string, string> = {
 
 <script>
 
-  // IDE Mockup Tab Switcher Logic
-  const tabs = document.querySelectorAll(".ide-tab");
-  const panels = document.querySelectorAll(".code-panel");
+  // IDE Mockup Tab Switcher Logic — re-bind after ClientRouter navigation
+  document.addEventListener("astro:page-load", () => {
+    const tabs = document.querySelectorAll(".ide-tab");
+    const panels = document.querySelectorAll(".code-panel");
 
-  tabs.forEach((tab) => {
-    tab.addEventListener("click", () => {
-      const target = tab.getAttribute("data-tab");
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        const target = tab.getAttribute("data-tab");
 
-      tabs.forEach((t) => {
-        t.classList.remove("active", "bg-deep", "text-accent", "border-t", "border-t-accent");
-        t.classList.add("bg-surface", "text-muted");
+        tabs.forEach((t) => {
+          t.classList.remove("active", "bg-deep", "text-accent", "border-t", "border-t-accent");
+          t.classList.add("bg-surface", "text-muted");
+        });
+
+        tab.classList.add("active", "bg-deep", "text-accent", "border-t", "border-t-accent");
+        tab.classList.remove("bg-surface", "text-muted");
+
+        panels.forEach((p) => {
+          if (p.id === `code-${target}`) {
+            p.classList.remove("hidden");
+          } else {
+            p.classList.add("hidden");
+          }
+        });
       });
+    });
 
-      tab.classList.add("active", "bg-deep", "text-accent", "border-t", "border-t-accent");
-      tab.classList.remove("bg-surface", "text-muted");
+    // Reset GitHub fetch flag so it re-fetches if user returns to home page
+    (window as any).__gitFetched = false;
 
-      panels.forEach((p) => {
-        if (p.id === `code-${target}`) {
-          p.classList.remove("hidden");
-        } else {
-          p.classList.add("hidden");
+    const gitTabBtn = document.getElementById("git-tab-btn");
+    if (gitTabBtn) {
+      gitTabBtn.addEventListener("click", () => {
+        if (!(window as any).__gitFetched) {
+          (window as any).__gitFetched = true;
+          fetchGitHubEvents();
         }
       });
-    });
+    }
   });
-
-  // GitHub telemetry fetching logic
-  let gitFetched = false;
-  const gitTabBtn = document.getElementById("git-tab-btn");
-  if (gitTabBtn) {
-    gitTabBtn.addEventListener("click", () => {
-      if (!gitFetched) {
-        gitFetched = true;
-        fetchGitHubEvents();
-      }
-    });
-  }
 
   async function fetchGitHubEvents() {
     const container = document.getElementById("git-log-content");

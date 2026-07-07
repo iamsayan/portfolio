@@ -4,6 +4,7 @@ import Unfont from "unplugin-fonts/astro/component.astro";
 import { ThemeScript } from "astro-theme-toggle/components";
 import { Seo } from "astro-seo-meta";
 import { Schema } from "astro-seo-schema";
+import { ClientRouter } from "astro:transitions";
 
 export interface Props {
   title?: string;
@@ -60,6 +61,7 @@ const canonicalURL = new URL(Astro.url.pathname, siteUrl);
 
     <Unfont />
     <ThemeScript />
+    <ClientRouter />
 
     <!-- Structured Data (JSON-LD) for SEO -->
     <Schema
@@ -158,18 +160,23 @@ const canonicalURL = new URL(Astro.url.pathname, siteUrl);
 
     <script>
       // Centralized IntersectionObserver for page reveal animations
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("visible");
-            }
-          });
-        },
-        { threshold: 0.05 }
-      );
+      // Re-runs on every ClientRouter navigation via astro:page-load
+      function initReveal() {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+              }
+            });
+          },
+          { threshold: 0.05 }
+        );
+        document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+      }
 
-      document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+      // Run on first load and on every subsequent ClientRouter navigation
+      document.addEventListener("astro:page-load", initReveal);
     </script>
   </body>
 </html>

@@ -228,44 +228,46 @@ const isActive = (path: string) => {
 </style>
 
 <script>
-  // Mobile Menu Logic with accessibility support
-  const tg = document.getElementById("menu-btn");
-  const mn = document.getElementById("mob-menu");
-  const l1 = document.getElementById("l1");
-  const l2 = document.getElementById("l2");
-  let o = false;
+  function initHeader() {
+    // Mobile Menu Logic with accessibility support
+    const tg = document.getElementById("menu-btn");
+    const mn = document.getElementById("mob-menu");
+    const l1 = document.getElementById("l1");
+    const l2 = document.getElementById("l2");
+    let o = false;
 
-  if (tg && mn && l1 && l2) {
-    tg.addEventListener("click", () => {
-      o = !o;
-      tg.setAttribute("aria-expanded", o ? "true" : "false");
-      mn.style.maxHeight = o ? "460px" : "0";
-      mn.style.opacity = o ? "1" : "0";
-      l1.style.transform = o ? "rotate(45deg) translate(4px, 4px)" : "";
-      l2.style.transform = o ? "rotate(-45deg) translate(4px, -4px)" : "";
-    });
+    if (tg && mn && l1 && l2) {
+      tg.addEventListener("click", () => {
+        o = !o;
+        tg.setAttribute("aria-expanded", o ? "true" : "false");
+        mn.style.maxHeight = o ? "460px" : "0";
+        mn.style.opacity = o ? "1" : "0";
+        l1.style.transform = o ? "rotate(45deg) translate(4px, 4px)" : "";
+        l2.style.transform = o ? "rotate(-45deg) translate(4px, -4px)" : "";
+      });
 
-    document.querySelectorAll("[data-close]").forEach((e) =>
-      e.addEventListener("click", () => {
-        o = false;
-        tg.setAttribute("aria-expanded", "false");
-        mn.style.maxHeight = "0";
-        mn.style.opacity = "0";
-        l1.style.transform = "";
-        l2.style.transform = "";
-      })
-    );
+      document.querySelectorAll("[data-close]").forEach((e) =>
+        e.addEventListener("click", () => {
+          o = false;
+          tg.setAttribute("aria-expanded", "false");
+          mn.style.maxHeight = "0";
+          mn.style.opacity = "0";
+          l1.style.transform = "";
+          l2.style.transform = "";
+        })
+      );
+    }
+
+    // Scroll Behavior
+    const h = document.getElementById("site-header");
+    if (h) {
+      // Remove old listener by replacing with a new one each navigation
+      const onScroll = () => h.classList.toggle("scrolled", scrollY > 10);
+      window.removeEventListener("scroll", (window as any).__headerScroll);
+      (window as any).__headerScroll = onScroll;
+      window.addEventListener("scroll", onScroll, { passive: true });
+    }
   }
 
-  // Scroll Behavior
-  const h = document.getElementById("site-header");
-  if (h) {
-    addEventListener(
-      "scroll",
-      () => {
-        h.classList.toggle("scrolled", scrollY > 10);
-      },
-      { passive: true }
-    );
-  }
+  document.addEventListener("astro:page-load", initHeader);
 </script>

@@ -232,7 +232,11 @@ const profile = await getProfile();
     }
   }
 
-  // Start clock
-  updateTime();
-  setInterval(updateTime, 1000);
+  // Start clock — re-initialize after ClientRouter navigation
+  document.addEventListener("astro:page-load", () => {
+    // Clear any existing interval to prevent stacking on navigation
+    if ((window as any).__clockInterval) clearInterval((window as any).__clockInterval);
+    updateTime();
+    (window as any).__clockInterval = setInterval(updateTime, 1000);
+  });
 </script>
